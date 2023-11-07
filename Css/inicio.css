@@ -36,7 +36,11 @@ header{
 }
 h1{
     grid-area: h1;
+    height: 100%;
 }
+header h1 {
+    font-size: 3em;
+  }
 .logo{
     grid-area: logo;
     height: 150px;
@@ -54,10 +58,10 @@ button{
     padding: 30px;
     background-color:  rgb(22, 0, 58);
     width: 150px; 
-    height: 20px;
     color: white;
-    text-align: center;
-
+    text-align:center;
+    
+    
 }
 input{
     border-radius: 20px;
@@ -65,6 +69,7 @@ input{
     color: white;
     text-align: center;
     max-height: 40px;
+    
    
 }
 .usuario{
@@ -88,11 +93,12 @@ input{
 }
 .recuperacion{
     margin: 30px;
+    
 }
 
 body{
-    background: linear-gradient(#FFC0CB, #FFFF00);
-    position: relative;
+    background: linear-gradient(45deg, #FFC0CB, #FFFF00);
+   
     background-size: 400% 400%;
 }
 
