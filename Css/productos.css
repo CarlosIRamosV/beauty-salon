@@ -81,4 +81,35 @@ body{
     height: 10px; /* Altura de las líneas horizontales */
     background-color: #000; /* Color de las líneas */
 }
-/* aqui termina el css del menu*/
+/*****************************************************************************************/
+.producto {
+    background-color: rgb(255, 255, 128);
+    border: 1px solid rgb(255, 153, 255);
+    padding: 20px;
+  margin: 10px;
+  text-align: center;
+  width: 300px;
+  display: inline-block;
+  vertical-align: top; /* Alinea los contenedores en la parte superior */
+ height: 375px;
+    
+  }
+
+   /* Estilos para la imagen del producto */
+    .producto img {
+      max-width: 100%;
+      height: 300px;
+    }
+
+    /* Estilos para el nombre del producto */
+    .producto .nombre {
+      font-weight: bold;
+      margin: 10px 0;
+    }
+
+    /* Estilos para la descripción del producto */
+    .producto .descripcion {
+      font-size: 0.9em;
+      text-align: justify;
+      vertical-align: center;
+    }
