@@ -1,0 +1,48 @@
+body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #ffcccc; /* Fondo rosa */
+            color: #333; /* Color de texto oscuro */
+        }
+
+        header {
+            background-color: #ff00f7;
+            padding: 10px;
+            text-align: center;
+        }
+
+        nav {
+            display: flex;
+            justify-content: center;
+            margin: 10px 0;
+        }
+
+        nav a {
+            display: inline-block;
+            padding: 10px 20px;
+            text-decoration: none;
+            color: white;
+            background-color: #ff4d94; /* Rosa oscuro */
+            margin: 0 10px;
+            border-radius: 5px;
+        }
+
+        section {
+            text-align: center;
+            margin: 20px;
+        }
+
+        .producto {
+            display: inline-block;
+            margin: 10px;
+            padding: 20px;
+            background-color: #ffffff; /* Fondo blanco */
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Sombra suave */
+        }
+
+        .marcar {
+            display: inline-block;
+            margin-top: 10px;
+        }
