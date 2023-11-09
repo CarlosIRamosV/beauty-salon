@@ -1,6 +1,6 @@
 window.addEventListener('load', () => {
     // Llamada a la API para obtener los favoritos
-    fetch('json/favoritos.json')
+    fetch('./json/favoritos.json')
         .then(response => response.json())
         .then(data => {
             data.forEach(element => {
