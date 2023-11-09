@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="css/reserva.css">
+  <title>Reserva cita</title>
+</head>
+<body>
+  <div class="navbar">
+    <button class="nav-btn">Inicio</button>
+    <button class="nav-btn">Servicios</button>
+    <button class="nav-btn">Productos</button>
+    <button class="nav-btn">Contacto</button>
+  </div>
+  
+  <div class="form-container">
+    <form>
+      <label for="nombre">Nombre:</label>
+      <input type="text" id="nombre" name="nombre" required>
+
+      <label for="telefono">Teléfono:</label>
+      <input type="tel" id="telefono" name="telefono" required>
+
+      <label for="empleado">Empleado:</label>
+      <input type="text" id="empleado" name="empleado" required>
+
+      <label for="servicios">Servicios:</label>
+      <select id="servicios" name="servicios" multiple>
+        <option value="corte">Corte de pelo</option>
+        <option value="manicura">Manicura</option>
+        <option value="maquillaje">Maquillaje</option>
+        <!-- Agrega más opciones según sea necesario -->
+      </select>
+
+      <label for="fecha">Fecha:</label>
+      <input type="date" id="fecha" name="fecha" required>
+
+      <label for="hora">Hora:</label>
+      <input type="time" id="hora" name="hora" required>
+
+      <button type="submit">Reservar Cita</button>
+    </form>
+  </div>
+</body>
+</html>
