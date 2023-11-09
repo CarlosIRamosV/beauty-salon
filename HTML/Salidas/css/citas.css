@@ -1,0 +1,40 @@
+body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #ffcccc; /* Fondo rosa */
+    }
+
+    .header {
+      text-align: center;
+      padding: 20px;
+      background-color: #333;
+      color: white;
+    }
+
+    .nav-btn {
+      display: inline-block;
+      margin: 0 10px;
+      padding: 10px 20px;
+      font-size: 16px;
+      color: #2e2e2e; /* Color oscuro */
+      background-color: #ff4d94; /* Rosa oscuro */
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .content {
+      text-align: center;
+      margin: 20px;
+    }
+
+    label {
+      font-size: 18px;
+      margin-right: 10px;
+    }
+
+    select {
+      padding: 10px;
+      font-size: 16px;
+    }

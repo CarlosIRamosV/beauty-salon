@@ -1,0 +1,16 @@
+[
+  {
+      "id": 1,
+      "name": "Favorite 1",
+      "description": "This is a favorite",
+      "image": "http://www.google.com/images/srpr/logo3w.png",
+      "price": 100.25
+    },
+    {
+      "id": 2,
+      "name": "Favorite 2",
+      "description": "This is another favorite",
+      "image": "http://www.google.com/images/srpr/logo3w.png",
+      "price": 200.50
+    }
+]

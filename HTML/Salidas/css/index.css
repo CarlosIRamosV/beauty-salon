@@ -1,0 +1,50 @@
+body {
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+      background-color: #FFC0CB; /* Fondo rosa */
+    }
+
+    .header {
+      background-color: #FF69B4; /* Color de la barra superior */
+      padding: 20px;
+      text-align: center;
+      color: #FFF; /* Color de texto */
+    }
+
+    .navbar {
+      text-align: right; /* Alineado hacia la derecha */
+      padding: 8px;
+    }
+
+    .navbar a {
+      color: #FFF;
+      text-decoration: none;
+      padding: 25px 16px;
+      display: block; /* Cambiado a block para organizar hacia abajo */
+      margin-bottom: 20px; /* Espaciado entre los enlaces */
+    }
+
+    .content {
+      padding: 20px;
+      text-align: center;
+    }
+
+    .buttons-container {
+      text-align: center;
+      padding: 10px;
+    }
+
+    .button {
+      background-color: #ff00cc; /* Color de fondo del botón */
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 16px;
+      margin: 4px 2px;
+      cursor: pointer;
+      border-radius: 8px;
+    }

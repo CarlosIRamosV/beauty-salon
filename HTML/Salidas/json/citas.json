@@ -1,0 +1,22 @@
+{
+  "days": [
+    {
+      "day": 8,
+      "month": 11,
+      "year": 2023,
+      "available": 10
+    },
+    {
+      "day": 9,
+      "month": 11,
+      "year": 2023,
+        "available": 10
+    },
+    {
+      "day": 10,
+      "month": 11,
+      "year": 2023,
+        "available": 10
+    }
+  ]
+}
