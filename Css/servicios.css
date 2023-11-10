@@ -8,6 +8,7 @@ body {
     background-size: 400% 400%;
 }
 
+
 /*inicia el css del menu*/
 
 
@@ -91,6 +92,12 @@ body {
     background-color: #000;
     /* Color de las líneas */
 }
+a {
+    color: inherit ;
+    text-decoration: none;
+}
+
+
 
 /*****************************************************************************************/
 .contenedor{

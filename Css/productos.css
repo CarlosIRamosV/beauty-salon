@@ -81,6 +81,13 @@ body{
     height: 10px; /* Altura de las líneas horizontales */
     background-color: #000; /* Color de las líneas */
 }
+
+a{
+    color: inherit; /* Hereda el color del texto del elemento padre */
+    text-decoration: none; /* Elimina el subrayado */
+   
+}
+
 /*****************************************************************************************/
 .producto {
     background-color: rgb(255, 255, 128);
@@ -114,3 +121,4 @@ body{
       text-align: justify;
       vertical-align: center;
     }
+    
