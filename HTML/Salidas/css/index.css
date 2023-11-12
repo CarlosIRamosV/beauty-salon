@@ -1,42 +1,152 @@
-body {
+/*body {
       margin: 0;
       padding: 0;
       font-family: Arial, sans-serif;
-      background-color: #FFC0CB; /* Fondo rosa */
+      background-color: #FFC0CB; /* Fondo rosa 
     }
 
     .header {
-      background-color: #FF69B4; /* Color de la barra superior */
+      background-color: #FF69B4; /* Color de la barra superior 
       padding: 20px;
       text-align: center;
-      color: #FFF; /* Color de texto */
+      color: #FFF; /* Color de texto 
     }
+    */
+html {
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 
-    .navbar {
-      text-align: right; /* Alineado hacia la derecha */
-      padding: 8px;
-    }
+}
 
-    .navbar a {
-      color: #FFF;
-      text-decoration: none;
-      padding: 25px 16px;
-      display: block; /* Cambiado a block para organizar hacia abajo */
-      margin-bottom: 20px; /* Espaciado entre los enlaces */
-    }
+body {
+  background: linear-gradient(45deg, #FFC0CB, #FFFF00);
+  background-size: 400% 400%;
+}
 
-    .content {
-      padding: 20px;
-      text-align: center;
-    }
+/*inicia el css del menu*/
 
+
+.menuNav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+  color: #fff;
+  background-color: #333;
+}
+
+.menu-list {
+  list-style: none;
+  display: flex;
+  margin: 0;
+  padding: 0;
+}
+
+.menu-list li {
+  margin-right: 20px;
+}
+
+.menu-button {
+  text-decoration: none;
+  background-color: #333;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  width: 250px;
+  font-size: 2rem;
+}
+
+/*cuando se pone el cursor en los  botones
+  .menu-button:hover {
+      
+  }
+  */
+
+
+
+/* Estilos para pantallas pequeñas (puedes utilizar media queries) */
+@media screen and (max-width: 768px) {
+  .menu-list {
+    display: none;
+  }
+
+  .menu-icon {
+    display: block;
+    cursor: pointer;
+  }
+}
+
+.logo {
+  width: 100px;
+  /* Ajusta el ancho del logo según tus necesidades */
+  height: auto;
+  /* Mantiene la proporción de aspecto automáticamente */
+}
+
+/* esta parte es para el icono de las 3 barritas*/
+.menu-icon {
+  grid-area: icono;
+  width: 60px;
+  /* Ancho del icono */
+  height: 70px;
+  /* Altura del icono */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  cursor: pointer;
+}
+
+
+
+a {
+  color: inherit;
+  /* Hereda el color del texto del elemento padre */
+  text-decoration: none;
+  /* Elimina el subrayado */
+
+}
+
+
+
+.opciones {
+  display: block;
+  margin-left: auto;
+  padding: 30px;
+  margin-top: 20px;
+  /* Espacio en la parte superior */
+  background-color: #333;
+  border-radius: 20px;
+  max-width: 30%;
+
+
+}
+
+.opciones a {
+  color: #FFF;
+  text-decoration: none;
+  padding: 25px 16px;
+  font-size: 2rem;
+  display: block;
+  /* Cambiado a block para organizar hacia abajo */
+
+  margin-bottom: 20px;
+  /* Espaciado entre los enlaces */
+
+}
+
+.content {
+  padding: 20px;
+  text-align: center;
+}
+
+/*
     .buttons-container {
       text-align: center;
       padding: 10px;
     }
 
     .button {
-      background-color: #ff00cc; /* Color de fondo del botón */
+      background-color: #ff00cc; /* Color de fondo del botón 
       color: white;
       border: none;
       padding: 10px 20px;
@@ -48,3 +158,4 @@ body {
       cursor: pointer;
       border-radius: 8px;
     }
+    */
