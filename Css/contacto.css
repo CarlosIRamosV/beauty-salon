@@ -86,6 +86,53 @@ a{
     color: inherit; /* Hereda el color del texto del elemento padre */
     text-decoration: none; /* Elimina el subrayado */
 }
+
+
+@media screen and (max-width: 768px) {
+    .menu-list {
+        display: none;
+    }
+
+    .menu-icon {
+        display: block;
+        cursor: pointer;
+    }
+    
+}
+
+/* Nuevos estilos para la barra lateral */
+.sidebar {
+    display: none;
+    margin-left: auto;
+    padding: 30px;
+    margin-top: 20px;
+    /* Espacio en la parte superior */
+    background-color: #333;
+    border-radius: 20px;
+    max-width: 100%;
+    z-index: 2;
+    position: absolute;
+    top: 16%;
+    right: 0.2%;
+}
+
+.sidebar a {
+    color: #FFF;
+    text-decoration: none;
+    padding: 25px 16px;
+    display: block;
+    /* Cambiado a block para organizar hacia abajo */
+    
+    margin-bottom: 20px;
+    /* Espaciado entre los enlaces */
+}
+.sidebar a:hover{
+    color: #a200ff;
+
+}
+button:hover {
+    background-color: #a200ff;
+  }
 /*********************************************************/
 
   .contact-container {
