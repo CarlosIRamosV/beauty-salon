@@ -19,17 +19,48 @@ window.addEventListener('load', () => {
                 document.getElementById('favoritos').appendChild(div);
             })
         })
+        
     
     
 });
 
 
-// Función para cambiar la imagen
-function cambiarImagen(imagen) {
-    // Verifica si la imagen actual es la primera o la segunda
-    const isPrimeraImagen = imagen.src.includes('../Recursos/fav.png');
+// Inicializa un array vacío para almacenar los productos favoritos
+var productosFavoritos = [];
 
-    // Alterna entre dos imágenes
-    imagen.src = isPrimeraImagen ? '../Recursos/favrell.png' : '../../../Recursos/fav.png';
+//convertir el array de js a json
+var miJson = JSON.stringify(productosFavoritos);
+console.log(miJson);
+
+// Función para cambiar la imagen al hacer clic y agregar o quitar el producto al array
+function cambiarImagen(image, nombreProducto) {
+  // Verifica la fuente actual de la imagen
+  if (image.src.match("rell")) {
+    // Si la imagen actual es la imagen default, cambia a la otra imagen
+    image.src = "../../Recursos/fav.png";
+    
+    // Elimina el nombre del producto del array de productos favoritos
+    var index = productosFavoritos.indexOf(nombreProducto);
+    if (index !== -1) {
+      productosFavoritos.splice(index, 1);
+    }
+    
+    // Muestra el array de productos favoritos en la consola
+    console.log(productosFavoritos);
+  } else {
+    // Si la imagen actual no es la imagen default, vuelve a la imagen default
+    image.src = "../../Recursos/favrell.png";
+     // Agrega el nombre del producto al array de productos favoritos
+     productosFavoritos.push(nombreProducto);
+
+   
+    
+    // Muestra el array de productos favoritos en la consola
+    console.log(productosFavoritos);
+  }
+}
+
+function obtenerContenidoNombre(elemento) {
+    return elemento.nextElementSibling.nextElementSibling.textContent.trim();
   }
 
