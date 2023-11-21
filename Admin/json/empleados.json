@@ -1,0 +1,17 @@
+[
+  {
+    "id_empleado": 1,
+    "telefonoid_empleado": "123-456-7890",
+    "idespecialidadid_empleado": 101
+  },
+  {
+    "id_empleado": 2,
+    "telefonoid_empleado": "987-654-3210",
+    "idespecialidadid_empleado": 102
+  },
+  {
+    "id_empleado": 3,
+    "telefonoid_empleado": "555-123-4567",
+    "idespecialidadid_empleado": 103
+  }
+]  

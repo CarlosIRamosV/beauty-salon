@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CRUD de Productos</title>
+  <link rel="stylesheet" href="../css/tablas.css">
+</head>
+<body>
+
+    <div class="menuNav">
+        <img src="/Recursos/image.png" alt="" class="logo">
+        <ul class="menu-list">
+            <li><button class="menu-button"><a href="menuInicio.html">Inicio</a></button></li>
+            <li><button class="menu-button"><a href="servicios.html">Servicios</a></button></li>
+            <li><button class="menu-button"><a href="productos.html">Productos</a></button></li>
+            <li><button class="menu-button"><a href="contacto.html">Contacto</a></button></li>
+        </ul>
+        <div class="menu-icon">
+            <div class="line"></div>
+            <div class="line"></div>
+            <div class="line"></div>
+            <!-- Barra lateral desplegable -->
+            <div class="sidebar">
+                <a href="/Admin/html/tabproductos.html">Productos</a>
+                <a href="/Admin/html/tabcitas.html">Citas</a>
+                <a href="/Admin/html/tabempleados.html">Empleados</a>
+                <a href="#">Cerrar Sesión</a>
+            </div>
+        </div>
+    </div>
+
+  <h2>Tabla de Productos</h2>
+
+  <table id="data-table">
+    <thead>
+      <tr>
+        <th>ID Producto</th>
+        <th>Nombre</th>
+        <th>Descripción</th>
+        <th>Precio</th>
+        <th>Cantidad</th>
+        <th>Favoritos</th>
+        <th>Acciones</th>
+      </tr>
+    </thead>
+    <tbody id="table-body"></tbody>
+  </table>
+  
+  <hr>
+
+  <form id="crud-form">
+    <label for="nombre">Nombre:</label>
+    <input type="text" id="nombre" required>
+
+    <label for="descr">Descripción:</label>
+    <input type="text" id="descr">
+
+    <label for="precio">Precio:</label>
+    <input type="number" step="0.01" id="precio" required>
+
+    <label for="cantidad">Cantidad:</label>
+    <input type="number" id="cantidad" required>
+
+    <label for="favoritos">Favoritos:</label>
+    <input type="number" id="favoritos">
+
+    <button type="button" onclick="addOrUpdateProducto()">Guardar</button>
+  </form>
+
+  <script src="../js/tabproductos.js"></script>
+  <script src="../js/menuDesplegable.js"></script>
+</body>
+</html>

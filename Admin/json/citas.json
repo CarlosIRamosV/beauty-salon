@@ -1,39 +1,23 @@
 [
   {
-    "id": 1,
-    "date": "2023-11-08",
-    "name": "8 de noviembre de 2023",
-    "citas": [
-      {
-        "idCliente": 1,
-        "idCita": 1,
-        "hora": "10:00",
-        "nombre": "Juan",
-        "apellido": "Perez",
-        "telefono": "12345678",
-        "email": "a@a.com",
-        "comentarios": "Comentario de prueba",
-        "estado": "pendiente",
-        "servicio": "Corte de pelo",
-        "precio": 1000,
-        "idEmpleado": 1,
-        "nombreEmpleado": "Empleado 1"
-      }
-    ]
+    "id_cita": 1,
+    "idcliente_cita": 101,
+    "idempleado_cita": 201,
+    "fechahora_cita": "2023-11-20T10:00:00",
+    "idservicios_cita": 301
   },
   {
-    "id": 2,
-    "date": "2023-11-09",
-    "name": "9 de noviembre de 2023",
-    "citas": [
-
-    ]
+    "id_cita": 2,
+    "idcliente_cita": 102,
+    "idempleado_cita": 202,
+    "fechahora_cita": "2023-11-21T14:30:00",
+    "idservicios_cita": 302
   },
   {
-    "id": 3,
-    "date": "2023-11-10",
-    "name": "10 de noviembre de 2023",
-    "citas": [
-    ]
+    "id_cita": 3,
+    "idcliente_cita": 103,
+    "idempleado_cita": 203,
+    "fechahora_cita": "2023-11-22T09:45:00",
+    "idservicios_cita": 303
   }
-]
+]  
