@@ -19,6 +19,9 @@ jobs:
         with:
           sparse-checkout: api
 
+      - name: Prepare Ubuntu
+        run: sudo apt-get install -y gcc-mingw-w64-x86-64
+
       - name: Prepare Rust
         run: rustup target add x86_64-pc-windows-gnu
 
