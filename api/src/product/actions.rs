@@ -1,5 +1,6 @@
 use diesel::prelude::*;
 use uuid::Uuid;
+
 use crate::models::products::Product;
 
 pub fn find_all_products(

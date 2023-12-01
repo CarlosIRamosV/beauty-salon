@@ -1,9 +1,7 @@
 use diesel::{Insertable, Queryable};
 use serde::{Deserialize, Serialize};
 
-use crate::models::schema::sex;
-use crate::models::schema::roles;
-use crate::models::schema::users;
+use crate::models::schema::{roles, sex, users};
 
 #[derive(Debug, Clone, Serialize, Deserialize, Queryable, Insertable)]
 #[diesel(table_name = roles)]
@@ -34,7 +32,6 @@ pub struct User {
     pub email: String,
     pub password: String,
 }
-
 
 
 #[derive(Debug, Clone, Serialize, Deserialize)]

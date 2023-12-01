@@ -11,4 +11,5 @@ CREATE TABLE users
     password   VARCHAR NOT NULL
 );
 
-INSERT INTO users (ID, ROLE_ID, NAME, LAST_NAME, BIRTH_DATE, SEX_ID, PHONE, EMAIL, PASSWORD) VALUES ('1', '1', 'admin', 'admin', '1990-01-01', '1', '123456789', 'admin@admin.com', 'admin');
+INSERT INTO users (ID, ROLE_ID, NAME, LAST_NAME, BIRTH_DATE, SEX_ID, PHONE, EMAIL, PASSWORD)
+VALUES ('1', '1', 'admin', 'admin', '1990-01-01', '1', '123456789', 'admin@admin.com', 'admin');
