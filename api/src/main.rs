@@ -1,13 +1,14 @@
 use std::env;
 use std::error::Error;
+
 use actix_web::{App, HttpServer, middleware, web};
-use diesel::r2d2::{ConnectionManager};
+use diesel::r2d2::ConnectionManager;
 use diesel::sqlite::Sqlite;
 use diesel::SqliteConnection;
 use diesel_migrations::{embed_migrations, EmbeddedMigrations, MigrationHarness};
 use dotenv::dotenv;
-use crate::models::types::Pool;
 
+use crate::models::types::Pool;
 use crate::user::{add_user, get_user};
 
 mod models;
