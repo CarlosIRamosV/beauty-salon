@@ -23,7 +23,7 @@ pub fn insert_new_user(
     nm: &str,
     last_nm: &str,
     birth: &str,
-    sx: &str,
+    sx: i32,
     ph: &str,
     em: &str,
     pass: &str,
@@ -32,11 +32,11 @@ pub fn insert_new_user(
 
     let new_user = models::user::User {
         id: Uuid::new_v4().to_string(),
+        role_id: 2,
         name: nm.to_owned(),
         last_name: last_nm.to_owned(),
-
         birth_date: birth.to_owned(),
-        sex: sx.to_owned(),
+        sex_id: sx,
         phone: ph.to_owned(),
         email: em.to_owned(),
         password: pass.to_owned(),

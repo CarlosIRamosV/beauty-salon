@@ -44,7 +44,7 @@ pub async fn add_user(
         // note that obtaining a connection from the pool is also potentially blocking
         let mut conn = pool.get()?;
 
-        actions::insert_new_user(&mut conn, &form.name, &form.last_name, &form.birth_date, &form.sex, &form.phone, &form.email, &form.password)
+        actions::insert_new_user(&mut conn, &form.name, &form.last_name, &form.birth_date, form.sex, &form.phone, &form.email, &form.password)
     })
         .await?
         // map diesel query errors to a 500 error response
