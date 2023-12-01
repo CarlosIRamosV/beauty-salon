@@ -25,6 +25,8 @@ env_logger = "0.10.1"
 
 # Web framework
 actix-web = "4.4.0"
+actix-web-httpauth = "0.8.1"
 
 # Types
 uuid = { version = "1.6.1", features = ["v4", "serde"] }
+chrono = "0.4.31"

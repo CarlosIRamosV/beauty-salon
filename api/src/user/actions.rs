@@ -17,7 +17,6 @@ pub fn find_user_by_uid(
     Ok(user)
 }
 
-/// Run query using Diesel to insert a new database row and return the result.
 pub fn insert_new_user(
     conn: &mut SqliteConnection,
     nm: &str,
@@ -28,7 +27,7 @@ pub fn insert_new_user(
     em: &str,
     pass: &str,
 ) -> Result<models::user::User, Box<dyn std::error::Error + Send + Sync>> {
-    use crate::models::schema::{users::dsl::*, passwords::dsl::*};
+    use crate::models::schema::{passwords::dsl::*, users::dsl::*};
 
     let new_user = models::user::User {
         id: Uuid::new_v4().to_string(),
