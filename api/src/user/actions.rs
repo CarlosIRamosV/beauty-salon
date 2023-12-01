@@ -28,7 +28,7 @@ pub fn insert_new_user(
     em: &str,
     pass: &str,
 ) -> Result<models::user::User, Box<dyn std::error::Error + Send + Sync>> {
-    use crate::models::schema::users::dsl::*;
+    use crate::models::schema::{users::dsl::*, passwords::dsl::*};
 
     let new_user = models::user::User {
         id: Uuid::new_v4().to_string(),
@@ -39,10 +39,15 @@ pub fn insert_new_user(
         sex_id: sx,
         phone: ph.to_owned(),
         email: em.to_owned(),
+    };
+
+    let new_password = models::user::Password {
+        user_id: new_user.id.to_owned(),
         password: pass.to_owned(),
     };
 
     diesel::insert_into(users).values(&new_user).execute(conn)?;
+    diesel::insert_into(passwords).values(&new_password).execute(conn)?;
 
     Ok(new_user)
 }

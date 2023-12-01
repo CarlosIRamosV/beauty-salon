@@ -1,6 +1,13 @@
 // @generated automatically by Diesel CLI.
 
 diesel::table! {
+    passwords (user_id) {
+        user_id -> Text,
+        password -> Text,
+    }
+}
+
+diesel::table! {
     products (id) {
         id -> Text,
         name -> Text,
@@ -35,14 +42,15 @@ diesel::table! {
         sex_id -> Integer,
         phone -> Text,
         email -> Text,
-        password -> Text,
     }
 }
 
+diesel::joinable!(passwords -> users (user_id));
 diesel::joinable!(users -> roles (role_id));
 diesel::joinable!(users -> sex (sex_id));
 
 diesel::allow_tables_to_appear_in_same_query!(
+    passwords,
     products,
     roles,
     sex,
