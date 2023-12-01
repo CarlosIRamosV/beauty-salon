@@ -12,6 +12,7 @@ use crate::user::{add_user, get_user};
 
 mod models;
 mod user;
+mod product;
 
 pub const MIGRATIONS: EmbeddedMigrations = embed_migrations!();
 
@@ -35,6 +36,9 @@ async fn main() -> std::io::Result<()> {
             .wrap(middleware::Logger::default())
             .service(get_user)
             .service(add_user)
+            .service(product::get_products)
+            .service(product::get_product)
+            .service(product::add_product)
     })
         .bind(("127.0.0.1", 8080))?
         .run()
