@@ -19,4 +19,8 @@ jobs:
         with:
           sparse-checkout: api
       - name: Build
-        run: cd api && cargo build --verbose
+        run:
+          cd api |
+          rustup target add windows-x86_64-pc-windows-gnu |
+          cargo build --verbose --target windows-x86_64-pc-windows-gnu --release |
+          ls target/x86_64-pc-windows-gnu/release
