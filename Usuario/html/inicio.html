@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" type="text/css" href="../css/inicio.css">
+    <script src="../js/inicio.js"></script>
 
 </head>
 
@@ -22,14 +23,17 @@
         <h3 class="subtitulo"> Tu mejor opcion</h3>
 
         <input type="text" placeholder="Usuario" class="usuario">
-        <input type="text" placeholder="Contraseña" class="contraseña">
+        <input type="password" placeholder="Contraseña" class="contraseña">
         <div class="botonesIRR">
-            <button class="sesion">Iniciar sesión</button>
+            <button class="sesion" onclick="enviarDatos()">Iniciar sesión</button>
             <button class="registro" >Registrarse <a href="cuenta.html"></a></button>
             <button class="recuperacion">Recuperar contraseña</button>
+
+            
         </div>
 
     </div>
+    
 
 </body>
 
