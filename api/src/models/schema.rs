@@ -1,11 +1,11 @@
 // @generated automatically by Diesel CLI.
 
 diesel::table! {
-    jwt (id) {
-        id -> Text,
-        user_id -> Text,
-        token -> Text,
-        created_at -> Timestamp,
+    images (id) {
+        id -> Nullable<Text>,
+        #[sql_name = "type"]
+        type_ -> Nullable<Text>,
+        data -> Nullable<Binary>,
     }
 }
 
@@ -54,13 +54,12 @@ diesel::table! {
     }
 }
 
-diesel::joinable!(jwt -> users (user_id));
 diesel::joinable!(passwords -> users (user_id));
 diesel::joinable!(users -> roles (role_id));
 diesel::joinable!(users -> sex (sex_id));
 
 diesel::allow_tables_to_appear_in_same_query!(
-    jwt,
+    images,
     passwords,
     products,
     roles,

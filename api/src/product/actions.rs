@@ -33,9 +33,14 @@ pub fn insert_new_product(
     desc: &str,
     prc: f64,
     qty: i32,
-    img: &str,
+    img: &String,
 ) -> Result<Product, Box<dyn std::error::Error + Send + Sync>> {
-    use crate::models::schema::products::dsl::*;
+    use crate::models::schema::{products::dsl::*, images::dsl::*};
+
+    let new_image = crate::models::products::Image {
+        id: Uuid::new_v4().to_string(),
+        data: img.as_bytes().to_owned(),
+    };
 
     let new_product = Product {
         id: Uuid::new_v4().to_string(),
@@ -46,6 +51,7 @@ pub fn insert_new_product(
         image: img.to_owned(),
     };
 
+    diesel::insert_into(images).values(&new_image).execute(conn)?; // TODO: Check if image already exists (by hash)
     diesel::insert_into(products).values(&new_product).execute(conn)?;
 
     Ok(new_product)

@@ -1,7 +1,14 @@
 use diesel::{Insertable, Queryable};
 use serde::{Deserialize, Serialize};
 
-use crate::models::schema::products;
+use crate::models::schema::{products, images};
+
+#[derive(Debug, Clone, Serialize, Deserialize, Queryable, Insertable)]
+#[diesel(table_name = images)]
+pub struct Image {
+    pub id: String,
+    pub data: Vec<u8>,
+}
 
 #[derive(Debug, Clone, Serialize, Deserialize, Queryable, Insertable)]
 #[diesel(table_name = products)]
@@ -20,5 +27,5 @@ pub struct NewProduct {
     pub description: String,
     pub price: f64,
     pub quantity: i32,
-    pub image: String,
+    pub image: String
 }
