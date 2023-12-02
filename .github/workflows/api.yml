@@ -61,6 +61,7 @@ jobs:
         uses: docker/metadata-action@v5
         with:
           images: ${{ env.REGISTRY }}/${{ secrets.OCI_TENANCY }}/${{ env.IMAGE_NAME }}
+          tags: latest
 
       - name: Build and push Docker image
         uses: docker/build-push-action@v5
