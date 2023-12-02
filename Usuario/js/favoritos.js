@@ -1,7 +1,7 @@
 window.addEventListener('load', () => {
     // Llamada a la API para obtener los favoritos
     
-    fetch('./json/favoritos.json')
+    fetch('http://localhost:8080/')
         .then(response => response.json())
         .then(data => {
             data.forEach(element => {
@@ -28,39 +28,118 @@ window.addEventListener('load', () => {
 // Inicializa un array vacío para almacenar los productos favoritos
 var productosFavoritos = [];
 
-//convertir el array de js a json
-var miJson = JSON.stringify(productosFavoritos);
-console.log(miJson);
-
 // Función para cambiar la imagen al hacer clic y agregar o quitar el producto al array
-function cambiarImagen(image, nombreProducto) {
+function cambiarImagen(image, nombreProducto, descripcion,imagen) {
   // Verifica la fuente actual de la imagen
-  if (image.src.match("rell")) {
+  if (image.src.match("favrell")) {
     // Si la imagen actual es la imagen default, cambia a la otra imagen
     image.src = "../../Recursos/fav.png";
+
+    // Elimina el producto del array de productos favoritos
+    var index = productosFavoritos.findIndex(
+      (producto) =>
+        //producto.nombre === nombreProducto && producto.descripcion === descripcion
+        producto.nombre === nombreProducto && 
+        producto.descripcion === descripcion &&
+        producto.url === imagen 
+    );
     
-    // Elimina el nombre del producto del array de productos favoritos
-    var index = productosFavoritos.indexOf(nombreProducto);
     if (index !== -1) {
       productosFavoritos.splice(index, 1);
+      
     }
-    
-    // Muestra el array de productos favoritos en la consola
-    console.log(productosFavoritos);
   } else {
     // Si la imagen actual no es la imagen default, vuelve a la imagen default
     image.src = "../../Recursos/favrell.png";
-     // Agrega el nombre del producto al array de productos favoritos
-     productosFavoritos.push(nombreProducto);
 
-   
-    
-    // Muestra el array de productos favoritos en la consola
-    console.log(productosFavoritos);
+    // Agrega el producto al array de productos favoritos
+    productosFavoritos.push({ nombre: nombreProducto, descripcion: descripcion, url: imagen });
   }
+
+  // Muestra el array de productos favoritos en la consola
+  console.log(productosFavoritos);
+
+  
+// Convierte el array de JS a JSON
+var miJson = JSON.stringify(productosFavoritos);
+
+// Elimina los corchetes del principio y final de la cadena JSON
+var miJsonSinCorchetes = miJson.slice(1, -1);
+
+// Muestra en la consola el JSON sin corchetes
+console.log(miJsonSinCorchetes);
+
+/*
+var apiUrl = 'http://localhost:8080/';
+
+// Configuración de la solicitud
+var requestOptions = {
+  method: 'POST',
+  headers: {
+    'Content-Type': 'application/json',
+  },
+  body: miJsonSinCorchetes, // La cadena JSON sin corchetes
+};
+
+// Realiza la solicitud utilizando fetch
+fetch(apiUrl, requestOptions)
+  .then(response => response.json())
+  .then(data => console.log(data))
+  .catch(error => console.error('Error:', error));
+  */
 }
 
-function obtenerContenidoNombre(elemento) {
-    return elemento.nextElementSibling.nextElementSibling.textContent.trim();
+
+//funciones para obtener del valor del nombre descripcion y la imagen
+
+function nombre(elemento) {
+  return elemento.nextElementSibling.nextElementSibling.textContent.trim();
+}
+
+function descripcion(elemento) {
+  return elemento.nextElementSibling.nextElementSibling.nextElementSibling.textContent.trim();
+}
+function imagen(elemento){
+  var imagen = document.getElementById('prod');
+  var url = imagen.src;
+  return url;
+}
+
+
+
+
+/*otra prueba de la funcion
+var favoritos={};
+
+function cambiarImagen(imagen,nombre,descripcion){
+  if (imagen.src.match("favrell")) {
+    // Si la imagen actual es la imagen default, cambia a la otra imagen
+    imagen.src = "../../Recursos/fav.png";
+    // Almacena los datos en el objeto favoritos
+
+    var index = favoritos.findIndex(
+      (producto) =>
+        producto.nombre === nombreProducto && producto.descripcion === descripcion
+    );
+    
+    if (index !== -1) {
+      favoritos = {};
+    }
+   
+  } else {
+    // Si la imagen actual no es la imagen default, vuelve a la imagen default
+    imagen.src = "../../Recursos/favrell.png";
+    // Elimina los datos del objeto favoritos
+    favoritos = {nombre,descripcion};
   }
+
+  // Muestra el objeto de favoritos en la consola
+  console.log(favoritos);
+
+  var miJson = JSON.stringify(favoritos);
+  console.log(miJson);
+}
+*/
+
+
 

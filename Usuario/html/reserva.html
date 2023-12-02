@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="../css/reserva.css">
   <script src="../js/menuDesplegable.js"></script>
+  <script src="../js/reserva.js"></script>
   <title>Reserva cita</title>
 </head>
 <body>
@@ -55,7 +56,7 @@
       <label for="hora">Hora:</label>
       <input type="time" id="hora" name="hora" required>
 
-      <button type="submit">Reservar Cita</button>
+      <button type="button" onclick="enviarDatos()">Reservar Cita</button>
     </form>
   </div>
 </body>
