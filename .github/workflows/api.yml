@@ -62,10 +62,13 @@ jobs:
         uses: docker/metadata-action@v5
         with:
           images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
+          tags: latest
 
 
       - name: Print metadata
         run: |
+          echo "env=${{ env.REGISTRY }}"
+          echo "env=${{ env.IMAGE_NAME }}"
           echo "tags=${{ steps.meta.outputs.tags }}"
           echo "labels=${{ steps.meta.outputs.labels }}"
 
