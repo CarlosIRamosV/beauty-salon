@@ -1,7 +1,7 @@
 use std::env;
 use std::error::Error;
-use actix_cors::Cors;
 
+use actix_cors::Cors;
 use actix_web::{App, HttpServer, middleware, web};
 use diesel::r2d2::ConnectionManager;
 use diesel::sqlite::Sqlite;
