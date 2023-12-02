@@ -4,6 +4,7 @@ function enviarDatos() {
     var telefono = document.getElementById("telefono").value.trim();
     var empleado = document.getElementById("empleado").value.trim();
     var servicios = Array.from(document.getElementById("servicios").selectedOptions).map(option => option.value);
+    var serviciosSinCorchetes = servicios.join(', ');
     var fecha = document.getElementById("fecha").value.trim();
     var hora = document.getElementById("hora").value.trim();
 
@@ -15,7 +16,7 @@ function enviarDatos() {
             nombre: nombre,
             telefono: telefono,
             empleado: empleado,
-            servicios: servicios,
+            servicios: serviciosSinCorchetes,
             fecha: fecha,
             hora: hora
         };

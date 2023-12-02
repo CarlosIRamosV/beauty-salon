@@ -18,20 +18,23 @@
 
         <form action="">
             <div class="cNombre">
-                <label for="nombre">Nombre:  </label><input type="text" id="nombre" class="nombre">
+                <label for="nombre">Nombre: </label><input type="text" id="nombre" class="nombre">
             </div>
             <div class="cApellidos">
-                <label for="apellidos">Apellidos:  </label><input type="text" id="apellidos" class="apellidos">
+                <label for="apellidos">Apellidos: </label><input type="text" id="apellidos" class="apellidos">
             </div>
+            <div class="cNacimiento">
+                <label for="nacimiento">Fecha de nacimiento: </label><input type="date" id="nacimiento"
+                    class="nacimiento">
+            </div>
+            <label for="telefono">Teléfono:</label>
+            <input type="tel" id="telefono" name="telefono" required>
             <div class="cContraseña">
-            <label for="contraseña">Contraseña:  </label><input type="text" id="contraseña" class="contraseña">
+                <label for="contraseña">Contraseña: </label><input type="password" id="contraseña" class="contraseña">
             </div>
             <div class="cConfirmar">
-                <label for="cContraseña">Confirmar contraseña:  </label><input type="text" id="cContraseña"
+                <label for="cContraseña">Confirmar contraseña: </label><input type="password" id="cContraseña"
                     class="cContraseña">
-            </div>
-            <div class="cEdad">
-                <label for="edad">Edad:  </label><input type="number" id="edad" class="edad">
             </div>
             <label for="sexo">Sexo: </label>
             <div class="cSexo">
@@ -39,22 +42,24 @@
                 <label for="masculino">Masculino</label>
                 <input type="radio" id="femenino" class="femenino" name="sexo">
                 <label for="femenino">Femenino</label>
-                <input type="radio" id="otro" class="otro" name="sexo">
+                <input type="radio" id="lgtv" class="otro" name="sexo">
                 <label for="otro">Otro</label>
             </div>
-       
+
             <div class="cCorreo">
-                <label for="correo">Correo:  </label><input type="email" id="correo" class="correo">
+                <label for="correo">Correo: </label><input type="email" id="correo" class="correo">
             </div>
         </form>
 
-       
-            <button id="crear" class="crear">Crear</button>
-            <button id="cancelar" class="cancelar">Cancelar</button>
-        
-    
+
+        <button id="crear" class="crear" onclick="registrar()">Crear</button>
+        <button id="cancelar" class="cancelar">Cancelar</button>
+
+
         <img src="../../Recursos/imagen_cuenta-removebg-preview.png" alt="imagen de utencilios de una estetica">
     </div>
+
+    <script src="../js/cuenta.js"></script>
 
 </body>
 
