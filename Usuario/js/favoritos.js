@@ -24,6 +24,37 @@ window.addEventListener('load', () => {
     
 });
 
+window.addEventListener("load", () => {
+        fetch("http://localhost:8080/product")
+        .then(response => response.json())
+            .then(data => {
+                data.forEach(element => {
+                    let div = document.createElement("div");
+                    div.className = "producto";
+                    let img = document.createElement("img");
+                    img.src = "../../Recursos/fav.png";
+                    img.alt = "icono fav";
+                    img.className = "fav";
+                    div.appendChild(img);
+                    let imgProducto = document.createElement("img");
+                    imgProducto.src = element.image;
+                    imgProducto.alt = element.name;
+                    imgProducto.className = "prod";
+                    div.appendChild(imgProducto);
+                    let nombre = document.createElement("div");
+                    nombre.className = "nombre";
+                    nombre.innerHTML = element.name;
+                    div.appendChild(nombre);
+                    let descripcion = document.createElement("div");
+                    descripcion.className = "descripcion";
+                    descripcion.innerHTML = element.description;
+                    div.appendChild(descripcion);
+                    document.getElementById("productos").appendChild(div);
+                });
+            }
+        );
+    });
+
 
 // Inicializa un array vacío para almacenar los productos favoritos
 var productosFavoritos = [];
