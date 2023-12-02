@@ -59,17 +59,8 @@ jobs:
         id: meta
         uses: docker/metadata-action@v5
         with:
-          images: ${{ secrets.OCI_TENANCY }}/${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
+          images: ${{ env.REGISTRY }}/${{ secrets.OCI_TENANCY }}/${{ env.IMAGE_NAME }}
           tags: latest
-
-
-      - name: Print metadata
-        run: |
-          echo "env=${{ env.REGISTRY }}"
-          echo "env=${{ env.IMAGE_NAME }}"
-          echo "tags=${{ steps.meta.outputs.tags }}"
-          echo "labels=${{ steps.meta.outputs.labels }}"
-
       - name: Build and push Docker image
         uses: docker/build-push-action@v5
         with:
