@@ -1,3 +1,4 @@
+
 // Variables globales
 let data = []; // Inicialmente, el array de datos está vacío
 
@@ -103,3 +104,5 @@ function loadJSONData() {
 window.onload = function() {
   loadJSONData();
 };
+
+
