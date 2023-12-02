@@ -9,7 +9,7 @@ CREATE TABLE users
     phone      VARCHAR NOT NULL,
     email      VARCHAR NOT NULL,
     PRIMARY KEY (id),
-    UNIQUE (phone, email)
+    UNIQUE (email)
 );
 
 INSERT INTO users (ID, ROLE_ID, NAME, LAST_NAME, BIRTH_DATE, SEX_ID, PHONE, EMAIL)
