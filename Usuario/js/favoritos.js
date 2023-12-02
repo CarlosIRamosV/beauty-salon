@@ -1,5 +1,5 @@
 function addFavorito(id) {
-    fetch('http://localhost:8080/favorites/' + id, {
+    fetch('http://139.177.103.192:8080/favorites/' + id, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
@@ -18,7 +18,7 @@ function addFavorito(id) {
 }
 
 window.addEventListener("load", () => {
-    fetch("http://localhost:8080/product")
+    fetch("http://139.177.103.192:8080/product")
         .then(response => response.json())
         .then(data => {
                 data.forEach(element => {
