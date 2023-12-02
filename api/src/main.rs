@@ -1,5 +1,6 @@
 use std::env;
 use std::error::Error;
+use actix_cors::Cors;
 
 use actix_web::{App, HttpServer, middleware, web};
 use diesel::r2d2::ConnectionManager;
@@ -47,11 +48,11 @@ async fn main() -> std::io::Result<()> {
     } else {
         log::info!("starting API server at http://{}:{}", address, port);
     }
-
     HttpServer::new(move || {
         App::new()
             .app_data(web::Data::new(pool.clone()))
             .wrap(middleware::Logger::default())
+            .wrap(Cors::permissive())
             .service(get_user)
             .service(add_user)
             .service(product::get_products)
