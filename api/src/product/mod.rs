@@ -37,27 +37,6 @@ pub async fn get_product(
     })
 }
 
-
-#[get("/image/{image_id}")]
-pub async fn get_image(
-    pool: web::Data<Pool>,
-    product_uid: web::Path<Uuid>,
-) -> actix_web::Result<impl Responder> {
-    let product_uid = product_uid.into_inner();
-    let image = web::block(move || {
-        let mut conn = pool.get()?;
-        actions::find_image_by_uid(&mut conn, product_uid)
-    })
-        .await?
-        .map_err(error::ErrorInternalServerError)?;
-    Ok(match image {
-        Some(image) => HttpResponse::build(actix_web::http::StatusCode::OK)
-            .content_type(image.format)
-            .body(image.data),
-        None => HttpResponse::NotFound().body(format!("No product found with UID: {product_uid}")),
-    })
-}
-
 #[post("/product")]
 pub async fn add_product(
     pool: web::Data<Pool>,

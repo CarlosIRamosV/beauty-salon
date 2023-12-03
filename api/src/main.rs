@@ -16,6 +16,7 @@ mod models;
 mod user;
 mod product;
 mod auth;
+mod resources;
 
 pub const MIGRATIONS: EmbeddedMigrations = embed_migrations!();
 
@@ -58,7 +59,8 @@ async fn main() -> std::io::Result<()> {
             .service(product::get_products)
             .service(product::get_product)
             .service(product::add_product)
-            .service(product::get_image)
+            .service(resources::get_image)
+            .service(resources::add_image)
     })
         .bind((address, port))?
         .run()

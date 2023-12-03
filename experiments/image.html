@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<label for="file">Filename:</label>
+<input id="file" name="file" type="file"/>
+<br/>
+<button id="send" type="button">Send</button>
+
+<section id="data">
+    <h3>UUID</h3>
+    <p id="uuid"></p>
+    <h3>URL</h3>
+    <p id="url"></p>
+    <h3>Image</h3>
+    <img alt="image" id="image" src="">
+    <br/>
+    <button id="update" type="button">Update UI</button>
+</section>
+
+<script type="module">
+    import {uploadImage, getLastImageData, getLastImageURL} from "../js/resources.js";
+
+    async function uploadFile() {
+        if (!document.getElementById('file').files[0]) return alert('No file selected');
+        let file = document.getElementById('file').files[0];
+        await uploadImage(file);
+    }
+
+    function updateUI() {
+        if (!getLastImageData()) return alert('No image data');
+        document.getElementById('uuid').innerText = getLastImageData().id;
+        document.getElementById('url').innerText = getLastImageURL();
+        document.getElementById('image').src = getLastImageURL();
+    }
+
+    document.getElementById('send').addEventListener('click', uploadFile);
+    document.getElementById('update').addEventListener('click', updateUI);
+
+</script>
+</body>
+</html>
