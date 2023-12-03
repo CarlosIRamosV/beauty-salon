@@ -3,15 +3,11 @@ import {url} from "./api.config.js";
 /**
  * Obtener todos los productos
  * @returns lista de productos
- * @returns {Promise<Response | never>} lista de productos
  */
 function getProductos() {
-    fetch(url + "/product")
+    return fetch(url + "/product")
         .then(response => response.json())
-        .then(data => {
-                return data;
-            }
-        ).catch(error => console.error('Error al enviar datos:', error));
+        .catch(error => console.error('Error al enviar datos:', error));
 }
 
 /**
@@ -20,11 +16,8 @@ function getProductos() {
  * @returns {Promise<Response | never>} producto
  */
 function getProducto(id) {
-    fetch(url + "/product/" + id)
+    return fetch(url + "/product/" + id)
         .then(response => response.json())
-        .then(data => {
-            return data;
-        })
         .catch(error => console.error('Error al enviar datos:', error));
 }
 
@@ -37,7 +30,7 @@ function getProducto(id) {
  * @param imag imagen del producto
  * @returns {Promise<Response | never>} producto registrado
  */
-function addProducto(name, description, price, stock, imag) {
+async function addProducto(name, description, price, stock, imag) {
     let reader = new FileReader();
     reader.readAsDataURL(imag);
     reader.onloadend = function () {
@@ -48,7 +41,7 @@ function addProducto(name, description, price, stock, imag) {
             quantity: stock,
             image: reader.result
         }
-        fetch(url + "/product", {
+        return fetch(url + "/product", {
             method: 'POST',
             body: JSON.stringify(producto),
             headers: {
@@ -56,9 +49,6 @@ function addProducto(name, description, price, stock, imag) {
             }
         })
             .then(response => response.json())
-            .then(data => {
-                return data;
-            })
             .catch(error => console.error('Error al enviar datos:', error));
     }
 }
