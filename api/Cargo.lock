@@ -285,6 +285,7 @@ dependencies = [
  "actix-cors",
  "actix-web",
  "actix-web-httpauth",
+ "base64",
  "chrono",
  "diesel",
  "diesel_migrations",

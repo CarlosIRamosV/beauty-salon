@@ -58,6 +58,7 @@ async fn main() -> std::io::Result<()> {
             .service(product::get_products)
             .service(product::get_product)
             .service(product::add_product)
+            .service(product::get_image)
     })
         .bind((address, port))?
         .run()

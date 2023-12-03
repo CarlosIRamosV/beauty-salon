@@ -2,10 +2,9 @@
 
 diesel::table! {
     images (id) {
-        id -> Nullable<Text>,
-        #[sql_name = "type"]
-        type_ -> Nullable<Text>,
-        data -> Nullable<Binary>,
+        id -> Text,
+        format -> Text,
+        data -> Binary,
     }
 }
 
@@ -23,7 +22,7 @@ diesel::table! {
         description -> Text,
         price -> Double,
         quantity -> Integer,
-        image -> Text,
+        image_id -> Text,
     }
 }
 
@@ -55,6 +54,7 @@ diesel::table! {
 }
 
 diesel::joinable!(passwords -> users (user_id));
+diesel::joinable!(products -> images (image_id));
 diesel::joinable!(users -> roles (role_id));
 diesel::joinable!(users -> sex (sex_id));
 
