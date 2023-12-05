@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>Agregando Empleado</title>
+    <link href="../../public/css/manager/products/add.css" rel="stylesheet">
+    <script src="../../public/js/manager/products/add.js" type="module"></script>
+</head>
+
+<body>
+
+    <nav>
+        <!-- Imagen del logo -->
+        <img alt="logo" src="../../public/images/logo.png">
+
+        <!-- Menú de navegación -->
+        <ul class="menu-list">
+            <li><a href="../index.html">Inicio</a></li>
+            <li><a href="../empleados/index.html">Empleados</a></li>
+            <li><a href="../citas/index.html">Citas</a></li>
+            <li><a href="../productos/index.html">Productos</a></li>
+        </ul>
+
+        <!-- Información del usuario -->
+        <div class="user">
+            <img alt="user" src="../../public/svg/user-circle.svg">
+            <p>Nombre de Usuario</p>
+        </div>
+    </nav>
+
+    <section>
+        <h2>Nuevo Empleado</h2>
+
+        <div class="principal">
+            <label for="imagen" class="tit">Selecciona una foto del Empleado</label>
+            <input type="file" id="imagen" class="imagen">
+
+            <form id="crud-form">
+                <label for="nombre">Nombre:</label>
+                <input id="nombre" required type="text">
+
+                <label for="apellido">Apellido:</label>
+                <input id="apellido" required type="text">
+
+                <label for="fechaNac">Fecha de nacimiento:</label>
+                <input id="fechaNac" required type="date">
+
+                <div>
+                    <label for="sexo">Sexo:</label>
+                    <select name="sexo" id="sexo">
+                        <option value="1">Hombre</option>
+                        <option value="2">Mujer</option>
+                        <option value="3">Otro</option>
+                    </select>
+                </div>
+
+                <label for="telefono">Telefono:</label>
+                <input id="telefono" type="tel">
+
+                <label for="correo">Correo:</label>
+                <input id="correo" type="email">
+
+                <button onclick="addOrUpdateProducto()" type="button" class="guardar">Guardar</button>
+            </form>
+        </div>
+    </section>
+    
+</body>
+
+</html>

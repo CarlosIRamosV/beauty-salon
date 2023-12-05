@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
@@ -7,45 +8,51 @@
     <link href="../../public/css/manager/products/add.css" rel="stylesheet">
     <script src="../../public/js/manager/products/add.js" type="module"></script>
 </head>
+
 <body>
 
-<nav>
-    <!-- Imagen del logo -->
-    <img alt="logo" src="../../public/images/logo.png">
+    <nav>
+        <!-- Imagen del logo -->
+        <img alt="logo" src="../../public/images/logo.png">
 
-    <!-- Menú de navegación -->
-    <ul class="menu-list">
-        <li><a href="../index.html">Inicio</a></li>
-        <li><a href="#">Servicios</a></li>
-        <li><a href="#">Productos</a></li>
-    </ul>
+        <ul class="menu-list">
+            <li><a href="../index.html">Inicio</a></li>
+            <li><a href="../empleados/index.html">Empleados</a></li>
+            <li><a href="../citas/index.html">Citas</a></li>
+            <li><a href="../productos/index.html">Productos</a></li>
+        </ul>
 
-    <!-- Información del usuario -->
-    <div class="user">
-        <img alt="user" src="../../public/svg/user-circle.svg">
-        <p>Nombre de Usuario</p>
-    </div>
-</nav>
+        <!-- Información del usuario -->
+        <div class="user">
+            <img alt="user" src="../../public/svg/user-circle.svg">
+            <p>Nombre de Usuario</p>
+        </div>
+    </nav>
 
-<section>
-    <h2>Nuevo Producto</h2>
-    <form id="crud-form">
-        <label for="nombre">Nombre:</label>
-        <input id="nombre" required type="text">
+    <section>
+        <h2>Nuevo Producto</h2>
 
-        <label for="descr">Descripción:</label>
-        <input id="descr" type="text">
+        <label for="imagen" class="tit">Selecciona una foto del producto</label>
+        <input type="file" id="imagen" class="imagen">
 
-        <label for="precio">Precio:</label>
-        <input id="precio" required step="0.01" type="number">
+        <form id="crud-form">
+            <label for="nombre">Nombre:</label>
+            <input id="nombre" required type="text">
 
-        <label for="cantidad">Cantidad:</label>
-        <input id="cantidad" required type="number">
+            <label for="descr">Descripción:</label>
+            <input id="descr" type="text">
 
-        <label for="favoritos">Favoritos:</label>
-        <input id="favoritos" type="number">
+            <label for="precio">Precio:</label>
+            <input id="precio" required step="0.01" type="number">
 
-        <button onclick="addOrUpdateProducto()" type="button">Guardar</button>
-</section>
+            <label for="cantidad">Cantidad:</label>
+            <input id="cantidad" required type="number">
+
+            <label for="favoritos">Favoritos:</label>
+            <input id="favoritos" type="number">
+
+            <button onclick="addOrUpdateProducto()" type="button">Guardar</button>
+    </section>
 </body>
+
 </html>

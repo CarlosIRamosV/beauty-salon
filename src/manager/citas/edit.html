@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>Editando Citas</title>
+    <link href="../../public/css/manager/products/edit.css" rel="stylesheet">
+    <script src="../../public/js/manager/products/edit.js" type="module"></script>
+</head>
+
+<body>
+    <nav>
+        <!-- Imagen del logo -->
+        <img alt="logo" src="../../public/images/logo.png">
+
+        <!-- Menú de navegación -->
+        <ul class="menu-list">
+            <li><a href="../index.html">Inicio</a></li>
+            <li><a href="../empleados/index.html">Empleados</a></li>
+            <li><a href="../citas/index.html">Citas</a></li>
+            <li><a href="../productos/index.html">Productos</a></li>
+        </ul>
+
+        <!-- Información del usuario -->
+        <div class="user">
+            <img alt="user" src="../../public/svg/user-circle.svg">
+            <p>Nombre de Usuario</p>
+        </div>
+    </nav>
+
+    <section>
+        <h2>Editar Citas</h2>
+        <div class="principal">
+
+            <form id="crud-form">
+                <label for="nombre">Nombre:</label>
+                <input id="nombre" required type="text">
+
+                <label for="telefono">Telefono:</label>
+                <input id="telefono" type="tel">
+
+                <div>
+                    <label for="empleado">Empleado:</label>
+                    <select name="empleado" id="empleado">
+                        <option value="1">Diego</option>
+                        <option value="2">Antonio</option>
+                        <option value="3">Javier</option>
+                    </select>
+                </div>
+
+                <label for="servicios">Servicios:</label>
+                <div>
+                    <select name="servicios" id="servicios" multiple>
+                        <option value="1">Corte de pelo</option>
+                        <option value="2">Manicura</option>
+                        <option value="3">Maquillaje</option>
+                    </select>
+                </div>
+
+                <label for="fechaCita">Fecha de la cita:</label>
+                <input id="fechaCita" required type="date">
+
+                <label for="HoraCita">Hora de la cita:</label>
+                <input id="HoraCita" required type="time" min="08:00" max="20:00" step="1800">
+
+                <button onclick="addOrUpdateProducto()" type="button" class="guardar">Guardar</button>
+            </form>
+
+        </div>
+    </section>
+
+</body>
+
+</html>

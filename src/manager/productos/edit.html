@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
@@ -7,61 +8,51 @@
     <link href="../../public/css/manager/products/edit.css" rel="stylesheet">
     <script src="../../public/js/manager/products/edit.js" type="module"></script>
 </head>
+
 <body>
-<nav>
-    <!-- Imagen del logo -->
-    <img alt="logo" src="../../public/images/logo.png">
+    <nav>
+        <!-- Imagen del logo -->
+        <img alt="logo" src="../../public/images/logo.png">
 
-    <!-- Menú de navegación -->
-    <ul class="menu-list">
-        <li><a href="../index.html">Inicio</a></li>
-        <li><a href="#">Servicios</a></li>
-        <li><a href="#">Productos</a></li>
-    </ul>
+        <ul class="menu-list">
+            <li><a href="../index.html">Inicio</a></li>
+            <li><a href="../empleados/index.html">Empleados</a></li>
+            <li><a href="../citas/index.html">Citas</a></li>
+            <li><a href="../productos/index.html">Productos</a></li>
+        </ul>
 
-    <!-- Información del usuario -->
-    <div class="user">
-        <img alt="user" src="../../public/svg/user-circle.svg">
-        <p>Nombre de Usuario</p>
-    </div>
-</nav>
-<section>
-    <h2>Editar Producto</h2>
-    <form>
-        <div class="image">
-            <label for="imagen">Imagen:</label>
-            <img class="preview" alt="" src=""/>
-            <input id="imagen" type="file">
+        <!-- Información del usuario -->
+        <div class="user">
+            <img alt="user" src="../../public/svg/user-circle.svg">
+            <p>Nombre de Usuario</p>
         </div>
-        <div class="info">
-            <div class="id">
-                <label for="id">ID:</label>
-                <input id="id" readonly type="text">
-            </div>
-            <div class="name">
-                <label for="name">Nombre:</label>
-                <input id="name" required type="text">
-            </div>
+    </nav>
+    <h2>Tabla de Productos</h2>
+    <div class="principal">
 
-            <div class="description">
-                <label for="description">Descripción:</label>
-                <input id="description" type="text">
-            </div>
-            <div class="price">
-                <label for="price">Precio:</label>
-                <input id="price" required step="0.01" type="number">
-            </div>
-            <div class="quantity">
-                <label for="quantity">Cantidad:</label>
-                <input id="quantity" required type="number">
-            </div>
-        </div>
-    </form>
-    <div class="actions">
-        <button onclick="addOrUpdateProducto()" type="button">Guardar</button>
-        <button onclick="window.location.href = 'index.html'" type="button">Cancelar</button>
+        <label for="imagen" class="tit">Selecciona una foto del producto</label>
+        <input type="file" id="imagen" class="imagen">
+
+        <form id="crud-form">
+            <label for="nombre">Nombre:</label>
+            <input id="nombre" required type="text">
+
+            <label for="descr">Descripción:</label>
+            <input id="descr" type="text">
+
+            <label for="precio">Precio:</label>
+            <input id="precio" required step="0.01" type="number">
+
+            <label for="cantidad">Cantidad:</label>
+            <input id="cantidad" required type="number">
+
+            <label for="favoritos">Favoritos:</label>
+            <input id="favoritos" type="number">
+
+
+        </form>
+        <button onclick="addOrUpdateProducto()" type="button" class="guardar">Guardar</button>
     </div>
-</section>
 
 </body>
 

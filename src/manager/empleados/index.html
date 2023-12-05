@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>Listado de Empleados</title>
+    <link href="../../public/css/manager/products/table.css" rel="stylesheet">
+    <script src="../../public/js/manager/products/table.js" type="module"></script>
+</head>
+
+<body>
+
+    <nav>
+        <!-- Imagen del logo -->
+        <img alt="logo" src="../../public/images/logo.png">
+
+        <!-- Menú de navegación -->
+        <ul class="menu-list">
+            <li><a href="../index.html">Inicio</a></li>
+            <li><a href="../empleados/index.html">Empleados</a></li>
+            <li><a href="../citas/index.html">Citas</a></li>
+            <li><a href="../productos/index.html">Productos</a></li>
+        </ul>
+
+        <!-- Información del usuario -->
+        <div class="user">
+            <img alt="user" src="../../public/svg/user-circle.svg">
+            <p>Nombre de Usuario</p>
+        </div>
+    </nav>
+
+    <section>
+        <h2>Empleados</h2>
+
+        <div class="actions">
+            <div class="filter">
+                <label for="filter">Filtrar</label>
+                <select id="filter">
+                    <option value="0">Todos</option>
+                    <option value="1">Nombre</option>
+                    <option value="2">Apellido</option>
+                    <option value="3">Rol</option>
+                </select>
+            </div>
+            <div class="search">
+                <label for="search">Buscar</label>
+                <input id="search" placeholder="Buscar" type="text">
+                <button onclick="search()" type="button">Buscar</button>
+            </div>
+            <button onclick="window.location.href = 'add.html'" type="button">Agregar Empleados</button>
+        </div>
+
+
+        <table id="table">
+            <thead>
+                <tr>
+                    <th>Rol</th>
+                    <th>Nombre</th>
+                    <th>Apellido</th>
+                    <th>Fecha de nacimiento</th>
+                    <th>Sexo</th>
+                    <th>Telefono</th>
+                    <th>Correo</th>
+                    <th>Editar</th>
+                    <th>Eliminar</th>
+                </tr>
+            </thead>
+        </table>
+    </section>
+    <footer>
+    </footer>
+</body>
+
+</html>
