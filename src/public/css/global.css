@@ -8,6 +8,8 @@ html {
 body {
     margin: 0;
     padding: 0;
+    background: linear-gradient(45deg, #FFC0CB, #FFFF00);
+    background-size: 400% 400%;
 }
 
 button {
@@ -22,5 +24,10 @@ button {
 
 button:hover {
     background-color: #45a049;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
 }
 

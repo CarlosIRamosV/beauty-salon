@@ -1,0 +1,47 @@
+@import "../../global.css";
+
+div.image {
+    grid-area: foto;
+    text-align: center;
+    margin: auto;
+}
+
+div.image .preview {
+    width: 256px;
+    height: 256px;
+    display: block;
+}
+
+div.id {
+    grid-area: id;
+}
+
+div.name {
+    grid-area: name;
+}
+
+div.description {
+    grid-area: description;
+}
+
+div.price {
+    grid-area: price;
+}
+
+div.quantity {
+    grid-area: quantity;
+}
+
+form {
+    display: grid;
+    grid-template-areas:
+            'foto id id'
+            'foto name name'
+            'foto description description'
+            'foto price price'
+            'foto quantity quantity'
+
+}
+
+
+
