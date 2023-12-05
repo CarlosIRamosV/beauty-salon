@@ -1,7 +1,6 @@
-import {url} from "../api.config.js";
+import {url} from "../../api.config.js";
 
-window.addEventListener('load', ev => {
-
+window.addEventListener('load', () => {
     loadTable();
 });
 
@@ -9,7 +8,7 @@ function loadTable() {
     fetch(url + '/products')
         .then(response => response.json())
         .then(data => generateTable(data))
-    .catch(err => console.log(err));
+        .catch(err => console.log(err));
 }
 
 
@@ -44,7 +43,6 @@ function generateTable(data) {
         edit.addEventListener('click', ev => {
             window.location.href = 'edit.html?id=' + product.id;
         });
-
 
 
         let del = document.createElement('td');
