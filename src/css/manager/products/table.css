@@ -1,5 +1,11 @@
-td button {
-    margin: 5px;
+@import "../../global.css";
+
+table {
+    margin: 0;
+}
+
+td {
+    text-align: center;
 }
 
 td.edit {
@@ -21,13 +27,27 @@ td.delete:hover {
     background: #da190b;
 }
 
-td {
-    text-align: center;
+td img {
+    filter: invert(100%) sepia(0%) saturate(0%) hue-rotate(0deg) brightness(100%) contrast(100%);
 }
 
-div.title {
+section {
+    margin: 0 auto;
+    width: 80%;
+}
+
+section h2 {
     text-align: center;
     font-size: 30px;
     font-weight: bold;
     margin-bottom: 20px;
+}
+
+div.actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    color: #fff;
+    background-color: #333;
 }

@@ -1,0 +1,44 @@
+nav {
+    height: 50px;
+    background: #333;
+    display: flex;
+    justify-content: space-between;
+    padding: 8px;
+}
+
+nav ul {
+    display: flex;
+    list-style: none;
+}
+
+nav ul li a {
+    color: #fff;
+    text-decoration: none;
+    padding: 10px;
+}
+
+nav ul li a:hover {
+    background: #fff;
+    color: #333;
+}
+
+nav ul li a.active {
+    background: #fff;
+    color: #333;
+}
+
+nav div.user {
+    display: flex;
+    align-items: center;
+    color: #FFFFFF;
+    font-weight: bold;
+    margin-right: 10px;
+}
+
+nav div.user img {
+    filter: invert(100%) sepia(0%) saturate(0%) hue-rotate(0deg) brightness(100%) contrast(100%);
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    margin-right: 10px;
+}
