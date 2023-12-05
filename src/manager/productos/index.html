@@ -4,47 +4,54 @@
     <meta charset="UTF-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <title>Listado de Productos</title>
-    <link href="../../../Admin/css/tablas.css" rel="stylesheet">
     <link href="../../css/manager/products/table.css" rel="stylesheet">
     <script src="../../js/manager/products/table.js" type="module"></script>
 </head>
 <body>
 
-<div class="menuNav">
-    <img alt="" class="logo" src="/Recursos/image.png">
+<nav>
+    <!-- Imagen del logo -->
+    <img alt="logo" src="../../images/logo.png">
+
+    <!-- Menú de navegación -->
     <ul class="menu-list">
-        <li>
-            <button class="menu-button"><a href="menuInicio.html">Inicio</a></button>
-        </li>
-        <li>
-            <button class="menu-button"><a href="servicios.html">Servicios</a></button>
-        </li>
-        <li>
-            <button class="menu-button"><a href="productos.html">Productos</a></button>
-        </li>
-        <li>
-            <button class="menu-button"><a href="contacto.html">Contacto</a></button>
-        </li>
+        <li><a href="../index.html">Inicio</a></li>
+        <li><a href="#">Servicios</a></li>
+        <li><a class="active" href="#">Productos</a></li>
     </ul>
-    <div class="menu-icon">
-        <div class="line"></div>
-        <div class="line"></div>
-        <div class="line"></div>
-        <!-- Barra lateral desplegable -->
-        <div class="sidebar">
-            <a href="/Admin/html/tabproductos.html">Productos</a>
-            <a href="/Admin/html/tabcitas.html">Citas</a>
-            <a href="/Admin/html/tabempleados.html">Empleados</a>
-            <a href="#">Cerrar Sesión</a>
-        </div>
+
+    <!-- Información del usuario -->
+    <div class="user">
+        <img alt="user" src="../../svg/user-circle.svg">
+        <p>Nombre de Usuario</p>
     </div>
-</div>
+</nav>
 
 <section>
-    <div class="title">
-        <h2>Tabla de Productos</h2>
-        <button onclick="window.location.href = 'add.html'" type="button">Agregar Producto</button>
+    <h2>Productos</h2>
+
+    <div class="actions">
+        <div class="filter">
+            <label for="filter">Filtrar</label>
+            <select id="filter">
+                <option value="0">Todos</option>
+                <option value="1">Nombre</option>
+                <option value="2">Descripción</option>
+                <option value="3">Precio</option>
+                <option value="4">Cantidad</option>
+            </select>
+        </div>
+        <div class="search">
+        <label for="search">Buscar</label>
+        <input id="search" placeholder="Buscar" type="text">
+        <button onclick="search()" type="button">Buscar</button>
     </div>
+    <button onclick="window.location.href = 'add.html'" type="button">Agregar Producto</button>
+    </div>
+
+
+
+
 
     <table id="table">
         <thead>
