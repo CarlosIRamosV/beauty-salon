@@ -37,7 +37,7 @@ function generateTable(data) {
         // Add buttons
         let edit = document.createElement('td');
         let imgEdit = document.createElement('img');
-        imgEdit.src = '../../svg/edit.svg';
+        imgEdit.src = '../../public/svg/edit.svg';
         edit.appendChild(imgEdit);
         edit.className = 'edit';
         edit.addEventListener('click', ev => {
@@ -48,7 +48,7 @@ function generateTable(data) {
         let del = document.createElement('td');
         del.className = 'delete';
         let imgDel = document.createElement('img');
-        imgDel.src = '../../svg/trash.svg';
+        imgDel.src = '../../public/svg/trash.svg';
         del.appendChild(imgDel);
         del.addEventListener('click', ev => {
             fetch(url + '/products/' + product.id, {
