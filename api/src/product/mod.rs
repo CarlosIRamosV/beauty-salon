@@ -6,7 +6,7 @@ use crate::models::types::Pool;
 
 mod actions;
 
-#[get("/product")]
+#[get("/products")]
 pub async fn get_products(
     pool: web::Data<Pool>,
 ) -> actix_web::Result<impl Responder> {
@@ -19,7 +19,7 @@ pub async fn get_products(
     Ok(HttpResponse::Ok().json(products))
 }
 
-#[get("/product/{product_id}")]
+#[get("/products/{product_id}")]
 pub async fn get_product(
     pool: web::Data<Pool>,
     product_uid: web::Path<Uuid>,
@@ -37,7 +37,7 @@ pub async fn get_product(
     })
 }
 
-#[post("/product")]
+#[post("/products")]
 pub async fn add_product(
     pool: web::Data<Pool>,
     form: web::Json<models::products::NewProduct>,

@@ -22,7 +22,7 @@ diesel::table! {
         description -> Text,
         price -> Double,
         quantity -> Integer,
-        image_id -> Text,
+        image_id -> Nullable<Text>,
     }
 }
 

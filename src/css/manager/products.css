@@ -1,0 +1,26 @@
+td button {
+    margin: 5px;
+}
+
+td.edit {
+    background: #4caf50;
+    cursor: pointer;
+}
+
+td.edit:hover {
+    background: #46a049;
+}
+
+td.delete {
+    background: #f44336;
+    cursor: pointer;
+
+}
+
+td.delete:hover {
+    background: #da190b;
+}
+
+td {
+    text-align: center;
+}

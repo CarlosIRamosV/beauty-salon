@@ -4,7 +4,7 @@ use uuid::Uuid;
 use crate::models::images::NewImage;
 use crate::models::types::Pool;
 
-pub mod actions;
+mod actions;
 
 #[get("/image/{image_id}")]
 pub async fn get_image(

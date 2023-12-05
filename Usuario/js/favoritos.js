@@ -1,5 +1,5 @@
-import {getProductos} from "../../js/products.js";
-import {url} from "../../js/api.config.js";
+import {getProductos} from "../../src/js/products.js";
+import {url} from "../../src/js/api.config.js";
 
 function addFavorito(id) {
     if (document.getElementById(id).firstChild.src.match("favrell"))
@@ -23,7 +23,7 @@ window.addEventListener("load", async () => {
         }
         div.appendChild(img);
         let imgProducto = document.createElement("img");
-        imgProducto.src = `${url}/image/${element.image_id}`;
+        imgProducto.src = `${url}/image/${element.imageId}`;
         imgProducto.alt = element.name;
         imgProducto.className = "prod";
         div.appendChild(imgProducto);

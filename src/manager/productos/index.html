@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>CRUD de Productos</title>
+    <link href="../../../Admin/css/tablas.css" rel="stylesheet">
+    <link href="../../css/manager/products.css" rel="stylesheet">
+    <script src="../../js/manager/products.js" type="module"></script>
+</head>
+<body>
+
+<div class="menuNav">
+    <img alt="" class="logo" src="/Recursos/image.png">
+    <ul class="menu-list">
+        <li>
+            <button class="menu-button"><a href="menuInicio.html">Inicio</a></button>
+        </li>
+        <li>
+            <button class="menu-button"><a href="servicios.html">Servicios</a></button>
+        </li>
+        <li>
+            <button class="menu-button"><a href="productos.html">Productos</a></button>
+        </li>
+        <li>
+            <button class="menu-button"><a href="contacto.html">Contacto</a></button>
+        </li>
+    </ul>
+    <div class="menu-icon">
+        <div class="line"></div>
+        <div class="line"></div>
+        <div class="line"></div>
+        <!-- Barra lateral desplegable -->
+        <div class="sidebar">
+            <a href="/Admin/html/tabproductos.html">Productos</a>
+            <a href="/Admin/html/tabcitas.html">Citas</a>
+            <a href="/Admin/html/tabempleados.html">Empleados</a>
+            <a href="#">Cerrar Sesión</a>
+        </div>
+    </div>
+</div>
+
+<section>
+    <h2>Tabla de Productos</h2>
+
+    <table id="table">
+        <thead>
+        <tr>
+            <th>Imagen</th>
+            <th>Nombre</th>
+            <th>Descripción</th>
+            <th>Precio</th>
+            <th>Cantidad</th>
+            <th>Editar</th>
+            <th>Eliminar</th>
+        </tr>
+        </thead>
+    </table>
+</section>
+<footer>
+</footer>
+</body>
+</html>

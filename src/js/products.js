@@ -31,24 +31,34 @@ function getProducto(id) {
  * @returns {Promise<Response | never>} producto registrado
  */
 async function addProducto(name, description, price, stock, imag) {
+    let blob = new Blob([imag], {type: imag.type});
     let reader = new FileReader();
-    reader.readAsDataURL(imag);
+    reader.readAsDataURL(blob);
     reader.onloadend = function () {
-        let producto = {
-            name: name,
-            description: description,
-            price: price,
-            quantity: stock,
-            image: reader.result
-        }
-        return fetch(url + "/product", {
+        fetch(url + "/image", {
             method: 'POST',
-            body: JSON.stringify(producto),
+            body: JSON.stringify('image', reader.result),
             headers: {
                 'Content-Type': 'application/json'
             }
         })
-            .then(response => response.json())
+            .then(response => {
+                let producto = {
+                    name: name,
+                    description: description,
+                    price: price,
+                    quantity: stock,
+                    image_id: response.json().id
+                }
+                return fetch(url + "/product", {
+                    method: 'POST',
+                    body: JSON.stringify(producto),
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                })
+                    .then(response => response.json())
+            })
             .catch(error => console.error('Error al enviar datos:', error));
     }
 }

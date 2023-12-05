@@ -2,7 +2,6 @@ use diesel::prelude::*;
 use uuid::Uuid;
 
 use crate::models::products::Product;
-use crate::resources::actions::insert_new_image;
 
 pub fn find_all_products(
     conn: &mut SqliteConnection,
@@ -34,11 +33,9 @@ pub fn insert_new_product(
     desc: &str,
     prc: f64,
     qty: i32,
-    img: &String,
+    img: &Option<String>
 ) -> Result<Product, Box<dyn std::error::Error + Send + Sync>> {
     use crate::models::schema::products::dsl::*;
-
-    let new_image = insert_new_image(conn, img)?;
 
     let new_product = Product {
         id: Uuid::new_v4().to_string(),
@@ -46,7 +43,7 @@ pub fn insert_new_product(
         description: desc.to_owned(),
         price: prc,
         quantity: qty,
-        image_id: new_image.id.to_owned(),
+        image_id: img.clone()
     };
 
     diesel::insert_into(products).values(&new_product).execute(conn)?;

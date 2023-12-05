@@ -11,7 +11,7 @@ pub struct Product {
     pub description: String,
     pub price: f64,
     pub quantity: i32,
-    pub image_id: String,
+    pub image_id: Option<String>
 }
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
@@ -20,5 +20,5 @@ pub struct NewProduct {
     pub description: String,
     pub price: f64,
     pub quantity: i32,
-    pub image: String,
+    pub image: Option<String>
 }

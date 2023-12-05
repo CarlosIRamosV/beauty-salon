@@ -57,3 +57,5 @@ function getLastImageURL() {
 }
 
 export {addImage, uploadImage, getLastImageData, getLastImageURL};
+
+//

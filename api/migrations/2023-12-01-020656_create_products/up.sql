@@ -5,5 +5,5 @@ CREATE TABLE products
     description VARCHAR NOT NULL,
     price       DECIMAL NOT NULL,
     quantity    INTEGER NOT NULL,
-    image_id    VARCHAR NOT NULL REFERENCES images (id)
+    image_id    VARCHAR REFERENCES images (id)
 );
