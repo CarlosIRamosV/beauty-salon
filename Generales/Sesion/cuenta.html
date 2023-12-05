@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Creacion cuenta</title>
-    <link rel="stylesheet" type="text/css" href="../css/cuenta.css">
+    <link rel="stylesheet" type="text/css" href="cuenta.css">
 
 </head>
 
@@ -27,8 +27,10 @@
                 <label for="nacimiento">Fecha de nacimiento: </label><input type="date" id="nacimiento"
                     class="nacimiento">
             </div>
-            <label for="telefono">Teléfono:</label>
-            <input type="tel" id="telefono" name="telefono" required>
+            <div class="cTelefono">
+                <label for="telefono">Teléfono:</label>
+                <input type="tel" id="telefono" name="telefono" required>
+            </div>
             <div class="cContraseña">
                 <label for="contraseña">Contraseña: </label><input type="password" id="contraseña" class="contraseña">
             </div>
@@ -38,14 +40,10 @@
             </div>
             <label for="sexo">Sexo: </label>
             <div class="cSexo">
-                <input type="radio" id="masculino" class="masculino" name="sexo">
-                <label for="masculino">Masculino</label>
-                <input type="radio" id="femenino" class="femenino" name="sexo">
-                <label for="femenino">Femenino</label>
-                <input type="radio" id="lgtv" class="otro" name="sexo">
-                <label for="otro">Otro</label>
+                <label for="masculino">Masculino</label> <input type="radio" id="masculino" class="masculino" name="sexo">
+                <label for="femenino">Femenino</label> <input type="radio" id="femenino" class="femenino" name="sexo">
+                <label for="otro">Otro</label> <input type="radio" id="lgtv" class="otro" name="sexo">
             </div>
-
             <div class="cCorreo">
                 <label for="correo">Correo: </label><input type="email" id="correo" class="correo">
             </div>
@@ -59,7 +57,7 @@
         <img src="../../Recursos/imagen_cuenta-removebg-preview.png" alt="imagen de utencilios de una estetica">
     </div>
 
-    <script src="../js/cuenta.js"></script>
+    <script src="cuenta.js"></script>
 
 </body>
 

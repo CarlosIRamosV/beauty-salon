@@ -38,7 +38,7 @@ body {
     border: none;
     padding: 10px 20px;
     cursor: pointer;
-    width: 250px;
+   
     font-size: 2rem;
 }
 
@@ -48,17 +48,7 @@ body {
     display: none;
 }
 
-/* Estilos para pantallas pequeñas (puedes utilizar media queries) */
-@media screen and (max-width: 768px) {
-    .menu-list {
-        display: none;
-    }
 
-    .menu-icon {
-        display: block;
-        cursor: pointer;
-    }
-}
 
 .logo {
     width: 100px;
@@ -96,17 +86,7 @@ a {
     /* Elimina el subrayado */
 }
 
-@media screen and (max-width: 768px) {
-    .menu-list {
-        display: none;
-    }
 
-    .menu-icon {
-        display: block;
-        cursor: pointer;
-    }
-
-}
 
 /* Nuevos estilos para la barra lateral */
 .sidebar {
@@ -159,6 +139,7 @@ button:hover {
     max-width: 400px; /* Ajusta el ancho máximo según tus necesidades */
     margin: 0 auto; /* Esto centra el contenedor horizontalmente */
     padding: 20px; /* Añade un poco de espacio alrededor del carrusel */
+    max-height: 400px;
 }
 
 /* Estilos para centrar las imágenes dentro del carrusel */
@@ -170,8 +151,8 @@ button:hover {
 }
 
 #slider img {
-    width: auto; /* Ajusta el ancho automáticamente */
-    height: 100%; /* Ajusta la altura al 100% del contenedor */
+    width: 100%; /* Ajusta el ancho automáticamente */
+    height: 400px; /* Ajusta la altura al 100% del contenedor */
     object-fit: contain; /* Mantiene la relación de aspecto y evita que las imágenes se distorsionen */
 }
 
@@ -188,4 +169,9 @@ button:hover {
     height: 100%; /* Ajusta la altura al 100% del contenedor */
     object-fit: contain; /* Mantiene la relación de aspecto y evita que las imágenes se distorsionen */
     object-position: center center; /* Centra la imagen vertical y horizontalmente */
+}
+
+h2{
+    font-size: 2.5rem;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
 }

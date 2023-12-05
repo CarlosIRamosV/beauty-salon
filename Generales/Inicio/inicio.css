@@ -102,3 +102,7 @@ body{
     background-size: 400% 400%;
 }
 
+a{
+    color: white;
+    text-decoration: none;
+}

@@ -1,37 +1,31 @@
-html{
+html {
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-    
-}
-body{
-    background: linear-gradient(45deg, #FFC0CB, #FFFF00);
-    background-size: 400% 400%;
 }
 
-.contenedor{
+body {
+    background: linear-gradient(45deg, #FFC0CB, #FFFF00);
+    background-size: 400% 400%;
+    margin: 0;
+}
+
+.contenedor {
     display: grid;
-    grid-template-areas: "header  header"
+    grid-template-areas: "header header"
                          "formulario crear"
                          "formulario cancelar"
                          "imagen imagen";
-    /*
-                         "nombre  contraseña"
-                         "apellidos  confirmar"
-                         "edad  edad"
-                         "sexo  crear"
-                         "correo  cancelar"
-                         "imagen  imagen";
-                         */
-                         grid-gap: 50px;
+    grid-gap: 50px;
+    height: 100vh;
 }
 
-header{
+header {
     grid-area: header;
     color: white;
     font-size: 3em;
     text-align: center;
 }
 
-button{
+button {
     border-radius: 20px;
     background-color:  rgb(22, 0, 58);
     padding: 15px;
@@ -39,46 +33,49 @@ button{
     width: 150px; 
     color: white;
     text-align: center;
-    
 }
 
-input{
+form input {
     color: white; 
     background-color: rgb(22, 0, 58); 
-    width: 60%;
+    width: 100%; /* Cambiado a 100% para ocupar todo el espacio horizontal */
     height: 30px;
-    
 }
-form{
+
+form {
     grid-area: formulario;
     font-size: 2rem;
-    
-}
-form >*{
-    padding: 20px;
-    
-}
-label{
-    color: white;
-    
-}
-.edad{
-    width: 15%;
-}
-.cSexo > *{
-    text-align: center;
+    display: flex;
+    flex-direction: column;
     
 }
 
-.crear{
+form > * {
+    padding: 20px;
+}
+
+
+label {
+    color: white;
+}
+
+.edad {
+    width: 15%;
+}
+
+.cSexo > * {
+    text-align: center;
+}
+
+.crear {
     grid-area: crear;
 }
 
-.cancelar{
+.cancelar {
     grid-area: cancelar;
 }
 
-img{
+img {
     grid-area: imagen;
-   width: 90%;
+    width: 90%;
 }
