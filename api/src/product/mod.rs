@@ -65,7 +65,7 @@ pub async fn update_product(
     let product_uid = product_uid.into_inner();
     let product = web::block(move || {
         let mut conn = pool.get()?;
-        actions::update_product_by_uid(&mut conn, product_uid, &form.name, &form.description, form.price, form.quantity, &form.image)
+        actions::update_product_by_uid(&mut conn, product_uid, &form.name, &form.description, form.price, form.stock, &form.image)
     })
         .await?
         .map_err(error::ErrorInternalServerError)?;
@@ -79,7 +79,7 @@ pub async fn add_product(
 ) -> actix_web::Result<impl Responder> {
     let product = web::block(move || {
         let mut conn = pool.get()?;
-        actions::insert_new_product(&mut conn, &form.name, &form.description, form.price, form.quantity, &form.image)
+        actions::insert_new_product(&mut conn, &form.name, &form.description, form.price, form.stock, &form.image)
     })
         .await?
         .map_err(error::ErrorInternalServerError)?;

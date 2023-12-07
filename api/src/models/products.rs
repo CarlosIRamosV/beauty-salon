@@ -10,7 +10,7 @@ pub struct Product {
     pub name: String,
     pub description: String,
     pub price: f64,
-    pub quantity: i32,
+    pub stock: i32,
     pub image_id: Option<String>
 }
 
@@ -19,7 +19,7 @@ pub struct NewProduct {
     pub name: String,
     pub description: String,
     pub price: f64,
-    pub quantity: i32,
+    pub stock: Option<i32>,
     pub image: Option<String>
 }
 
@@ -28,6 +28,6 @@ pub struct UpdateProduct {
     pub name: Option<String>,
     pub description: Option<String>,
     pub price: Option<f64>,
-    pub quantity: Option<i32>,
+    pub stock: Option<i32>,
     pub image: Option<String>
 }

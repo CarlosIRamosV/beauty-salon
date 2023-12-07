@@ -81,7 +81,7 @@ pub fn update_product_by_uid(
     }
 
     if let Some(qty) = qty {
-        product.quantity = qty;
+        product.stock = qty;
     }
 
     if let Some(img) = img {
@@ -93,7 +93,7 @@ pub fn update_product_by_uid(
             name.eq(product.name.to_owned()),
             description.eq(product.description.to_owned()),
             price.eq(product.price),
-            quantity.eq(product.quantity),
+            stock.eq(product.stock),
             image_id.eq(product.image_id.to_owned())
         ))
         .execute(conn)?;
@@ -106,7 +106,7 @@ pub fn insert_new_product(
     nm: &str,
     desc: &str,
     prc: f64,
-    qty: i32,
+    stk: Option<i32>,
     img: &Option<String>,
 ) -> Result<Product, Box<dyn std::error::Error + Send + Sync>> {
     use crate::models::schema::products::dsl::*;
@@ -116,7 +116,7 @@ pub fn insert_new_product(
         name: nm.to_owned(),
         description: desc.to_owned(),
         price: prc,
-        quantity: qty,
+        stock: stk.unwrap_or(0),
         image_id: img.clone(),
     };
 
