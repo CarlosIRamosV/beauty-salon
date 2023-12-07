@@ -2,22 +2,22 @@ use std::env;
 use std::error::Error;
 
 use actix_cors::Cors;
-use actix_web::{App, HttpServer, middleware, web};
+use actix_web::{middleware, web, App, HttpServer};
 use diesel::r2d2::ConnectionManager;
 use diesel::sqlite::Sqlite;
-use diesel::SqliteConnection;
+use diesel::{r2d2, SqliteConnection};
 use diesel_migrations::{embed_migrations, EmbeddedMigrations, MigrationHarness};
 use dotenv::dotenv;
 
-use crate::models::types::Pool;
 use crate::user::{add_user, get_user};
 
-mod models;
-mod user;
-mod product;
 mod auth;
+mod product;
 mod resources;
+pub mod schema;
+mod user;
 
+pub type Pool = r2d2::Pool<ConnectionManager<SqliteConnection>>;
 pub const MIGRATIONS: EmbeddedMigrations = embed_migrations!();
 
 #[actix_web::main]
@@ -40,8 +40,7 @@ async fn main() -> std::io::Result<()> {
         .expect("PORT must be a number");
 
     // Get address from environment variable
-    let address: String = env::var("ADDRESS")
-        .unwrap_or("0.0.0.0".to_string());
+    let address: String = env::var("ADDRESS").unwrap_or("0.0.0.0".to_string());
 
     // Start HTTP server
     if address.eq("0.0.0.0") || address.eq("127.0.0.1") {
@@ -64,10 +63,12 @@ async fn main() -> std::io::Result<()> {
             .service(product::delete_product)
             .service(product::update_product)
             .service(product::add_product)
+            // Auth
+            .service(auth::login)
     })
-        .bind((address, port))?
-        .run()
-        .await
+    .bind((address, port))?
+    .run()
+    .await
 }
 
 pub fn initialize_db_pool() -> Pool {
@@ -79,7 +80,9 @@ pub fn initialize_db_pool() -> Pool {
         .expect("Could not build connection pool")
 }
 
-fn run_migrations(connection: &mut impl MigrationHarness<Sqlite>) -> Result<(), Box<dyn Error + Send + Sync + 'static>> {
+fn run_migrations(
+    connection: &mut impl MigrationHarness<Sqlite>,
+) -> Result<(), Box<dyn Error + Send + Sync + 'static>> {
     connection.run_pending_migrations(MIGRATIONS)?;
     Ok(())
 }

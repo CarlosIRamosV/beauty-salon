@@ -1,7 +1,7 @@
 use diesel::{Insertable, Queryable};
 use serde::{Deserialize, Serialize};
 
-use crate::models::schema::images;
+use crate::schema::images;
 
 #[derive(Debug, Clone, Serialize, Deserialize, Queryable, Insertable)]
 #[diesel(table_name = images)]
