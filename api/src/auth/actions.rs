@@ -2,7 +2,11 @@ use diesel::prelude::*;
 use crate::models;
 use crate::models::auth::Auth;
 
-pub fn login(conn: &mut SqliteConnection, user_email: &str, pass: Option<&str>) -> Result<Auth, Box<dyn std::error::Error + Send + Sync>> {
+pub fn login(
+    conn: &mut SqliteConnection,
+    user_email: &str,
+    pass: Option<&str>,
+remember: Option<bool>) -> Result<Auth, Box<dyn std::error::Error + Send + Sync>> {
      use crate::models::schema::users::dsl::*;
 
 
@@ -40,11 +44,21 @@ pub fn login(conn: &mut SqliteConnection, user_email: &str, pass: Option<&str>) 
 
     // Generate token
 
+
+    let mut expiration_date = chrono::Local::now().naive_local().date();
+
+    if remember== Option::from(true) {
+        expiration_date += chrono::Duration::days(31);
+    } else {
+        expiration_date += chrono::Duration::days(1);
+    }
+
+
     let auth = Auth {
         id: uuid::Uuid::new_v4().to_string(),
         user_id: user.id.to_string(),
         token: "token".to_string(),
-        expiration_date: chrono::Local::now().naive_local().date(),
+        expiration_date
     };
 
     diesel::insert_into(models::schema::jwt::table)

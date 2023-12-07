@@ -10,3 +10,8 @@ pub struct Auth {
     pub token: String,
     pub expiration_date: chrono::NaiveDate,
 }
+
+#[derive(Debug, Clone, Serialize, Deserialize)]
+pub struct Config {
+    pub remember_me: Option<bool>
+}
