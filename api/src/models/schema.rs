@@ -5,6 +5,7 @@ diesel::table! {
         id -> Text,
         format -> Text,
         data -> Binary,
+        hash -> Text,
     }
 }
 

@@ -8,7 +8,7 @@ let lastImage = null;
  * @returns {Promise<Response | never>} producto registrado
  */
 async function uploadImage(imag) {
-    let blob = new Blob([imag], {type: imag.type});
+
     await addImage(blob);
 }
 
@@ -24,7 +24,7 @@ async function addImage(imag) {
         let image = {
             image: reader.result
         }
-        return fetch(url + "/image", {
+        return fetch(url + "/images", {
             method: 'POST',
             body: JSON.stringify(image),
             headers: {
@@ -33,6 +33,7 @@ async function addImage(imag) {
         })
             .then(response => response.json())
             .then(data => {
+                console.log('Success:', data);
                 lastImage = data;
                 return data;
             })
@@ -53,7 +54,7 @@ function getLastImageData() {
  * @returns {string} url de la ultima imagen subida
  */
 function getLastImageURL() {
-    return url + "/image/" + lastImage.id;
+    return url + "/images/" + lastImage.id;
 }
 
 export {addImage, uploadImage, getLastImageData, getLastImageURL};

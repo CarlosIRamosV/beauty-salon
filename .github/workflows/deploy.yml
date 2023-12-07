@@ -1,8 +1,6 @@
 name: Deploy API
 
 on:
-  push:
-    branches: [ "api" ]
   workflow_dispatch:
 
 env:

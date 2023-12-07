@@ -1,6 +1,8 @@
 name: API Build
 
 on:
+  push:
+    branches: [ "api" ]
   workflow_dispatch:
 
 env:

@@ -6,7 +6,7 @@ use crate::models::types::Pool;
 
 mod actions;
 
-#[get("/image/{image_id}")]
+#[get("/images/{image_id}")]
 pub async fn get_image(
     pool: web::Data<Pool>,
     image_uid: web::Path<Uuid>,
@@ -26,7 +26,7 @@ pub async fn get_image(
     })
 }
 
-#[post("/image")]
+#[post("/images")]
 pub async fn add_image(
     pool: web::Data<Pool>,
     form: web::Json<NewImage>,

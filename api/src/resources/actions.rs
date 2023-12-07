@@ -1,3 +1,5 @@
+use std::collections::hash_map::DefaultHasher;
+use std::hash::{Hash, Hasher};
 use base64::Engine;
 use base64::engine::general_purpose;
 use diesel::prelude::*;
@@ -32,9 +34,25 @@ pub fn insert_new_image(
         id: Uuid::new_v4().to_string(),
         format: img_type.to_owned(),
         data: general_purpose::STANDARD.decode(img_data.as_bytes()).unwrap(),
+        hash: calculate_hash(&img_data.as_bytes().to_vec()),
     };
 
-    diesel::insert_into(images).values(&new_image).execute(conn)?; // TODO: Check if image already exists (by hash)
+    let check = images
+        .filter(hash.eq(&new_image.hash))
+        .first::<Image>(conn)
+        .optional()?;
+
+    if check.is_some() {
+        return Ok(check.unwrap());
+    }
+
+    diesel::insert_into(images).values(&new_image).execute(conn)?;
 
     Ok(new_image)
+}
+
+fn calculate_hash(data: &Vec<u8>) -> String {
+    let mut hasher = DefaultHasher::new();
+    data.hash(&mut hasher);
+    format!("{:x}", hasher.finish())
 }
