@@ -1,0 +1,57 @@
+use diesel::prelude::*;
+use crate::models;
+use crate::models::auth::Auth;
+
+pub fn login(conn: &mut SqliteConnection, user_email: &str, pass: Option<&str>) -> Result<Auth, Box<dyn std::error::Error + Send + Sync>> {
+     use crate::models::schema::users::dsl::*;
+
+
+    let user = users
+        .filter(email.eq(user_email.to_string()))
+        .first::<models::user::User>(conn)
+        .optional()?;
+
+    let user = match user {
+        Some(user) => user,
+        None => return Err("No user found".into()),
+    };
+
+    let check_pass = match pass {
+        Some(pass) => pass,
+        None => return Err("No password provided".into()),
+    };
+
+    use crate::models::schema::passwords::dsl::*;
+
+    let _user_password = passwords
+        .filter(user_id.eq(user.id.to_string()))
+        .first::<models::user::Password>(conn)
+        .optional()?;
+
+    let user_password = match _user_password {
+        Some(user_password) => user_password,
+        None => return Err("No password found".into()),
+    };
+
+    if user_password.password != check_pass.to_string() {
+        return Err("Wrong password".into());
+    }
+
+
+    // Generate token
+
+    let auth = Auth {
+        id: uuid::Uuid::new_v4().to_string(),
+        user_id: user.id.to_string(),
+        token: "token".to_string(),
+        expiration_date: chrono::Local::now().naive_local().date(),
+    };
+
+    diesel::insert_into(models::schema::jwt::table)
+        .values(&auth)
+        .execute(conn)?;
+
+    Ok(auth)
+}
+
+

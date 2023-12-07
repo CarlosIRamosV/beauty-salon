@@ -10,6 +10,15 @@ diesel::table! {
 }
 
 diesel::table! {
+    jwt (id) {
+        id -> Text,
+        user_id -> Text,
+        token -> Text,
+        expiration_date -> Date,
+    }
+}
+
+diesel::table! {
     passwords (user_id) {
         user_id -> Text,
         password -> Text,
@@ -54,6 +63,7 @@ diesel::table! {
     }
 }
 
+diesel::joinable!(jwt -> users (user_id));
 diesel::joinable!(passwords -> users (user_id));
 diesel::joinable!(products -> images (image_id));
 diesel::joinable!(users -> roles (role_id));
@@ -61,6 +71,7 @@ diesel::joinable!(users -> sex (sex_id));
 
 diesel::allow_tables_to_appear_in_same_query!(
     images,
+    jwt,
     passwords,
     products,
     roles,

@@ -7,7 +7,7 @@ CREATE TABLE users
     birth_date DATE    NOT NULL,
     sex_id     INT     NOT NULL REFERENCES sex (id),
     phone      VARCHAR NOT NULL,
-    email      VARCHAR NOT NULL,
+    email      VARCHAR NOT NULL UNIQUE,
     PRIMARY KEY (id),
     UNIQUE (email)
 );

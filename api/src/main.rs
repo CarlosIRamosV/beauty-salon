@@ -64,6 +64,9 @@ async fn main() -> std::io::Result<()> {
             .service(product::delete_product)
             .service(product::update_product)
             .service(product::add_product)
+
+            // Auth
+            .service(auth::login)
     })
         .bind((address, port))?
         .run()
