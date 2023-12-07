@@ -152,7 +152,6 @@ button:hover {
 #slider img {
     width: 100%; /* Ajusta el ancho automáticamente */
     height: 400px; /* Ajusta la altura al 100% del contenedor */
-    object-fit: contain; /* Mantiene la relación de aspecto y evita que las imágenes se distorsionen */
 }
 
 .instalaciones {
