@@ -39,7 +39,6 @@ body {
     border: none;
     padding: 10px 20px;
     cursor: pointer;
-    width: 250px;
     font-size: 2rem;
 }
 
@@ -53,17 +52,7 @@ body {
     display: none;
 }
 
-/* Estilos para pantallas pequeñas (puedes utilizar media queries) */
-@media screen and (max-width: 768px) {
-    .menu-list {
-        display: none;
-    }
 
-    .menu-icon {
-        display: block;
-        cursor: pointer;
-    }
-}
 
 .logo {
     width: 100px;
@@ -97,17 +86,7 @@ a {
     text-decoration: none;
 }
 
-@media screen and (max-width: 768px) {
-    .menu-list {
-        display: none;
-    }
 
-    .menu-icon {
-        display: block;
-        cursor: pointer;
-    }
-    
-}
 
 /* Nuevos estilos para la barra lateral */
 .sidebar {

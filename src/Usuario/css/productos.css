@@ -1,11 +1,14 @@
-html{
+html {
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-    
+
 }
-body{
+
+body {
     background: linear-gradient(45deg, #FFC0CB, #FFFF00);
     background-size: 400% 400%;
 }
+
+
 /*inicia el css del menu*/
 
 
@@ -38,6 +41,7 @@ body{
     cursor: pointer;
     font-size: 2rem;
 }
+
 /*cuando se pone el cursor en los  botones
 .menu-button:hover {
     
@@ -49,16 +53,21 @@ body{
 }
 
 
+
 .logo {
-    width: 100px; /* Ajusta el ancho del logo según tus necesidades */
-    height: auto; /* Mantiene la proporción de aspecto automáticamente */
+    width: 100px;
+    /* Ajusta el ancho del logo según tus necesidades */
+    height: auto;
+    /* Mantiene la proporción de aspecto automáticamente */
 }
 
 /* esta parte es para el icono de las 3 barritas*/
 .menu-icon {
     grid-area: icono;
-    width: 60px; /* Ancho del icono */
-    height: 70px; /* Altura del icono */
+    width: 60px;
+    /* Ancho del icono */
+    height: 70px;
+    /* Altura del icono */
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -67,27 +76,16 @@ body{
 
 .line {
     width: 100%;
-    height: 10px; /* Altura de las líneas horizontales */
-    background-color: #000; /* Color de las líneas */
+    height: 10px;
+    /* Altura de las líneas horizontales */
+    background-color: #000;
+    /* Color de las líneas */
+}
+a {
+    color: inherit ;
+    text-decoration: none;
 }
 
-a{
-    color: inherit; /* Hereda el color del texto del elemento padre */
-    text-decoration: none; /* Elimina el subrayado */
-   
-}
-
-@media screen and (max-width: 768px) {
-    .menu-list {
-        display: none;
-    }
-
-    .menu-icon {
-        display: block;
-        cursor: pointer;
-    }
-    
-}
 
 /* Nuevos estilos para la barra lateral */
 .sidebar {
