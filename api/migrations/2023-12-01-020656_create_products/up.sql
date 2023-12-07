@@ -4,6 +4,6 @@ CREATE TABLE products
     name        VARCHAR NOT NULL,
     description VARCHAR NOT NULL,
     price       DECIMAL NOT NULL,
-    quantity    INTEGER NOT NULL,
+    stock       INTEGER NOT NULL,
     image_id    VARCHAR REFERENCES images (id)
 );

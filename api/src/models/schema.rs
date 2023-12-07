@@ -5,6 +5,7 @@ diesel::table! {
         id -> Text,
         format -> Text,
         data -> Binary,
+        hash -> Text,
     }
 }
 
@@ -21,7 +22,7 @@ diesel::table! {
         name -> Text,
         description -> Text,
         price -> Double,
-        quantity -> Integer,
+        stock -> Integer,
         image_id -> Nullable<Text>,
     }
 }

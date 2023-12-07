@@ -56,11 +56,14 @@ async fn main() -> std::io::Result<()> {
             .wrap(Cors::permissive())
             .service(get_user)
             .service(add_user)
-            .service(product::get_products)
-            .service(product::get_product)
-            .service(product::add_product)
             .service(resources::get_image)
             .service(resources::add_image)
+            // Products
+            .service(product::get_products)
+            .service(product::get_product)
+            .service(product::delete_product)
+            .service(product::update_product)
+            .service(product::add_product)
     })
         .bind((address, port))?
         .run()

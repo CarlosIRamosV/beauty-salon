@@ -1,7 +1,7 @@
-use actix_web::{error, get, HttpResponse, post, Responder, web};
+use actix_web::{delete, error, get, HttpResponse, post, put, Responder, web};
 use uuid::Uuid;
 
-use crate::models;
+use crate::models::products::{NewProduct, UpdateProduct};
 use crate::models::types::Pool;
 
 mod actions;
@@ -37,14 +37,49 @@ pub async fn get_product(
     })
 }
 
+
+#[delete("/products/{product_id}")]
+pub async fn delete_product(
+    pool: web::Data<Pool>,
+    product_uid: web::Path<Uuid>,
+) -> actix_web::Result<impl Responder> {
+    let product_uid = product_uid.into_inner();
+    let message = web::block(move || {
+        let mut conn = pool.get()?;
+        actions::delete_product_by_uid(&mut conn, product_uid)
+    })
+        .await?
+        .map_err(error::ErrorInternalServerError)?;
+    Ok(match message {
+        Some(message) => HttpResponse::Ok().json(message),
+        None => HttpResponse::NotFound().body(format!("No product found with UID: {product_uid}")),
+    })
+}
+
+#[put("/products/{product_id}")]
+pub async fn update_product(
+    pool: web::Data<Pool>,
+    product_uid: web::Path<Uuid>,
+    form: web::Json<UpdateProduct>,
+) -> actix_web::Result<impl Responder> {
+    let product_uid = product_uid.into_inner();
+    let product = web::block(move || {
+        let mut conn = pool.get()?;
+        actions::update_product_by_uid(&mut conn, product_uid, &form.name, &form.description, form.price, form.stock, &form.image)
+    })
+        .await?
+        .map_err(error::ErrorInternalServerError)?;
+    Ok(HttpResponse::Ok().json(product))
+}
+
 #[post("/products")]
 pub async fn add_product(
     pool: web::Data<Pool>,
-    form: web::Json<models::products::NewProduct>,
+    form: web::Json<NewProduct>,
 ) -> actix_web::Result<impl Responder> {
     let product = web::block(move || {
         let mut conn = pool.get()?;
-        actions::insert_new_product(&mut conn, &form.name, &form.description, form.price, form.quantity, &form.image)
+        actions::insert_new_product(&mut conn, &form.name, &form.description, form.price, form.stock, &form.image)
     })
         .await?
         .map_err(error::ErrorInternalServerError)?;

@@ -9,6 +9,7 @@ pub struct Image {
     pub id: String,
     pub format: String,
     pub data: Vec<u8>,
+    pub hash: String,
 }
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
