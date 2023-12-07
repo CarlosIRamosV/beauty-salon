@@ -5,7 +5,7 @@ import {url} from "./api.config.js";
  * @returns lista de productos
  */
 function getProductos() {
-    return fetch(url + "/product")
+    return fetch(url + "/products")
         .then(response => response.json())
         .catch(error => console.error('Error al enviar datos:', error));
 }
@@ -16,7 +16,7 @@ function getProductos() {
  * @returns {Promise<Response | never>} producto
  */
 function getProducto(id) {
-    return fetch(url + "/product/" + id)
+    return fetch(url + "/products/" + id)
         .then(response => response.json())
         .catch(error => console.error('Error al enviar datos:', error));
 }
@@ -50,7 +50,7 @@ async function addProducto(name, description, price, stock, imag) {
                     quantity: stock,
                     image_id: response.json().id
                 }
-                return fetch(url + "/product", {
+                return fetch(url + "/products", {
                     method: 'POST',
                     body: JSON.stringify(producto),
                     headers: {
