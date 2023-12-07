@@ -1,17 +1,17 @@
 use diesel::prelude::*;
 use uuid::Uuid;
 
-use crate::models;
+use crate::user::models;
 
 pub fn find_user_by_uid(
     conn: &mut SqliteConnection,
     uid: Uuid,
-) -> Result<Option<models::user::User>, Box<dyn std::error::Error + Send + Sync>> {
-    use crate::models::schema::users::dsl::*;
+) -> Result<Option<models::User>, Box<dyn std::error::Error + Send + Sync>> {
+    use crate::schema::users::dsl::*;
 
     let user = users
         .filter(id.eq(uid.to_string()))
-        .first::<models::user::User>(conn)
+        .first::<models::User>(conn)
         .optional()?;
 
     Ok(user)
@@ -26,10 +26,10 @@ pub fn insert_new_user(
     ph: &str,
     em: &str,
     pass: &str,
-) -> Result<models::user::User, Box<dyn std::error::Error + Send + Sync>> {
-    use crate::models::schema::{passwords::dsl::*, users::dsl::*};
+) -> Result<models::User, Box<dyn std::error::Error + Send + Sync>> {
+    use crate::schema::{passwords::dsl::*, users::dsl::*};
 
-    let new_user = models::user::User {
+    let new_user = models::User {
         id: Uuid::new_v4().to_string(),
         role_id: 2,
         name: nm.to_owned(),
@@ -40,13 +40,15 @@ pub fn insert_new_user(
         email: em.to_owned(),
     };
 
-    let new_password = models::user::Password {
+    let new_password = models::Password {
         user_id: new_user.id.to_owned(),
         password: pass.to_owned(),
     };
 
     diesel::insert_into(users).values(&new_user).execute(conn)?;
-    diesel::insert_into(passwords).values(&new_password).execute(conn)?;
+    diesel::insert_into(passwords)
+        .values(&new_password)
+        .execute(conn)?;
 
     Ok(new_user)
 }

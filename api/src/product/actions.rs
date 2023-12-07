@@ -1,13 +1,12 @@
 use diesel::prelude::*;
 use uuid::Uuid;
 
-use crate::models::products::Product;
-use crate::models::types::Message;
+use crate::product::models::Product;
 
 pub fn find_all_products(
     conn: &mut SqliteConnection,
 ) -> Result<Vec<Product>, Box<dyn std::error::Error + Send + Sync>> {
-    use crate::models::schema::products::dsl::*;
+    use crate::schema::products::dsl::*;
 
     let product = products.load::<Product>(conn)?;
 
@@ -18,7 +17,7 @@ pub fn find_product_by_uid(
     conn: &mut SqliteConnection,
     uid: Uuid,
 ) -> Result<Option<Product>, Box<dyn std::error::Error + Send + Sync>> {
-    use crate::models::schema::products::dsl::*;
+    use crate::schema::products::dsl::*;
 
     let product = products
         .filter(id.eq(uid.to_string()))
@@ -31,16 +30,14 @@ pub fn find_product_by_uid(
 pub fn delete_product_by_uid(
     conn: &mut SqliteConnection,
     uid: Uuid,
-) -> Result<Option<Message>, Box<dyn std::error::Error + Send + Sync>> {
-    use crate::models::schema::products::dsl::*;
+) -> Result<Option<()>, Box<dyn std::error::Error + Send + Sync>> {
+    use crate::schema::products::dsl::*;
 
     let old_count = products.count().get_result::<i64>(conn)?;
     diesel::delete(products.filter(id.eq(uid.to_string()))).execute(conn)?;
     assert!(old_count > products.count().get_result::<i64>(conn)?);
 
-    Ok(Some(Message {
-        message: format!("Product with UID: {} was deleted", uid),
-    }))
+    Ok(Option::from(()))
 }
 
 pub fn update_product_by_uid(
@@ -52,7 +49,7 @@ pub fn update_product_by_uid(
     qty: Option<i32>,
     img: &Option<String>,
 ) -> Result<Product, Box<dyn std::error::Error + Send + Sync>> {
-    use crate::models::schema::products::dsl::*;
+    use crate::schema::products::dsl::*;
 
     if nm.is_none() && desc.is_none() && prc.is_none() && qty.is_none() && img.is_none() {
         return Err("No fields to update".into());
@@ -94,7 +91,7 @@ pub fn update_product_by_uid(
             description.eq(product.description.to_owned()),
             price.eq(product.price),
             stock.eq(product.stock),
-            image_id.eq(product.image_id.to_owned())
+            image_id.eq(product.image_id.to_owned()),
         ))
         .execute(conn)?;
 
@@ -109,7 +106,7 @@ pub fn insert_new_product(
     stk: Option<i32>,
     img: &Option<String>,
 ) -> Result<Product, Box<dyn std::error::Error + Send + Sync>> {
-    use crate::models::schema::products::dsl::*;
+    use crate::schema::products::dsl::*;
 
     let new_product = Product {
         id: Uuid::new_v4().to_string(),
@@ -120,7 +117,9 @@ pub fn insert_new_product(
         image_id: img.clone(),
     };
 
-    diesel::insert_into(products).values(&new_product).execute(conn)?;
+    diesel::insert_into(products)
+        .values(&new_product)
+        .execute(conn)?;
 
     Ok(new_product)
 }

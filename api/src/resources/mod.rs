@@ -1,10 +1,11 @@
-use actix_web::{error, get, HttpResponse, post, Responder, web};
+use actix_web::{error, get, post, web, HttpResponse, Responder};
 use uuid::Uuid;
 
-use crate::models::images::NewImage;
-use crate::models::types::Pool;
+use crate::resources::models::NewImage;
+use crate::Pool;
 
 mod actions;
+mod models;
 
 #[get("/images/{image_id}")]
 pub async fn get_image(
@@ -16,8 +17,8 @@ pub async fn get_image(
         let mut conn = pool.get()?;
         actions::find_image_by_uid(&mut conn, image_uid)
     })
-        .await?
-        .map_err(error::ErrorInternalServerError)?;
+    .await?
+    .map_err(error::ErrorInternalServerError)?;
     Ok(match image {
         Some(image) => HttpResponse::build(actix_web::http::StatusCode::OK)
             .content_type(image.format)
@@ -35,7 +36,7 @@ pub async fn add_image(
         let mut conn = pool.get()?;
         actions::insert_new_image(&mut conn, &form.image)
     })
-        .await?
-        .map_err(error::ErrorInternalServerError)?;
+    .await?
+    .map_err(error::ErrorInternalServerError)?;
     Ok(HttpResponse::Created().json(image))
 }

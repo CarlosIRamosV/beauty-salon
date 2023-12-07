@@ -69,12 +69,4 @@ diesel::joinable!(products -> images (image_id));
 diesel::joinable!(users -> roles (role_id));
 diesel::joinable!(users -> sex (sex_id));
 
-diesel::allow_tables_to_appear_in_same_query!(
-    images,
-    jwt,
-    passwords,
-    products,
-    roles,
-    sex,
-    users,
-);
+diesel::allow_tables_to_appear_in_same_query!(images, jwt, passwords, products, roles, sex, users,);

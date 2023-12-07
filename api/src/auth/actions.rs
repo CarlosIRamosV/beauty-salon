@@ -1,18 +1,19 @@
 use diesel::prelude::*;
-use crate::models;
-use crate::models::auth::Auth;
+
+use crate::auth::models::{Auth, Password, User};
+use crate::schema;
 
 pub fn login(
     conn: &mut SqliteConnection,
     user_email: &str,
     pass: Option<&str>,
-remember: Option<bool>) -> Result<Auth, Box<dyn std::error::Error + Send + Sync>> {
-     use crate::models::schema::users::dsl::*;
-
+    remember: Option<bool>,
+) -> Result<Auth, Box<dyn std::error::Error + Send + Sync>> {
+    use crate::schema::users::dsl::*;
 
     let user = users
         .filter(email.eq(user_email.to_string()))
-        .first::<models::user::User>(conn)
+        .first::<User>(conn)
         .optional()?;
 
     let user = match user {
@@ -25,11 +26,11 @@ remember: Option<bool>) -> Result<Auth, Box<dyn std::error::Error + Send + Sync>
         None => return Err("No password provided".into()),
     };
 
-    use crate::models::schema::passwords::dsl::*;
+    use crate::schema::passwords::dsl::*;
 
     let _user_password = passwords
         .filter(user_id.eq(user.id.to_string()))
-        .first::<models::user::Password>(conn)
+        .first::<Password>(conn)
         .optional()?;
 
     let user_password = match _user_password {
@@ -41,31 +42,26 @@ remember: Option<bool>) -> Result<Auth, Box<dyn std::error::Error + Send + Sync>
         return Err("Wrong password".into());
     }
 
-
     // Generate token
-
 
     let mut expiration_date = chrono::Local::now().naive_local().date();
 
-    if remember== Option::from(true) {
+    if remember == Option::from(true) {
         expiration_date += chrono::Duration::days(31);
     } else {
         expiration_date += chrono::Duration::days(1);
     }
 
-
     let auth = Auth {
         id: uuid::Uuid::new_v4().to_string(),
         user_id: user.id.to_string(),
         token: "token".to_string(),
-        expiration_date
+        expiration_date,
     };
 
-    diesel::insert_into(models::schema::jwt::table)
+    diesel::insert_into(schema::jwt::table)
         .values(&auth)
         .execute(conn)?;
 
     Ok(auth)
 }
-
-
