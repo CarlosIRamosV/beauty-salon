@@ -1,8 +1,6 @@
 name: API Build
 
 on:
-  push:
-    branches: [ "api" ]
   workflow_dispatch:
 
 env:
@@ -32,41 +30,3 @@ jobs:
         with:
           name: api
           path: api/target/x86_64-pc-windows-gnu/release/api.exe
-
-  create-package:
-    name: Create Package
-    runs-on: ubuntu-latest
-    needs: build
-    permissions:
-      contents: read
-      packages: write
-    env:
-      REGISTRY: mx-monterrey-1.ocir.io
-      IMAGE_NAME: salondebelleza/api
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-        with:
-          sparse-checkout: api
-
-      - name: Log in to the Container registry
-        uses: docker/login-action@v3
-        with:
-          registry: ${{ env.REGISTRY }}
-          username: ${{ secrets.OCI_USERNAME }}
-          password: ${{ secrets.OCI_TOKEN }}
-
-      - name: Extract metadata (tags, labels) for Docker
-        id: meta
-        uses: docker/metadata-action@v5
-        with:
-          images: ${{ env.REGISTRY }}/${{ secrets.OCI_TENANCY }}/${{ env.IMAGE_NAME }}
-          tags: latest
-
-      - name: Build and push Docker image
-        uses: docker/build-push-action@v5
-        with:
-          context: api
-          push: true
-          tags: ${{ steps.meta.outputs.tags }}
-          labels: ${{ steps.meta.outputs.labels }}

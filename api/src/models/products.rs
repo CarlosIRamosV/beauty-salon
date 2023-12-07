@@ -22,3 +22,12 @@ pub struct NewProduct {
     pub quantity: i32,
     pub image: Option<String>
 }
+
+#[derive(Debug, Clone, Serialize, Deserialize)]
+pub struct UpdateProduct {
+    pub name: Option<String>,
+    pub description: Option<String>,
+    pub price: Option<f64>,
+    pub quantity: Option<i32>,
+    pub image: Option<String>
+}
