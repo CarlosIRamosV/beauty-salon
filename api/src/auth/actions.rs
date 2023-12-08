@@ -35,11 +35,7 @@ pub fn login(
         (Utc::now().timestamp() + 60 * 60 * 24) as usize // 1 day
     };
 
-    let my_claims = Claims {
-        sub: user.id,
-        company: "My Company".to_owned(),
-        exp,
-    };
+    let my_claims = Claims { sub: user.id, exp };
 
     let token = encode(
         &Header::default(),

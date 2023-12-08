@@ -8,6 +8,5 @@ pub struct Config {
 #[derive(Debug, Serialize, Deserialize)]
 pub struct Claims {
     pub sub: String,
-    pub company: String,
     pub exp: usize,
 }
