@@ -9,8 +9,6 @@ use diesel::{r2d2, SqliteConnection};
 use diesel_migrations::{embed_migrations, EmbeddedMigrations, MigrationHarness};
 use dotenv::dotenv;
 
-use crate::user::{add_user, get_user};
-
 mod auth;
 mod product;
 mod resources;
@@ -53,18 +51,10 @@ async fn main() -> std::io::Result<()> {
             .app_data(web::Data::new(pool.clone()))
             .wrap(middleware::Logger::default())
             .wrap(Cors::permissive())
-            .service(get_user)
-            .service(add_user)
-            .service(resources::get_image)
-            .service(resources::add_image)
-            // Products
-            .service(product::get_products)
-            .service(product::get_product)
-            .service(product::delete_product)
-            .service(product::update_product)
-            .service(product::add_product)
-            // Auth
-            .service(auth::login)
+            .configure(auth::init_routes)
+            .configure(product::init_routes)
+            .configure(resources::init_routes)
+            .configure(user::init_routes)
     })
     .bind((address, port))?
     .run()
