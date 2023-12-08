@@ -16,7 +16,8 @@ window.addEventListener("load", function () {
                 method: 'POST',
                 body: JSON.stringify(image),
                 headers: {
-                    'Content-Type': 'application/json'
+                    'Content-Type': 'application/json',
+                    'Authorization': 'Bearer ' + localStorage.getItem("token")
                 }
             })
                 .then(response => response.json())

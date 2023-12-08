@@ -14,11 +14,11 @@ function registrar() {
     //SELECCIONAR SEXO
     var sex
     if (masc=="on"){
-        sex = 1;
+        sex = Male;
         } else if(fem=="on"){
-            sex=2;
+            sex=Female;
         }else{
-            sex=3;
+            sex=Other;
         }
 
     //VARIABLES PARA CONFIRMAR CONTRASE;A
