@@ -46,7 +46,10 @@ pub fn login(
     Ok(token)
 }
 
-pub fn is_admin(conn: &mut SqliteConnection, token: &str) -> Result<bool, Box<dyn std::error::Error + Send + Sync>> {
+pub fn is_admin(
+    conn: &mut SqliteConnection,
+    token: &str,
+) -> Result<bool, Box<dyn std::error::Error + Send + Sync>> {
     let token = decode::<Claims>(
         &token,
         &DecodingKey::from_secret("secret".as_ref()),
@@ -67,7 +70,10 @@ pub fn is_admin(conn: &mut SqliteConnection, token: &str) -> Result<bool, Box<dy
     Ok(false)
 }
 
-pub fn is_employee(conn: &mut SqliteConnection, token: &str) -> Result<bool, Box<dyn std::error::Error + Send + Sync>> {
+pub fn is_employee(
+    conn: &mut SqliteConnection,
+    token: &str,
+) -> Result<bool, Box<dyn std::error::Error + Send + Sync>> {
     let token = decode::<Claims>(
         &token,
         &DecodingKey::from_secret("secret".as_ref()),
@@ -88,7 +94,10 @@ pub fn is_employee(conn: &mut SqliteConnection, token: &str) -> Result<bool, Box
     Ok(false)
 }
 
-pub fn is_user(conn: &mut SqliteConnection, token: &str) -> Result<bool, Box<dyn std::error::Error + Send + Sync>> {
+pub fn is_user(
+    conn: &mut SqliteConnection,
+    token: &str,
+) -> Result<bool, Box<dyn std::error::Error + Send + Sync>> {
     let token = decode::<Claims>(
         &token,
         &DecodingKey::from_secret("secret".as_ref()),
@@ -109,7 +118,10 @@ pub fn is_user(conn: &mut SqliteConnection, token: &str) -> Result<bool, Box<dyn
     Ok(false)
 }
 
-pub fn is_admin_or_employee(conn: &mut SqliteConnection, token: &str) -> Result<bool, Box<dyn std::error::Error + Send + Sync>> {
+pub fn is_admin_or_employee(
+    conn: &mut SqliteConnection,
+    token: &str,
+) -> Result<bool, Box<dyn std::error::Error + Send + Sync>> {
     let token = decode::<Claims>(
         &token,
         &DecodingKey::from_secret("secret".as_ref()),
@@ -130,7 +142,10 @@ pub fn is_admin_or_employee(conn: &mut SqliteConnection, token: &str) -> Result<
     Ok(false)
 }
 
-pub fn is_admin_or_user(conn: &mut SqliteConnection, token: &str) -> Result<bool, Box<dyn std::error::Error + Send + Sync>> {
+pub fn is_admin_or_user(
+    conn: &mut SqliteConnection,
+    token: &str,
+) -> Result<bool, Box<dyn std::error::Error + Send + Sync>> {
     let token = decode::<Claims>(
         &token,
         &DecodingKey::from_secret("secret".as_ref()),
@@ -151,7 +166,10 @@ pub fn is_admin_or_user(conn: &mut SqliteConnection, token: &str) -> Result<bool
     Ok(false)
 }
 
-pub fn is_employee_or_user(conn: &mut SqliteConnection, token: &str) -> Result<bool, Box<dyn std::error::Error + Send + Sync>> {
+pub fn is_employee_or_user(
+    conn: &mut SqliteConnection,
+    token: &str,
+) -> Result<bool, Box<dyn std::error::Error + Send + Sync>> {
     let token = decode::<Claims>(
         &token,
         &DecodingKey::from_secret("secret".as_ref()),
@@ -172,7 +190,10 @@ pub fn is_employee_or_user(conn: &mut SqliteConnection, token: &str) -> Result<b
     Ok(false)
 }
 
-pub fn is_admin_or_employee_or_user(conn: &mut SqliteConnection, token: &str) -> Result<bool, Box<dyn std::error::Error + Send + Sync>> {
+pub fn is_admin_or_employee_or_user(
+    conn: &mut SqliteConnection,
+    token: &str,
+) -> Result<bool, Box<dyn std::error::Error + Send + Sync>> {
     let token = decode::<Claims>(
         &token,
         &DecodingKey::from_secret("secret".as_ref()),

@@ -1,5 +1,5 @@
-use actix_web::{error, get, post, web, HttpResponse, Responder, HttpRequest};
 use actix_web::http::header::Header;
+use actix_web::{error, get, post, web, HttpRequest, HttpResponse, Responder};
 use actix_web_httpauth::headers::authorization::{Authorization, Bearer};
 use uuid::Uuid;
 
@@ -38,7 +38,8 @@ pub async fn add_image(
         let mut conn = pool.get()?;
 
         // Check if user is admin or employee or user
-        let is_admin_or_employee_or_user = auth::actions::is_admin_or_employee_or_user(&mut conn, auth.as_ref().token())?;
+        let is_admin_or_employee_or_user =
+            auth::actions::is_admin_or_employee_or_user(&mut conn, auth.as_ref().token())?;
 
         if !is_admin_or_employee_or_user {
             return Err("Unauthorized".into());
