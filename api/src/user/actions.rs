@@ -111,6 +111,7 @@ pub fn update_user_by_uid(
     conn: &mut SqliteConnection,
     uid: Uuid,
     update: Update,
+    change_type: bool,
 ) -> Result<Public, Box<dyn std::error::Error + Send + Sync>> {
     use crate::schema::users::dsl::*;
 
@@ -130,8 +131,10 @@ pub fn update_user_by_uid(
     }
 
     // Update type
-    if let Some(r#type) = update.r#type {
-        user.type_ = r#type.to_owned();
+    if change_type {
+        if let Some(r#type) = update.r#type {
+            user.type_ = r#type.to_owned();
+        }
     }
 
     // Update last_name
@@ -173,18 +176,28 @@ pub fn update_user_by_uid(
             sex.eq(&user.sex),
             phone.eq(&user.phone),
             email.eq(&user.email),
-            ))
+        ))
         .execute(conn)?;
 
     Ok(user.to_public())
 }
-
 
 pub fn delete_user_by_uid(
     conn: &mut SqliteConnection,
     uid: Uuid,
 ) -> Result<String, Box<dyn std::error::Error + Send + Sync>> {
     use crate::schema::users::dsl::*;
+
+    // Check if user exists
+    let user = users
+        .filter(id.eq(uid.to_string()))
+        .first::<User>(conn)
+        .optional()?;
+
+    let _user = match user {
+        Some(user) => user,
+        None => return Err("No user found".into()),
+    };
 
     diesel::delete(users.filter(id.eq(uid.to_string()))).execute(conn)?;
 

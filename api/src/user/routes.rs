@@ -1,5 +1,5 @@
 use actix_web::http::header::Header;
-use actix_web::{delete, error, get, post, web, HttpRequest, HttpResponse, Responder, put};
+use actix_web::{delete, error, get, post, put, web, HttpRequest, HttpResponse, Responder};
 use actix_web_httpauth::headers::authorization::{Authorization, Bearer};
 use uuid::Uuid;
 
@@ -83,21 +83,28 @@ pub async fn update_user(
     let user = web::block(move || {
         let mut conn = pool.get()?;
 
-        // Check if user is admin or employee
-        let is_admin_or_employee =
-            auth::actions::is_admin_or_employee(&mut conn, auth.as_ref().token())?;
+        // Check if user is admin
+        let is_admin = auth::actions::is_admin_or_employee(&mut conn, auth.as_ref().token())?;
 
-        if is_admin_or_employee {
-            return actions::update_user_by_uid(&mut conn, user_uid, form.clone());
+        if is_admin {
+            return actions::update_user_by_uid(&mut conn, user_uid, form.clone(), true);
         }
 
+        // Check if user is employee
+        let is_employee = auth::actions::is_admin_or_employee(&mut conn, auth.as_ref().token())?;
+
+        if is_employee {
+            return actions::update_user_by_uid(&mut conn, user_uid, form.clone(), false);
+        }
+
+        // Check if user is user
         let is_user = auth::actions::is_user(&mut conn, auth.as_ref().token())?;
 
         if is_user {
             let user_id = auth::actions::get_user_id(&mut conn, auth.as_ref().token())?;
 
             if user_id == user_uid.to_string() {
-                return actions::update_user_by_uid(&mut conn, user_uid, form.clone());
+                return actions::update_user_by_uid(&mut conn, user_uid, form.clone(), false);
             }
         }
         return Err("Unauthorized".into());
