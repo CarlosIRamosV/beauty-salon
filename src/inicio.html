@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Inicio de sesion</title>
     <link rel="stylesheet" type="text/css" href="public/css/noUser/inicio.css">
-    <script src="public/js/noUser/inicio.js"></script>
+    <script src="public/js/login.js"></script>
 
 </head>
 
@@ -22,16 +22,23 @@
 
         <h3 class="subtitulo"> Tu mejor opcion</h3>
 
-        <input type="email" placeholder="Correo" class="correo">
-        <input type="password" placeholder="Contraseña" class="contraseña">
+        <form id="login" method="post" target="_blank">
+            <input type="email" placeholder="Correo" class="usuario" id="email">
+            <input type="password" placeholder="Contraseña" class="contraseña" id="password">
+            <div class="remember">
+                <label for="remember">Recuerda el dispositivo por 30 dias</label>
+                <input type="checkbox" id="remember">
+            </div>
 
-        <div class="botonesIRR">
-            <button class="sesion" onclick="enviarDatos()">Iniciar sesión</button>
-            <a href="cuenta.html"><button class="registro" > Registrarse</button></a>
-        </div>
+            <div class="botonesIRR">
+                <button class="sesion" type="submit"">Iniciar sesión</button>
+                <a href="cuenta.html"><button class="registro"> Registrarse</button></a>
+            </div>
+
+        </form>
 
     </div>
-    
+
 
 </body>
 
