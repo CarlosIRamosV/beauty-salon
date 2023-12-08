@@ -55,7 +55,6 @@ window.addEventListener('load', () => {
 });
 
 function jennyqintana() {
-    alert("Jenny Quintana es mi jainita");
     fetch('../json/citas.json')  // Reemplaza 'ruta/del/archivo.json' con la ruta correcta a tu archivo JSON
         .then(response => response.json())
         .then(citasJson => {

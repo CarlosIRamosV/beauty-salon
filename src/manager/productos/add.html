@@ -32,26 +32,24 @@
     <section>
         <h2>Nuevo Producto</h2>
 
-        <label for="imagen" class="tit">Selecciona una foto del producto</label>
-        <input type="file" id="imagen" class="imagen">
+        <label for="file" class="tit">Selecciona una foto del producto</label>
+        <input type="file" id="file" class="file">
 
-        <form id="crud-form">
-            <label for="nombre">Nombre:</label>
-            <input id="nombre" required type="text">
+        <form id="crud-form" method="post" target="_blank">
+            <label for="name">Nombre:</label>
+            <input id="name" required type="text">
 
-            <label for="descr">Descripción:</label>
-            <input id="descr" type="text">
+            <label for="description">Descripción:</label>
+            <input id="description" type="text">
 
-            <label for="precio">Precio:</label>
-            <input id="precio" required step="0.01" type="number">
+            <label for="price">Precio:</label>
+            <input id="price" required step="0.01" type="number">
 
-            <label for="cantidad">Cantidad:</label>
-            <input id="cantidad" required type="number">
+            <label for="stock">Cantidad:</label>
+            <input id="stock" required type="number">
 
-            <label for="favoritos">Favoritos:</label>
-            <input id="favoritos" type="number">
-
-            <button onclick="addOrUpdateProducto()" type="button">Guardar</button>
+            <button type="submit" id="create">Guardar</button>
+        </form>
     </section>
 </body>
 

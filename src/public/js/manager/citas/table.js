@@ -14,44 +14,34 @@ function loadTable() {
 
 function generateTable(data) {
     let body = document.createElement('tbody');
-    data.forEach(product => {
+    data.forEach(cita => {
         let row = document.createElement('tr');
-        let imgCell = document.createElement('td');
-        if (product.image_id) {
-            let img = document.createElement('img');
-            img.src = url + '/images/' + product.image_id;
-            imgCell.appendChild(img);
-        } else {
-            imgCell.innerText = 'No image';
-        }
-        row.appendChild(imgCell);
         let name = document.createElement('td');
-        name.innerText = product.name;
-        let description = document.createElement('td');
-        description.innerText = product.description;
-        let price = document.createElement('td');
-        price.innerText = product.price;
-        let stock = document.createElement('td');
-        stock.innerText = product.stock;
+        name.innerText = cita.name;
+        let telefono = document.createElement('td');
+        telefono.innerText = cita.telefono;
+        let empleado = document.createElement('td');
+        empleado.innerText = cita.empleado;
+        let servicios = document.createElement('td');
+        servicios.innerText = cita.servicios;
+        let fecha = document.createElement('td');
+        fecha.innerText = cita.fecha;
+        let hora = document.createElement('td');
+        hora.innerText = cita.hora;
 
         // Add buttons
         let edit = document.createElement('td');
-        let imgEdit = document.createElement('img');
-        imgEdit.src = '../../public/svg/edit.svg';
         edit.appendChild(imgEdit);
         edit.className = 'edit';
         edit.addEventListener('click', ev => {
-            window.location.href = 'edit.html?id=' + product.id;
+            window.location.href = 'edit.html?id=' + cita.id;
         });
 
 
         let del = document.createElement('td');
         del.className = 'delete';
-        let imgDel = document.createElement('img');
-        imgDel.src = '../../public/svg/trash.svg';
-        del.appendChild(imgDel);
         del.addEventListener('click', ev => {
-            fetch(url + '/products/' + product.id, {
+            fetch(url + '/citas/' + cita.id, {
                 method: 'DELETE'
             }).then(response => {
                 if (response.status === 200) {
@@ -62,11 +52,12 @@ function generateTable(data) {
 
 
         // Add cells to row
-        row.appendChild(imgCell);
         row.appendChild(name);
-        row.appendChild(description);
-        row.appendChild(price);
-        row.appendChild(stock);
+        row.appendChild(telefono);
+        row.appendChild(empleado);
+        row.appendChild(servicios);
+        row.appendChild(fecha);
+        row.appendChild(hora);
         row.appendChild(edit);
         row.appendChild(del);
         body.appendChild(row);

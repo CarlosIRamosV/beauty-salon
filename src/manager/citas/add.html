@@ -6,7 +6,7 @@
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <title>Creando Citas</title>
     <link href="../../public/css/manager/products/edit.css" rel="stylesheet">
-    <script src="../../public/js/manager/products/edit.js" type="module"></script>
+    <script src="../../public/js/manager/citas/add.js"></script>
 </head>
 
 <body>
@@ -43,18 +43,19 @@
                 <div>
                     <label for="empleado">Empleado:</label>
                     <select name="empleado" id="empleado">
-                        <option value="1">Diego</option>
-                        <option value="2">Antonio</option>
-                        <option value="3">Javier</option>
+                        <option value="Diego">Diego</option>
+                        <option value="Antonio">Antonio</option>
+                        <option value="Javier">Javier</option>
                     </select>
                 </div>
 
                 <label for="servicios">Servicios:</label>
                 <div>
                     <select name="servicios" id="servicios" multiple>
-                        <option value="1">Corte de pelo</option>
-                        <option value="2">Manicura</option>
-                        <option value="3">Maquillaje</option>
+                        <option value="Colorimetria">Colorimetria</option>
+                        <option value="Peinado">Peinado</option>
+                        <option value="Corte de pelo">Corte de pelo</option>
+                        <option value="Maquillaje">Maquillaje</option>
                     </select>
                 </div>
 
@@ -62,9 +63,9 @@
                 <input id="fechaCita" required type="date">
 
                 <label for="HoraCita">Hora de la cita:</label>
-                <input id="HoraCita" required type="time" min="08:00" max="20:00" step="1800">
+                <input id="horaCita" required type="time" min="08:00" max="20:00" step="1800">
 
-                <button onclick="addOrUpdateProducto()" type="button" class="guardar">Guardar</button>
+                <button type="button" class="guardar" onclick="enviarDatos()">Guardar</button>
             </form>
 
         </div>
