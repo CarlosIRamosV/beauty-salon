@@ -14,7 +14,7 @@ pub struct User {
     pub sex: String,
     pub phone: String,
     pub email: String,
-    pub password: String,
+    pub password_hash: String,
 }
 
 #[derive(Debug, Clone, Serialize, Deserialize)]

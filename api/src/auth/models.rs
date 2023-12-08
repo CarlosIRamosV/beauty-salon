@@ -14,9 +14,8 @@ pub struct JWT {
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct Config {
-    pub remember_me: Option<bool>,
+    pub remember_me: bool,
 }
-
 
 pub struct Token {
     pub token: String,

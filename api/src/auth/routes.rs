@@ -12,18 +12,17 @@ pub async fn login(
     req: HttpRequest,
 ) -> actix_web::Result<impl Responder> {
     let auth = Authorization::<Basic>::parse(&req)?;
-    /*let token = web::block(move || {
+    let token = web::block(move || {
         let mut conn = pool.get()?;
 
         actions::login(
             &mut conn,
             auth.as_ref().user_id(),
             auth.as_ref().password(),
-            Some(form.clone().unwrap().remember_me)
+            form.map(|c| c.remember_me).unwrap_or(false),
         )
     })
     .await?
     .map_err(error::ErrorInternalServerError)?;
-    Ok(HttpResponse::Ok().json(token))*/
-    Ok(HttpResponse::Ok())
+    Ok(HttpResponse::Ok().json(token))
 }

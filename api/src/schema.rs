@@ -40,16 +40,11 @@ diesel::table! {
         sex -> Text,
         phone -> Text,
         email -> Text,
-        password -> Text,
+        password_hash -> Text,
     }
 }
 
 diesel::joinable!(jwt -> users (user_id));
 diesel::joinable!(products -> images (image_id));
 
-diesel::allow_tables_to_appear_in_same_query!(
-    images,
-    jwt,
-    products,
-    users,
-);
+diesel::allow_tables_to_appear_in_same_query!(images, jwt, products, users,);

@@ -37,11 +37,10 @@ pub fn insert_new_user(
         sex: data.sex,
         phone: data.phone,
         email: data.email,
-        password: bcrypt::hash(data.password, bcrypt::DEFAULT_COST)?,
+        password_hash: bcrypt::hash(data.password, bcrypt::DEFAULT_COST)?,
     };
 
     diesel::insert_into(users).values(&new_user).execute(conn)?;
 
     Ok(new_user.to_public())
 }
-

@@ -1,9 +1,9 @@
 use actix_web::{error, get, post, web, HttpResponse, Responder};
 use uuid::Uuid;
 
-use crate::user::{actions, models};
-use crate::Pool;
+use crate::user::actions;
 use crate::user::models::New;
+use crate::Pool;
 
 #[get("/users/{user_id}")]
 pub async fn get_user(
@@ -32,10 +32,7 @@ pub async fn add_user(
     let user = web::block(move || {
         let mut conn = pool.get()?;
 
-        actions::insert_new_user(
-            &mut conn,
-            form.clone()
-        )
+        actions::insert_new_user(&mut conn, form.clone())
     })
     .await?
     .map_err(error::ErrorInternalServerError)?;
