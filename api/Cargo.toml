@@ -10,6 +10,7 @@ readme = "README.md"
 # Database
 diesel = { version = "2.1.4", features = ["sqlite", "r2d2", "chrono"] }
 diesel_migrations = "2.1.0"
+diesel-derive-enum = { version = "2.1.0", features = ["sqlite"] }
 libsqlite3-sys = { version = "0.27.0", features = ["bundled"] }
 
 # Environment variables
@@ -19,16 +20,20 @@ dotenv = "0.15.0"
 serde = { version = "1.0.130", features = ["derive"] }
 
 # Logging
-log = "0.4.14"
-env_logger = "0.10.1"
+log = "0.4"
+env_logger = "0.10"
 
 
 # Web framework
-actix-web = "4.4.0"
-actix-web-httpauth = "0.8.1"
-actix-cors = "0.6.4"
+actix-web = "4.4"
+actix-web-httpauth = "0.8"
+actix-cors = "0.6"
 
 # Types
-uuid = { version = "1.6.1", features = ["v4", "serde"] }
-chrono = { version = "0.4.19", features = ["serde"] }
-base64 = { version = "0.21.5", features = [] }
+uuid = { version = "1.6", features = ["v4", "serde"] }
+chrono = { version = "0.4", features = ["serde"] }
+base64 = { version = "0.21", features = [] }
+jsonwebtoken = "9.2"
+
+# Password hashing
+bcrypt = "0.15"

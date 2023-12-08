@@ -1,7 +1,7 @@
 use diesel::prelude::*;
 use uuid::Uuid;
 
-use crate::product::models::Product;
+use crate::product::models::{New, Product, Update};
 
 pub fn find_all_products(
     conn: &mut SqliteConnection,
@@ -43,16 +43,20 @@ pub fn delete_product_by_uid(
 pub fn update_product_by_uid(
     conn: &mut SqliteConnection,
     uid: Uuid,
-    nm: &Option<String>,
-    desc: &Option<String>,
-    prc: Option<f64>,
-    qty: Option<i32>,
-    img: &Option<String>,
+    update: Update,
 ) -> Result<Product, Box<dyn std::error::Error + Send + Sync>> {
     use crate::schema::products::dsl::*;
 
+    let Update {
+        name: nm,
+        description: desc,
+        price: prc,
+        stock: qty,
+        image: img,
+    } = update;
+
     if nm.is_none() && desc.is_none() && prc.is_none() && qty.is_none() && img.is_none() {
-        return Err("No fields to update".into());
+        return Err("No update parameters provided".into());
     }
 
     let product = products
@@ -100,21 +104,17 @@ pub fn update_product_by_uid(
 
 pub fn insert_new_product(
     conn: &mut SqliteConnection,
-    nm: &str,
-    desc: &str,
-    prc: f64,
-    stk: Option<i32>,
-    img: &Option<String>,
+    product: New,
 ) -> Result<Product, Box<dyn std::error::Error + Send + Sync>> {
     use crate::schema::products::dsl::*;
 
     let new_product = Product {
         id: Uuid::new_v4().to_string(),
-        name: nm.to_owned(),
-        description: desc.to_owned(),
-        price: prc,
-        stock: stk.unwrap_or(0),
-        image_id: img.clone(),
+        name: product.name,
+        description: product.description,
+        price: product.price,
+        stock: product.stock.unwrap_or(0),
+        image_id: product.image,
     };
 
     diesel::insert_into(products)

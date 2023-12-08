@@ -1,67 +1,104 @@
+use chrono::Utc;
 use diesel::prelude::*;
+use jsonwebtoken::{decode, encode, DecodingKey, EncodingKey, Header, Validation};
 
-use crate::auth::models::{Auth, Password, User};
-use crate::schema;
+use crate::auth::models::Claims;
+use crate::user::models::User;
 
 pub fn login(
     conn: &mut SqliteConnection,
     user_email: &str,
     pass: Option<&str>,
-    remember: Option<bool>,
-) -> Result<Auth, Box<dyn std::error::Error + Send + Sync>> {
+    remember_me: bool,
+) -> Result<String, Box<dyn std::error::Error + Send + Sync>> {
     use crate::schema::users::dsl::*;
 
-    let user = users
-        .filter(email.eq(user_email.to_string()))
-        .first::<User>(conn)
-        .optional()?;
-
-    let user = match user {
-        Some(user) => user,
-        None => return Err("No user found".into()),
-    };
-
-    let check_pass = match pass {
-        Some(pass) => pass,
-        None => return Err("No password provided".into()),
-    };
-
-    use crate::schema::passwords::dsl::*;
-
-    let _user_password = passwords
-        .filter(user_id.eq(user.id.to_string()))
-        .first::<Password>(conn)
-        .optional()?;
-
-    let user_password = match _user_password {
-        Some(user_password) => user_password,
-        None => return Err("No password found".into()),
-    };
-
-    if user_password.password != check_pass.to_string() {
-        return Err("Wrong password".into());
+    if user_email.is_empty() {
+        return Err("Email is required".into());
     }
 
-    // Generate token
+    // Find user by email
+    let user = users.filter(email.eq(user_email)).first::<User>(conn)?;
 
-    let mut expiration_date = chrono::Local::now().naive_local().date();
-
-    if remember == Option::from(true) {
-        expiration_date += chrono::Duration::days(31);
+    // Check if password is correct using bcrypt
+    if let Some(pass) = pass {
+        if !bcrypt::verify(pass, &user.password_hash).unwrap() {
+            return Err("Password is incorrect".into());
+        }
     } else {
-        expiration_date += chrono::Duration::days(1);
+        return Err("Password is required".into());
     }
 
-    let auth = Auth {
-        id: uuid::Uuid::new_v4().to_string(),
-        user_id: user.id.to_string(),
-        token: "token".to_string(),
-        expiration_date,
+    let exp = if remember_me {
+        (Utc::now().timestamp() + 60 * 60 * 24 * 31) as usize // 31 days
+    } else {
+        (Utc::now().timestamp() + 60 * 60 * 24) as usize // 1 day
     };
 
-    diesel::insert_into(schema::jwt::table)
-        .values(&auth)
-        .execute(conn)?;
+    let my_claims = Claims { sub: user.id, exp };
 
-    Ok(auth)
+    let token = encode(
+        &Header::default(),
+        &my_claims,
+        &EncodingKey::from_secret("secret".as_ref()),
+    )?;
+
+    Ok(token)
+}
+
+pub fn validate(token: &str) -> Result<Claims, Box<dyn std::error::Error + Send + Sync>> {
+    let token = decode::<Claims>(
+        &token,
+        &DecodingKey::from_secret("secret".as_ref()),
+        &Validation::default(),
+    )?;
+
+    if token.claims.exp < Utc::now().timestamp() as usize {
+        return Err("Token expired".into());
+    }
+    Ok(token.claims)
+}
+
+
+pub fn is_admin(conn: &mut SqliteConnection, token: &str) -> Result<bool, Box<dyn std::error::Error + Send + Sync>> {
+    let token = decode::<Claims>(
+        &token,
+        &DecodingKey::from_secret("secret".as_ref()),
+        &Validation::default(),
+    )?;
+
+    if token.claims.exp < Utc::now().timestamp() as usize {
+        return Err("Token expired".into());
+    }
+
+    use crate::schema::users::dsl::*;
+
+    let user = users.filter(id.eq(token.claims.sub)).first::<User>(conn)?;
+
+    if user.type_ == "Admin" {
+        return Ok(true);
+    }
+    Ok(false)
+}
+
+
+pub fn is_employee(conn: &mut SqliteConnection, token: &str) -> Result<bool, Box<dyn std::error::Error + Send + Sync>> {
+    let token = decode::<Claims>(
+        &token,
+        &DecodingKey::from_secret("secret".as_ref()),
+        &Validation::default(),
+    )?;
+
+    if token.claims.exp < Utc::now().timestamp() as usize {
+        return Err("Token expired".into());
+    }
+
+    use crate::schema::users::dsl::*;
+
+    let user = users.filter(id.eq(token.claims.sub)).first::<User>(conn)?;
+
+    if user.type_ == "Employee" {
+        return Ok(true);
+    }
+    Ok(false)
 }

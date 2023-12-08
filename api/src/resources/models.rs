@@ -13,6 +13,6 @@ pub struct Image {
 }
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
-pub struct NewImage {
+pub struct New {
     pub image: String,
 }

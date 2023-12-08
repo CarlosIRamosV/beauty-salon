@@ -1,5 +1,5 @@
 use crate::product::actions;
-use crate::product::models::{NewProduct, UpdateProduct};
+use crate::product::models::{New, Update};
 use crate::Pool;
 use actix_web::{delete, error, get, post, put, web, HttpResponse, Responder};
 use uuid::Uuid;
@@ -55,20 +55,12 @@ pub async fn delete_product(
 pub async fn update_product(
     pool: web::Data<Pool>,
     product_uid: web::Path<Uuid>,
-    form: web::Json<UpdateProduct>,
+    form: web::Json<Update>,
 ) -> actix_web::Result<impl Responder> {
     let product_uid = product_uid.into_inner();
     let product = web::block(move || {
         let mut conn = pool.get()?;
-        actions::update_product_by_uid(
-            &mut conn,
-            product_uid,
-            &form.name,
-            &form.description,
-            form.price,
-            form.stock,
-            &form.image,
-        )
+        actions::update_product_by_uid(&mut conn, product_uid, form.clone())
     })
     .await?
     .map_err(error::ErrorInternalServerError)?;
@@ -78,18 +70,11 @@ pub async fn update_product(
 #[post("/products")]
 pub async fn add_product(
     pool: web::Data<Pool>,
-    form: web::Json<NewProduct>,
+    form: web::Json<New>,
 ) -> actix_web::Result<impl Responder> {
     let product = web::block(move || {
         let mut conn = pool.get()?;
-        actions::insert_new_product(
-            &mut conn,
-            &form.name,
-            &form.description,
-            form.price,
-            form.stock,
-            &form.image,
-        )
+        actions::insert_new_product(&mut conn, form.clone())
     })
     .await?
     .map_err(error::ErrorInternalServerError)?;
