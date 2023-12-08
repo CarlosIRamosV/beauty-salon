@@ -1,9 +1,9 @@
 use crate::product::actions;
 use crate::product::models::{New, Update};
 use crate::{auth, Pool};
-use actix_web::{delete, error, get, post, put, web, HttpResponse, Responder, HttpRequest};
 use actix_web::http::header::Header;
-use actix_web_httpauth::headers::authorization::{Authorization, Basic, Bearer};
+use actix_web::{delete, error, get, post, put, web, HttpRequest, HttpResponse, Responder};
+use actix_web_httpauth::headers::authorization::{Authorization, Bearer};
 use uuid::Uuid;
 
 #[get("/products")]

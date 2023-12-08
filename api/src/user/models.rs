@@ -54,3 +54,26 @@ impl User {
         }
     }
 }
+
+#[derive(Debug, Clone, Serialize, Deserialize)]
+pub struct Search {
+    pub r#type: Option<String>,
+    pub name: Option<String>,
+    pub last_name: Option<String>,
+    pub birth_date: Option<String>,
+    pub sex: Option<String>,
+    pub phone: Option<String>,
+    pub email: Option<String>,
+}
+
+#[derive(Debug, Clone, Serialize, Deserialize)]
+pub struct Update {
+    pub r#type: Option<String>,
+    pub name: Option<String>,
+    pub last_name: Option<String>,
+    pub birth_date: Option<String>,
+    pub sex: Option<String>,
+    pub phone: Option<String>,
+    pub email: Option<String>,
+    pub password: Option<String>,
+}

@@ -1,7 +1,22 @@
 use diesel::prelude::*;
 use uuid::Uuid;
 
-use crate::user::models::{New, Public, User};
+use crate::user::models::{New, Public, Search, Update, User};
+
+pub fn find_all_users(
+    conn: &mut SqliteConnection,
+) -> Result<Vec<Public>, Box<dyn std::error::Error + Send + Sync>> {
+    use crate::schema::users::dsl::*;
+
+    let list_users = users.load::<User>(conn)?;
+
+    let public_users = list_users
+        .into_iter()
+        .map(|user| user.to_public())
+        .collect::<Vec<Public>>();
+
+    Ok(public_users)
+}
 
 pub fn find_user_by_uid(
     conn: &mut SqliteConnection,
@@ -20,6 +35,53 @@ pub fn find_user_by_uid(
     };
 
     Ok(Some(user.to_public()))
+}
+
+pub fn find_users(
+    conn: &mut SqliteConnection,
+    search: Search,
+) -> Result<Vec<Public>, Box<dyn std::error::Error + Send + Sync>> {
+    use crate::schema::users;
+
+    // Filters
+    let mut list_users = users::table::into_boxed(Default::default());
+
+    if let Some(r#type) = search.r#type {
+        list_users = list_users.filter(users::type_.eq(r#type));
+    }
+
+    if let Some(name) = search.name {
+        list_users = list_users.filter(users::name.like(format!("%{}%", name)));
+    }
+
+    if let Some(last_name) = search.last_name {
+        list_users = list_users.filter(users::last_name.like(format!("%{}%", last_name)));
+    }
+
+    if let Some(birth_date) = search.birth_date {
+        list_users = list_users.filter(users::birth_date.eq(birth_date));
+    }
+
+    if let Some(sex) = search.sex {
+        list_users = list_users.filter(users::sex.eq(sex));
+    }
+
+    if let Some(phone) = search.phone {
+        list_users = list_users.filter(users::phone.eq(phone));
+    }
+
+    if let Some(email) = search.email {
+        list_users = list_users.filter(users::email.eq(email));
+    }
+
+    let list_users = list_users.load::<User>(conn)?;
+
+    let public_users = list_users
+        .into_iter()
+        .map(|user| user.to_public())
+        .collect::<Vec<Public>>();
+
+    Ok(public_users)
 }
 
 pub fn insert_new_user(
@@ -45,13 +107,86 @@ pub fn insert_new_user(
     Ok(new_user.to_public())
 }
 
+pub fn update_user_by_uid(
+    conn: &mut SqliteConnection,
+    uid: Uuid,
+    update: Update,
+) -> Result<Public, Box<dyn std::error::Error + Send + Sync>> {
+    use crate::schema::users::dsl::*;
+
+    let user = users
+        .filter(id.eq(uid.to_string()))
+        .first::<User>(conn)
+        .optional()?;
+
+    let mut user = match user {
+        Some(user) => user,
+        None => return Err("No user found".into()),
+    };
+
+    // Update name
+    if let Some(new_name) = update.name {
+        user.name = new_name.to_owned();
+    }
+
+    // Update type
+    if let Some(r#type) = update.r#type {
+        user.type_ = r#type.to_owned();
+    }
+
+    // Update last_name
+    if let Some(new_last_name) = update.last_name {
+        user.last_name = new_last_name.to_owned();
+    }
+
+    // Update birth_date
+    if let Some(new_birth_date) = update.birth_date {
+        user.birth_date = new_birth_date.to_owned();
+    }
+
+    // Update sex
+    if let Some(new_sex) = update.sex {
+        user.sex = new_sex.to_owned();
+    }
+
+    // Update phone
+    if let Some(new_phone) = update.phone {
+        user.phone = new_phone.to_owned();
+    }
+
+    // Update email
+    if let Some(new_email) = update.email {
+        user.email = new_email.to_owned();
+    }
+
+    // Update password
+    if let Some(new_password) = update.password {
+        user.password_hash = bcrypt::hash(new_password, bcrypt::DEFAULT_COST)?;
+    }
+
+    // Update user
+    diesel::update(users.filter(id.eq(uid.to_string())))
+        .set((
+            type_.eq(&user.type_),
+            name.eq(&user.name),
+            last_name.eq(&user.last_name),
+            sex.eq(&user.sex),
+            phone.eq(&user.phone),
+            email.eq(&user.email),
+            ))
+        .execute(conn)?;
+
+    Ok(user.to_public())
+}
+
+
 pub fn delete_user_by_uid(
     conn: &mut SqliteConnection,
     uid: Uuid,
-) -> Result<(), Box<dyn std::error::Error + Send + Sync>> {
+) -> Result<String, Box<dyn std::error::Error + Send + Sync>> {
     use crate::schema::users::dsl::*;
 
     diesel::delete(users.filter(id.eq(uid.to_string()))).execute(conn)?;
 
-    Ok(())
+    Ok("User deleted".to_string())
 }

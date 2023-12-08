@@ -1,8 +1,8 @@
+use crate::auth::models::Claims;
+use crate::user::models::User;
 use chrono::Utc;
 use diesel::prelude::*;
 use jsonwebtoken::{decode, encode, DecodingKey, EncodingKey, Header, Validation};
-use crate::auth::models::Claims;
-use crate::user::models::User;
 
 pub fn login(
     conn: &mut SqliteConnection,
@@ -70,7 +70,6 @@ pub fn get_user_id(
 
     Ok(user.id)
 }
-
 
 pub fn is_admin(
     conn: &mut SqliteConnection,
