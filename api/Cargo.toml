@@ -10,6 +10,7 @@ readme = "README.md"
 # Database
 diesel = { version = "2.1.4", features = ["sqlite", "r2d2", "chrono"] }
 diesel_migrations = "2.1.0"
+diesel-derive-enum = { version = "2.1.0", features = ["sqlite"] }
 libsqlite3-sys = { version = "0.27.0", features = ["bundled"] }
 
 # Environment variables
@@ -32,3 +33,6 @@ actix-cors = "0.6.4"
 uuid = { version = "1.6.1", features = ["v4", "serde"] }
 chrono = { version = "0.4.19", features = ["serde"] }
 base64 = { version = "0.21.5", features = [] }
+
+# Password hashing
+bcrypt = "0.15.0"

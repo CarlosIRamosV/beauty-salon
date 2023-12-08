@@ -1,54 +1,47 @@
 use diesel::prelude::*;
 use uuid::Uuid;
 
-use crate::user::models;
+use crate::user::models::{New, Public, User};
 
 pub fn find_user_by_uid(
     conn: &mut SqliteConnection,
     uid: Uuid,
-) -> Result<Option<models::User>, Box<dyn std::error::Error + Send + Sync>> {
+) -> Result<Option<Public>, Box<dyn std::error::Error + Send + Sync>> {
     use crate::schema::users::dsl::*;
 
     let user = users
         .filter(id.eq(uid.to_string()))
-        .first::<models::User>(conn)
+        .first::<User>(conn)
         .optional()?;
 
-    Ok(user)
+    let user = match user {
+        Some(user) => user,
+        None => return Err("No user found".into()),
+    };
+
+    Ok(Some(user.to_public()))
 }
 
 pub fn insert_new_user(
     conn: &mut SqliteConnection,
-    nm: &str,
-    last_nm: &str,
-    birth: &str,
-    sx: i32,
-    ph: &str,
-    em: &str,
-    pass: &str,
-) -> Result<models::User, Box<dyn std::error::Error + Send + Sync>> {
-    use crate::schema::{passwords::dsl::*, users::dsl::*};
+    data: New,
+) -> Result<Public, Box<dyn std::error::Error + Send + Sync>> {
+    use crate::schema::users::dsl::*;
 
-    let new_user = models::User {
+    let new_user = User {
         id: Uuid::new_v4().to_string(),
-        role_id: 2,
-        name: nm.to_owned(),
-        last_name: last_nm.to_owned(),
-        birth_date: birth.to_owned(),
-        sex_id: sx,
-        phone: ph.to_owned(),
-        email: em.to_owned(),
-    };
-
-    let new_password = models::Password {
-        user_id: new_user.id.to_owned(),
-        password: pass.to_owned(),
+        type_: "User".to_string(),
+        name: data.name,
+        last_name: data.last_name,
+        birth_date: data.birth_date,
+        sex: data.sex,
+        phone: data.phone,
+        email: data.email,
+        password: bcrypt::hash(data.password, bcrypt::DEFAULT_COST)?,
     };
 
     diesel::insert_into(users).values(&new_user).execute(conn)?;
-    diesel::insert_into(passwords)
-        .values(&new_password)
-        .execute(conn)?;
 
-    Ok(new_user)
+    Ok(new_user.to_public())
 }
+
