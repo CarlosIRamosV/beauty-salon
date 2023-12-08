@@ -3,7 +3,7 @@ use crate::auth::models::Config;
 use crate::Pool;
 use actix_web::http::header::Header;
 use actix_web::{error, post, web, HttpRequest, HttpResponse, Responder};
-use actix_web_httpauth::headers::authorization::{Authorization, Basic};
+use actix_web_httpauth::headers::authorization::{Authorization, Basic, Bearer};
 
 #[post("/login")]
 pub async fn login(
@@ -25,4 +25,19 @@ pub async fn login(
     .await?
     .map_err(error::ErrorInternalServerError)?;
     Ok(HttpResponse::Ok().json(token))
+}
+
+#[post("/validate")]
+pub async fn validate(
+    req: HttpRequest,
+) -> actix_web::Result<impl Responder> {
+    let auth = Authorization::<Bearer>::parse(&req)?;
+    let claims = web::block(move || {
+        actions::validate(
+            auth.as_ref().token(),
+        )
+    })
+    .await?
+    .map_err(error::ErrorInternalServerError)?;
+    Ok(HttpResponse::Ok().json(claims))
 }

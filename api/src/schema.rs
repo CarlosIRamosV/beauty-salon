@@ -10,15 +10,6 @@ diesel::table! {
 }
 
 diesel::table! {
-    jwt (id) {
-        id -> Text,
-        user_id -> Text,
-        token -> Text,
-        expiration_date -> Date,
-    }
-}
-
-diesel::table! {
     products (id) {
         id -> Text,
         name -> Text,
@@ -44,7 +35,10 @@ diesel::table! {
     }
 }
 
-diesel::joinable!(jwt -> users (user_id));
 diesel::joinable!(products -> images (image_id));
 
-diesel::allow_tables_to_appear_in_same_query!(images, jwt, products, users,);
+diesel::allow_tables_to_appear_in_same_query!(
+    images,
+    products,
+    users,
+);
