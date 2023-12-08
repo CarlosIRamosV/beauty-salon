@@ -51,7 +51,10 @@ function generateTable(data) {
         del.appendChild(imgDel);
         del.addEventListener('click', ev => {
             fetch(url + '/products/' + product.id, {
-                method: 'DELETE'
+                method: 'DELETE',
+                headers: {
+                    'authorization': 'Bearer ' + localStorage.getItem('token')
+                }
             }).then(response => {
                 if (response.status === 200) {
                     window.location.reload();
