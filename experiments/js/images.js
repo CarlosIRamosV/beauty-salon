@@ -5,7 +5,7 @@ window.addEventListener("load", function () {
         let imag = document.getElementById("file").files[0];
         let blob = new Blob([imag], {type: imag.type});
         let reader = new FileReader();
-        reader.readAsDataURL(imag);
+        reader.readAsDataURL(blob);
         reader.onloadend = function () {
             let image = {
                 image: reader.result

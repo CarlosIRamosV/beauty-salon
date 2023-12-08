@@ -1,7 +1,6 @@
 use chrono::Utc;
 use diesel::prelude::*;
 use jsonwebtoken::{decode, encode, DecodingKey, EncodingKey, Header, Validation};
-
 use crate::auth::models::Claims;
 use crate::user::models::User;
 
@@ -45,6 +44,33 @@ pub fn login(
 
     Ok(token)
 }
+
+pub fn get_user_id(
+    conn: &mut SqliteConnection,
+    token: &str,
+) -> Result<String, Box<dyn std::error::Error + Send + Sync>> {
+    let token = decode::<Claims>(
+        &token,
+        &DecodingKey::from_secret("secret".as_ref()),
+        &Validation::default(),
+    )?;
+
+    if token.claims.exp < Utc::now().timestamp() as usize {
+        return Err("Token expired".into());
+    }
+
+    // Check if user exists
+    use crate::schema::users::dsl::*;
+
+    let user = users.filter(id.eq(&token.claims.sub)).first::<User>(conn)?;
+
+    if user.id != token.claims.sub {
+        return Err("User not found".into());
+    }
+
+    Ok(user.id)
+}
+
 
 pub fn is_admin(
     conn: &mut SqliteConnection,

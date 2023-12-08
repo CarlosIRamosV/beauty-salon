@@ -9,7 +9,7 @@ use diesel::{r2d2, SqliteConnection};
 use diesel_migrations::{embed_migrations, EmbeddedMigrations, MigrationHarness};
 use dotenv::dotenv;
 
-mod auth;
+pub mod auth;
 mod product;
 mod resources;
 pub mod schema;

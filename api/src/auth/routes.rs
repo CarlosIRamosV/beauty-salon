@@ -3,7 +3,7 @@ use crate::auth::models::Config;
 use crate::Pool;
 use actix_web::http::header::Header;
 use actix_web::{error, post, web, HttpRequest, HttpResponse, Responder};
-use actix_web_httpauth::headers::authorization::{Authorization, Basic, Bearer};
+use actix_web_httpauth::headers::authorization::{Authorization, Basic};
 
 #[post("/login")]
 pub async fn login(

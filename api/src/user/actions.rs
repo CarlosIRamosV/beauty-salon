@@ -44,3 +44,14 @@ pub fn insert_new_user(
 
     Ok(new_user.to_public())
 }
+
+pub fn delete_user_by_uid(
+    conn: &mut SqliteConnection,
+    uid: Uuid,
+) -> Result<(), Box<dyn std::error::Error + Send + Sync>> {
+    use crate::schema::users::dsl::*;
+
+    diesel::delete(users.filter(id.eq(uid.to_string()))).execute(conn)?;
+
+    Ok(())
+}

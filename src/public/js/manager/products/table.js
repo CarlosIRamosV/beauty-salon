@@ -17,10 +17,9 @@ function generateTable(data) {
     data.forEach(product => {
         let row = document.createElement('tr');
         let imgCell = document.createElement('td');
+        imgCell.className = 'image';
         if (product.image_id) {
-            let img = document.createElement('img');
-            img.src = url + '/images/' + product.image_id;
-            imgCell.appendChild(img);
+            imgCell.setAttribute('style', 'background-image: url(' + url + '/images/' + product.image_id + ')');
         } else {
             imgCell.innerText = 'No image';
         }
@@ -39,14 +38,14 @@ function generateTable(data) {
         let imgEdit = document.createElement('img');
         imgEdit.src = '../../public/svg/edit.svg';
         edit.appendChild(imgEdit);
-        edit.className = 'edit';
+        edit.className = 'edit icon';
         edit.addEventListener('click', ev => {
             window.location.href = 'edit.html?id=' + product.id;
         });
 
 
         let del = document.createElement('td');
-        del.className = 'delete';
+        del.className = 'delete icon';
         let imgDel = document.createElement('img');
         imgDel.src = '../../public/svg/trash.svg';
         del.appendChild(imgDel);
