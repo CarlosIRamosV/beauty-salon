@@ -36,15 +36,12 @@ pub async fn add_image(
     let auth = Authorization::<Bearer>::parse(&req)?;
     let image = web::block(move || {
         let mut conn = pool.get()?;
-        if let Err(_) = auth::actions::validate(auth.as_ref().token()) {
-            return Err("Token expired".into());
-        }
 
-        // Check if user is admin
-        let is_admin = auth::actions::is_admin(&mut conn, auth.as_ref().token())?;
+        // Check if user is admin or employee or user
+        let is_admin_or_employee_or_user = auth::actions::is_admin_or_employee_or_user(&mut conn, auth.as_ref().token())?;
 
-        if !is_admin {
-            return Err("User is not admin".into());
+        if !is_admin_or_employee_or_user {
+            return Err("Unauthorized".into());
         }
 
         actions::insert_new_image(&mut conn, &form.image)

@@ -26,12 +26,3 @@ pub async fn login(
     .map_err(error::ErrorInternalServerError)?;
     Ok(HttpResponse::Ok().json(token))
 }
-
-#[post("/validate")]
-pub async fn validate(req: HttpRequest) -> actix_web::Result<impl Responder> {
-    let auth = Authorization::<Bearer>::parse(&req)?;
-    let claims = web::block(move || actions::validate(auth.as_ref().token()))
-        .await?
-        .map_err(error::ErrorInternalServerError)?;
-    Ok(HttpResponse::Ok().json(claims))
-}
