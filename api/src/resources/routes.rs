@@ -2,7 +2,7 @@ use actix_web::{error, get, post, web, HttpResponse, Responder};
 use uuid::Uuid;
 
 use crate::resources::actions;
-use crate::resources::models::NewImage;
+use crate::resources::models::New;
 use crate::Pool;
 
 #[get("/images/{image_id}")]
@@ -28,7 +28,7 @@ pub async fn get_image(
 #[post("/images")]
 pub async fn add_image(
     pool: web::Data<Pool>,
-    form: web::Json<NewImage>,
+    form: web::Json<New>,
 ) -> actix_web::Result<impl Responder> {
     let image = web::block(move || {
         let mut conn = pool.get()?;

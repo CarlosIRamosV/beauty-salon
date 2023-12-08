@@ -15,7 +15,7 @@ pub struct Product {
 }
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
-pub struct NewProduct {
+pub struct New {
     pub name: String,
     pub description: String,
     pub price: f64,
@@ -24,7 +24,7 @@ pub struct NewProduct {
 }
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
-pub struct UpdateProduct {
+pub struct Update {
     pub name: Option<String>,
     pub description: Option<String>,
     pub price: Option<f64>,
