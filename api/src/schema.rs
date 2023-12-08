@@ -37,8 +37,4 @@ diesel::table! {
 
 diesel::joinable!(products -> images (image_id));
 
-diesel::allow_tables_to_appear_in_same_query!(
-    images,
-    products,
-    users,
-);
+diesel::allow_tables_to_appear_in_same_query!(images, products, users,);

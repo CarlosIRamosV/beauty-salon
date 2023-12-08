@@ -1,9 +1,9 @@
 use chrono::Utc;
 use diesel::prelude::*;
-use jsonwebtoken::{decode, DecodingKey, encode, EncodingKey, Header, Validation};
+use jsonwebtoken::{decode, encode, DecodingKey, EncodingKey, Header, Validation};
 
 use crate::auth::models::Claims;
-use crate::user::models::{User};
+use crate::user::models::User;
 
 pub fn login(
     conn: &mut SqliteConnection,
@@ -41,15 +41,21 @@ pub fn login(
         exp,
     };
 
-    let token = encode(&Header::default(), &my_claims, &EncodingKey::from_secret("secret".as_ref()))?;
+    let token = encode(
+        &Header::default(),
+        &my_claims,
+        &EncodingKey::from_secret("secret".as_ref()),
+    )?;
 
     Ok(token)
 }
 
-pub fn validate(
-    token: &str,
-) -> Result<Claims, Box<dyn std::error::Error + Send + Sync>> {
-    let token = decode::<Claims>(&token, &DecodingKey::from_secret("secret".as_ref()), &Validation::default())?;
+pub fn validate(token: &str) -> Result<Claims, Box<dyn std::error::Error + Send + Sync>> {
+    let token = decode::<Claims>(
+        &token,
+        &DecodingKey::from_secret("secret".as_ref()),
+        &Validation::default(),
+    )?;
 
     if token.claims.exp < Utc::now().timestamp() as usize {
         return Err("Token expired".into());
