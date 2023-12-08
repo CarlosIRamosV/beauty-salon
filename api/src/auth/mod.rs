@@ -1,6 +1,6 @@
 use actix_web::web;
 
-mod actions;
+pub mod actions;
 mod models;
 mod routes;
 

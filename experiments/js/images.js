@@ -10,15 +10,17 @@ window.addEventListener("load", function () {
             let image = {
                 image: reader.result
             }
-            return fetch(url + "/images", {
+            fetch(url + "/images", {
                 method: 'POST',
                 body: JSON.stringify(image),
                 headers: {
-                    'Content-Type': 'application/json'
+                    'Content-Type': 'application/json',
+                    'Authorization': 'Bearer ' + localStorage.getItem("token")
                 }
             })
                 .then(response => response.json())
                 .then(data => {
+                    console.log('Success:', data);
                     let img_url = url + "/images/" + data.id;
                     document.getElementById("uuid").innerText = data.id;
                     document.getElementById("hash").innerText = data.hash;

@@ -1,9 +1,11 @@
-use actix_web::{error, get, post, web, HttpResponse, Responder};
+use actix_web::{error, get, post, web, HttpResponse, Responder, HttpRequest};
+use actix_web::http::header::Header;
+use actix_web_httpauth::headers::authorization::{Authorization, Bearer};
 use uuid::Uuid;
 
 use crate::resources::actions;
 use crate::resources::models::New;
-use crate::Pool;
+use crate::{auth, Pool};
 
 #[get("/images/{image_id}")]
 pub async fn get_image(
@@ -29,9 +31,22 @@ pub async fn get_image(
 pub async fn add_image(
     pool: web::Data<Pool>,
     form: web::Json<New>,
+    req: HttpRequest,
 ) -> actix_web::Result<impl Responder> {
+    let auth = Authorization::<Bearer>::parse(&req)?;
     let image = web::block(move || {
         let mut conn = pool.get()?;
+        if let Err(_) = auth::actions::validate(auth.as_ref().token()) {
+            return Err("Token expired".into());
+        }
+
+        // Check if user is admin
+        let is_admin = auth::actions::is_admin(&mut conn, auth.as_ref().token())?;
+
+        if !is_admin {
+            return Err("User is not admin".into());
+        }
+
         actions::insert_new_image(&mut conn, &form.image)
     })
     .await?

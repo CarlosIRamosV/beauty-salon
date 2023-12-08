@@ -34,8 +34,8 @@ window.addEventListener("load", () => {
         }).then(response => response.json())
             .then(data => {
                 console.log(data);
-                document.getElementById("token").innerText = data.token;
-                document.getElementById("expiration").innerText = data.expiration_date;
+                document.getElementById("token").innerText = data;
+                localStorage.setItem("token", data);
             })
             .catch(error => console.log(error));
     });
