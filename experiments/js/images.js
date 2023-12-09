@@ -1,4 +1,4 @@
-import {getImageRoute, getImagesRoute, getToken, removeToken} from "./api.config.js";
+import {getImageRoute, getImagesRoute, getToken, removeToken} from "../../src/public/js/api.config.js";
 
 window.addEventListener("load", function () {
     document.getElementById("file").onchange = function () {

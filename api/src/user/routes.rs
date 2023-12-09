@@ -1,11 +1,10 @@
+use crate::user::actions;
+use crate::user::models::{New, Search, Update};
+use crate::{auth, Pool};
 use actix_web::http::header::Header;
 use actix_web::{delete, error, get, post, put, web, HttpRequest, HttpResponse, Responder};
 use actix_web_httpauth::headers::authorization::{Authorization, Bearer};
 use uuid::Uuid;
-
-use crate::user::actions;
-use crate::user::models::{New, Search, Update};
-use crate::{auth, Pool};
 
 #[get("/users/{user_id}")]
 pub async fn get_user(

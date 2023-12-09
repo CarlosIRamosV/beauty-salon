@@ -1,6 +1,16 @@
 // @generated automatically by Diesel CLI.
 
 diesel::table! {
+    appointments (id) {
+        id -> Text,
+        client_id -> Text,
+        services -> Text,
+        employee_id -> Text,
+        date -> Date,
+    }
+}
+
+diesel::table! {
     images (id) {
         id -> Text,
         format -> Text,
@@ -25,6 +35,7 @@ diesel::table! {
         id -> Text,
         #[sql_name = "type"]
         type_ -> Text,
+        image_id -> Nullable<Text>,
         name -> Text,
         last_name -> Text,
         birth_date -> Date,
@@ -36,5 +47,6 @@ diesel::table! {
 }
 
 diesel::joinable!(products -> images (image_id));
+diesel::joinable!(users -> images (image_id));
 
-diesel::allow_tables_to_appear_in_same_query!(images, products, users,);
+diesel::allow_tables_to_appear_in_same_query!(appointments, images, products, users,);

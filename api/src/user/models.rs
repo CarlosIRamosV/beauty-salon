@@ -8,6 +8,7 @@ use crate::schema::users;
 pub struct User {
     pub id: String,
     pub type_: String,
+    pub image_id: Option<String>,
     pub name: String,
     pub last_name: String,
     pub birth_date: String,
@@ -19,6 +20,7 @@ pub struct User {
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct New {
+    pub image_id: Option<String>,
     pub name: String,
     pub last_name: String,
     pub birth_date: String,
@@ -32,6 +34,7 @@ pub struct New {
 pub struct Public {
     pub id: String,
     pub r#type: String,
+    pub image_id: Option<String>,
     pub name: String,
     pub last_name: String,
     pub birth_date: String,
@@ -45,6 +48,7 @@ impl User {
         Public {
             id: self.id.clone(),
             r#type: self.type_.clone(),
+            image_id: self.image_id.clone(),
             name: self.name.clone(),
             last_name: self.last_name.clone(),
             birth_date: self.birth_date.clone(),
@@ -69,6 +73,7 @@ pub struct Search {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct Update {
     pub r#type: Option<String>,
+    pub image_id: Option<String>,
     pub name: Option<String>,
     pub last_name: Option<String>,
     pub birth_date: Option<String>,

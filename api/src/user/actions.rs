@@ -90,8 +90,20 @@ pub fn insert_new_user(
 ) -> Result<Public, Box<dyn std::error::Error + Send + Sync>> {
     use crate::schema::users::dsl::*;
 
+    // Check if user exists
+    let user = users
+        .filter(email.eq(&data.email))
+        .first::<User>(conn)
+        .optional()?;
+
+    if user.is_some() {
+        return Err("User already exists".into());
+    }
+
+    // Insert new user
     let new_user = User {
         id: Uuid::new_v4().to_string(),
+        image_id: data.image_id,
         type_: "User".to_string(),
         name: data.name,
         last_name: data.last_name,
@@ -137,6 +149,11 @@ pub fn update_user_by_uid(
         }
     }
 
+    // Update image_id
+    if let Some(new_image_id) = update.image_id {
+        user.image_id = Option::from(new_image_id.to_owned());
+    }
+
     // Update last_name
     if let Some(new_last_name) = update.last_name {
         user.last_name = new_last_name.to_owned();
@@ -171,6 +188,7 @@ pub fn update_user_by_uid(
     diesel::update(users.filter(id.eq(uid.to_string())))
         .set((
             type_.eq(&user.type_),
+            image_id.eq(&user.image_id),
             name.eq(&user.name),
             last_name.eq(&user.last_name),
             sex.eq(&user.sex),
