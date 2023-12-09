@@ -58,6 +58,10 @@ function getLoginRoute() {
     return getRoute('/login');
 }
 
+function getSessionRoute() {
+    return getRoute('/session');
+}
+
 function getProductsRoute() {
     return getRoute('/products');
 }
@@ -82,11 +86,50 @@ function getUserRoute(userId) {
     return getRoute('/users/' + userId);
 }
 
+/* ------------------ User ------------------ */
+function getUser() {
+    sessionStorage.getItem('user');
+}
+
+function setUser(user) {
+    sessionStorage.setItem('user', user);
+}
+
+function removeUser() {
+    sessionStorage.removeItem('user');
+}
+
+function updateUser() {
+    removeUser();
+    if (getToken() !== null) {
+        fetch(getSessionRoute(), {
+            method: 'GET',
+            headers: {
+                'Authorization': 'Bearer ' + getToken()
+            }
+        }).then(response => {
+            if (response.status === 200) {
+                return response.json();
+            } else {
+                throw new Error('Could not update user');
+            }
+        }).then(data => {
+            setUser(data);
+        }).catch(error => {
+            log(error)
+        });
+
+    } else {
+        log('Could not update user')
+    }
+}
+
 /* ------------------ Exports ------------------ */
 export {
     getURL,
     getRoute,
     getLoginRoute,
+    getSessionRoute,
     getProductRoute,
     getProductsRoute,
     getImageRoute,
@@ -96,6 +139,10 @@ export {
     log,
     getToken,
     setToken,
-    removeToken
+    removeToken,
+    getUser,
+    setUser,
+    removeUser,
+    updateUser
 };
 
