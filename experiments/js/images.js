@@ -23,8 +23,8 @@ window.addEventListener("load", function () {
                     console.log('Success:', data);
                     document.getElementById("uuid").innerText = data.id;
                     document.getElementById("hash").innerText = data.hash;
-                    document.getElementById("url").innerText = getImageRoute(data.image_id);
-                    document.getElementById("img").src = getImageRoute(data.image_id);
+                    document.getElementById("url").innerText = getImageRoute(data.id);
+                    document.getElementById("img").src = getImageRoute(data.id);
                 })
                 .catch(error => console.error('Error al enviar datos:', error));
         }
