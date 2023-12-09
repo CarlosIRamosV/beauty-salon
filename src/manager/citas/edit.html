@@ -7,6 +7,8 @@
     <title>Editando Citas</title>
     <link href="../../public/css/manager/products/edit.css" rel="stylesheet">
     <script src="../../public/js/manager/products/edit.js" type="module"></script>
+    <script src="../../public/js/menuDesplegable.js" type="module"></script>
+    <script src="../../public/js/cerrarSesion.js" type="module"></script>
 </head>
 
 <body>
@@ -22,10 +24,14 @@
             <li><a href="../productos/index.html">Productos</a></li>
         </ul>
 
-        <!-- Información del usuario -->
-        <div class="user">
-            <img alt="user" src="../../public/svg/user-circle.svg">
-            <p>Nombre de Usuario</p>
+        <div class="menu-icon">
+            <div class="line"></div>
+            <div class="line"></div>
+            <div class="line"></div>
+            <!-- Barra lateral desplegable -->
+            <div class="sidebar"> 
+                <a onclick="cerrarSesion()" id="cerrarSesion">Cerrar Sesión</a>
+            </div>
         </div>
     </nav>
 
