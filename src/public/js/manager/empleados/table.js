@@ -43,7 +43,7 @@ window.addEventListener('load', () => {
 
         // User birthdate
         if (birthdate) {
-            search.brith_date = birthdate;
+            search.birth_date = birthdate;
         }
 
         if (sex === '1') {
