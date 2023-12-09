@@ -9,13 +9,15 @@ use diesel::{r2d2, SqliteConnection};
 use diesel_migrations::{embed_migrations, EmbeddedMigrations, MigrationHarness};
 use dotenv::dotenv;
 
+pub mod appointment;
 pub mod auth;
 mod product;
 mod resources;
 pub mod schema;
-mod user;
+pub mod user;
 
 pub type Pool = r2d2::Pool<ConnectionManager<SqliteConnection>>;
+
 pub const MIGRATIONS: EmbeddedMigrations = embed_migrations!();
 
 #[actix_web::main]
@@ -55,6 +57,7 @@ async fn main() -> std::io::Result<()> {
             .configure(product::init_routes)
             .configure(resources::init_routes)
             .configure(user::init_routes)
+            .configure(appointment::init_routes)
     })
     .bind((address, port))?
     .run()

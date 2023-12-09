@@ -1,8 +1,9 @@
-use crate::auth::models::Claims;
-use crate::user::models::User;
 use chrono::Utc;
 use diesel::prelude::*;
 use jsonwebtoken::{decode, encode, DecodingKey, EncodingKey, Header, Validation};
+
+use crate::auth::models::Claims;
+use crate::user::models::User;
 
 pub fn login(
     conn: &mut SqliteConnection,
