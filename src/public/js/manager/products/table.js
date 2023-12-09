@@ -5,7 +5,8 @@ window.addEventListener('load', () => {
         ev.preventDefault();
         let name = document.getElementById('name').value;
         let description = document.getElementById('description').value;
-        let price = document.getElementById('price').value;
+        let minPrice = document.getElementById('minPrice').value;
+        let maxPrice = document.getElementById('maxPrice').value;
 
         let search = {}
 
@@ -17,8 +18,17 @@ window.addEventListener('load', () => {
             search.description = description;
         }
 
-        if (price) {
-            search.price = parseFloat(price);
+        if (minPrice) {
+            search.min_price = parseFloat(minPrice)
+        }
+
+        if (maxPrice) {
+            search.max_price = parseFloat(maxPrice)
+        }
+
+        if (minPrice && maxPrice && search.min_price > search.max_price) {
+            alert('Min price cannot be greater than max price');
+            return;
         }
 
         // If no search parameters, get all products

@@ -47,6 +47,7 @@
             <thead>
                 <tr>
                     <th>Imagen</th>
+                    <th>Tipo</th>
                     <th>Nombre</th>
                     <th>Apellido</th>
                     <th>Fecha de nacimiento</th>
@@ -59,28 +60,34 @@
             </thead>
         </table>
 
-        <div class="busqueda">
+        <form class="busqueda" id="search" method="post" target="_blank">
             <h2>Busqueda</h2>
-            <label for="nombre">Nombre</label>
-            <input id="nombre" type="text">
-            <label for="apellidos">Apellidos</label>
-            <input id="apellidos" type="text">
-            <label for="fechaNac">Fecha de nacimiento:</label>
-            <input id="fechaNac" type="date" class="raro">
-            <label for="sexo">Sexo:</label>
-            <select name="sexo" id="sexo">
+            <label for="type">Tipo de usuario:</label>
+            <select name="sex" id="type">
+                <option value="0">Todos</option>
+                <option value="1">Usuario</option>
+                <option value="2">Empleado</option>
+                <option value="3">Administrador</option>
+            </select>
+            <label for="name">Nombre</label>
+            <input id="name" type="text">
+            <label for="lastName">Apellidos</label>
+            <input id="lastName" type="text">
+            <label for="birthdate">Fecha de nacimiento:</label>
+            <input id="birthdate" type="date" class="raro">
+            <label for="sex">Sexo:</label>
+            <select name="sexo" id="sex">
+                <option value="0">Todos</option>
                 <option value="1">Hombre</option>
                 <option value="2">Mujer</option>
                 <option value="3">Otro</option>
             </select>
-            <label for="telefono">Telefono:</label>
-            <input id="telefono" type="tel">
-            <label for="correo">Correo:</label>
-            <input id="correo" type="email">
-            <button>Buscar</button>
-
-
-        </div>
+            <label for="phone">Telefono:</label>
+            <input id="phone" type="tel">
+            <label for="email">Correo:</label>
+            <input id="email" type="email">
+            <button type="submit">Buscar</button>
+        </form>
             
 
         </div>

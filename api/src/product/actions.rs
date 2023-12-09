@@ -139,8 +139,13 @@ pub fn find_products(
         products = products.filter(products::description.like(format!("%{}%", description)));
     }
     // Price less than or equal to the given price
-    if let Some(price) = search.price {
+    if let Some(price) = search.max_price {
         products = products.filter(products::price.le(price));
+    }
+
+    // Price greater than or equal to the given price
+    if let Some(price) = search.min_price {
+        products = products.filter(products::price.ge(price));
     }
 
     products = products.order_by(products::name.asc());

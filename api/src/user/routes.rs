@@ -26,9 +26,8 @@ pub async fn get_user(
 }
 
 #[get("/users")]
-pub async fn get_users(
+pub async fn get_all_users(
     pool: web::Data<Pool>,
-    form: Option<web::Json<Search>>,
     req: HttpRequest,
 ) -> actix_web::Result<impl Responder> {
     let auth = Authorization::<Bearer>::parse(&req)?;
@@ -43,12 +42,32 @@ pub async fn get_users(
             return Err("Unauthorized".into());
         }
 
-        // Check if have form
-        if let Some(form) = form {
-            return actions::find_users(&mut conn, form.clone());
+        actions::find_all_users(&mut conn)
+    })
+    .await?
+    .map_err(error::ErrorInternalServerError)?;
+    Ok(HttpResponse::Ok().json(users))
+}
+
+#[post("/users/search")]
+pub async fn get_users(
+    pool: web::Data<Pool>,
+    form: web::Json<Search>,
+    req: HttpRequest,
+) -> actix_web::Result<impl Responder> {
+    let auth = Authorization::<Bearer>::parse(&req)?;
+    let users = web::block(move || {
+        let mut conn = pool.get()?;
+
+        // Check if user is admin or employee
+        let is_admin_or_employee =
+            auth::actions::is_admin_or_employee(&mut conn, auth.as_ref().token())?;
+
+        if !is_admin_or_employee {
+            return Err("Unauthorized".into());
         }
 
-        actions::find_all_users(&mut conn)
+        actions::find_users(&mut conn, form.clone())
     })
     .await?
     .map_err(error::ErrorInternalServerError)?;

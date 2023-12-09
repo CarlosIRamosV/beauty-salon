@@ -81,6 +81,10 @@ function getUserRoute(userId) {
     return getRoute('/users/' + userId);
 }
 
+function getUserSearchRoute() {
+    return getRoute('/users/search');
+}
+
 function getAppointmentRoute(appointmentId) {
     if (appointmentId === undefined) return getRoute('/appointments');
     return getRoute('/appointments/' + appointmentId);
@@ -96,6 +100,7 @@ export {
     getProductSearchRoute,
     getImageRoute,
     getUserRoute,
+    getUserSearchRoute,
     getAppointmentRoute,
     log,
     getToken,

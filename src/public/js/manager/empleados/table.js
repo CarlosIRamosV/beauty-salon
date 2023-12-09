@@ -1,10 +1,101 @@
-import {getToken, getUserRoute, getImageRoute} from "../../api.config.js";
+import {
+    getToken,
+    getUserRoute,
+    getImageRoute,
+    getUserSearchRoute
+} from "../../api.config.js";
 
 window.addEventListener('load', () => {
-    loadTable();
-});
+    if (!getToken()) {
+        window.location.href = '../login/login.html';
+    }
+    document.getElementById("search").addEventListener("submit", ev => {
+        ev.preventDefault();
+        let type = document.getElementById('type').value;
+        let name = document.getElementById('name').value;
+        let lastName = document.getElementById('lastName').value;
+        let birthdate = document.getElementById('birthdate').value;
+        let sex = document.getElementById('sex').value;
+        let phone = document.getElementById('phone').value;
+        let email = document.getElementById('email').value;
 
-function loadTable() {
+        let search = {}
+
+        // Get a search parameters
+        // User type
+        if (type === '1') {
+            search.type = 'User';
+        } else if (type === '2') {
+            search.type = 'Employee';
+        } else if (type === '3') {
+            search.type = 'Admin';
+        }
+
+        // User name
+        if (name) {
+            search.name = name;
+        }
+
+        // User last name
+        if (lastName) {
+            search.last_name = lastName;
+        }
+
+        // User birthdate
+        if (birthdate) {
+            search.brith_date = birthdate;
+        }
+
+        if (sex === '1') {
+            search.sex = 'Male';
+        } else if (sex === '2') {
+            search.sex = 'Female';
+        } else if (sex === '3') {
+            search.sex = 'Other';
+        }
+
+        // User phone
+        if (phone) {
+            search.phone = phone;
+        }
+
+        // User email
+        if (email) {
+            search.email = email;
+        }
+
+        console.log(search);
+
+        // If no search parameters, get all products
+        if (Object.keys(search).length === 0) {
+            fetch(getUserRoute(), {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': 'Bearer ' + getToken(),
+                },
+            })
+                .then(response => response.json())
+                .then(data => generateTable(data))
+                .catch(err => console.log(err));
+            return;
+        }
+
+
+        fetch(getUserSearchRoute(), {
+                method: 'POST',
+                body: JSON.stringify(search),
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': 'Bearer ' + getToken(),
+                },
+            }
+        )
+            .then(response => response.json())
+            .then(data => generateTable(data))
+            .catch(err => console.log(err));
+
+    });
     fetch(getUserRoute(), {
         method: 'GET',
         headers: {
@@ -15,10 +106,29 @@ function loadTable() {
     .then(response => response.json())
     .then(data => generateTable(data))
     .catch(err => console.log(err));
-}
+});
 
 
 function generateTable(data) {
+    let table = document.getElementById('table');
+
+    // Clear table
+    while (table.getElementsByTagName('tbody').length > 0) {
+        table.removeChild(table.lastChild);
+    }
+
+    // If no products found
+    if (data.length === 0) {
+        let body = document.createElement('tbody');
+        let row = document.createElement('tr');
+        let cell = document.createElement('td');
+        cell.innerText = 'No users found';
+        cell.colSpan = 7;
+        row.appendChild(cell);
+        body.appendChild(row);
+        table.appendChild(body);
+        return;
+    }
     let body = document.createElement('tbody');
     data.forEach(user => {
         let row = document.createElement('tr');
@@ -31,6 +141,8 @@ function generateTable(data) {
             imgCell.innerText = 'No image';
         }
         row.appendChild(imgCell);
+        let type = document.createElement('td');
+        type.innerText = user.type;
         let nombre = document.createElement('td');
         nombre.innerText = user.name;
         let apellidos = document.createElement('td');
@@ -52,7 +164,7 @@ function generateTable(data) {
         edit.appendChild(imgEdit);
         edit.className = 'edit';
         edit.addEventListener('click', ev => {
-            window.location.href = 'edit.html?id=' + empleado.id;
+            window.location.href = 'edit.html?id=' + user.id;
         });
         
 
@@ -63,7 +175,7 @@ function generateTable(data) {
         imgDel.src = '../../public/svg/trash.svg';
         del.appendChild(imgDel);
         del.addEventListener('click', ev => {
-            fetch(getUserRoute(user.id), {
+            fetch(getUserSearchRoute(user.id), {
                 method: 'DELETE',
                 headers: {
                     'Authorization': 'Bearer ' + getToken(),
@@ -77,6 +189,7 @@ function generateTable(data) {
 
         // Add cells to row
         row.appendChild(imgCell);
+        row.appendChild(type);
         row.appendChild(nombre);
         row.appendChild(apellidos);
         row.appendChild(fechaNac);
@@ -87,5 +200,5 @@ function generateTable(data) {
         row.appendChild(del);
         body.appendChild(row);
     });
-    document.getElementById('table').appendChild(body);
+    table.appendChild(body);
 }   
