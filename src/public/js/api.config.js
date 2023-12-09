@@ -62,8 +62,12 @@ function getSessionRoute() {
     return getRoute('/session');
 }
 
-function getProductRoute() {
+function getProductsRoute() {
     return getRoute('/products');
+}
+
+function getProductRoute(productId) {
+    return getRoute('/products/' + productId);
 }
 
 function getImagesRoute() {
@@ -89,6 +93,7 @@ export {
     getRoute,
     getLoginRoute,
     getSessionRoute,
+    getProductsRoute,
     getProductRoute,
     getImagesRoute,
     getImageRoute,
