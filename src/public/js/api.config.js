@@ -58,6 +58,10 @@ function getLoginRoute() {
     return getRoute('/login');
 }
 
+function getSessionRoute() {
+    return getRoute('/session');
+}
+
 function getProductRoute() {
     return getRoute('/products');
 }
@@ -74,11 +78,13 @@ function getUsersRoute() {
     return getRoute('/users');
 }
 
+
 /* ------------------ Exports ------------------ */
 export {
     getURL,
     getRoute,
     getLoginRoute,
+    getSessionRoute,
     getProductRoute,
     getImagesRoute,
     getImageRoute,

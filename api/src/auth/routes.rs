@@ -1,9 +1,9 @@
 use crate::auth::actions;
 use crate::auth::models::Config;
-use crate::Pool;
+use crate::{Pool, user};
 use actix_web::http::header::Header;
-use actix_web::{error, post, web, HttpRequest, HttpResponse, Responder};
-use actix_web_httpauth::headers::authorization::{Authorization, Basic};
+use actix_web::{error, post, web, HttpRequest, HttpResponse, Responder, get};
+use actix_web_httpauth::headers::authorization::{Authorization, Basic, Bearer};
 
 #[post("/login")]
 pub async fn login(
@@ -25,4 +25,22 @@ pub async fn login(
     .await?
     .map_err(error::ErrorInternalServerError)?;
     Ok(HttpResponse::Ok().json(token))
+}
+
+#[get("/session")]
+pub async fn get_session(
+    pool: web::Data<Pool>,
+    req: HttpRequest,
+) -> actix_web::Result<impl Responder> {
+    let auth = Authorization::<Bearer>::parse(&req)?;
+    let user = web::block(move || {
+        let mut conn = pool.get()?;
+
+        let user_id = actions::get_user_id(&mut conn, auth.as_ref().token())?;
+
+        user::actions::find_user_by_uid(&mut conn, user_id.parse().unwrap())
+    })
+    .await?
+    .map_err(error::ErrorInternalServerError)?;
+    Ok(HttpResponse::Ok().json(user))
 }
