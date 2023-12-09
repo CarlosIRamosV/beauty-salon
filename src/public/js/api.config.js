@@ -86,44 +86,6 @@ function getUserRoute(userId) {
     return getRoute('/users/' + userId);
 }
 
-/* ------------------ User ------------------ */
-function getUser() {
-    sessionStorage.getItem('user');
-}
-
-function setUser(user) {
-    sessionStorage.setItem('user', user);
-}
-
-function removeUser() {
-    sessionStorage.removeItem('user');
-}
-
-function updateUser() {
-    removeUser();
-    if (getToken() !== null) {
-        fetch(getSessionRoute(), {
-            method: 'GET',
-            headers: {
-                'Authorization': 'Bearer ' + getToken()
-            }
-        }).then(response => {
-            if (response.status === 200) {
-                return response.json();
-            } else {
-                throw new Error('Could not update user');
-            }
-        }).then(data => {
-            setUser(data);
-        }).catch(error => {
-            log(error)
-        });
-
-    } else {
-        log('Could not update user')
-    }
-}
-
 /* ------------------ Exports ------------------ */
 export {
     getURL,
@@ -139,10 +101,6 @@ export {
     log,
     getToken,
     setToken,
-    removeToken,
-    getUser,
-    setUser,
-    removeUser,
-    updateUser
+    removeToken
 };
 
