@@ -46,7 +46,7 @@ window.addEventListener("load", () => {
                     .then(data => {
                         if (data.type === "Admin") {
                             //ADMIN DE LA GRASA
-                            window.location.href = "../src/manager/citas/index.html";
+                            window.location.href = "../src/manager/empleados/index.html";
                         } else if (data.type === "User") {
                             //Usuario
                             window.location.href = "../src/Usuario/html/menuInicio.html";

@@ -1,13 +1,9 @@
-import {removeToken} from "./api.config.js";
+import { removeToken } from "./api.config.js";
 
-function cerrarSesion(){
-    // Obtener el elemento por su ID
-    var enlace = document.getElementById("cerrarSesion");
+var boton = document.getElementById('cerrarSesion');
 
-    enlace.href="../../inicio.html";
-
+// Asignar la función al evento de clic del botón
+boton.addEventListener('click', () => {
     removeToken();
-    
-}
-
-cerrarSesion();
+    window.location.href = "../../inicio.html";
+});
