@@ -31,23 +31,9 @@
     </nav>
 
     <section>
-        <h2>Citas</h2>
 
         <div class="actions">
-            <div class="filter">
-                <label for="filter">Filtrar</label>
-                <select id="filter">
-                    <option value="0">Todos</option>
-                    <option value="1">Nombre</option>
-                    <option value="2">Apellido</option>
-                    <option value="3">Fecha</option>
-                </select>
-            </div>
-            <div class="search">
-                <label for="search">Buscar</label>
-                <input id="search" placeholder="Buscar" type="text">
-                <button onclick="search()" type="button">Buscar</button>
-            </div>
+            <h2>Citas</h2>
             <button onclick="window.location.href = 'add.html'" type="button">Agregar Citas</button>
         </div>
 
@@ -64,6 +50,24 @@
                 </tr>
             </thead>
         </table>
+        <div class="busqueda">
+            <h2>Busqueda</h2>
+            <label for="nombre">Nombre</label>
+            <input id="nombre" type="text">
+            <label for="telefono">Telefono:</label>
+            <input id="telefono" type="tel">
+            <label for="empleado">Empleado</label>
+            <input id="empleado" type="text">
+            <label for="servicio">Servicio</label>
+            <input id="servicio" type="text">
+            <label for="fechaNac">Fecha nacimiento</label>
+            <input id="fechaNac" type="date" class="raro">
+            <label for="hora">Horas</label>
+            <input id="horaCita" required type="time" min="08:00" max="20:00" step="1800" class="raro">
+            <button>Buscar</button>
+
+
+        </div>
     </section>
     <footer>
     </footer>

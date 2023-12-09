@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
@@ -7,65 +8,69 @@
     <link href="../../public/css/manager/products/table.css" rel="stylesheet">
     <script src="../../public/js/manager/products/table.js" type="module"></script>
 </head>
+
 <body>
 
-<nav>
-    <!-- Imagen del logo -->
-    <img alt="logo" src="../../public/images/logo.png">
+    <nav>
+        <!-- Imagen del logo -->
+        <img alt="logo" src="../../public/images/logo.png">
 
-    <!-- Menú de navegación -->
-    <ul class="menu-list">
-        <li><a href="../index.html">Inicio</a></li>
-        <li><a href="../empleados/index.html">Empleados</a></li>
-        <li><a href="../citas/index.html">Citas</a></li>
-        <li><a href="../productos/index.html">Productos</a></li>
-    </ul>
+        <!-- Menú de navegación -->
+        <ul class="menu-list">
+            <li><a href="../index.html">Inicio</a></li>
+            <li><a href="../empleados/index.html">Empleados</a></li>
+            <li><a href="../citas/index.html">Citas</a></li>
+            <li><a href="../productos/index.html">Productos</a></li>
+        </ul>
 
-    <!-- Información del usuario -->
-    <div class="user">
-        <img alt="user" src="../../public/svg/user-circle.svg">
-        <p>Nombre de Usuario</p>
-    </div>
-</nav>
-
-<section>
-    <h2>Productos</h2>
-
-    <div class="actions">
-        <div class="filter">
-            <label for="filter">Filtrar</label>
-            <select id="filter">
-                <option value="0">Todos</option>
-                <option value="1">Nombre</option>
-                <option value="2">Descripción</option>
-                <option value="3">Precio</option>
-                <option value="4">Cantidad</option>
-            </select>
+        <!-- Información del usuario -->
+        <div class="user">
+            <img alt="user" src="../../public/svg/user-circle.svg">
+            <p>Nombre de Usuario</p>
         </div>
-        <div class="search">
-            <label for="search">Buscar</label>
-            <input id="search" placeholder="Buscar" type="text">
-            <button onclick="search()" type="button">Buscar</button>
+    </nav>
+
+    <section>
+
+
+        <div class="actions">
+            <h2>Productos</h2>
+            <button onclick="window.location.href = 'add.html'" type="button">Agregar Producto</button>
         </div>
-        <button onclick="window.location.href = 'add.html'" type="button">Agregar Producto</button>
-    </div>
 
 
-    <table id="table">
-        <thead>
-        <tr>
-            <th>Imagen</th>
-            <th>Nombre</th>
-            <th>Descripción</th>
-            <th>Precio</th>
-            <th>Cantidad</th>
-            <th>Editar</th>
-            <th>Eliminar</th>
-        </tr>
-        </thead>
-    </table>
-</section>
-<footer>
-</footer>
+        <table id="table">
+            <thead>
+                <tr>
+                    <th>Imagen</th>
+                    <th>Nombre</th>
+                    <th>Descripción</th>
+                    <th>Precio</th>
+                    <th>Cantidad</th>
+                    <th>Editar</th>
+                    <th>Eliminar</th>
+                </tr>
+            </thead>
+        </table>
+
+        <div class="busqueda">
+            <h2>Busqueda</h2>
+            <label for="nombre">Nombre</label>
+            <input id="nombre" type="text">
+            <label for="Descripción">Descripción</label>
+            <input id="Descripción" type="text">
+            <label for="Precio">Precio</label>
+            <input id="Precio" type="number">
+            <label for="Cantidad">Cantidad</label>
+            <input id="Cantidad" type="number">
+
+            <button>Buscar</button>
+
+
+        </div>
+    </section>
+    <footer>
+    </footer>
 </body>
+
 </html>

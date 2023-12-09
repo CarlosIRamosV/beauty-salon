@@ -1,4 +1,4 @@
-import {getToken, getUserRoute, getUsersRoute} from "../../api.config.js";
+import {getToken, getUserRoute, getUsersRoute, getImageRoute} from "../../api.config.js";
 
 window.addEventListener('load', () => {
     loadTable();
@@ -25,7 +25,7 @@ function generateTable(data) {
         let imgCell = document.createElement('td');
         if (user.image_id) {
             let img = document.createElement('img');
-            img.src = url + '/images/' + user.image_id;
+            img.src = getImageRoute(user.image_id);
             imgCell.appendChild(img);
         } else {
             imgCell.innerText = 'No image';

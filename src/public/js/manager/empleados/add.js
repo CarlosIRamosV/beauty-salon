@@ -44,11 +44,11 @@ function enviarDatos() {
         })
         .catch(error => console.error('Error al enviar datos:', error));
         */
- /*   }
+/*   }
 }*/
 
 
-import {getImagesRoute,getUsersRoute} from "../../api.config.js";
+import { getImagesRoute, getUsersRoute, getToken} from "../../api.config.js";
 
 window.addEventListener("load", () => {
     document.getElementById("crud-form").addEventListener('submit', (ev) => {
@@ -59,39 +59,53 @@ window.addEventListener("load", () => {
         var birth_date = document.getElementById("fechaNac").value.trim();
         var sex = document.getElementById("sexo").value.trim();
         var email = document.getElementById("correo").value.trim();
-        let imag = document.getElementById("file").files[0];
-        let blob = new Blob([imag], {type: imag.type});
+        var password = document.getElementById("contraseña").value.trim();
+        let imag = document.getElementById("imagen").files[0];
+        let blob = new Blob([imag], { type: imag.type });
         let reader = new FileReader();
         reader.readAsDataURL(blob);
+
+        //VARIABLES PARA CONFIRMAR CONTRASE;A
+        var confpass = document.getElementById("contraseña").value;
+        var confpass2 = document.getElementById("cContraseña").value;
+
+        //CONFIRMAR CONTRASEÑA
+        if (confpass != confpass2) {
+            alert('Las contraseñas no coinciden');
+            return false;
+        }
 
         reader.onloadend = function () {
             let image = {
                 image: reader.result
             }
+
             return fetch(getImagesRoute(), {
                 method: 'POST',
-                body: JSON.stringify(image),
                 headers: {
                     'Content-Type': 'application/json',
-                    'Authorization': 'Bearer ' + localStorage.getItem("token")
-                }
+                    'Authorization': 'Bearer ' + getToken()
+                },
+                body: JSON.stringify(image)
             })
                 .then(response => response.json())
                 .then(data => {
                     let empleado = {
+                        image_id: data.id,
                         name: name,
                         last_name: last_name,
                         birth_date: birth_date,
                         sex: sex,
                         phone: phone,
-                        email: email
-                        
-                    };
+                        email: email,
+                        password: password
+                    }
+                    console.log(empleado)
                     fetch(getUsersRoute(), {
                         method: "POST",
                         headers: {
                             "Content-Type": "application/json",
-                            'Authorization': 'Bearer ' + localStorage.getItem("token")
+                            'Authorization': 'Bearer ' + getToken()
                         },
                         body: JSON.stringify(empleado)
                     }).then(response => response.json())

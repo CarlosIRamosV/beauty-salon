@@ -31,27 +31,12 @@
     </nav>
 
     <section>
-        <h2>Empleados</h2>
-
         <div class="actions">
-            <div class="filter">
-                <label for="filter">Filtrar</label>
-                <select id="filter">
-                    <option value="0">Todos</option>
-                    <option value="1">Nombre</option>
-                    <option value="2">Apellido</option>
-                    <option value="3">Rol</option>
-                </select>
-            </div>
-            <div class="search">
-                <label for="search">Buscar</label>
-                <input id="search" placeholder="Buscar" type="text">
-                <button onclick="search()" type="button">Buscar</button>
-            </div>
-            <button onclick="window.location.href = 'add.html'" type="button">Agregar Empleados</button>
+            <h2>Usuarios</h2>
+            <button onclick="window.location.href = 'add.html'" type="button">Agregar Usuarios</button>
         </div>
 
-
+    
         <table id="table">
             <thead>
                 <tr>
@@ -67,9 +52,36 @@
                 </tr>
             </thead>
         </table>
+
+        <div class="busqueda">
+            <h2>Busqueda</h2>
+            <label for="nombre">Nombre</label>
+            <input id="nombre" type="text">
+            <label for="apellidos">Apellidos</label>
+            <input id="apellidos" type="text">
+            <label for="fechaNac">Fecha de nacimiento:</label>
+            <input id="fechaNac" type="date" class="raro">
+            <label for="sexo">Sexo:</label>
+            <select name="sexo" id="sexo">
+                <option value="1">Hombre</option>
+                <option value="2">Mujer</option>
+                <option value="3">Otro</option>
+            </select>
+            <label for="telefono">Telefono:</label>
+            <input id="telefono" type="tel">
+            <label for="correo">Correo:</label>
+            <input id="correo" type="email">
+            <button>Buscar</button>
+
+
+        </div>
+            
+
+        </div>
     </section>
     <footer>
     </footer>
+   
 </body>
 
 </html>

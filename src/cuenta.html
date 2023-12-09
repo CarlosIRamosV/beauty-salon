@@ -15,7 +15,7 @@
             <h1>Crear cuenta</h1>
         </header>
 
-        <form action="">
+        <form id="cuenta" method="post" target="_blank">
             <div class="cNombre">
                 <label for="nombre">Nombre: </label><input type="text" id="nombre" class="nombre">
             </div>
@@ -46,17 +46,17 @@
             <div class="cCorreo">
                 <label for="correo">Correo: </label><input type="email" id="correo" class="correo">
             </div>
+            <button id="crear" class="crear" type="submit">Crear</button>
+            <button id="cancelar" class="cancelar">Cancelar</button>
         </form>
 
 
-        <button id="crear" class="crear" onclick="registrar()">Crear</button>
-        <button id="cancelar" class="cancelar">Cancelar</button>
 
 
         <img src="../../Recursos/imagen_cuenta-removebg-preview.png" alt="imagen de utencilios de una estetica">
     </div>
 
-    <script src="public/js/noUser/cuenta.js"></script>
+    <script src="public/js/noUser/cuenta.js" type="module"></script>
 
 </body>
 
