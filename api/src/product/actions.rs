@@ -138,11 +138,9 @@ pub fn find_products(
     if let Some(description) = search.description {
         products = products.filter(products::description.like(format!("%{}%", description)));
     }
+    // Price less than or equal to the given price
     if let Some(price) = search.price {
-        products = products.filter(products::price.eq(price.clone()));
-    }
-    if let Some(stock) = search.stock {
-        products = products.filter(products::stock.eq(stock.clone()));
+        products = products.filter(products::price.le(price));
     }
 
     products = products.order_by(products::name.asc());

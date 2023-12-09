@@ -37,5 +37,4 @@ pub struct Search {
     pub name: Option<String>,
     pub description: Option<String>,
     pub price: Option<f64>,
-    pub stock: Option<i32>,
 }

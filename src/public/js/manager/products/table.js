@@ -6,7 +6,6 @@ window.addEventListener('load', () => {
         let name = document.getElementById('name').value;
         let description = document.getElementById('description').value;
         let price = document.getElementById('price').value;
-        let stock = document.getElementById('stock').value;
 
         let search = {}
 
@@ -20,10 +19,6 @@ window.addEventListener('load', () => {
 
         if (price) {
             search.price = parseFloat(price);
-        }
-
-        if (stock) {
-            search.stock = parseInt(stock)
         }
 
         // If no search parameters, get all products
