@@ -1,0 +1,38 @@
+[
+  {
+    "name": "Manuel",
+    "last_name": "Urquidi",
+    "birth_date": "2003-01-01",
+    "sex": "Male",
+    "phone": "1234567890",
+    "email": "manuel@gmail.com",
+    "password": "123456"
+  },
+  {
+    "name": "Ricardo",
+    "last_name": "Mendoza",
+    "birth_date": "2007-11-01",
+    "sex": "Male",
+    "phone": "1234567891",
+    "email": "ricardo@gmail.com",
+    "password": "123456"
+  },
+  {
+    "name": "Pancho",
+    "last_name": "Lopez",
+    "birth_date": "2004-10-01",
+    "sex": "Male",
+    "phone": "1234567892",
+    "email": "lopez@gmail.com",
+    "password": "123456"
+  },
+  {
+    "name": "Maria",
+    "last_name": "Ochoa",
+    "birth_date": "2007-04-01",
+    "sex": "Female",
+    "phone": "1234567893",
+    "email": "Maria@gmail.com",
+    "password": "123456"
+  }
+]
