@@ -92,6 +92,7 @@ pub fn insert_new_user(
 
     let new_user = User {
         id: Uuid::new_v4().to_string(),
+        image_id: None,
         type_: "User".to_string(),
         name: data.name,
         last_name: data.last_name,
@@ -137,6 +138,11 @@ pub fn update_user_by_uid(
         }
     }
 
+    // Update image_id
+    if let Some(new_image_id) = update.image_id {
+        user.image_id = Option::from(new_image_id.to_owned());
+    }
+
     // Update last_name
     if let Some(new_last_name) = update.last_name {
         user.last_name = new_last_name.to_owned();
@@ -171,6 +177,7 @@ pub fn update_user_by_uid(
     diesel::update(users.filter(id.eq(uid.to_string())))
         .set((
             type_.eq(&user.type_),
+            image_id.eq(&user.image_id),
             name.eq(&user.name),
             last_name.eq(&user.last_name),
             sex.eq(&user.sex),
