@@ -86,6 +86,14 @@ function getUserRoute(userId) {
     return getRoute('/users/' + userId);
 }
 
+function getAppointmentsRoute() {
+    return getRoute('/appointments');
+}
+
+function getAppointmentRoute(appointmentId) {
+    return getRoute('/appointments/' + appointmentId);
+}
+
 /* ------------------ Exports ------------------ */
 export {
     getURL,
@@ -98,6 +106,8 @@ export {
     getImagesRoute,
     getUserRoute,
     getUsersRoute,
+    getAppointmentRoute,
+    getAppointmentsRoute,
     log,
     getToken,
     setToken,

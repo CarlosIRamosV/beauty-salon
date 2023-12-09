@@ -1,0 +1,62 @@
+[
+  {
+    "name": "Labial Maybelline",
+    "description": "Labial de larga duración con una amplia gama de colores para lucir labios hermosos.",
+    "price": 0.0,
+    "stock": 0
+  },
+  {
+    "name": "Base Mary Kay",
+    "description": "Base de maquillaje de alta calidad para una piel perfecta y natural.",
+    "price": 0.0,
+    "stock": 0
+  },
+  {
+    "name": "Corrector Maybelline",
+    "description": "Corrector líquido para ocultar imperfecciones y lograr una piel impecable.",
+    "price": 0.0,
+    "stock": 0
+  },
+  {
+    "name": "Esmalte para uñas Bisuu",
+    "description": "Esmalte de uñas de colores vibrantes y duraderos para unas manos perfectas.",
+    "price": 0.0,
+    "stock": 0
+  },
+  {
+    "name": "Polvo NYC",
+    "description": "Polvo compacto para fijar el maquillaje y matificar la piel durante todo el día.",
+    "price": 0.0,
+    "stock": 0
+  },
+  {
+    "name": "Rimel Mary Kay",
+    "description": "Rímel para pestañas más largas y voluminosas que realzan tu mirada.",
+    "price": 0.0,
+    "stock": 0
+  },
+  {
+    "name": "Rubor Bisuu",
+    "description": "Rubor en polvo de colores encantadores para darle vida a tus mejillas.",
+    "price": 0.0,
+    "stock": 0
+  },
+  {
+    "name": "Tinte LOreal Paris",
+    "description": "Tinte para el cabello de calidad profesional para un color intenso y duradero.",
+    "price": 0.0,
+    "stock": 0
+  },
+  {
+    "name": "Base Fit Me",
+    "description": "Base de maquillaje líquida que se adapta perfectamente a tu tono de piel.",
+    "price": 0.0,
+    "stock": 0
+  },
+  {
+    "name": "Cepillo Revlon",
+    "description": "Cepillo de alta calidad para desenredar y peinar tu cabello con facilidad.",
+    "price": 0.0,
+    "stock": 0
+  }
+]
