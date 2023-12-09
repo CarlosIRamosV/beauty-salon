@@ -1,8 +1,8 @@
-import {url} from "./api.config.js";
+import {getLoginRoute} from "./api.config.js";
 
 window.addEventListener("load", () => {
-    document.getElementById("login").addEventListener("submit", () => {
-        event.preventDefault();
+    document.getElementById("login").addEventListener("submit", ev => {
+        ev.preventDefault();
         let username = document.getElementById("email").value;
         let password = document.getElementById("password").value;
         let remember = document.getElementById("remember").checked;
@@ -24,7 +24,7 @@ window.addEventListener("load", () => {
 
         let auth = btoa(username + ":" + password);
 
-        fetch(url + "/login", {
+        fetch(getLoginRoute(), {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",

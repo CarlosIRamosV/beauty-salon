@@ -1,11 +1,11 @@
-import {url} from "../../api.config.js";
+import {getProductRoute, getProductsRoute} from "../../api.config.js";
 
 window.addEventListener('load', () => {
     loadTable();
 });
 
 function loadTable() {
-    fetch(url + '/products')
+    fetch(getProductsRoute())
         .then(response => response.json())
         .then(data => generateTable(data))
         .catch(err => console.log(err));
@@ -50,7 +50,7 @@ function generateTable(data) {
         imgDel.src = '../../public/svg/trash.svg';
         del.appendChild(imgDel);
         del.addEventListener('click', ev => {
-            fetch(url + '/products/' + product.id, {
+            fetch(getProductRoute(product.id), {
                 method: 'DELETE',
                 headers: {
                     'authorization': 'Bearer ' + localStorage.getItem('token')

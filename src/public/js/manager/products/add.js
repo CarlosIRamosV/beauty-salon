@@ -1,4 +1,4 @@
-import {url} from "../../api.config.js";
+import {getImagesRoute, getProductsRoute, getToken} from "../../api.config.js";
 
 window.addEventListener("load", () => {
     document.getElementById("crud-form").addEventListener('submit', (ev) => {
@@ -15,12 +15,12 @@ window.addEventListener("load", () => {
             let image = {
                 image: reader.result
             }
-            return fetch(url + "/images", {
+            return fetch(getImagesRoute(), {
                 method: 'POST',
                 body: JSON.stringify(image),
                 headers: {
                     'Content-Type': 'application/json',
-                    'Authorization': 'Bearer ' + localStorage.getItem("token")
+                    'Authorization': 'Bearer ' + getToken()
                 }
             })
                 .then(response => response.json())
@@ -32,11 +32,11 @@ window.addEventListener("load", () => {
                         stock: parseInt(stock),
                         image: data.id
                     };
-                    fetch(url + "/products", {
+                    fetch(getProductsRoute(), {
                         method: "POST",
                         headers: {
                             "Content-Type": "application/json",
-                            'Authorization': 'Bearer ' + localStorage.getItem("token")
+                            'Authorization': 'Bearer ' + getToken()
                         },
                         body: JSON.stringify(product)
                     }).then(response => response.json())
