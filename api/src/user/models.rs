@@ -20,6 +20,7 @@ pub struct User {
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct New {
+    pub image_id: Option<String>,
     pub name: String,
     pub last_name: String,
     pub birth_date: String,

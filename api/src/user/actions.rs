@@ -90,9 +90,20 @@ pub fn insert_new_user(
 ) -> Result<Public, Box<dyn std::error::Error + Send + Sync>> {
     use crate::schema::users::dsl::*;
 
+    // Check if user exists
+    let user = users
+        .filter(email.eq(&data.email))
+        .first::<User>(conn)
+        .optional()?;
+
+    if user.is_some() {
+        return Err("User already exists".into());
+    }
+
+    // Insert new user
     let new_user = User {
         id: Uuid::new_v4().to_string(),
-        image_id: None,
+        image_id: data.image_id,
         type_: "User".to_string(),
         name: data.name,
         last_name: data.last_name,
