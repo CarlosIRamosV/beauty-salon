@@ -6,10 +6,11 @@
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <title>Agregando Empleado</title>
     <link href="../../public/css/manager/products/add.css" rel="stylesheet">
-    <script src="../../public/js/manager/products/add.js" type="module"></script>
+    <script src="../../public/js/manager/empleados/add.js" type="module"></script>
 </head>
 
 <body>
+
 
     <nav>
         <!-- Imagen del logo -->
@@ -37,7 +38,8 @@
             <label for="imagen" class="tit">Selecciona una foto del Empleado</label>
             <input type="file" id="imagen" class="imagen">
 
-            <form id="crud-form">
+            <form id="crud-form" method="post" target="_blank">
+
                 <label for="nombre">Nombre:</label>
                 <input id="nombre" required type="text">
 
@@ -62,11 +64,10 @@
                 <label for="correo">Correo:</label>
                 <input id="correo" type="email">
 
-                <button onclick="addOrUpdateProducto()" type="button" class="guardar">Guardar</button>
+                <button type="submit" id="create">Guardar</button>
             </form>
         </div>
     </section>
-    
 </body>
 
 </html>
