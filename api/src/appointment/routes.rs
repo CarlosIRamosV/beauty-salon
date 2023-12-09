@@ -2,7 +2,7 @@ use crate::appointment::actions;
 use crate::appointment::models::{New, Search, Update};
 use crate::{auth, Pool};
 use actix_web::http::header::Header;
-use actix_web::{error, get, post, web, HttpRequest, HttpResponse, Responder, delete};
+use actix_web::{delete, error, get, post, web, HttpRequest, HttpResponse, Responder};
 use actix_web_httpauth::headers::authorization::{Authorization, Bearer};
 use uuid::Uuid;
 
@@ -61,10 +61,7 @@ pub async fn get_appointment_by_id(
         let is_user = auth::actions::is_user(&mut conn, auth.as_ref().token())?;
 
         if is_user {
-            return actions::find_appointment_by_uid(
-                &mut conn,
-                id.into_inner().parse().unwrap(),
-            );
+            return actions::find_appointment_by_uid(&mut conn, id.into_inner().parse().unwrap());
         }
         return Err("Unauthorized".into());
     })
@@ -171,10 +168,7 @@ pub async fn delete_appointment_by_id(
             auth::actions::is_admin_or_employee(&mut conn, auth.as_ref().token())?;
 
         if is_admin_or_employee {
-            return actions::delete_appointment_by_uid(
-                &mut conn,
-                id.clone()
-            );
+            return actions::delete_appointment_by_uid(&mut conn, id.clone());
         }
         return Err("Unauthorized".into());
     })
@@ -182,9 +176,6 @@ pub async fn delete_appointment_by_id(
     .map_err(error::ErrorInternalServerError)?;
     Ok(match appointment {
         Some(appointment) => HttpResponse::Ok().json(appointment),
-        None => HttpResponse::NotFound().body(format!(
-            "No appointment found with UID: {:?}",
-            id
-        )),
+        None => HttpResponse::NotFound().body(format!("No appointment found with UID: {:?}", id)),
     })
 }
