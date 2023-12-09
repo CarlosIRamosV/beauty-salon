@@ -59,6 +59,7 @@ window.addEventListener("load", () => {
         var birth_date = document.getElementById("fechaNac").value.trim();
         var sex = document.getElementById("sexo").value.trim();
         var email = document.getElementById("correo").value.trim();
+        let imag = document.getElementById("file").files[0];
         let blob = new Blob([imag], {type: imag.type});
         let reader = new FileReader();
         reader.readAsDataURL(blob);
@@ -83,8 +84,8 @@ window.addEventListener("load", () => {
                         birth_date: birth_date,
                         sex: sex,
                         phone: phone,
-                        email: email,
-                        image: data.id
+                        email: email
+                        
                     };
                     fetch(getUsersRoute(), {
                         method: "POST",
