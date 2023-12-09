@@ -123,7 +123,7 @@ function generateTable(data) {
         let row = document.createElement('tr');
         let cell = document.createElement('td');
         cell.innerText = 'No users found';
-        cell.colSpan = 7;
+        cell.colSpan = 10;
         row.appendChild(cell);
         body.appendChild(row);
         table.appendChild(body);
