@@ -1,4 +1,4 @@
-import { getLoginRoute, getUsersRoute, setToken, getToken } from "./api.config.js";
+import { getLoginRoute, getSessionRoute, removeToken, setToken } from "./api.config.js";
 
 window.addEventListener("load", () => {
     document.getElementById("login").addEventListener("submit", () => {
@@ -35,36 +35,31 @@ window.addEventListener("load", () => {
             .then(data => {
                 console.log(data);
                 setToken(data, remember);
+                fetch(getSessionRoute(), {
+                    method: "GET",
+                    contentType: "application/json",
+                    headers: {
+                        'Authorization': 'Bearer ' + data,
+                    }
+                })
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.type === "Admin") {
+                            //ADMIN DE LA GRASA
+                            window.location.href = "../src/manager/citas/index.html";
+                        } else if (data.type === "User") {
+                            //Usuario
+                            window.location.href = "../src/Usuario/html/menuInicio.html";
+                        } else if (data.type === "Employee") {
+                            // Empleado
+                            window.location.href = "../src/Empleado/html/menuInicio.html";
+                        } else {
+                            alert("cabeson")
+                        }
+                        console.log(data);
+                    })
+                    .catch(error => console.log(error));
             })
             .catch(error => console.log(error));
-
-        fetch(getUsersRoute(), {
-            method: 'GET',
-            headers: {
-                'Content-Type': 'application/json',
-                'Authorization': 'Bearer ' + getToken(),
-            },
-            body: JSON.stringify({})
-        })
-            .then(response => response.json())
-            .then(data => {
-                console.log(data);
-                if (data.type === "Admin") {
-                    //ADMIN DE LA GRASA
-                    window.location.href = "../../manager/citas/index.html";
-                } else if (data.type === "User") {
-                    //Usuario
-                    window.location.href = "../../Usuario/html/menuInicio.html";
-                } else if (data.type === "Employee") {
-                    // Empleado
-                    window.location.href = "../../Empleados/html/menuInicio.html";
-                } else {
-                    alert("cabeson")
-                }
-            }
-            )
-            .catch(err => console.log(err));
-
     });
-
 });
