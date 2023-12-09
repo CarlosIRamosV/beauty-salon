@@ -170,6 +170,18 @@ pub async fn delete_appointment_by_id(
         if is_admin_or_employee {
             return actions::delete_appointment_by_uid(&mut conn, id.clone());
         }
+
+        let is_user = auth::actions::is_user(&mut conn, auth.as_ref().token())?;
+
+        if is_user {
+            let user_id = auth::actions::get_user_id(&mut conn, auth.as_ref().token())?;
+
+            let appointment = actions::find_appointment_by_uid(&mut conn, id.clone())?;
+
+            if appointment.unwrap().client_id == user_id {
+                return actions::delete_appointment_by_uid(&mut conn, id.clone());
+            }
+        }
         return Err("Unauthorized".into());
     })
     .await?
