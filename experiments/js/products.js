@@ -1,4 +1,4 @@
-import {url} from "./api.config.js";
+import {getImageRoute, getProductRoute, getToken, getURL, removeToken} from "./api.config.js";
 
 window.addEventListener("load", () => {
     document.getElementById("new-product").addEventListener('submit', () => {
@@ -27,17 +27,18 @@ window.addEventListener("load", () => {
             };
         }
         console.log(product);
-        fetch(url + "/products", {
+        fetch(getURL() + "/products", {
             method: "POST",
             headers: {
-                "Content-Type": "application/json"
+                "Content-Type": "application/json",
+                "Authorization": "Bearer " + getToken()
             },
             body: JSON.stringify(product)
         }).then(response => response.json())
             .then(product => alert("Product created with id: " + product.id));
     });
 
-    fetch(url + "/products", {
+    fetch(getProductRoute(), {
         method: "GET",
         headers: {
             "Content-Type": "application/json"
@@ -64,15 +65,19 @@ window.addEventListener("load", () => {
                 stock.innerText = product.stock;
                 row.appendChild(stock);
                 let image = document.createElement("td");
-                image.innerText = product.image;
+                if (product.image_id !== null) {
+                    image.innerText = getImageRoute(product.image_id);
+                } else {
+                    image.innerText = "No image";
+                }
                 row.appendChild(image);
                 tbody.appendChild(row);
             }
-
         )
         document.getElementById("table").appendChild(tbody);
 
-        }
-
-    );
+    });
+    document.getElementById("remove_token").onclick = function () {
+        removeToken();
+    }
 });

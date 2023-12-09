@@ -9,19 +9,19 @@
 <h1>Products</h1>
 <section>
     <h2>New Product</h2>
-<form id="new-product" method="post" target="_blank">
-    <label for="name">Name</label>
-    <input id="name" name="name" required type="text">
-    <label for="description">Description</label>
-    <input id="description" name="description" required type="text">
-    <label for="price">Price</label>
-    <input id="price" min="0" name="price" required step="0.01" type="number">
-    <label for="stock">Stock</label>
-    <input id="stock" min="0" name="stock" required type="number" value="0">
-    <label for="image">Image</label>
-    <input id="image" name="image" type="text">
-    <button type="submit" id="create">Create</button>
-</form>
+    <form id="new-product" method="post" target="_blank">
+        <label for="name">Name</label>
+        <input id="name" name="name" required type="text">
+        <label for="description">Description</label>
+        <input id="description" name="description" required type="text">
+        <label for="price">Price</label>
+        <input id="price" min="0" name="price" required step="0.01" type="number">
+        <label for="stock">Stock</label>
+        <input id="stock" min="0" name="stock" required type="number" value="0">
+        <label for="image">Image</label>
+        <input id="image" name="image" type="text">
+        <button id="create" type="submit">Create</button>
+    </form>
 </section>
 <section>
     <h2>Products</h2>
@@ -38,5 +38,7 @@
         </thead>
     </table>
 </section>
+
+<button id="remove_token">Remove Token</button>
 </body>
 </html>

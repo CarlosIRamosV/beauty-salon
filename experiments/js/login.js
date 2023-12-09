@@ -1,4 +1,4 @@
-import {url} from "./api.config.js";
+import {getLoginRoute, removeToken, setToken} from "./api.config.js";
 
 window.addEventListener("load", () => {
     document.getElementById("login").addEventListener("submit", () => {
@@ -24,7 +24,7 @@ window.addEventListener("load", () => {
 
         let auth = btoa(username + ":" + password);
 
-        fetch(url + "/login", {
+        fetch(getLoginRoute(), {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -35,8 +35,12 @@ window.addEventListener("load", () => {
             .then(data => {
                 console.log(data);
                 document.getElementById("token").innerText = data;
-                localStorage.setItem("token", data);
+                setToken(data, remember);
             })
             .catch(error => console.log(error));
     });
+
+    document.getElementById("remove_token").onclick = function () {
+        removeToken();
+    }
 });
