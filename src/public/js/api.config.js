@@ -62,35 +62,27 @@ function getSessionRoute() {
     return getRoute('/session');
 }
 
-function getProductsRoute() {
-    return getRoute('/products');
-}
-
 function getProductRoute(productId) {
+    if (productId === undefined) return getRoute('/products');
     return getRoute('/products/' + productId);
 }
 
-function getImagesRoute() {
-    return getRoute('/images');
+function getProductSearchRoute() {
+    return getRoute('/products/search');
 }
 
 function getImageRoute(imageId) {
+    if (imageId === undefined) return getRoute('/images');
     return getRoute('/images/' + imageId);
 }
 
-function getUsersRoute() {
-    return getRoute('/users');
-}
-
 function getUserRoute(userId) {
+    if (userId === undefined) return getRoute('/users');
     return getRoute('/users/' + userId);
 }
 
-function getAppointmentsRoute() {
-    return getRoute('/appointments');
-}
-
 function getAppointmentRoute(appointmentId) {
+    if (appointmentId === undefined) return getRoute('/appointments');
     return getRoute('/appointments/' + appointmentId);
 }
 
@@ -101,13 +93,10 @@ export {
     getLoginRoute,
     getSessionRoute,
     getProductRoute,
-    getProductsRoute,
+    getProductSearchRoute,
     getImageRoute,
-    getImagesRoute,
     getUserRoute,
-    getUsersRoute,
     getAppointmentRoute,
-    getAppointmentsRoute,
     log,
     getToken,
     setToken,

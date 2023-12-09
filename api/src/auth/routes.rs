@@ -1,8 +1,8 @@
 use crate::auth::actions;
 use crate::auth::models::Config;
-use crate::{Pool, user};
+use crate::{user, Pool};
 use actix_web::http::header::Header;
-use actix_web::{error, post, web, HttpRequest, HttpResponse, Responder, get};
+use actix_web::{error, get, post, web, HttpRequest, HttpResponse, Responder};
 use actix_web_httpauth::headers::authorization::{Authorization, Basic, Bearer};
 
 #[post("/login")]

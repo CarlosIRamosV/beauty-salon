@@ -1,18 +1,82 @@
-import {getImageRoute, getProductRoute, getProductsRoute} from "../../api.config.js";
+import {getImageRoute, getProductRoute, getProductSearchRoute} from "../../api.config.js";
 
 window.addEventListener('load', () => {
-    loadTable();
-});
+    document.getElementById("search").addEventListener("submit", ev => {
+        ev.preventDefault();
+        let name = document.getElementById('name').value;
+        let description = document.getElementById('description').value;
+        let price = document.getElementById('price').value;
+        let stock = document.getElementById('stock').value;
 
-function loadTable() {
-    fetch(getProductsRoute())
+        let search = {}
+
+        if (name) {
+            search.name = name;
+        }
+
+        if (description) {
+            search.description = description;
+        }
+
+        if (price) {
+            search.price = parseFloat(price);
+        }
+
+        if (stock) {
+            search.stock = parseInt(stock)
+        }
+
+        // If no search parameters, get all products
+        if (Object.keys(search).length === 0) {
+            fetch(getProductRoute())
+                .then(response => response.json())
+                .then(data => generateTable(data))
+                .catch(err => console.log(err));
+            return;
+        }
+
+
+        fetch(getProductSearchRoute(), {
+                method: 'POST',
+                body: JSON.stringify(search),
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+            }
+        )
+            .then(response => response.json())
+            .then(data => generateTable(data))
+            .catch(err => console.log(err));
+
+    });
+    fetch(getProductRoute())
         .then(response => response.json())
         .then(data => generateTable(data))
         .catch(err => console.log(err));
-}
+});
 
 
 function generateTable(data) {
+    let table = document.getElementById('table');
+
+    // Clear table
+    while (table.getElementsByTagName('tbody').length > 0) {
+        table.removeChild(table.lastChild);
+    }
+
+    // If no products found
+    if (data.length === 0) {
+        let body = document.createElement('tbody');
+        let row = document.createElement('tr');
+        let cell = document.createElement('td');
+        cell.innerText = 'No products found';
+        cell.colSpan = 7;
+        row.appendChild(cell);
+        body.appendChild(row);
+        table.appendChild(body);
+        return;
+    }
+
     let body = document.createElement('tbody');
     data.forEach(product => {
         let row = document.createElement('tr');
@@ -73,5 +137,5 @@ function generateTable(data) {
         row.appendChild(del);
         body.appendChild(row);
     });
-    document.getElementById('table').appendChild(body);
+    table.appendChild(body);
 }

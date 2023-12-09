@@ -31,3 +31,11 @@ pub struct Update {
     pub stock: Option<i32>,
     pub image: Option<String>,
 }
+
+#[derive(Debug, Clone, Serialize, Deserialize)]
+pub struct Search {
+    pub name: Option<String>,
+    pub description: Option<String>,
+    pub price: Option<f64>,
+    pub stock: Option<i32>,
+}

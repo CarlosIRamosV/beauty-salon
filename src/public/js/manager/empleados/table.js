@@ -1,11 +1,11 @@
-import {getToken, getUserRoute, getUsersRoute, getImageRoute} from "../../api.config.js";
+import {getToken, getUserRoute, getImageRoute} from "../../api.config.js";
 
 window.addEventListener('load', () => {
     loadTable();
 });
 
 function loadTable() {
-    fetch(getUsersRoute(), {
+    fetch(getUserRoute(), {
         method: 'GET',
         headers: {
             'Content-Type': 'application/json',

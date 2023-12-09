@@ -1,16 +1,34 @@
-use crate::product::actions;
-use crate::product::models::{New, Update};
-use crate::{auth, Pool};
 use actix_web::http::header::Header;
 use actix_web::{delete, error, get, post, put, web, HttpRequest, HttpResponse, Responder};
 use actix_web_httpauth::headers::authorization::{Authorization, Bearer};
 use uuid::Uuid;
 
+use crate::product::actions;
+use crate::product::models::{New, Search, Update};
+use crate::{auth, Pool};
+
 #[get("/products")]
-pub async fn get_products(pool: web::Data<Pool>) -> actix_web::Result<impl Responder> {
+pub async fn get_all_products(
+    pool: web::Data<Pool>,
+) -> actix_web::Result<impl Responder> {
     let products = web::block(move || {
         let mut conn = pool.get()?;
         actions::find_all_products(&mut conn)
+    })
+    .await?
+    .map_err(error::ErrorInternalServerError)?;
+    Ok(HttpResponse::Ok().json(products))
+}
+
+#[post("/products/search")]
+pub async fn get_products(
+    pool: web::Data<Pool>,
+    form: web::Json<Search>,
+) -> actix_web::Result<impl Responder> {
+    let products = web::block(move || {
+        let mut conn = pool.get()?;
+
+        return actions::find_products(&mut conn, form.clone());
     })
     .await?
     .map_err(error::ErrorInternalServerError)?;

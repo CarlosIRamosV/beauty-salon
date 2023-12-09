@@ -1,16 +1,16 @@
 use diesel::prelude::*;
 use uuid::Uuid;
 
-use crate::product::models::{New, Product, Update};
+use crate::product::models::{New, Product, Search, Update};
 
 pub fn find_all_products(
     conn: &mut SqliteConnection,
 ) -> Result<Vec<Product>, Box<dyn std::error::Error + Send + Sync>> {
     use crate::schema::products::dsl::*;
 
-    let product = products.load::<Product>(conn)?;
+    let products_list = products.load::<Product>(conn)?;
 
-    Ok(product)
+    Ok(products_list)
 }
 
 pub fn find_product_by_uid(
@@ -122,4 +122,32 @@ pub fn insert_new_product(
         .execute(conn)?;
 
     Ok(new_product)
+}
+
+pub fn find_products(
+    conn: &mut SqliteConnection,
+    search: Search,
+) -> Result<Vec<Product>, Box<dyn std::error::Error + Send + Sync>> {
+    use crate::schema::products;
+
+    let mut products = products::table::into_boxed(Default::default());
+
+    if let Some(name) = search.name {
+        products = products.filter(products::name.like(format!("%{}%", name)));
+    }
+    if let Some(description) = search.description {
+        products = products.filter(products::description.like(format!("%{}%", description)));
+    }
+    if let Some(price) = search.price {
+        products = products.filter(products::price.eq(price.clone()));
+    }
+    if let Some(stock) = search.stock {
+        products = products.filter(products::stock.eq(stock.clone()));
+    }
+
+    products = products.order_by(products::name.asc());
+
+    let products = products.load::<Product>(conn)?;
+
+    Ok(products)
 }
