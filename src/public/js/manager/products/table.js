@@ -1,4 +1,4 @@
-import {getProductRoute, getProductsRoute} from "../../api.config.js";
+import {getImageRoute, getProductRoute, getProductsRoute} from "../../api.config.js";
 
 window.addEventListener('load', () => {
     loadTable();
@@ -19,7 +19,7 @@ function generateTable(data) {
         let imgCell = document.createElement('td');
         imgCell.className = 'image';
         if (product.image_id) {
-            imgCell.setAttribute('style', 'background-image: url(' + url + '/images/' + product.image_id + ')');
+            imgCell.setAttribute('style', 'background-image: url(' + getImageRoute(product.image_id) + ')');
         } else {
             imgCell.innerText = 'No image';
         }
