@@ -98,11 +98,11 @@ function generateTable(data) {
     data.forEach(cita => {
         let row = document.createElement('tr');
         let name = document.createElement('td');
-        name.innerText = cita.client_name + ' ' + cita.client_last_name;
+        name.innerText = cita.client.name + ' ' + cita.client.last_name;
         let phone = document.createElement('td');
-        phone.innerText = cita.client_phone;
+        phone.innerText = cita.client.phone;
         let employee = document.createElement('td');
-        employee.innerText = cita.employee_name + ' ' + cita.employee_last_name;
+        employee.innerText = cita.employee.name + ' ' + cita.employee.last_name;
         let services = document.createElement('td');
         services.innerText = cita.services;
         let date = new Date();
