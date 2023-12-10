@@ -8,9 +8,7 @@ use crate::product::models::{New, Search, Update};
 use crate::{auth, Pool};
 
 #[get("/products")]
-pub async fn get_all_products(
-    pool: web::Data<Pool>,
-) -> actix_web::Result<impl Responder> {
+pub async fn get_all_products(pool: web::Data<Pool>) -> actix_web::Result<impl Responder> {
     let products = web::block(move || {
         let mut conn = pool.get()?;
         actions::find_all_products(&mut conn)
