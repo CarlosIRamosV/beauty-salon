@@ -23,15 +23,16 @@
     text-align: center;
 }
 
-.prod{
+.prod {
     grid-column-start: 0;
     grid-column-end: 1;
     grid-row-start: 1;
     grid-row-end: 2;
-   
-    
+    height: 300px;
+    width: 300px;
 }
-.imagen{
+
+.imagen {
     grid-column-start: 0;
     grid-column-end: 1;
     grid-row-start: 2;

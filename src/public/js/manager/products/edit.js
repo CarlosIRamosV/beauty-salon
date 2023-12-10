@@ -13,6 +13,7 @@ window.addEventListener('load', ev => {
         window.location.href = 'index.html';
     }
 
+    let image = document.getElementById('preview')
     let name = document.getElementById('nombre');
     let description = document.getElementById('descr');
     let price = document.getElementById('precio');
@@ -25,6 +26,7 @@ window.addEventListener('load', ev => {
 
             // Asignar valores a los campos de entrada
             name.value = data.name;
+            image.src=getImageRoute(data.image_id)
             description.value = data.description;
             price.value = data.price;
             stock.value = data.stock;
