@@ -155,3 +155,21 @@ button:hover {
       padding: 10px;
       font-size: 16px;
     }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+      border: 1px solid #ddd;
+  }
+  
+  th, td {
+      border: 1px solid #ddd;
+      padding: 15px;
+      text-align: left;
+  }
+  
+  thead {
+      background-color: #333;
+      color: white;
+  }
