@@ -1,5 +1,5 @@
 import {getProductos} from "../../src/public/js/products.js";
-import {url} from "../../src/public/js/api.config.js";
+import {url} from "../../public/js/api.config.js";
 
 function addFavorito(id) {
     if (document.getElementById(id).firstChild.src.match("favrell"))

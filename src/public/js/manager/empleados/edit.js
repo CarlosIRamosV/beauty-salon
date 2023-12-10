@@ -1,4 +1,4 @@
-import {getImageRoute, getToken, getUserRoute} from "../../api.config.js";
+import { getImageRoute, getToken, getUserRoute } from "../../api.config.js";
 
 window.addEventListener('load', ev => {
     let temp
@@ -12,6 +12,7 @@ window.addEventListener('load', ev => {
     let preview = document.getElementById('preview')
     let name = document.getElementById('nombre');
     let last_name = document.getElementById('apellido');
+    let type = document.getElementById('type');
     let birth_date = document.getElementById('fechaNac');
     let sex = document.getElementById('sexo');
     let phone = document.getElementById('telefono');
@@ -26,6 +27,10 @@ window.addEventListener('load', ev => {
 
         if (last_name.value !== temp.last_name) {
             updates.last_name = last_name.value;
+        }
+
+        if (type.value !== temp.type) {
+            updates.type = type.value;
         }
 
         if (sex.value !== temp.sex) {
@@ -58,7 +63,7 @@ window.addEventListener('load', ev => {
         }
 
         if (new_image != null) {
-            let blob = new Blob([new_image], {type: new_image.type});
+            let blob = new Blob([new_image], { type: new_image.type });
             let reader = new FileReader();
             reader.readAsDataURL(blob);
             reader.onloadend = function () {
@@ -87,18 +92,19 @@ window.addEventListener('load', ev => {
     });
 
     fetch(getUserRoute(product), {
-            method: 'GET',
-            headers: {
-                'Content-Type': 'application/json',
-                'Authorization': 'Bearer ' + getToken()
-            },
-        }
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': 'Bearer ' + getToken()
+        },
+    }
     )
         .then(response => response.json())
         .then(data => {
             name.value = data.name;
-            image.src = getImageRoute(data.image_id)
+            preview.src = getImageRoute(data.image_id)
             last_name.value = data.last_name;
+            type.value = data.type;
             let date = new Date();
             date.setTime(data.birth_date);
             birth_date.value = date.toISOString().split('T')[0];
