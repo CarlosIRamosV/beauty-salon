@@ -147,7 +147,13 @@ function generateTable(data) {
         let apellidos = document.createElement('td');
         apellidos.innerText = user.last_name;
         let fechaNac = document.createElement('td');
-        fechaNac.innerText = user.birth_date;
+        let date = new Date();
+        date.setTime(user.birth_date);
+
+        // Add 1 to day because it starts at 0
+        date.setDate(date.getDate() + 1);
+
+        fechaNac.innerText = date.getDate() + '/' + (date.getMonth()+1) + '/' + date.getFullYear();
         let sexo = document.createElement('td');
         sexo.innerText = user.sex;
         let telefono = document.createElement('td');
