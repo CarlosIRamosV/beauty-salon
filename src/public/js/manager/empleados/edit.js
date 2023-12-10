@@ -1,10 +1,4 @@
-import {
-    getToken,
-    getUserRoute,
-    getImageRoute,
-    getUserSearchRoute,
-    getProductRoute
-} from "../../api.config.js";
+import {getImageRoute, getToken, getUserRoute} from "../../api.config.js";
 
 window.addEventListener('load', ev => {
     let temp
@@ -22,25 +16,6 @@ window.addEventListener('load', ev => {
     let sex = document.getElementById('sexo');
     let phone = document.getElementById('telefono');
     let email = document.getElementById('correo');
-
-    fetch(getUserRoute(product))
-        .then(response => response.json())
-        .then(data => {
-            console.log(data);
-
-            // Asignar valores a los campos de entrada
-            name.value = data.name;
-            image.src = getImageRoute(data.image_id)
-            last_name.value = data.last_name;
-            birth_date.value = data.birth_date;
-            sex.value = data.sex;
-            phone.value = data.phone;
-            email.value = data.email;
-        })
-        .catch(err => console.log(err));
-    if (product == null) {
-        window.location.href = 'index.html';
-    }
 
     document.getElementById('update').addEventListener('click', () => {
         let updates = {};
@@ -66,7 +41,7 @@ window.addEventListener('load', ev => {
         }
 
         let fechaCita = new Date(birth_date.value);
-        if (fechaCita.getTime() !== temp.birth_date) {
+        if (fechaCita.getTime().toString() !== temp.birth_date) {
             updates.birth_date = fechaCita.getTime().toString();
         }
 
@@ -83,7 +58,7 @@ window.addEventListener('load', ev => {
         }
 
         if (new_image != null) {
-            let blob = new Blob([new_image], { type: new_image.type });
+            let blob = new Blob([new_image], {type: new_image.type});
             let reader = new FileReader();
             reader.readAsDataURL(blob);
             reader.onloadend = function () {
@@ -111,32 +86,37 @@ window.addEventListener('load', ev => {
 
     });
 
-    fetch(getUserRoute(product))
+    fetch(getUserRoute(product), {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer ' + getToken()
+            },
+        }
+    )
         .then(response => response.json())
         .then(data => {
-            console.log(data);
-            // Asignar valores a los campos de entrada
-            if (data.image_id != null) {
-                preview.src = getImageRoute(data.image_id);
-            }
             name.value = data.name;
             image.src = getImageRoute(data.image_id)
             last_name.value = data.last_name;
             let date = new Date();
             date.setTime(data.birth_date);
-            date = date.toISOString().split('T')[0];
-            birth_date.value = date;
+            birth_date.value = date.toISOString().split('T')[0];
             sex.value = data.sex;
             phone.value = data.phone;
             email.value = data.email;
             temp = data;
         })
         .catch(err => console.log(err));
+    if (product == null) {
+        window.location.href = 'index.html';
+    }
 
 });
 
-function update(product, data) {
-    fetch(getUserRoute(product), {
+function update(user, data) {
+    console.log(data)
+    fetch(getUserRoute(user), {
         method: 'PUT',
         body: JSON.stringify(data),
         headers: {
@@ -146,6 +126,7 @@ function update(product, data) {
     })
         .then(response => response.json())
         .then(() => {
+            alert('Datos actualizados');
             window.location.href = 'index.html';
         })
         .catch(err => console.log(err));

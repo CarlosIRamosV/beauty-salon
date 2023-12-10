@@ -213,6 +213,7 @@ pub fn update_user_by_uid(
             image_id.eq(&user.image_id),
             name.eq(&user.name),
             last_name.eq(&user.last_name),
+            birth_date.eq(&user.birth_date),
             sex.eq(&user.sex),
             phone.eq(&user.phone),
             email.eq(&user.email),
