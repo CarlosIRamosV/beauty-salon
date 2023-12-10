@@ -7,7 +7,7 @@
   <link rel="stylesheet" href="../css/reserva.css">
   <script src="/src/public/js/menuDesplegable.js"></script>
   <script type="module" src="/src/public/js/cerrarSesion.js"></script>
-  <script src="../js/reserva.js"></script>
+  <script src="../js/reserva.js" type="module"></script>
   <title>Reserva cita</title>
 </head>
 
@@ -40,15 +40,20 @@
     <!--INPUTS-->
 
     <div class="form-container">
-      <form>
+      <form id="reserva" method="post" target="_blank">
         <label for="nombre">Nombre:</label>
-        <input type="text" id="nombre" name="nombre" required>
-
+        <input type="text" id="nombre" name="nombre">
+        
+        <label for="apellido">Apellido:</label>
+        <input type="text" id="apellido" name="apellido">
+        
         <label for="telefono">Teléfono:</label>
-        <input type="tel" id="telefono" name="telefono" required>
+        <input type="tel" id="telefono" name="telefono">
 
-        <label for="empleado">Empleado:</label>
-        <input type="text" id="empleado" name="empleado" required>
+          <label for="empleado">Empleado:</label>
+          <select name="empleado" id="empleado">
+            
+          </select>
 
         <label for="servicios">Servicios:</label>
         <select id="servicios" name="servicios" multiple>
@@ -60,12 +65,9 @@
         </select>
 
         <label for="fecha">Fecha:</label>
-        <input type="date" id="fecha" name="fecha" required>
+        <input type="datetime-local" id="fecha" name="fecha" required>
 
-        <label for="hora">Hora:</label>
-        <input type="time" id="hora" name="hora" required>
-
-        <button type="button" onclick="enviarDatos()">Reservar Cita</button>
+        <button type="submit">Reservar Cita</button>
       </form>
     </div>
 </body>

@@ -56,6 +56,7 @@ window.addEventListener("load", () => {
             .then(response => response.json())
             .then(data => {
                 console.log(data);
+                window.location.href = "../src/Usuario/html/menuInicio.html";
             })
     });
 });

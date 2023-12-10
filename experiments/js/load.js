@@ -1,4 +1,4 @@
-import {getProductsRoute, getToken, getUsersRoute, log, removeToken} from "../../src/public/js/api.config.js";
+import {getProductRoute, getToken, getUserRoute, log, removeToken} from "../../src/public/js/api.config.js";
 
 window.addEventListener("load", () => {
     document.getElementById("load").addEventListener("submit", ev => {
@@ -16,7 +16,7 @@ window.addEventListener("load", () => {
             .then(data => {
                 data.forEach((product, index) => {
                     setTimeout(() => {
-                        fetch(getProductsRoute(), {
+                        fetch(getProductRoute(), {
                             method: "POST",
                             body: JSON.stringify(product),
                             headers: {
@@ -38,7 +38,7 @@ window.addEventListener("load", () => {
             .then(data => {
                 data.forEach((user, index) => {
                     setTimeout(() => {
-                        fetch(getUsersRoute(), {
+                        fetch(getUserRoute(), {
                             method: "POST",
                             body: JSON.stringify(user),
                             headers: {
