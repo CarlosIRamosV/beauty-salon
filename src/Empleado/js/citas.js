@@ -75,7 +75,7 @@ window.addEventListener('load', () => {
             console.log(data);
             fetch(getAppointmentSearchRoute(), {
                 method: 'POST',
-                body: JSON.stringify({employee: data.id}),
+                body: JSON.stringify({employee_id: data.id}),
                 headers: {
                     'Content-Type': 'application/json',
                     'Authorization': 'Bearer ' + getToken(),
