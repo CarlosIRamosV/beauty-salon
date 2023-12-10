@@ -45,8 +45,7 @@ pub async fn get_all_users(
         let is_user = auth::actions::is_user(&mut conn, auth.as_ref().token())?;
 
         if is_user {
-            let user_id = auth::actions::get_user_id(&mut conn, auth.as_ref().token())?;
-            return actions::find_user_and_employee(&mut conn, Uuid::parse_str(&user_id).unwrap());
+            return actions::find_employee_and_admin(&mut conn);
         }
 
         Err("Unauthorized".into())
