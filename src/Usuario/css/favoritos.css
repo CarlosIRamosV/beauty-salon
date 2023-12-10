@@ -1,3 +1,29 @@
+/*body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #ffcccc; 
+    }
+
+    .header {
+      text-align: center;
+      padding: 20px;
+      background-color: #333;
+      color: white;
+    }
+
+    .header a {
+      display: inline-block;
+      margin: 0 10px;
+      padding: 10px 20px;
+      font-size: 16px;
+      color: #2e2e2e; 
+      background-color: #ff4d94; 
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    */
 html {
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 
@@ -38,16 +64,18 @@ body {
     border: none;
     padding: 10px 20px;
     cursor: pointer;
-    
     font-size: 2rem;
 }
 
-
+/*cuando se pone el cursor en los  botones
+    .menu-button:hover {
+        
+    }
+    */
 
 .menu-icon {
     display: none;
 }
-
 
 
 .logo {
@@ -68,7 +96,6 @@ body {
     flex-direction: column;
     justify-content: space-between;
     cursor: pointer;
-    
 }
 
 .line {
@@ -85,6 +112,8 @@ a {
     text-decoration: none;
     /* Elimina el subrayado */
 }
+
+
 
 
 /* Nuevos estilos para la barra lateral */
@@ -109,35 +138,52 @@ a {
     padding: 25px 16px;
     display: block;
     /* Cambiado a block para organizar hacia abajo */
-    
+
     margin-bottom: 20px;
     /* Espaciado entre los enlaces */
 }
-.sidebar a:hover{
+
+.sidebar a:hover {
     color: #a200ff;
 
 }
+
 button:hover {
     background-color: #a200ff;
-  }
+}
 
 /* aqui termina el css del menu*/
 
-        section {
-            text-align: center;
-            margin: 20px;
-        }
+.content {
+    text-align: center;
+    margin: 20px;
+}
 
-        .producto {
-            display: inline-block;
-            margin: 10px;
-            padding: 20px;
-            background-color: #ffffff; /* Fondo blanco */
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Sombra suave */
-        }
+label {
+    font-size: 18px;
+    margin-right: 10px;
+}
 
-        .marcar {
-            display: inline-block;
-            margin-top: 10px;
-        }
+select {
+    padding: 10px;
+    font-size: 16px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    border: 1px solid #ddd;
+}
+
+th,
+td {
+    border: 1px solid #ddd;
+    padding: 15px;
+    text-align: left;
+}
+
+thead {
+    background-color: #333;
+    color: white;
+}
