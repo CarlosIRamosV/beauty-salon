@@ -107,8 +107,9 @@ function generateTable(data) {
         services.innerText = cita.services;
         let date = new Date();
         date.setTime(cita.date)
+        console.log("Date of appointment: " + date);
         let day = document.createElement('td');
-        day.innerText = date.getDay() + '/' + date.getMonth() + '/' + date.getFullYear();
+        day.innerText = date.getDate() + '/' + (date.getMonth() + 1)  + '/' + date.getFullYear();
         let hour = document.createElement('td');
         hour.innerText = date.getHours() + ':' + date.getMinutes();
 
