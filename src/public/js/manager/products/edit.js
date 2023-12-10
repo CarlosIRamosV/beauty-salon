@@ -13,22 +13,21 @@ window.addEventListener('load', ev => {
         window.location.href = 'index.html';
     }
 
-    let name= document.getElementById('nombre')
-    let description= document.getElementById('descr')
-    let price= document.getElementById('precio')
-    let stock= document.getElementById('cantidad')
+    let name = document.getElementById('nombre');
+    let description = document.getElementById('descr');
+    let price = document.getElementById('precio');
+    let stock = document.getElementById('cantidad');
 
     fetch(getProductRoute(product))
-        .then(response => response.json)
-        .then(data =>{
+        .then(response => response.json())
+        .then(data => {
+            console.log(data);
 
-            console.log()
-            
-            name.innerHTML = data.name
-            description.innerHTML = data.description
-            price.innerHTML = data.price
-            stock.innerHTML = data.stock
-
+            // Asignar valores a los campos de entrada
+            name.value = data.name;
+            description.value = data.description;
+            price.value = data.price;
+            stock.value = data.stock;
         })
-        .catch(err => console.log(err))
+        .catch(err => console.log(err));
 });
