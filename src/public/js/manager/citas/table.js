@@ -21,12 +21,16 @@ window.addEventListener('load', () => {
         // After date
         if (after) {
             let date = new Date(after);
+            // Add 1 day to get all appointments after the selected date
+            date.setDate(date.getDate() + 1);
             search.after_date = date.getTime().toString();
         }
 
         // Before date
         if (before) {
             let date = new Date(before);
+            // Add 1 day to get all appointments before the selected date
+            date.setDate(date.getDate() + 1);
             search.before_date = date.getTime().toString();
         }
 
@@ -143,7 +147,7 @@ function generateTable(data) {
         let date = new Date();
         date.setTime(cita.date)
         let day = document.createElement('td');
-        day.innerText = (date.getDate()+1) + '/' + (date.getMonth() + 1)  + '/' + date.getFullYear();
+        day.innerText = date.getDate() + '/' + (date.getMonth() + 1)  + '/' + date.getFullYear();
         let hour = document.createElement('td');
         hour.innerText = date.getHours() + ':' + date.getMinutes();
 
