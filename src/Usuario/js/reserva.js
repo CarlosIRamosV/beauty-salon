@@ -54,6 +54,9 @@ window.addEventListener("load", () => {
                 var servicios = Array.from(document.getElementById("servicios").selectedOptions).map(option => option.value);
                 var serviciosSinCorchetes = servicios.join(', ');
                 var fecha = document.getElementById("fecha").value.trim();
+
+                let fechaCita = new Date(fecha);
+                console.log(fechaCita.getTime());
             
                 if (!nombre || !telefono || !empleado || !servicios.length || !fecha) {
                     alert("Por favor completa el formulario");
