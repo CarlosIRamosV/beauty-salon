@@ -1,5 +1,5 @@
 use crate::appointment::actions;
-use crate::appointment::models::{New, Search, Update};
+use crate::appointment::models::{New, Update};
 use crate::{auth, Pool};
 use actix_web::http::header::Header;
 use actix_web::{delete, error, get, post, web, HttpRequest, HttpResponse, Responder};
@@ -7,9 +7,39 @@ use actix_web_httpauth::headers::authorization::{Authorization, Bearer};
 use uuid::Uuid;
 
 #[get("/appointments")]
+pub async fn get_all_appointments(
+    pool: web::Data<Pool>,
+    req: HttpRequest,
+) -> actix_web::Result<impl Responder> {
+    let auth = Authorization::<Bearer>::parse(&req)?;
+    let appointments = web::block(move || {
+        let mut conn = pool.get()?;
+        let is_admin_or_employee =
+            auth::actions::is_admin_or_employee(&mut conn, auth.as_ref().token())?;
+
+        if is_admin_or_employee {
+            return actions::find_all_appointments(&mut conn);
+        }
+
+        let is_user = auth::actions::is_user(&mut conn, auth.as_ref().token())?;
+
+        if is_user {
+            let user_id = auth::actions::get_user_id(&mut conn, auth.as_ref().token())?;
+
+            return actions::find_all_user_appointments(&mut conn, user_id);
+        }
+        return Err("Unauthorized".into());
+    })
+    .await?
+    .map_err(error::ErrorInternalServerError)?;
+    Ok(HttpResponse::Ok().json(appointments))
+}
+
+/*
+#[post("/appointments/search")]
 pub async fn get_appointments(
     pool: web::Data<Pool>,
-    form: Option<web::Json<Search>>,
+    form: web::Json<Search>,
     req: HttpRequest,
 ) -> actix_web::Result<impl Responder> {
     let auth = Authorization::<Bearer>::parse(&req)?;
@@ -40,7 +70,7 @@ pub async fn get_appointments(
     .await?
     .map_err(error::ErrorInternalServerError)?;
     Ok(HttpResponse::Ok().json(appointments))
-}
+}*/
 
 #[get("/appointments/{id}")]
 pub async fn get_appointment_by_id(

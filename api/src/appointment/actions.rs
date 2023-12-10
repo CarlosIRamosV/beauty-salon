@@ -1,4 +1,4 @@
-use crate::appointment::models::{Appointment, New, Search, Update};
+use crate::appointment::models::{Appointment, New, Update};
 use diesel::{ExpressionMethods, OptionalExtension, QueryDsl, RunQueryDsl, SqliteConnection};
 use uuid::Uuid;
 
@@ -18,30 +18,23 @@ pub fn find_appointment_by_uid(
 
 pub fn find_all_appointments(
     conn: &mut SqliteConnection,
-    search: Search,
 ) -> Result<Vec<Appointment>, Box<dyn std::error::Error + Send + Sync>> {
-    use crate::schema::appointments;
-
-    let mut appointments = appointments::table::into_boxed(Default::default());
-
-    if let Some(client_id) = search.client_id {
-        appointments = appointments.filter(appointments::client_id.eq(client_id));
-    }
-
-    if let Some(employee_id) = search.employee_id {
-        appointments = appointments.filter(appointments::employee_id.eq(employee_id));
-    }
-
-    if let Some(date) = search.date {
-        appointments = appointments.filter(appointments::date.eq(date));
-    }
+    use crate::schema::appointments::dsl::*;
 
     let appointment = appointments.load::<Appointment>(conn)?;
 
-    // Check if appointment is empty
-    if appointment.is_empty() {
-        return Err("No appointment found".into());
-    }
+    Ok(appointment)
+}
+
+pub fn find_all_user_appointments(
+    conn: &mut SqliteConnection,
+    uid: String,
+) -> Result<Vec<Appointment>, Box<dyn std::error::Error + Send + Sync>> {
+    use crate::schema::appointments::dsl::*;
+
+    let appointment = appointments
+        .filter(client_id.eq(uid))
+        .load::<Appointment>(conn)?;
 
     Ok(appointment)
 }

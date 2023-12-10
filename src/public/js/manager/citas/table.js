@@ -1,36 +1,58 @@
-import {url} from "../../api.config.js";
+import {getAppointmentRoute, getToken, getUserSearchRoute} from "../../api.config.js";
 
 window.addEventListener('load', () => {
-    loadTable();
-});
-
-function loadTable() {
-    fetch(url + '/products')
+    fetch(getAppointmentRoute(), {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': 'Bearer ' + getToken(),
+        }
+    })
         .then(response => response.json())
         .then(data => generateTable(data))
         .catch(err => console.log(err));
-}
-
+});
 
 function generateTable(data) {
+    let table = document.getElementById('table');
+
+    // Clear table
+    while (table.getElementsByTagName('tbody').length > 0) {
+        table.removeChild(table.lastChild);
+    }
+
+    // If no appointments found
+    if (data.length === 0) {
+        let body = document.createElement('tbody');
+        let row = document.createElement('tr');
+        let cell = document.createElement('td');
+        cell.innerText = 'No users found';
+        cell.colSpan = 8;
+        row.appendChild(cell);
+        body.appendChild(row);
+        table.appendChild(body);
+        return;
+    }
     let body = document.createElement('tbody');
     data.forEach(cita => {
         let row = document.createElement('tr');
         let name = document.createElement('td');
-        name.innerText = cita.name;
-        let telefono = document.createElement('td');
-        telefono.innerText = cita.telefono;
-        let empleado = document.createElement('td');
-        empleado.innerText = cita.empleado;
-        let servicios = document.createElement('td');
-        servicios.innerText = cita.servicios;
-        let fecha = document.createElement('td');
-        fecha.innerText = cita.fecha;
-        let hora = document.createElement('td');
-        hora.innerText = cita.hora;
+        name.innerText = cita.client_id;
+        let phone = document.createElement('td');
+        phone.innerText = cita.phone;
+        let employee = document.createElement('td');
+        employee.innerText = cita.employee;
+        let services = document.createElement('td');
+        services.innerText = cita.services;
+        let day = document.createElement('td');
+        day.innerText = cita.day;
+        let hour = document.createElement('td');
+        hour.innerText = cita.hour;
 
         // Add buttons
         let edit = document.createElement('td');
+        let imgEdit = document.createElement('img');
+        imgEdit.src = '../../public/svg/edit.svg';
         edit.appendChild(imgEdit);
         edit.className = 'edit';
         edit.addEventListener('click', ev => {
@@ -38,11 +60,18 @@ function generateTable(data) {
         });
 
 
+
         let del = document.createElement('td');
         del.className = 'delete';
+        let imgDel = document.createElement('img');
+        imgDel.src = '../../public/svg/trash.svg';
+        del.appendChild(imgDel);
         del.addEventListener('click', ev => {
-            fetch(url + '/citas/' + cita.id, {
-                method: 'DELETE'
+            fetch(getAppointmentRoute(cita.id), {
+                method: 'DELETE',
+                headers: {
+                    'Authorization': 'Bearer ' + getToken(),
+                }
             }).then(response => {
                 if (response.status === 200) {
                     window.location.reload();
@@ -53,11 +82,11 @@ function generateTable(data) {
 
         // Add cells to row
         row.appendChild(name);
-        row.appendChild(telefono);
-        row.appendChild(empleado);
-        row.appendChild(servicios);
-        row.appendChild(fecha);
-        row.appendChild(hora);
+        row.appendChild(phone);
+        row.appendChild(employee);
+        row.appendChild(services);
+        row.appendChild(day);
+        row.appendChild(hour);
         row.appendChild(edit);
         row.appendChild(del);
         body.appendChild(row);

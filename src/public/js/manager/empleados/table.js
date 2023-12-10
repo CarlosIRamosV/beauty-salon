@@ -117,7 +117,7 @@ function generateTable(data) {
         table.removeChild(table.lastChild);
     }
 
-    // If no products found
+    // If no users found
     if (data.length === 0) {
         let body = document.createElement('tbody');
         let row = document.createElement('tr');
@@ -175,7 +175,7 @@ function generateTable(data) {
         imgDel.src = '../../public/svg/trash.svg';
         del.appendChild(imgDel);
         del.addEventListener('click', ev => {
-            fetch(getUserSearchRoute(user.id), {
+            fetch(getUserRoute(user.id), {
                 method: 'DELETE',
                 headers: {
                     'Authorization': 'Bearer ' + getToken(),
