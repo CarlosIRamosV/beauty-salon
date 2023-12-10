@@ -1,9 +1,6 @@
-import {
-    getAppointmentRoute,
-    getAppointmentSearchRoute,
-    getSessionRoute,
-    getToken,
-} from "../../public/js/api.config.js";
+import {getAppointmentSearchRoute, getSessionRoute, getToken,} from "../../public/js/api.config.js";
+
+let data_employee;
 
 window.addEventListener('load', () => {
     document.getElementById("search").addEventListener("submit", ev => {
@@ -35,17 +32,13 @@ window.addEventListener('load', () => {
 
         // If no search parameters, get all products
         if (Object.keys(search).length === 0) {
-            fetch(getAppointmentRoute(), {
-                method: 'GET',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Authorization': 'Bearer ' + getToken(),
-                },
-            })
-                .then(response => response.json())
-                .then(data => generateTable(data))
-                .catch(err => console.log(err));
+            load();
             return;
+        }
+
+        // If an employee is logged in, add employee id to search
+        if (data_employee) {
+            search.employee_id = data_employee.id;
         }
 
         fetch(getAppointmentSearchRoute(), {
@@ -72,21 +65,25 @@ window.addEventListener('load', () => {
     })
         .then(response => response.json())
         .then(data => {
-            console.log(data);
-            fetch(getAppointmentSearchRoute(), {
-                method: 'POST',
-                body: JSON.stringify({employee_id: data.id}),
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Authorization': 'Bearer ' + getToken(),
-                },
-            })
-                .then(response => response.json())
-                .then(data => generateTable(data))
-                .catch(err => console.log(err));
+            data_employee = data;
+            load();
         })
         .catch(err => console.log(err));
 });
+
+function load() {
+    fetch(getAppointmentSearchRoute(), {
+        method: 'POST',
+        body: JSON.stringify({employee_id: data_employee.id}),
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': 'Bearer ' + getToken(),
+        },
+    })
+        .then(response => response.json())
+        .then(data => generateTable(data))
+        .catch(err => console.log(err));
+}
 
 function generateTable(data) {
 
