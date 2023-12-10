@@ -26,11 +26,10 @@
 
 #crud-form {
     grid-column-start: 1;
-    grid-column-end: 3;
+    grid-column-end: 2;
     grid-row-start:1 ;
     grid-row-end: 2;
     gap: 10px;
-
 }
 #crud-form >*{
     margin-top: 10px;
@@ -64,4 +63,8 @@
 
 select{
     font-size: 1.2rem;
+}
+
+.fecha {
+    width: 50%;
 }

@@ -83,6 +83,7 @@ window.addEventListener("load", () => {
                 .then(response => response.json())
                 .then(data => {
                     console.log('Respuesta de la API:', data);
+                    alert("Cita creada correctamente");
                 })
                 .catch(error => console.error('Error al enviar datos:', error));
 

@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <title>Creando Citas</title>
-    <link href="../../public/css/manager/products/edit.css" rel="stylesheet">
+    <link href="../../public/css/manager/products/add.css" rel="stylesheet">
     <script src="../../public/js/manager/citas/add.js" type="module"></script>
     <script src="../../public/js/menuDesplegable.js" type="module"></script>
     <script src="../../public/js/cerrarSesion.js" type="module"></script>
@@ -61,12 +61,11 @@
                         <option value="peinados">Peinados</option>
                         <option value="corte">Corte de cabello</option>
                         <option value="maquillaje">Maquillaje</option>
-                        <!-- Agrega más opciones según sea necesario -->
                     </select>
                 </div>
 
                 <label for="fecha">Fecha:</label>
-                <input type="datetime-local" id="fecha" name="fecha" required>
+                <input type="datetime-local" id="fecha" name="fecha" class="fecha" required>
 
                 <button type="submit" class="guardar">Reservar Cita</button>
             </form>

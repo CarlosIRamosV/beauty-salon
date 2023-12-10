@@ -6,7 +6,7 @@
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <title>Editando Citas</title>
     <link href="../../public/css/manager/products/edit.css" rel="stylesheet">
-    <script src="../../public/js/manager/products/edit.js" type="module"></script>
+    <script src="../../public/js/manager/citas/edit.js" type="module"></script>
     <script src="../../public/js/menuDesplegable.js" type="module"></script>
     <script src="../../public/js/cerrarSesion.js" type="module"></script>
 </head>
@@ -29,7 +29,7 @@
             <div class="line"></div>
             <div class="line"></div>
             <!-- Barra lateral desplegable -->
-            <div class="sidebar"> 
+            <div class="sidebar">
                 <a onclick="cerrarSesion()" id="cerrarSesion">Cerrar Sesión</a>
             </div>
         </div>
@@ -39,36 +39,32 @@
         <h2>Editar Citas</h2>
         <div class="principal">
 
-            <form id="crud-form">
+            <form id="crud-form" method="post" target="_blank">
 
-                <div>
-                    <label for="cliente">Cliente:</label>
-                    <select name="cliente" id="cliente">
-                        <option value="" id="primero"></option>
-                    </select>
-                </div>
+                <label for="client">Cliente</label>
+                <input class="raro" id="client" list="clients" type="text">
+                <datalist id="clients">
+                </datalist>
 
-                <div>
-                    <label for="empleado">Empleado:</label>
-                    <select name="empleado" id="empleado">
-                        
-                    </select>
-                </div>
+                <label for="employee">Empleado</label>
+                <input class="raro" id="employee" list="employees" type="text">
+                <datalist id="employees">
+                </datalist>
 
                 <label for="servicios">Servicios:</label>
                 <div>
                     <select name="servicios" id="servicios" multiple>
-                        
+                        <option value="colorimetria">Colorimetria</option>
+                        <option value="peinados">Peinados</option>
+                        <option value="corte">Corte de cabello</option>
+                        <option value="maquillaje">Maquillaje</option>
                     </select>
                 </div>
 
                 <label for="fechaCita">Fecha de la cita:</label>
-                <input id="fechaCita" required type="date">
+                <input id="fechaCita" required type="datetime-local">
 
-                <label for="HoraCita">Hora de la cita:</label>
-                <input id="HoraCita" required type="time" min="08:00" max="20:00" step="1800">
-
-                <button onclick="addOrUpdateProducto()" type="button" class="guardar">Guardar</button>
+                <button type="button" class="guardar" id="update">Guardar</button>
             </form>
 
         </div>
