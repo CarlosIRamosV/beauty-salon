@@ -1,6 +1,63 @@
-import {getAppointmentRoute, getToken, getUserSearchRoute} from "../../api.config.js";
+import {
+    getAppointmentRoute,
+    getAppointmentSearchRoute,
+    getToken,
+} from "../../api.config.js";
 
 window.addEventListener('load', () => {
+    document.getElementById("search").addEventListener("submit", ev => {
+        ev.preventDefault();
+        let after = document.getElementById('after').value;
+        let before = document.getElementById('before').value;
+
+        let search = {}
+
+        // Get a search parameters
+        // After date
+        if (after) {
+            let date = new Date(after);
+            search.after_date = date.getTime().toString();
+        }
+
+        // Before date
+        if (before) {
+            let date = new Date(before);
+            search.before_date = date.getTime().toString();
+        }
+
+        console.log(search);
+        console.log(JSON.stringify(search));
+
+        // If no search parameters, get all products
+        if (Object.keys(search).length === 0) {
+            fetch(getAppointmentRoute(), {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': 'Bearer ' + getToken(),
+                },
+            })
+                .then(response => response.json())
+                .then(data => generateTable(data))
+                .catch(err => console.log(err));
+            return;
+        }
+
+
+        fetch(getAppointmentSearchRoute(), {
+                method: 'POST',
+                body: JSON.stringify(search),
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': 'Bearer ' + getToken(),
+                },
+            }
+        )
+            .then(response => response.json())
+            .then(data => generateTable(data))
+            .catch(err => console.log(err));
+
+    });
     fetch(getAppointmentRoute(), {
         method: 'GET',
         headers: {

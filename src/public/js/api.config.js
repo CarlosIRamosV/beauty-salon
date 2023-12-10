@@ -90,6 +90,10 @@ function getAppointmentRoute(appointmentId) {
     return getRoute('/appointments/' + appointmentId);
 }
 
+function getAppointmentSearchRoute() {
+    return getRoute('/appointments/search');
+}
+
 /* ------------------ Exports ------------------ */
 export {
     getURL,
@@ -102,6 +106,7 @@ export {
     getUserRoute,
     getUserSearchRoute,
     getAppointmentRoute,
+    getAppointmentSearchRoute,
     log,
     getToken,
     setToken,
