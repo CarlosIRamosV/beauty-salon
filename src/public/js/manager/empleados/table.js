@@ -134,9 +134,7 @@ function generateTable(data) {
         let row = document.createElement('tr');
         let imgCell = document.createElement('td');
         if (user.image_id) {
-            let img = document.createElement('img');
-            img.src = getImageRoute(user.image_id);
-            imgCell.appendChild(img);
+            imgCell.setAttribute('style', 'background-image: url(' + getImageRoute(user.image_id) + ')');
         } else {
             imgCell.innerText = 'No image';
         }
