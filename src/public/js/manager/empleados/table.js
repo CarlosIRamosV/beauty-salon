@@ -133,6 +133,7 @@ function generateTable(data) {
     data.forEach(user => {
         let row = document.createElement('tr');
         let imgCell = document.createElement('td');
+        imgCell.className = 'image';
         if (user.image_id) {
             imgCell.setAttribute('style', 'background-image: url(' + getImageRoute(user.image_id) + ')');
         } else {
