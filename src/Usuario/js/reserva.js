@@ -66,7 +66,7 @@ window.addEventListener("load", () => {
                         client_id: idburrito,
                         services: serviciosSinCorchetes,
                         employee_id: idesclavo,
-                        date: fecha,
+                        date: fechaCita.getTime(),
                     };
             
                     // Convierte el objeto JSON a cadena

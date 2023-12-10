@@ -44,10 +44,12 @@ function generateTable(data) {
         employee.innerText = cita.employee;
         let services = document.createElement('td');
         services.innerText = cita.services;
+        let date = new Date();
+        date.setTime(cita.date)
         let day = document.createElement('td');
-        day.innerText = cita.day;
+        day.innerText = date.getDay();
         let hour = document.createElement('td');
-        hour.innerText = cita.hour;
+        hour.innerText = date.getHours();
 
         // Add buttons
         let edit = document.createElement('td');
