@@ -18,6 +18,38 @@ pub fn find_all_users(
     Ok(public_users)
 }
 
+pub fn find_user_and_employee(
+    conn: &mut SqliteConnection,
+    uid: Uuid
+) -> Result<Vec<Public>, Box<dyn std::error::Error + Send + Sync>> {
+    use crate::schema::users::dsl::*;
+
+    let admin = users
+        .filter(type_.eq("Admin"))
+        .load::<User>(conn)?;
+
+    let employee = users
+        .filter(type_.eq("Employee"))
+        .load::<User>(conn)?;
+
+    let user = users
+        .filter(id.eq(uid.to_string()))
+        .load::<User>(conn)?;
+
+    let list_users = admin
+        .into_iter()
+        .chain(employee.into_iter())
+        .chain(user.into_iter())
+        .collect::<Vec<User>>();
+
+    let public_users = list_users
+        .into_iter()
+        .map(|user| user.to_public())
+        .collect::<Vec<Public>>();
+
+    Ok(public_users)
+}
+
 pub fn find_user_by_uid(
     conn: &mut SqliteConnection,
     uid: Uuid,
