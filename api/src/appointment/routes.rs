@@ -2,7 +2,7 @@ use crate::appointment::actions;
 use crate::appointment::models::{New, Search, Update};
 use crate::{auth, Pool};
 use actix_web::http::header::Header;
-use actix_web::{delete, error, get, post, web, HttpRequest, HttpResponse, Responder};
+use actix_web::{delete, error, get, post, web, HttpRequest, HttpResponse, Responder, put};
 use actix_web_httpauth::headers::authorization::{Authorization, Bearer};
 use uuid::Uuid;
 
@@ -140,7 +140,7 @@ pub async fn add_appointment(
     Ok(HttpResponse::Created().json(product))
 }
 
-#[post("/appointments/{id}")]
+#[put("/appointments/{id}")]
 pub async fn update_appointment_by_id(
     pool: web::Data<Pool>,
     id: web::Path<String>,
