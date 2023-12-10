@@ -1,6 +1,7 @@
 import {
     getAppointmentRoute,
     getAppointmentSearchRoute,
+    getSessionRoute,
     getToken,
 } from "../../public/js/api.config.js";
 
@@ -48,33 +49,47 @@ window.addEventListener('load', () => {
         }
 
         fetch(getAppointmentSearchRoute(), {
-            method: 'POST',
-            body: JSON.stringify(search),
-            headers: {
-                'Content-Type': 'application/json',
-                'Authorization': 'Bearer ' + getToken(),
-            },
-        }
+                method: 'POST',
+                body: JSON.stringify(search),
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': 'Bearer ' + getToken(),
+                },
+            }
         )
             .then(response => response.json())
             .then(data => generateTable(data))
             .catch(err => console.log(err));
 
     });
-    fetch(getAppointmentRoute(), {
+
+    fetch(getSessionRoute(), {
         method: 'GET',
         headers: {
             'Content-Type': 'application/json',
             'Authorization': 'Bearer ' + getToken(),
-        }
+        },
     })
         .then(response => response.json())
-        .then(data => generateTable(data))
+        .then(data => {
+            console.log(data);
+            fetch(getAppointmentSearchRoute(), {
+                method: 'POST',
+                body: JSON.stringify({employee: data.id}),
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': 'Bearer ' + getToken(),
+                },
+            })
+                .then(response => response.json())
+                .then(data => generateTable(data))
+                .catch(err => console.log(err));
+        })
         .catch(err => console.log(err));
 });
 
 function generateTable(data) {
-    
+
     let table = document.getElementById('table');
 
     // Clear table
@@ -109,7 +124,7 @@ function generateTable(data) {
         date.setTime(cita.date)
         console.log("Date of appointment: " + date);
         let day = document.createElement('td');
-        day.innerText = date.getDate() + '/' + (date.getMonth() + 1)  + '/' + date.getFullYear();
+        day.innerText = date.getDate() + '/' + (date.getMonth() + 1) + '/' + date.getFullYear();
         let hour = document.createElement('td');
         hour.innerText = date.getHours() + ':' + date.getMinutes();
 
