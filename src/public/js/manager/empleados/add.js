@@ -48,7 +48,7 @@ function enviarDatos() {
 }*/
 
 
-import { getImagesRoute, getUsersRoute, getToken} from "../../api.config.js";
+import { getImageRoute, getUserRoute, getToken} from "../../api.config.js";
 
 window.addEventListener("load", () => {
     document.getElementById("crud-form").addEventListener('submit', (ev) => {
@@ -80,7 +80,7 @@ window.addEventListener("load", () => {
                 image: reader.result
             }
 
-            return fetch(getImagesRoute(), {
+            return fetch(getImageRoute(), {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -101,7 +101,7 @@ window.addEventListener("load", () => {
                         password: password
                     }
                     console.log(empleado)
-                    fetch(getUsersRoute(), {
+                    fetch(getUserRoute(), {
                         method: "POST",
                         headers: {
                             "Content-Type": "application/json",
