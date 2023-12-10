@@ -1,74 +1,35 @@
-window.addEventListener('load', () => {
-    /*
-    
-    let id;
-    fetch('./json/citas.json')
-        .then(response => response.json())
-        .then(data => {
-            data.forEach(element => {
-                let option = document.createElement('option');
-                option.value = element.id;
-                option.innerHTML = element.name;
-                document.getElementById('citas').appendChild(option);
-                id = 1;
-                contenido();
-            })
-        })
-
-    function contenido() {
-        fetch('./json/citas.json')
-            .then(response => response.json())
-            .then(data => {
-                data.forEach(element => {
-                    if (element.id == id) {
-                        document.getElementById('listaCitas').innerHTML = '';
-                        element.citas.forEach(element => {
-                            let cita = document.createElement('div');
-                            cita.classList.add('cita');
-                            cita.innerHTML = `
-                        <p><strong>Hora:</strong> ${element.hora}</p>
-                        <p><strong>Nombre:</strong> ${element.nombre}</p>
-                        <p><strong>Apellido:</strong> ${element.apellido}</p>
-                        <p><strong>Email:</strong> ${element.email}</p>
-                        <p><strong>Telefono:</strong> ${element.telefono}</p>
-                        <p><strong>Empleado:</strong> ${element.nombreEmpleado}</p>
-                        <p><strong>Comentarios:</strong> ${element.comentarios}</p>
-                        `;
-                            document.getElementById('listaCitas').appendChild(cita);
-                        })
-
-                    }
-                })
-            })
-
-    }
-    document.getElementById('citas').addEventListener('change', () => {
-        id = document.getElementById('citas').value;
-        contenido();
-    });
-
-    */
-
-    // Obtener las citas mediante fetch
+import { getAppointmentRoute, getToken } from "../../public/js/api.config.js"
 
 
-});
+var fecha = document.getElementById('citas');
 
-function jennyqintana() {
-    fetch('../json/citas.json')  // Reemplaza 'ruta/del/archivo.json' con la ruta correcta a tu archivo JSON
+// Asignar la función al evento de clic del botón
+fecha.addEventListener('change', () => {
+    fetch(getAppointmentRoute(), {
+        method: "GET",
+        contentType: "application/json",
+        headers: {
+            'Authorization': 'Bearer ' + getToken(),
+        }
+    })  // Reemplaza 'ruta/del/archivo.json' con la ruta correcta a tu archivo JSON
         .then(response => response.json())
         .then(citasJson => {
             // Función para filtrar citas según la fecha seleccionada
             function filtrarCitas() {
+                /** 
+                // Obtener la fecha seleccionada del campo de entrada de fecha
                 const fechaSeleccionada = document.getElementById('citas').value;
 
-                // Obtener la fecha actual
-                const fechaActual = new Date();
+                // Convertir la fecha seleccionada a un objeto de fecha
+                const fechaSeleccionadaObj = new Date(fechaSeleccionada);
 
-                // Filtrar citas próximas para la fecha seleccionada
+                // Filtrar citas para la fecha seleccionada
                 const citasFiltradas = citasJson.filter(cita => {
-                    const citaFecha = new Date(cita.fecha + 'T' + cita.hora);
-                    return citaFecha >= fechaActual && citaFecha.toISOString().split('T')[0] === fechaSeleccionada;
+                    // Convertir la fecha de la cita a un objeto de fecha
+                    const citaFecha = new Date(Number(cita.date));
+
+                    // Comparar solo la fecha (ignorando la hora) usando toISOString()
+                    return citaFecha.toISOString().split('T')[0] === fechaSeleccionadaObj.toISOString().split('T')[0];
                 });
 
                 // Mostrar las citas filtradas en HTML
@@ -91,10 +52,11 @@ function jennyqintana() {
                 } else {
                     citasContainer.innerHTML = '<p>No hay citas para la fecha seleccionada.</p>';
                 }
+                */
             }
 
             // Llamada inicial para mostrar todas las citas
             filtrarCitas();
         })
         .catch(error => console.error('Error al obtener las citas:', error));
-}
+});

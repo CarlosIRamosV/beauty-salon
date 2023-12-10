@@ -6,7 +6,7 @@
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <title>Creando Citas</title>
     <link href="../../public/css/manager/products/edit.css" rel="stylesheet">
-    <script src="../../public/js/manager/citas/add.js"></script>
+    <script src="../../public/js/manager/citas/add.js" type="module"></script>
     <script src="../../public/js/menuDesplegable.js" type="module"></script>
     <script src="../../public/js/cerrarSesion.js" type="module"></script>
 </head>
@@ -29,7 +29,7 @@
             <div class="line"></div>
             <div class="line"></div>
             <!-- Barra lateral desplegable -->
-            <div class="sidebar"> 
+            <div class="sidebar">
                 <a onclick="cerrarSesion()" id="cerrarSesion">Cerrar Sesión</a>
             </div>
         </div>
@@ -39,39 +39,36 @@
         <h2>Crear Citas</h2>
         <div class="principal">
 
-            <form id="crud-form">
-                <label for="nombre">Nombre:</label>
-                <input id="nombre" required type="text">
-
-                <label for="telefono">Telefono:</label>
-                <input id="telefono" type="tel">
-
+            <form id="crud-form" method="post" target="_blank">
+                <label for="cliente">Cliente:</label>
                 <div>
-                    <label for="empleado">Empleado:</label>
+                    <select name="cliente" id="cliente">
+
+                    </select>
+                </div>
+
+                <label for="empleado">Empleado:</label>
+                <div>
                     <select name="empleado" id="empleado">
-                        <option value="Diego">Diego</option>
-                        <option value="Antonio">Antonio</option>
-                        <option value="Javier">Javier</option>
+
                     </select>
                 </div>
 
                 <label for="servicios">Servicios:</label>
                 <div>
-                    <select name="servicios" id="servicios" multiple>
-                        <option value="Colorimetria">Colorimetria</option>
-                        <option value="Peinado">Peinado</option>
-                        <option value="Corte de pelo">Corte de pelo</option>
-                        <option value="Maquillaje">Maquillaje</option>
+                    <select id="servicios" name="servicios" multiple>
+                        <option value="colorimetria">Colorimetria</option>
+                        <option value="peinados">Peinados</option>
+                        <option value="corte">Corte de cabello</option>
+                        <option value="maquillaje">Maquillaje</option>
+                        <!-- Agrega más opciones según sea necesario -->
                     </select>
                 </div>
 
-                <label for="fechaCita">Fecha de la cita:</label>
-                <input id="fechaCita" required type="date">
+                <label for="fecha">Fecha:</label>
+                <input type="datetime-local" id="fecha" name="fecha" required>
 
-                <label for="HoraCita">Hora de la cita:</label>
-                <input id="horaCita" required type="time" min="08:00" max="20:00" step="1800">
-
-                <button type="button" class="guardar" onclick="enviarDatos()">Guardar</button>
+                <button type="submit" class="guardar">Reservar Cita</button>
             </form>
 
         </div>
