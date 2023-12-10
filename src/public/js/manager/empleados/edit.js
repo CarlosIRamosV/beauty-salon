@@ -124,7 +124,7 @@ window.addEventListener('load', ev => {
             last_name.value = data.last_name;
             let date = new Date();
             date.setTime(data.birth_date);
-            date = date.toISOString().slice(0, 8);
+            date = date.toISOString().split('T')[0];
             birth_date.value = date;
             sex.value = data.sex;
             phone.value = data.phone;
