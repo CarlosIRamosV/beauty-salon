@@ -120,6 +120,7 @@ function generateTable(data) {
         row.appendChild(services);
         row.appendChild(day);
         row.appendChild(hour);
+        body.appendChild(row);
     });
     document.getElementById('table').appendChild(body);
 }
