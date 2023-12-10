@@ -6,6 +6,7 @@ mod routes;
 
 pub fn init_routes(cfg: &mut web::ServiceConfig) {
     cfg.service(routes::add_user);
+    cfg.service(routes::get_employee_and_admin);
     cfg.service(routes::get_user);
     cfg.service(routes::get_all_users);
     cfg.service(routes::get_users);

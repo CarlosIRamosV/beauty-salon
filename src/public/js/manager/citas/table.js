@@ -1,18 +1,23 @@
 import {
     getAppointmentRoute,
     getAppointmentSearchRoute,
-    getToken,
+    getToken, getUserRoute, getUserSearchRoute,
 } from "../../api.config.js";
 
 window.addEventListener('load', () => {
     document.getElementById("search").addEventListener("submit", ev => {
         ev.preventDefault();
+        let employee = document.getElementById('employee').value;
         let after = document.getElementById('after').value;
         let before = document.getElementById('before').value;
 
         let search = {}
 
         // Get a search parameters
+        // Employee
+        if (employee) {
+            search.employee_id = employee;
+        }
         // After date
         if (after) {
             let date = new Date(after);
@@ -24,8 +29,6 @@ window.addEventListener('load', () => {
             let date = new Date(before);
             search.before_date = date.getTime().toString();
         }
-
-        console.log(search);
 
         // If no search parameters, get all products
         if (Object.keys(search).length === 0) {
@@ -42,7 +45,6 @@ window.addEventListener('load', () => {
             return;
         }
 
-
         fetch(getAppointmentSearchRoute(), {
                 method: 'POST',
                 body: JSON.stringify(search),
@@ -51,9 +53,9 @@ window.addEventListener('load', () => {
                     'Authorization': 'Bearer ' + getToken(),
                 },
             }
-        )
-            .then(response => response.json())
+        ).then(response => response.json())
             .then(data => generateTable(data))
+
             .catch(err => console.log(err));
 
     });
@@ -66,6 +68,44 @@ window.addEventListener('load', () => {
     })
         .then(response => response.json())
         .then(data => generateTable(data))
+        .catch(err => console.log(err));
+
+    fetch(getUserRoute(), {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': 'Bearer ' + getToken(),
+        }
+    })
+        .then(response => response.json())
+        .then(data => {
+            let select = document.getElementById('clients');
+            data.forEach(user => {
+                let option = document.createElement('option');
+                option.value = user.id;
+                option.innerText = user.name + ' ' + user.last_name;
+                select.appendChild(option);
+            });
+        })
+        .catch(err => console.log(err));
+
+    fetch(getUserSearchRoute(), {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': 'Bearer ' + getToken(),
+        }
+    })
+        .then(response => response.json())
+        .then(data => {
+            let select = document.getElementById('employees');
+            data.forEach(user => {
+                let option = document.createElement('option');
+                option.value = user.id;
+                option.innerText = user.name + ' ' + user.last_name;
+                select.appendChild(option);
+            });
+        })
         .catch(err => console.log(err));
 });
 
@@ -91,7 +131,6 @@ function generateTable(data) {
     }
     let body = document.createElement('tbody');
     data.forEach(cita => {
-        console.log(cita);
         let row = document.createElement('tr');
         let name = document.createElement('td');
         name.innerText = cita.client.name + ' ' + cita.client.last_name;

@@ -54,7 +54,6 @@ pub async fn get_all_users(
     .map_err(error::ErrorInternalServerError)?;
     Ok(HttpResponse::Ok().json(users))
 }
-
 #[post("/users/search")]
 pub async fn get_users(
     pool: web::Data<Pool>,
@@ -79,6 +78,31 @@ pub async fn get_users(
     .map_err(error::ErrorInternalServerError)?;
     Ok(HttpResponse::Ok().json(users))
 }
+
+#[get("/users/search")]
+pub async fn get_employee_and_admin(
+    pool: web::Data<Pool>,
+    req: HttpRequest,
+) -> actix_web::Result<impl Responder> {
+    let auth = Authorization::<Bearer>::parse(&req)?;
+    let users = web::block(move || {
+        let mut conn = pool.get()?;
+
+        // Check if user is admin or employee
+        let is_admin_or_employee_or_user =
+            auth::actions::is_admin_or_employee_or_user(&mut conn, auth.as_ref().token())?;
+
+        if !is_admin_or_employee_or_user {
+            return Err("Unauthorized".into());
+        }
+
+        actions::find_employee_and_admin(&mut conn)
+    })
+    .await?
+    .map_err(error::ErrorInternalServerError)?;
+    Ok(HttpResponse::Ok().json(users))
+}
+
 
 #[post("/users")]
 pub async fn add_user(
