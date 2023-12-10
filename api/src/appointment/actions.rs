@@ -1,4 +1,4 @@
-use crate::appointment::models::{Appointment, New, Public, Update};
+use crate::appointment::models::{Appointment, New, Public, Search, Update};
 use diesel::{ExpressionMethods, OptionalExtension, QueryDsl, RunQueryDsl, SqliteConnection};
 use uuid::Uuid;
 
@@ -37,6 +37,42 @@ pub fn find_all_user_appointments(
     let appointment = appointments
         .filter(client_id.eq(uid.to_string()))
         .load::<Appointment>(conn)?;
+
+    let list_public_appointments = generate_public_appointments(conn, appointment).unwrap();
+
+    Ok(list_public_appointments)
+}
+
+// Search appointments
+pub fn find_appointments(
+    conn: &mut SqliteConnection,
+    search: Search,
+) -> Result<Vec<Public>, Box<dyn std::error::Error + Send + Sync>> {
+    use crate::schema::appointments;
+
+    let appointment = appointments::table.into_boxed();
+
+    let appointment = match search.client_id {
+        Some(client_id) => appointment.filter(appointments::dsl::client_id.eq(client_id)),
+        None => appointment,
+    };
+
+    let appointment = match search.employee_id {
+        Some(employee_id) => appointment.filter(appointments::dsl::employee_id.eq(employee_id)),
+        None => appointment,
+    };
+
+    let appointment = match search.after_date {
+        Some(after_date) => appointment.filter(appointments::dsl::date.gt(after_date)),
+        None => appointment,
+    };
+
+    let appointment = match search.before_date {
+        Some(before_date) => appointment.filter(appointments::dsl::date.lt(before_date)),
+        None => appointment,
+    };
+
+    let appointment = appointment.load::<Appointment>(conn)?;
 
     let list_public_appointments = generate_public_appointments(conn, appointment).unwrap();
 

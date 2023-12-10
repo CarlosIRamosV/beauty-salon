@@ -38,11 +38,17 @@ pub async fn get_all_users(
         let is_admin_or_employee =
             auth::actions::is_admin_or_employee(&mut conn, auth.as_ref().token())?;
 
-        if !is_admin_or_employee {
-            return Err("Unauthorized".into());
+        if is_admin_or_employee {
+            return actions::find_all_users(&mut conn);
         }
 
-        actions::find_all_users(&mut conn)
+        let is_user = auth::actions::is_user(&mut conn, auth.as_ref().token())?;
+
+        if is_user {
+            return actions::find_employee_and_admin(&mut conn);
+        }
+
+        Err("Unauthorized".into())
     })
     .await?
     .map_err(error::ErrorInternalServerError)?;

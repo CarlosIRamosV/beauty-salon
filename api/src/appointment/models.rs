@@ -33,7 +33,8 @@ pub struct Update {
 pub struct Search {
     pub client_id: Option<String>,
     pub employee_id: Option<String>,
-    pub date: Option<String>,
+    pub after_date: Option<String>,
+    pub before_date: Option<String>,
 }
 
 #[derive(Debug, Clone, Serialize, Deserialize)]

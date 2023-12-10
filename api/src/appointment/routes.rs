@@ -1,5 +1,5 @@
 use crate::appointment::actions;
-use crate::appointment::models::{New, Update};
+use crate::appointment::models::{New, Search, Update};
 use crate::{auth, Pool};
 use actix_web::http::header::Header;
 use actix_web::{delete, error, get, post, web, HttpRequest, HttpResponse, Responder};
@@ -38,7 +38,6 @@ pub async fn get_all_appointments(
     Ok(HttpResponse::Ok().json(appointments))
 }
 
-/*
 #[post("/appointments/search")]
 pub async fn get_appointments(
     pool: web::Data<Pool>,
@@ -52,7 +51,7 @@ pub async fn get_appointments(
             auth::actions::is_admin_or_employee(&mut conn, auth.as_ref().token())?;
 
         if is_admin_or_employee {
-            return actions::find_all_appointments(&mut conn, form.unwrap().into_inner());
+            return actions::find_appointments(&mut conn, form.into_inner());
         }
 
         let is_user = auth::actions::is_user(&mut conn, auth.as_ref().token())?;
@@ -60,11 +59,11 @@ pub async fn get_appointments(
         if is_user {
             let user_id = auth::actions::get_user_id(&mut conn, auth.as_ref().token())?;
 
-            return actions::find_all_appointments(
+            return actions::find_appointments(
                 &mut conn,
                 Search {
-                    client_id: Some(user_id),
-                    ..form.unwrap().into_inner()
+                    client_id: Option::from(user_id),
+                    ..form.into_inner()
                 },
             );
         }
@@ -73,7 +72,7 @@ pub async fn get_appointments(
     .await?
     .map_err(error::ErrorInternalServerError)?;
     Ok(HttpResponse::Ok().json(appointments))
-}*/
+}
 
 #[get("/appointments/{id}")]
 pub async fn get_appointment_by_id(
