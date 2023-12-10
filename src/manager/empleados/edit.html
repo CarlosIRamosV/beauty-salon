@@ -43,7 +43,7 @@
             <img src="" alt="" class="prod" id="preview">
             <input type="file" id="imagen" class="imagen">
 
-            <form id="crud-form">
+            <form id="crud-form" method="post" target="_blank">
                 <label for="nombre">Nombre:</label>
                 <input id="nombre" required type="text">
 
@@ -68,7 +68,7 @@
                 <label for="correo">Correo:</label>
                 <input id="correo" type="email">
 
-                <button onclick="addOrUpdateProducto()" type="button" class="guardar">Guardar</button>
+                <button type="button" class="guardar" id="update">Guardar</button>
             </form>
         </div>
     </section>
