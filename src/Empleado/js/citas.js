@@ -1,62 +1,125 @@
-import { getAppointmentRoute, getToken } from "../../public/js/api.config.js"
+import {
+    getAppointmentRoute,
+    getAppointmentSearchRoute,
+    getToken,
+} from "../../public/js/api.config.js";
 
+window.addEventListener('load', () => {
+    document.getElementById("search").addEventListener("submit", ev => {
+        ev.preventDefault();
+        let after = document.getElementById('despues').value;
+        let before = document.getElementById('antes').value;
 
-var fecha = document.getElementById('citas');
+        let search = {}
 
-// Asignar la función al evento de clic del botón
-fecha.addEventListener('change', () => {
+        // Get a search parameters
+        // After date
+        if (after) {
+            let date = new Date(after);
+            // Add 1 day to the date
+            date.setDate(date.getDate() + 1);
+            search.after_date = date.getTime().toString();
+        }
+
+        // Before date
+        if (before) {
+            let date = new Date(before);
+            // Add 1 day to the date
+            date.setDate(date.getDate() + 1);
+            search.before_date = date.getTime().toString();
+        }
+
+        console.log(search);
+        console.log(JSON.stringify(search));
+
+        // If no search parameters, get all products
+        if (Object.keys(search).length === 0) {
+            fetch(getAppointmentRoute(), {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': 'Bearer ' + getToken(),
+                },
+            })
+                .then(response => response.json())
+                .then(data => generateTable(data))
+                .catch(err => console.log(err));
+            return;
+        }
+
+        fetch(getAppointmentSearchRoute(), {
+            method: 'POST',
+            body: JSON.stringify(search),
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer ' + getToken(),
+            },
+        }
+        )
+            .then(response => response.json())
+            .then(data => generateTable(data))
+            .catch(err => console.log(err));
+
+    });
     fetch(getAppointmentRoute(), {
-        method: "GET",
-        contentType: "application/json",
+        method: 'GET',
         headers: {
+            'Content-Type': 'application/json',
             'Authorization': 'Bearer ' + getToken(),
         }
-    })  // Reemplaza 'ruta/del/archivo.json' con la ruta correcta a tu archivo JSON
+    })
         .then(response => response.json())
-        .then(citasJson => {
-            // Función para filtrar citas según la fecha seleccionada
-            function filtrarCitas() {
-                /** 
-                // Obtener la fecha seleccionada del campo de entrada de fecha
-                const fechaSeleccionada = document.getElementById('citas').value;
-
-                // Convertir la fecha seleccionada a un objeto de fecha
-                const fechaSeleccionadaObj = new Date(fechaSeleccionada);
-
-                // Filtrar citas para la fecha seleccionada
-                const citasFiltradas = citasJson.filter(cita => {
-                    // Convertir la fecha de la cita a un objeto de fecha
-                    const citaFecha = new Date(Number(cita.date));
-
-                    // Comparar solo la fecha (ignorando la hora) usando toISOString()
-                    return citaFecha.toISOString().split('T')[0] === fechaSeleccionadaObj.toISOString().split('T')[0];
-                });
-
-                // Mostrar las citas filtradas en HTML
-                const citasContainer = document.getElementById('citas-container');
-                citasContainer.innerHTML = '';
-
-                if (citasFiltradas.length > 0) {
-                    citasFiltradas.forEach(cita => {
-                        const citaElement = document.createElement('div');
-                        citaElement.classList.add('cita');
-                        citaElement.innerHTML = `
-            <strong>Nombre:</strong> ${cita.nombre} <br>
-            <strong>Fecha:</strong> ${cita.fecha} <br>
-            <strong>Hora:</strong> ${cita.hora} <br>
-            <strong>Servicios:</strong> ${cita.servicios} <br>
-            <hr>
-          `;
-                        citasContainer.appendChild(citaElement);
-                    });
-                } else {
-                    citasContainer.innerHTML = '<p>No hay citas para la fecha seleccionada.</p>';
-                }
-                */
-            }
-
-            // Llamada inicial para mostrar todas las citas
-            filtrarCitas();
-        })
-        .catch(error => console.error('Error al obtener las citas:', error));
+        .then(data => generateTable(data))
+        .catch(err => console.log(err));
 });
+
+function generateTable(data) {
+    
+    let table = document.getElementById('table');
+
+    // Clear table
+    while (table.getElementsByTagName('tbody').length > 0) {
+        table.removeChild(table.lastChild);
+    }
+
+    // If no appointments found
+    if (data.length === 0) {
+        let body = document.createElement('tbody');
+        let row = document.createElement('tr');
+        let cell = document.createElement('td');
+        cell.innerText = 'No users found';
+        cell.colSpan = 8;
+        row.appendChild(cell);
+        body.appendChild(row);
+        table.appendChild(body);
+        return;
+    }
+    let body = document.createElement('tbody');
+    data.forEach(cita => {
+        let row = document.createElement('tr');
+        let name = document.createElement('td');
+        name.innerText = cita.client_name + ' ' + cita.client_last_name;
+        let phone = document.createElement('td');
+        phone.innerText = cita.client_phone;
+        let employee = document.createElement('td');
+        employee.innerText = cita.employee_name + ' ' + cita.employee_last_name;
+        let services = document.createElement('td');
+        services.innerText = cita.services;
+        let date = new Date();
+        date.setTime(cita.date)
+        let day = document.createElement('td');
+        day.innerText = date.getDay() + '/' + date.getMonth() + '/' + date.getFullYear();
+        let hour = document.createElement('td');
+        hour.innerText = date.getHours() + ':' + date.getMinutes();
+
+
+        // Add cells to row
+        row.appendChild(name);
+        row.appendChild(phone);
+        row.appendChild(employee);
+        row.appendChild(services);
+        row.appendChild(day);
+        row.appendChild(hour);
+    });
+    document.getElementById('table').appendChild(body);
+}

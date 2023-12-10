@@ -20,7 +20,7 @@ window.addEventListener("load", () => {
                     // Crea una opción para cada empleado
                     const option = document.createElement("option");
                     option.value = empleado.id; // Establece el valor de la opción (puedes cambiar esto según tu necesidad)
-                    option.text = empleado.name; // Establece el texto de la opción
+                    option.text = empleado.name + " " + empleado.last_name; // Establece el texto de la opción
                     idesclavo=empleado.id;
                     // Agrega la opción al select
                     userSelect.appendChild(option);
@@ -86,6 +86,7 @@ window.addEventListener("load", () => {
                         .then(response => response.json())
                         .then(data => {
                             console.log('Respuesta de la API:', data);
+                            alert("Reserva realizada con exito");
                         })
                         .catch(error => console.error('Error al enviar datos:', error));
             

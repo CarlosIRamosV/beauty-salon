@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,6 +10,7 @@
   <script type="module" src="/src/public/js/cerrarSesion.js"></script>
   <title>Listado de citas</title>
 </head>
+
 <body>
   <!--
   <div class="header">
@@ -18,33 +20,49 @@
     <a href="#">Avisos</a>
   </div>
 -->
-<div class="menuNav">
-  <img src="../../public/images/logo.png" alt="" class="logo">
-  <ul class="menu-list">
+  <div class="menuNav">
+    <img src="../../public/images/logo.png" alt="" class="logo">
+    <ul class="menu-list">
       <li><button class="menu-button"><a href="menuInicio.html">Inicio</a></button></li>
       <li><button class="menu-button"><a href="servicios.html">Servicios</a></button></li>
       <li><button class="menu-button"><a href="productos.html">Productos</a></button></li>
       <li><button class="menu-button"><a href="contacto.html">Contacto</a></button></li>
-  </ul>
-  <div class="menu-icon">
+    </ul>
+    <div class="menu-icon">
       <div class="line"></div>
       <div class="line"></div>
       <div class="line"></div>
       <!-- Barra lateral desplegable -->
       <div class="sidebar">
-          <a href="citas.html">Citas</a>
-          <a onclick="cerrarSesion()" id="cerrarSesion">Cerrar Sesión</a>
+        <a href="citas.html">Citas</a>
+        <a onclick="cerrarSesion()" id="cerrarSesion">Cerrar Sesión</a>
       </div>
+    </div>
   </div>
-</div>
-  
-  <div class="content">
-    <label for="citas">Selecciona la fecha de la cita:</label>
-    <input type="date" name="citas" id="citas">
-  </div>
-<section id="listaCitas"></section>
 
-<div id="citas-container"></div>
+  <div class="content">
+    <form id="search" method="post" target="_blank">
+      <label for="antes">Selecciona citas con fecha antes de:</label>
+      <input type="date" name="antes" id="antes">
+      <label for="despues">Selecciona citas con fecha despues de:</label>
+      <input type="date" name="despues" id="despues">
+      <button>Buscar</button>
+    </form>
+  </div>
+
+  <table id="table">
+    <thead>
+      <tr>
+        <th>Nombre</th>
+        <th>Telefono</th>
+        <th>Empleado</th>
+        <th>Servicios</th>
+        <th>Fecha de cita</th>
+        <th>Hora</th>
+      </tr>
+    </thead>
+  </table>
 
 </body>
+
 </html>
