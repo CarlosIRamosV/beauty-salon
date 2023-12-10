@@ -40,13 +40,8 @@ pub struct Search {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct Public {
     pub id: String,
-    pub client_id: String,
-    pub client_name: String,
-    pub client_last_name: String,
-    pub client_phone: String,
+    pub client: crate::user::models::Public,
     pub services: String,
-    pub employee_id: String,
-    pub employee_name: String,
-    pub employee_last_name: String,
+    pub employee: crate::user::models::Public,
     pub date: String,
 }

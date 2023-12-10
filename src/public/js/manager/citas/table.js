@@ -91,18 +91,18 @@ function generateTable(data) {
     }
     let body = document.createElement('tbody');
     data.forEach(cita => {
+        console.log(cita);
         let row = document.createElement('tr');
         let name = document.createElement('td');
-        name.innerText = cita.client_name + ' ' + cita.client_last_name;
+        name.innerText = cita.client.name + ' ' + cita.client.last_name;
         let phone = document.createElement('td');
-        phone.innerText = cita.client_phone;
+        phone.innerText = cita.client.phone;
         let employee = document.createElement('td');
-        employee.innerText = cita.employee_name + ' ' + cita.employee_last_name;
+        employee.innerText = cita.employee.name + ' ' + cita.employee.last_name;
         let services = document.createElement('td');
         services.innerText = cita.services;
         let date = new Date();
         date.setTime(cita.date)
-        console.log("Date of appointment: " + date);
         let day = document.createElement('td');
         day.innerText = (date.getDate()+1) + '/' + (date.getMonth() + 1)  + '/' + date.getFullYear();
         let hour = document.createElement('td');

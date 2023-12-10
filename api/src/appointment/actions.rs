@@ -174,14 +174,9 @@ pub fn generate_public_appointment(
     .unwrap();
     Ok(Public {
         id: appointment.id.to_owned(),
-        client_id: appointment.client_id.to_owned(),
-        client_name: client.clone().unwrap().name.to_owned(),
-        client_last_name: client.clone().unwrap().last_name.to_owned(),
-        client_phone: client.clone().unwrap().phone.to_owned(),
+        client: client.clone().unwrap().to_owned(),
         services: appointment.services.to_owned(),
-        employee_id: appointment.employee_id.to_owned(),
-        employee_name: employee.clone().unwrap().name.to_owned(),
-        employee_last_name: employee.clone().unwrap().last_name.to_owned(),
+        employee: employee.clone().unwrap().to_owned(),
         date: appointment.date.to_owned(),
     })
 }
