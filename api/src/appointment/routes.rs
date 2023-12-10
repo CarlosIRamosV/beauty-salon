@@ -26,7 +26,7 @@ pub async fn get_all_appointments(
         if is_user {
             let user_id = auth::actions::get_user_id(&mut conn, auth.as_ref().token())?;
 
-            return actions::find_all_user_appointments(&mut conn, user_id);
+            return actions::find_all_user_appointments(&mut conn, Uuid::parse_str(&user_id).unwrap());
         }
         return Err("Unauthorized".into());
     })
@@ -75,7 +75,7 @@ pub async fn get_appointments(
 #[get("/appointments/{id}")]
 pub async fn get_appointment_by_id(
     pool: web::Data<Pool>,
-    id: web::Path<String>,
+    id: web::Path<Uuid>,
     req: HttpRequest,
 ) -> actix_web::Result<impl Responder> {
     let auth = Authorization::<Bearer>::parse(&req)?;
@@ -85,13 +85,13 @@ pub async fn get_appointment_by_id(
             auth::actions::is_admin_or_employee(&mut conn, auth.as_ref().token())?;
 
         if is_admin_or_employee {
-            return actions::find_appointment_by_uid(&mut conn, id.into_inner().parse().unwrap());
+            return actions::find_appointment_by_uid(&mut conn, id.clone());
         }
 
         let is_user = auth::actions::is_user(&mut conn, auth.as_ref().token())?;
 
         if is_user {
-            return actions::find_appointment_by_uid(&mut conn, id.into_inner().parse().unwrap());
+            return actions::find_appointment_by_uid(&mut conn, id.clone());
         }
         return Err("Unauthorized".into());
     })

@@ -37,19 +37,19 @@ function generateTable(data) {
     data.forEach(cita => {
         let row = document.createElement('tr');
         let name = document.createElement('td');
-        name.innerText = cita.client_id;
+        name.innerText = cita.client_name + ' ' + cita.client_last_name;
         let phone = document.createElement('td');
-        phone.innerText = cita.phone;
+        phone.innerText = cita.client_phone;
         let employee = document.createElement('td');
-        employee.innerText = cita.employee;
+        employee.innerText = cita.employee_name + ' ' + cita.employee_last_name;
         let services = document.createElement('td');
         services.innerText = cita.services;
         let date = new Date();
         date.setTime(cita.date)
         let day = document.createElement('td');
-        day.innerText = date.getDay();
+        day.innerText = date.getDay() + '/' + date.getMonth() + '/' + date.getFullYear();
         let hour = document.createElement('td');
-        hour.innerText = date.getHours();
+        hour.innerText = date.getHours() + ':' + date.getMinutes();
 
         // Add buttons
         let edit = document.createElement('td');

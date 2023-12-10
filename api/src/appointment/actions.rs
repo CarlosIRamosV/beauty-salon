@@ -1,4 +1,4 @@
-use crate::appointment::models::{Appointment, New, Update};
+use crate::appointment::models::{Appointment, New, Public, Update};
 use diesel::{ExpressionMethods, OptionalExtension, QueryDsl, RunQueryDsl, SqliteConnection};
 use uuid::Uuid;
 
@@ -18,25 +18,67 @@ pub fn find_appointment_by_uid(
 
 pub fn find_all_appointments(
     conn: &mut SqliteConnection,
-) -> Result<Vec<Appointment>, Box<dyn std::error::Error + Send + Sync>> {
+) -> Result<Vec<Public>, Box<dyn std::error::Error + Send + Sync>> {
     use crate::schema::appointments::dsl::*;
 
     let appointment = appointments.load::<Appointment>(conn)?;
 
-    Ok(appointment)
+    let list_public_appointments: Vec<Public> = appointment
+        .iter()
+        .map(|appointment| {
+            let client = crate::user::actions::find_user_by_uid(conn, Uuid::parse_str(&appointment.client_id).unwrap()).unwrap();
+            let employee = crate::user::actions::find_user_by_uid(conn, Uuid::parse_str(&appointment.employee_id).unwrap()).unwrap();
+            Public {
+                id: appointment.id.to_owned(),
+                client_id: appointment.client_id.to_owned(),
+                client_name: client.clone().unwrap().name.to_owned(),
+                client_last_name: client.clone().unwrap().last_name.to_owned(),
+                client_phone: client.clone().unwrap().phone.to_owned(),
+                services: appointment.services.to_owned(),
+                employee_id: appointment.employee_id.to_owned(),
+                employee_name: employee.clone().unwrap().name.to_owned(),
+                employee_last_name: employee.clone().unwrap().last_name.to_owned(),
+                date: appointment.date.to_owned(),
+            }
+        })
+        .collect();
+
+
+
+    Ok(list_public_appointments)
 }
 
 pub fn find_all_user_appointments(
     conn: &mut SqliteConnection,
-    uid: String,
-) -> Result<Vec<Appointment>, Box<dyn std::error::Error + Send + Sync>> {
+    uid: Uuid,
+) -> Result<Vec<Public>, Box<dyn std::error::Error + Send + Sync>> {
     use crate::schema::appointments::dsl::*;
 
     let appointment = appointments
-        .filter(client_id.eq(uid))
+        .filter(client_id.eq(uid.to_string()))
         .load::<Appointment>(conn)?;
 
-    Ok(appointment)
+    let list_public_appointments: Vec<Public> = appointment
+        .iter()
+        .map(|appointment| {
+            let client = crate::user::actions::find_user_by_uid(conn, Uuid::parse_str(&appointment.client_id).unwrap()).unwrap();
+            let employee = crate::user::actions::find_user_by_uid(conn, Uuid::parse_str(&appointment.employee_id).unwrap()).unwrap();
+            Public {
+                id: appointment.id.to_owned(),
+                client_id: appointment.client_id.to_owned(),
+                client_name: client.clone().unwrap().name.to_owned(),
+                client_last_name: client.clone().unwrap().last_name.to_owned(),
+                client_phone: client.clone().unwrap().phone.to_owned(),
+                services: appointment.services.to_owned(),
+                employee_id: appointment.employee_id.to_owned(),
+                employee_name: employee.clone().unwrap().name.to_owned(),
+                employee_last_name: employee.clone().unwrap().last_name.to_owned(),
+                date: appointment.date.to_owned(),
+            }
+        })
+        .collect();
+
+    Ok(list_public_appointments)
 }
 
 pub fn delete_appointment_by_uid(
