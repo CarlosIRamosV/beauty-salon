@@ -16,17 +16,20 @@ window.addEventListener('load', () => {
         // After date
         if (after) {
             let date = new Date(after);
+            // Add 1 day to the date
+            date.setDate(date.getDate() + 1);
             search.after_date = date.getTime().toString();
         }
 
         // Before date
         if (before) {
             let date = new Date(before);
+            // Add 1 day to the date
+            date.setDate(date.getDate() + 1);
             search.before_date = date.getTime().toString();
         }
 
         console.log(search);
-        console.log(JSON.stringify(search));
 
         // If no search parameters, get all products
         if (Object.keys(search).length === 0) {
@@ -103,8 +106,9 @@ function generateTable(data) {
         services.innerText = cita.services;
         let date = new Date();
         date.setTime(cita.date)
+        console.log("Date of appointment: " + date);
         let day = document.createElement('td');
-        day.innerText = date.getDay() + '/' + date.getMonth() + '/' + date.getFullYear();
+        day.innerText = date.getDate() + '/' + (date.getMonth() + 1)  + '/' + date.getFullYear();
         let hour = document.createElement('td');
         hour.innerText = date.getHours() + ':' + date.getMinutes();
 
@@ -117,8 +121,6 @@ function generateTable(data) {
         edit.addEventListener('click', ev => {
             window.location.href = 'edit.html?id=' + cita.id;
         });
-
-
 
         let del = document.createElement('td');
         del.className = 'delete';
@@ -137,7 +139,6 @@ function generateTable(data) {
                 }
             }).catch(err => console.log(err));
         });
-
 
         // Add cells to row
         row.appendChild(name);

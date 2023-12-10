@@ -63,12 +63,12 @@ pub fn find_appointments(
     };
 
     let appointment = match search.after_date {
-        Some(after_date) => appointment.filter(appointments::dsl::date.gt(after_date)),
+        Some(after_date) => appointment.filter(appointments::dsl::date.le(after_date)),
         None => appointment,
     };
 
     let appointment = match search.before_date {
-        Some(before_date) => appointment.filter(appointments::dsl::date.lt(before_date)),
+        Some(before_date) => appointment.filter(appointments::dsl::date.ge(before_date)),
         None => appointment,
     };
 
