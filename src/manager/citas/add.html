@@ -37,26 +37,23 @@
 
     <section>
         <h2>Crear Citas</h2>
-        <div class="principal">
+       <div class="principal">
 
             <form id="crud-form" method="post" target="_blank">
-                <label for="cliente">Cliente:</label>
-                <div>
-                    <select name="cliente" id="cliente">
 
-                    </select>
-                </div>
+                <label for="client">Cliente</label>
+                <input class="raro" id="client" list="clients" type="text" required>
+                <datalist id="clients">
+                </datalist>
 
-                <label for="empleado">Empleado:</label>
-                <div>
-                    <select name="empleado" id="empleado">
-
-                    </select>
-                </div>
+                <label for="employee">Empleado</label>
+                <input class="raro" id="employee" list="employees" type="text" required>
+                <datalist id="employees">
+                </datalist>
 
                 <label for="servicios">Servicios:</label>
                 <div>
-                    <select id="servicios" name="servicios" multiple>
+                    <select name="servicios" id="servicios" multiple>
                         <option value="colorimetria">Colorimetria</option>
                         <option value="peinados">Peinados</option>
                         <option value="corte">Corte de cabello</option>
@@ -64,10 +61,10 @@
                     </select>
                 </div>
 
-                <label for="fecha">Fecha:</label>
-                <input type="datetime-local" id="fecha" name="fecha" class="fecha" required>
+                <label for="fechaCita">Fecha de la cita:</label>
+                <input id="fechaCita" required type="datetime-local">
 
-                <button type="submit" class="guardar">Reservar Cita</button>
+                <button type="submit" class="guardar">Guardar</button>
             </form>
 
         </div>

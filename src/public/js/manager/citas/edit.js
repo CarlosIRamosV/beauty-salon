@@ -1,18 +1,19 @@
-import { getUserRoute, getProductRoute, getToken, getAppointmentRoute, getUserSearchRoute } from "../../api.config.js";
+import { getUserRoute, getToken, getAppointmentRoute, getUserSearchRoute } from "../../api.config.js";
 
 window.addEventListener('load', () => {
     let temp
     let urlParams = new URLSearchParams(window.location.search);
-    let product = urlParams.get('id');
-    if (product == null) {
+    let appointment = urlParams.get('id');
+    if (appointment == null) {
         window.location.href = 'index.html';
     }
     let client = document.getElementById('client');
     let employee = document.getElementById('employee')
     let services = document.getElementById('servicios');
-    let date = document.getElementById('fechaCita');
+    let fecha = document.getElementById('fechaCita');
 
-    document.getElementById('update').addEventListener('click', () => {
+    document.getElementById('crud-form').addEventListener('submit', ev => {
+        ev.preventDefault();
         let updates = {};
 
         if (client.value !== temp.client_id) {
@@ -27,16 +28,33 @@ window.addEventListener('load', () => {
             updates.services = services.value
         }
 
+        let fechaCita = new Date(fecha.value);
+        if (fechaCita.getTime() !== temp.date) {
+            updates.date = fechaCita.getTime().toString();
+        }
+
         // Check if there is any change
         if (Object.keys(updates).length === 0) {
             alert('No hay cambios')
             return;
         }
 
-        update(product, updates);
+        fetch(getAppointmentRoute(appointment), {
+        method: 'PUT',
+        body: JSON.stringify(updates),
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': 'Bearer ' + getToken()
+        },
+    })
+        .then(response => response.json())
+        .then(() => {
+            window.location.href = 'index.html';
+        })
+        .catch(err => console.log(err));
     });
 
-    fetch(getAppointmentRoute(product), {
+    fetch(getAppointmentRoute(appointment), {
         method: 'GET',
         headers: {
             'Content-Type': 'application/json',
@@ -48,7 +66,10 @@ window.addEventListener('load', () => {
             client.value = data.client_id;
             employee.value = data.employee_id;
             services.value = data.services;
-            date.value = data.date;
+            let date = new Date();
+            date.setTime(data.date);
+            date = date.toISOString().slice(0, 16);
+            fecha.value = date;
             temp = data;
         })
         .catch(err => console.log(err));
@@ -92,19 +113,3 @@ window.addEventListener('load', () => {
             .catch(err => console.log(err));
         
 });
-
-function update(product, data) {
-    fetch(getAppointmentRoute(product), {
-        method: 'PUT',
-        body: JSON.stringify(data),
-        headers: {
-            'Content-Type': 'application/json',
-            'Authorization': 'Bearer ' + getToken()
-        },
-    })
-        .then(response => response.json())
-        .then(() => {
-            window.location.href = 'index.html';
-        })
-        .catch(err => console.log(err));
-}
