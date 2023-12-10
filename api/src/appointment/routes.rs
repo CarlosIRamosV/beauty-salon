@@ -26,7 +26,10 @@ pub async fn get_all_appointments(
         if is_user {
             let user_id = auth::actions::get_user_id(&mut conn, auth.as_ref().token())?;
 
-            return actions::find_all_user_appointments(&mut conn, Uuid::parse_str(&user_id).unwrap());
+            return actions::find_all_user_appointments(
+                &mut conn,
+                Uuid::parse_str(&user_id).unwrap(),
+            );
         }
         return Err("Unauthorized".into());
     })

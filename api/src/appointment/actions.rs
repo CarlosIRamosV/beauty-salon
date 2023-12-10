@@ -23,27 +23,7 @@ pub fn find_all_appointments(
 
     let appointment = appointments.load::<Appointment>(conn)?;
 
-    let list_public_appointments: Vec<Public> = appointment
-        .iter()
-        .map(|appointment| {
-            let client = crate::user::actions::find_user_by_uid(conn, Uuid::parse_str(&appointment.client_id).unwrap()).unwrap();
-            let employee = crate::user::actions::find_user_by_uid(conn, Uuid::parse_str(&appointment.employee_id).unwrap()).unwrap();
-            Public {
-                id: appointment.id.to_owned(),
-                client_id: appointment.client_id.to_owned(),
-                client_name: client.clone().unwrap().name.to_owned(),
-                client_last_name: client.clone().unwrap().last_name.to_owned(),
-                client_phone: client.clone().unwrap().phone.to_owned(),
-                services: appointment.services.to_owned(),
-                employee_id: appointment.employee_id.to_owned(),
-                employee_name: employee.clone().unwrap().name.to_owned(),
-                employee_last_name: employee.clone().unwrap().last_name.to_owned(),
-                date: appointment.date.to_owned(),
-            }
-        })
-        .collect();
-
-
+    let list_public_appointments = generate_public_appointments(conn, appointment).unwrap();
 
     Ok(list_public_appointments)
 }
@@ -58,25 +38,7 @@ pub fn find_all_user_appointments(
         .filter(client_id.eq(uid.to_string()))
         .load::<Appointment>(conn)?;
 
-    let list_public_appointments: Vec<Public> = appointment
-        .iter()
-        .map(|appointment| {
-            let client = crate::user::actions::find_user_by_uid(conn, Uuid::parse_str(&appointment.client_id).unwrap()).unwrap();
-            let employee = crate::user::actions::find_user_by_uid(conn, Uuid::parse_str(&appointment.employee_id).unwrap()).unwrap();
-            Public {
-                id: appointment.id.to_owned(),
-                client_id: appointment.client_id.to_owned(),
-                client_name: client.clone().unwrap().name.to_owned(),
-                client_last_name: client.clone().unwrap().last_name.to_owned(),
-                client_phone: client.clone().unwrap().phone.to_owned(),
-                services: appointment.services.to_owned(),
-                employee_id: appointment.employee_id.to_owned(),
-                employee_name: employee.clone().unwrap().name.to_owned(),
-                employee_last_name: employee.clone().unwrap().last_name.to_owned(),
-                date: appointment.date.to_owned(),
-            }
-        })
-        .collect();
+    let list_public_appointments = generate_public_appointments(conn, appointment).unwrap();
 
     Ok(list_public_appointments)
 }
@@ -158,4 +120,44 @@ pub fn update_appointment_by_uid(
         .execute(conn)?;
 
     Ok(appointment)
+}
+
+pub fn generate_public_appointment(
+    conn: &mut SqliteConnection,
+    appointment: Appointment,
+) -> Result<Public, Box<dyn std::error::Error + Send + Sync>> {
+    let client = crate::user::actions::find_user_by_uid(
+        conn,
+        Uuid::parse_str(&appointment.client_id).unwrap(),
+    )
+    .unwrap();
+    let employee = crate::user::actions::find_user_by_uid(
+        conn,
+        Uuid::parse_str(&appointment.employee_id).unwrap(),
+    )
+    .unwrap();
+    Ok(Public {
+        id: appointment.id.to_owned(),
+        client_id: appointment.client_id.to_owned(),
+        client_name: client.clone().unwrap().name.to_owned(),
+        client_last_name: client.clone().unwrap().last_name.to_owned(),
+        client_phone: client.clone().unwrap().phone.to_owned(),
+        services: appointment.services.to_owned(),
+        employee_id: appointment.employee_id.to_owned(),
+        employee_name: employee.clone().unwrap().name.to_owned(),
+        employee_last_name: employee.clone().unwrap().last_name.to_owned(),
+        date: appointment.date.to_owned(),
+    })
+}
+
+pub fn generate_public_appointments(
+    conn: &mut SqliteConnection,
+    appointments: Vec<Appointment>,
+) -> Result<Vec<Public>, Box<dyn std::error::Error + Send + Sync>> {
+    let list_public_appointments: Vec<Public> = appointments
+        .iter()
+        .map(|appointment| generate_public_appointment(conn, appointment.to_owned()).unwrap())
+        .collect();
+
+    Ok(list_public_appointments)
 }
