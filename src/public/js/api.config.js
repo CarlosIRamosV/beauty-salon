@@ -71,6 +71,11 @@ function getProductSearchRoute() {
     return getRoute('/products/search');
 }
 
+function getFavoriteRoute(productId) {
+    if (productId === undefined) return getRoute('/favorites');
+    return getRoute('/favorites/' + productId);
+}
+
 function getImageRoute(imageId) {
     if (imageId === undefined) return getRoute('/images');
     return getRoute('/images/' + imageId);
@@ -102,6 +107,7 @@ export {
     getSessionRoute,
     getProductRoute,
     getProductSearchRoute,
+    getFavoriteRoute,
     getImageRoute,
     getUserRoute,
     getUserSearchRoute,

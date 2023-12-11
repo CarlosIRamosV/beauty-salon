@@ -11,6 +11,14 @@ diesel::table! {
 }
 
 diesel::table! {
+    favorites (id) {
+        id -> Text,
+        user_id -> Text,
+        product_id -> Text,
+    }
+}
+
+diesel::table! {
     images (id) {
         id -> Text,
         format -> Text,
@@ -46,7 +54,15 @@ diesel::table! {
     }
 }
 
+diesel::joinable!(favorites -> products (product_id));
+diesel::joinable!(favorites -> users (user_id));
 diesel::joinable!(products -> images (image_id));
 diesel::joinable!(users -> images (image_id));
 
-diesel::allow_tables_to_appear_in_same_query!(appointments, images, products, users,);
+diesel::allow_tables_to_appear_in_same_query!(
+    appointments,
+    favorites,
+    images,
+    products,
+    users,
+);

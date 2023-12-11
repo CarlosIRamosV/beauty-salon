@@ -18,6 +18,32 @@ pub async fn get_all_products(pool: web::Data<Pool>) -> actix_web::Result<impl R
     Ok(HttpResponse::Ok().json(products))
 }
 
+#[get("/products/favorites")]
+pub async fn get_all_products_with_favorite(
+    pool: web::Data<Pool>,
+    req: HttpRequest,
+) -> actix_web::Result<impl Responder> {
+    let auth = Authorization::<Bearer>::parse(&req)?;
+    let products = web::block(move || {
+        let mut conn = pool.get()?;
+
+        // Check if user is admin or employee or user
+        let is_admin_or_employee_or_user =
+            auth::actions::is_admin_or_employee_or_user(&mut conn, auth.as_ref().token())?;
+
+        if !is_admin_or_employee_or_user {
+            return Err("Unauthorized".into());
+        }
+
+        let user_id = auth::actions::get_user_id(&mut conn, auth.as_ref().token())?;
+
+        actions::find_all_products_with_favorite(&mut conn, user_id)
+    })
+    .await?
+    .map_err(error::ErrorInternalServerError)?;
+    Ok(HttpResponse::Ok().json(products))
+}
+
 #[post("/products/search")]
 pub async fn get_products(
     pool: web::Data<Pool>,

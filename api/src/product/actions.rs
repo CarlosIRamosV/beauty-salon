@@ -1,7 +1,7 @@
 use diesel::prelude::*;
 use uuid::Uuid;
 
-use crate::product::models::{New, Product, Search, Update};
+use crate::product::models::{New, Product, ProductWithFavorite, Search, Update};
 
 pub fn find_all_products(
     conn: &mut SqliteConnection,
@@ -9,6 +9,24 @@ pub fn find_all_products(
     use crate::schema::products::dsl::*;
 
     let products_list = products.load::<Product>(conn)?;
+
+    Ok(products_list)
+}
+
+pub fn find_all_products_with_favorite(
+    conn: &mut SqliteConnection,
+    user_uid: String,
+) -> Result<Vec<ProductWithFavorite>, Box<dyn std::error::Error + Send + Sync>> {
+    use crate::schema::products::dsl::*;
+
+    let products_list = products.load::<Product>(conn)?;
+
+    let products_list = products_list
+        .into_iter()
+        .map(|product| product.to_favorite(
+            crate::favorites::actions::is_favorite(conn, user_uid.clone(), product.id.clone()).unwrap_or(false)
+        ))
+        .collect::<Vec<ProductWithFavorite>>();
 
     Ok(products_list)
 }

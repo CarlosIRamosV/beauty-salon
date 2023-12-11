@@ -14,6 +14,30 @@ pub struct Product {
     pub image_id: Option<String>,
 }
 
+impl Product {
+    pub fn to_favorite(&self, favorite: bool) -> ProductWithFavorite {
+        ProductWithFavorite {
+            id: self.id.to_owned(),
+            name: self.name.to_owned(),
+            description: self.description.to_owned(),
+            price: self.price,
+            stock: self.stock,
+            image_id: self.image_id.to_owned(),
+            favorite,
+        }
+    }
+}
+#[derive(Debug, Clone, Serialize, Deserialize)]
+pub struct ProductWithFavorite {
+    pub id: String,
+    pub name: String,
+    pub description: String,
+    pub price: f64,
+    pub stock: i32,
+    pub image_id: Option<String>,
+    pub favorite: bool,
+}
+
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct New {
     pub name: String,

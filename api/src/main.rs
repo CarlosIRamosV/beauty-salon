@@ -15,6 +15,7 @@ mod product;
 mod resources;
 pub mod schema;
 pub mod user;
+pub mod favorites;
 
 pub type Pool = r2d2::Pool<ConnectionManager<SqliteConnection>>;
 
@@ -58,6 +59,7 @@ async fn main() -> std::io::Result<()> {
             .configure(resources::init_routes)
             .configure(user::init_routes)
             .configure(appointment::init_routes)
+            .configure(favorites::init_routes)
     })
     .bind((address, port))?
     .run()
