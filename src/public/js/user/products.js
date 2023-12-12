@@ -1,11 +1,14 @@
 import {getFavoriteRoute, getProductRoute, getToken} from "../api.config.js";
 
-let token = null;
+let auth;
+let fav;
 
 try {
-    token = getToken();
+    auth = 'Bearer ' + getToken();
+    fav = 'favorites';
 } catch (e) {
-    token = null;
+    auth = null;
+    fav = undefined;
 }
 
 function addFavorito(id) {
@@ -44,18 +47,16 @@ function addFavorito(id) {
 }
 
 window.addEventListener("load", () => {
-    fetch(getProductRoute(), {
+    fetch(getProductRoute(fav), {
         method: "GET",
         headers: {
             'Content-Type': 'application/json',
-            'Authorization': token,
-
+            'Authorization': auth,
         }
     })
         .then(response => response.json())
         .then(data => {
             data.forEach(element => {
-                console.log(element);
                 let div = document.createElement("div");
                 div.className = "producto";
                 div.id = element.id;
@@ -69,7 +70,7 @@ window.addEventListener("load", () => {
                 img.onclick = function () {
                     addFavorito(element.id)
                 }
-                if (token == null) {
+                if (auth == null) {
                     img.style.display = "none";
                 } else {
                     img.style.display = "block";
