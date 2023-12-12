@@ -25,7 +25,7 @@ window.addEventListener('load', () => {
 });
 
 
-// Inicializa un array vacío para almacenar los productos favoritos
+// Inicializa un array vacío para almacenar los products favoritos
 var productosFavoritos = [];
 
 //convertir el array de employee a json
@@ -39,23 +39,23 @@ function cambiarImagen(image, nombreProducto) {
     // Si la imagen actual es la imagen default, cambia a la otra imagen
     image.src = "../Recursos/fav.png";
     
-    // Elimina el nombre del producto del array de productos favoritos
+    // Elimina el nombre del producto del array de products favoritos
     var index = productosFavoritos.indexOf(nombreProducto);
     if (index !== -1) {
       productosFavoritos.splice(index, 1);
     }
     
-    // Muestra el array de productos favoritos en la consola
+    // Muestra el array de products favoritos en la consola
     console.log(productosFavoritos);
   } else {
     // Si la imagen actual no es la imagen default, vuelve a la imagen default
     image.src = "../Recursos/favrell.png";
-     // Agrega el nombre del producto al array de productos favoritos
+     // Agrega el nombre del producto al array de products favoritos
      productosFavoritos.push(nombreProducto);
 
    
     
-    // Muestra el array de productos favoritos en la consola
+    // Muestra el array de products favoritos en la consola
     console.log(productosFavoritos);
   }
 }

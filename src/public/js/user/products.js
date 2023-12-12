@@ -6,7 +6,7 @@ function addFavorito(id) {
             method: "DELETE",
             headers: {
                 'Content-Type': 'application/json',
-                'Authorization': 'Bearer ' + getToken(),
+                //'Authorization': 'Bearer ' + getToken(),
             }
         })
             .then(response => response.json())
@@ -36,23 +36,17 @@ function addFavorito(id) {
 }
 
 window.addEventListener("load", () => {
-
-    let favorites;
-
-    if (getToken() !== null) {
-        favorites = "favorites";
-    }
-
-    fetch(getProductRoute(favorites), {
+    fetch(getProductRoute(), {
         method: "GET",
         headers: {
             'Content-Type': 'application/json',
-            'Authorization': 'Bearer ' + getToken(),
+            //'Authorization': 'Bearer ' + getToken(),
         }
     })
         .then(response => response.json())
         .then(data => {
             data.forEach(element => {
+                console.log(element);
                 let div = document.createElement("div");
                 div.className = "producto";
                 div.id = element.id;
@@ -82,7 +76,7 @@ window.addEventListener("load", () => {
                 descripcion.className = "descripcion";
                 descripcion.innerHTML = element.description;
                 div.appendChild(descripcion);
-                document.getElementById("productos").appendChild(div);
+                document.getElementById("products").appendChild(div);
             });
         });
 });

@@ -4,9 +4,9 @@
 <head>
     <meta charset="UTF-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
-    <title>Creando Citas</title>
-    <link href="../../public/css/manager/products/add.css" rel="stylesheet">
-    <script src="../../public/js/manager/appointments/add.js" type="module"></script>
+    <title>Editando Citas</title>
+    <link href="../../public/css/manager/products/edit.css" rel="stylesheet">
+    <script src="../../public/js/manager/appointments/edit.js" type="module"></script>
     <script src="../../public/js/menuDesplegable.js" type="module"></script>
 </head>
 
@@ -18,9 +18,9 @@
         <!-- Menú de navegación -->
         <ul class="menu-list">
             <li><a href="../index.html">Inicio</a></li>
-            <li><a href="../empleados/index.html">Empleados</a></li>
-            <li><a href="../citas/index.html">Citas</a></li>
-            <li><a href="../productos/index.html">Productos</a></li>
+            <li><a href="../users/index.html">Empleados</a></li>
+            <li><a href="/index.html">Citas</a></li>
+            <li><a href="../products/index.html">Productos</a></li>
         </ul>
 
         <div class="menu-icon">
@@ -35,18 +35,18 @@
     </nav>
 
     <section>
-        <h2>Crear Citas</h2>
-       <div class="principal">
+        <h2>Editar Citas</h2>
+        <div class="principal">
 
             <form id="crud-form" method="post" target="_blank">
 
                 <label for="client">Cliente</label>
-                <input class="raro" id="client" list="clients" type="text" required>
+                <input class="raro" id="client" list="clients" type="text">
                 <datalist id="clients">
                 </datalist>
 
                 <label for="employee">Empleado</label>
-                <input class="raro" id="employee" list="employees" type="text" required>
+                <input class="raro" id="employee" list="employees" type="text">
                 <datalist id="employees">
                 </datalist>
 

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>Creando Citas</title>
+    <link href="../../public/css/manager/products/add.css" rel="stylesheet">
+    <script src="../../public/js/manager/appointments/add.js" type="module"></script>
+    <script src="../../public/js/menuDesplegable.js" type="module"></script>
+</head>
+
+<body>
+    <nav>
+        <!-- Imagen del logo -->
+        <img alt="logo" src="../../public/images/logo.png">
+
+        <!-- Menú de navegación -->
+        <ul class="menu-list">
+            <li><a href="../index.html">Inicio</a></li>
+            <li><a href="../users/index.html">Empleados</a></li>
+            <li><a href="/index.html">Citas</a></li>
+            <li><a href="../products/index.html">Productos</a></li>
+        </ul>
+
+        <div class="menu-icon">
+            <div class="line"></div>
+            <div class="line"></div>
+            <div class="line"></div>
+            <!-- Barra lateral desplegable -->
+            <div class="sidebar">
+                <a href="../../sign/out.html">Cerrar Sesión</a>
+            </div>
+        </div>
+    </nav>
+
+    <section>
+        <h2>Crear Citas</h2>
+       <div class="principal">
+
+            <form id="crud-form" method="post" target="_blank">
+
+                <label for="client">Cliente</label>
+                <input class="raro" id="client" list="clients" type="text" required>
+                <datalist id="clients">
+                </datalist>
+
+                <label for="employee">Empleado</label>
+                <input class="raro" id="employee" list="employees" type="text" required>
+                <datalist id="employees">
+                </datalist>
+
+                <label for="servicios">Servicios:</label>
+                <div>
+                    <select name="servicios" id="servicios" multiple>
+                        <option value="colorimetria">Colorimetria</option>
+                        <option value="peinados">Peinados</option>
+                        <option value="corte">Corte de cabello</option>
+                        <option value="maquillaje">Maquillaje</option>
+                    </select>
+                </div>
+
+                <label for="fechaCita">Fecha de la cita:</label>
+                <input id="fechaCita" required type="datetime-local">
+
+                <button type="submit" class="guardar">Guardar</button>
+            </form>
+
+        </div>
+    </section>
+
+</body>
+
+</html>

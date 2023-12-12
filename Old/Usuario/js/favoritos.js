@@ -35,7 +35,7 @@ window.addEventListener("load", async () => {
         descripcion.className = "descripcion";
         descripcion.innerHTML = element.description;
         div.appendChild(descripcion);
-        document.getElementById("productos").appendChild(div);
+        document.getElementById("products").appendChild(div);
     });
 });
 

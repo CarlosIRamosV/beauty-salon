@@ -32,7 +32,7 @@ function loadEmployeeList() {
 })
     .then(response => response.json())
     .then(data => {
-        let select = document.getElementById('employees');
+        let select = document.getElementById('users');
         data.forEach(user => {
             let option = document.createElement('option');
             option.value = user.id;
