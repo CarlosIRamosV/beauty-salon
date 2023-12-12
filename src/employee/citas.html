@@ -7,7 +7,6 @@
   <link rel="stylesheet" href="../public/css/employee/citas.css">
   <script type="module" src="../public/js/employee/citas.js"></script>
   <script src="../public/js/menuDesplegable.js"></script>
-  <script type="module" src="../public/js/cerrarSesion.js"></script>
   <title>Listado de citas</title>
 </head>
 
@@ -35,7 +34,7 @@
       <!-- Barra lateral desplegable -->
       <div class="sidebar">
         <a href="citas.html">Citas</a>
-        <a onclick="cerrarSesion()" id="cerrarSesion">Cerrar Sesión</a>
+        <a href="../authentication/signOut.html">Cerrar Sesión</a>
       </div>
     </div>
   </div>
@@ -54,7 +53,7 @@
     <thead>
       <tr>
         <th>Nombre</th>
-        <th>Telefono</th>
+        <th>Teléfono</th>
         <th>Empleado</th>
         <th>Servicios</th>
         <th>Fecha de cita</th>

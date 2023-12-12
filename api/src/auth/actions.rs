@@ -2,7 +2,7 @@ use chrono::Utc;
 use diesel::prelude::*;
 use jsonwebtoken::{decode, encode, DecodingKey, EncodingKey, Header, Validation};
 
-use crate::auth::models::Claims;
+use crate::auth::models::{Claims, Token};
 use crate::user::models::User;
 
 pub fn login(
@@ -10,7 +10,7 @@ pub fn login(
     user_email: &str,
     pass: Option<&str>,
     remember_me: bool,
-) -> Result<String, Box<dyn std::error::Error + Send + Sync>> {
+) -> Result<Token, Box<dyn std::error::Error + Send + Sync>> {
     use crate::schema::users::dsl::*;
 
     if user_email.is_empty() {
@@ -35,7 +35,7 @@ pub fn login(
         (Utc::now().timestamp() + 60 * 60 * 24) as usize // 1 day
     };
 
-    let my_claims = Claims { sub: user.id, exp };
+    let my_claims = Claims { sub: user.clone().id, exp };
 
     let token = encode(
         &Header::default(),
@@ -43,7 +43,12 @@ pub fn login(
         &EncodingKey::from_secret("secret".as_ref()),
     )?;
 
-    Ok(token)
+    let user_token = Token {
+        access_token: token,
+        user,
+    };
+
+    Ok(user_token)
 }
 
 pub fn get_user_id(

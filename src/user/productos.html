@@ -7,7 +7,6 @@
   <title>Productos</title>
   <link rel="stylesheet" type="text/css" href="../public/css/user/productos.css">
   <script src="/js/menuDesplegable.js"></script>
-  <script type="module" src="../public/js/cerrarSesion.js"></script>
   <script type="module" src="../public/js/user/favoritos.js"></script>
 </head>
 
@@ -16,7 +15,7 @@
     <div class="menuNav">
       <img src="../public/images/logo.png" alt="" class="logo">
       <ul class="menu-list">
-          <li><button class="menu-button"><a href="menuInicio.html">Inicio</a></button></li>
+          <li><button class="menu-button"><a href="index.html">Inicio</a></button></li>
           <li><button class="menu-button"><a href="servicios.html">Servicios</a></button></li>
           <li><button class="menu-button"><a href="productos.html">Productos</a></button></li>
           <li><button class="menu-button"><a href="contacto.html">Contacto</a></button></li>
@@ -29,7 +28,7 @@
           <div class="sidebar">
               <a href="reserva.html">Reservar Cita</a>
               <a href="favoritos.html">Favoritos</a>
-              <a onclick="cerrarSesion()" id="cerrarSesion">Cerrar Sesión</a>
+              <a href="../authentication/signOut.html">Cerrar Sesión</a>
           </div>
       </div>
   </div>
