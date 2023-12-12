@@ -109,7 +109,7 @@ function generateTable(data) {
         edit.appendChild(imgEdit);
         edit.className = 'edit icon';
         edit.addEventListener('click', ev => {
-            window.location.href = 'edit.html?id=' + product.id;
+            window.location.href = 'edit.employee?id=' + product.id;
         });
 
 

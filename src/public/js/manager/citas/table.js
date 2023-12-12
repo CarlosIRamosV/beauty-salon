@@ -1,8 +1,9 @@
 import {
     getAppointmentRoute,
     getAppointmentSearchRoute,
-    getToken, getUserRoute, getUserSearchRoute,
+    getToken,
 } from "../../api.config.js";
+import {dateInput, loadClientList, loadEmployeeList} from "../../lib.js";
 
 window.addEventListener('load', () => {
     document.getElementById("search").addEventListener("submit", ev => {
@@ -19,20 +20,7 @@ window.addEventListener('load', () => {
             search.employee_id = employee;
         }
         // After date
-        if (after) {
-            let date = new Date(after);
-            // Add 1 day to get all appointments after the selected date
-            date.setDate(date.getDate() + 1);
-            search.after_date = date.getTime().toString();
-        }
-
-        // Before date
-        if (before) {
-            let date = new Date(before);
-            // Add 1 day to get all appointments before the selected date
-            date.setDate(date.getDate() + 1);
-            search.before_date = date.getTime().toString();
-        }
+        dateInput(after, before, search);
 
         // If no search parameters, get all products
         if (Object.keys(search).length === 0) {
@@ -74,43 +62,8 @@ window.addEventListener('load', () => {
         .then(data => generateTable(data))
         .catch(err => console.log(err));
 
-    fetch(getUserRoute(), {
-        method: 'GET',
-        headers: {
-            'Content-Type': 'application/json',
-            'Authorization': 'Bearer ' + getToken(),
-        }
-    })
-        .then(response => response.json())
-        .then(data => {
-            let select = document.getElementById('clients');
-            data.forEach(user => {
-                let option = document.createElement('option');
-                option.value = user.id;
-                option.innerText = user.name + ' ' + user.last_name;
-                select.appendChild(option);
-            });
-        })
-        .catch(err => console.log(err));
-
-    fetch(getUserSearchRoute(), {
-        method: 'GET',
-        headers: {
-            'Content-Type': 'application/json',
-            'Authorization': 'Bearer ' + getToken(),
-        }
-    })
-        .then(response => response.json())
-        .then(data => {
-            let select = document.getElementById('employees');
-            data.forEach(user => {
-                let option = document.createElement('option');
-                option.value = user.id;
-                option.innerText = user.name + ' ' + user.last_name;
-                select.appendChild(option);
-            });
-        })
-        .catch(err => console.log(err));
+    loadClientList();
+    loadEmployeeList();
 });
 
 function generateTable(data) {
@@ -157,8 +110,8 @@ function generateTable(data) {
         imgEdit.src = '../../public/svg/edit.svg';
         edit.appendChild(imgEdit);
         edit.className = 'edit';
-        edit.addEventListener('click', ev => {
-            window.location.href = 'edit.html?id=' + cita.id;
+        edit.addEventListener('click', () => {
+            window.location.href = 'edit.employee?id=' + cita.id;
         });
 
         let del = document.createElement('td');
@@ -166,7 +119,7 @@ function generateTable(data) {
         let imgDel = document.createElement('img');
         imgDel.src = '../../public/svg/trash.svg';
         del.appendChild(imgDel);
-        del.addEventListener('click', ev => {
+        del.addEventListener('click', () => {
             fetch(getAppointmentRoute(cita.id), {
                 method: 'DELETE',
                 headers: {

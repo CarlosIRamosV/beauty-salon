@@ -7,7 +7,7 @@ import {
 
 window.addEventListener('load', () => {
     if (!getToken()) {
-        window.location.href = '../login/login.html';
+        window.location.href = '../login/login.employee';
     }
     document.getElementById("search").addEventListener("submit", ev => {
         ev.preventDefault();
@@ -169,7 +169,7 @@ function generateTable(data) {
         edit.appendChild(imgEdit);
         edit.className = 'edit';
         edit.addEventListener('click', ev => {
-            window.location.href = 'edit.html?id=' + user.id;
+            window.location.href = 'edit.employee?id=' + user.id;
         });
         
 

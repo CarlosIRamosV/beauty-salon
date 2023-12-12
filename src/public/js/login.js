@@ -52,7 +52,7 @@ window.addEventListener("load", () => {
                             window.location.href = "../src/Usuario/html/menuInicio.html";
                         } else if (data.type === "Employee") {
                             // Empleado
-                            window.location.href = "../src/Empleado/html/menuInicio.html";
+                            window.location.href = "../../../Old/Empleado/html/menuInicio.html";
                         } else {
                             alert("cabeson")
                         }

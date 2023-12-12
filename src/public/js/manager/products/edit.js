@@ -5,7 +5,7 @@ window.addEventListener('load', () => {
     let urlParams = new URLSearchParams(window.location.search);
     let product = urlParams.get('id');
     if (product == null) {
-        window.location.href = 'index.html';
+        window.location.href = 'index.employee';
     }
     let image = document.getElementById('imagen');
     let preview = document.getElementById('preview')
@@ -99,7 +99,7 @@ function update(product, data) {
     })
         .then(response => response.json())
         .then(() => {
-            window.location.href = 'index.html';
+            window.location.href = 'index.employee';
         })
         .catch(err => console.log(err));
 }

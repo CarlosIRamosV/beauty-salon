@@ -5,7 +5,7 @@ window.addEventListener("load", () => {
         ev.preventDefault();
         if (getToken() === null) {
             alert("Please enter a token");
-            window.location.href = "login.html";
+            window.location.href = "login.employee";
         }
 
         let time = 70;

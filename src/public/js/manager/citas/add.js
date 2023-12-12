@@ -1,4 +1,5 @@
-import { getUserRoute, getToken, getAppointmentRoute, getUserSearchRoute } from "../../api.config.js";
+import { getToken, getAppointmentRoute } from "../../api.config.js";
+import {loadClientList, loadEmployeeList} from "../../lib.js";
 
 window.addEventListener('load', () => {
     let client = document.getElementById('client');
@@ -26,47 +27,11 @@ window.addEventListener('load', () => {
     })
         .then(response => response.json())
         .then(() => {
-            window.location.href = 'index.html';
+            window.location.href = 'index.employee';
         })
         .catch(err => console.log(err));
     });
 
-        fetch(getUserRoute(), {
-            method: 'GET',
-            headers: {
-                'Content-Type': 'application/json',
-                'Authorization': 'Bearer ' + getToken(),
-            }
-        })
-            .then(response => response.json())
-            .then(data => {
-                let select = document.getElementById('clients');
-                data.forEach(user => {
-                    let option = document.createElement('option');
-                    option.value = user.id;
-                    option.innerText = user.name + ' ' + user.last_name;
-                    select.appendChild(option);
-                });
-            })
-            .catch(err => console.log(err));
-
-        fetch(getUserSearchRoute(), {
-            method: 'GET',
-            headers: {
-                'Content-Type': 'application/json',
-                'Authorization': 'Bearer ' + getToken(),
-            }
-        })
-            .then(response => response.json())
-            .then(data => {
-                let select = document.getElementById('employees');
-                data.forEach(user => {
-                    let option = document.createElement('option');
-                    option.value = user.id;
-                    option.innerText = user.name + ' ' + user.last_name;
-                    select.appendChild(option);
-                });
-            })
-            .catch(err => console.log(err));
-
+    loadClientList();
+    loadEmployeeList();
 });

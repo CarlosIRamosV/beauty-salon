@@ -5,7 +5,7 @@ window.addEventListener('load', ev => {
     let urlParams = new URLSearchParams(window.location.search);
     let product = urlParams.get('id');
     if (product == null) {
-        window.location.href = 'index.html';
+        window.location.href = 'index.employee';
     }
 
     let image = document.getElementById('imagen');
@@ -115,7 +115,7 @@ window.addEventListener('load', ev => {
         })
         .catch(err => console.log(err));
     if (product == null) {
-        window.location.href = 'index.html';
+        window.location.href = 'index.employee';
     }
 
 });
@@ -133,7 +133,7 @@ function update(user, data) {
         .then(response => response.json())
         .then(() => {
             alert('Datos actualizados');
-            window.location.href = 'index.html';
+            window.location.href = 'index.employee';
         })
         .catch(err => console.log(err));
 }

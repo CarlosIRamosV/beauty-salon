@@ -28,7 +28,7 @@ function getToken() {
 
     if (token === null) {
         alert('You are not logged in!');
-        window.location.href = 'login.html';
+        window.location.href = 'login.employee';
     }
     return token;
 }
