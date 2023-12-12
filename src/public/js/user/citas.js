@@ -7,7 +7,7 @@ window.addEventListener('load', () => {
                 let option = document.createElement('option');
                 option.value = element.id;
                 option.innerHTML = element.name;
-                document.getElementById('citas').appendChild(option);
+                document.getElementById('appointments').appendChild(option);
                 id = 1;
                 contenido();
             })
@@ -40,8 +40,8 @@ window.addEventListener('load', () => {
             })
 
     }
-    document.getElementById('citas').addEventListener('change', () => {
-        id = document.getElementById('citas').value;
+    document.getElementById('appointments').addEventListener('change', () => {
+        id = document.getElementById('appointments').value;
         contenido();
     });
 });

@@ -1,6 +1,9 @@
-import {getAppointmentSearchRoute, getSessionRoute, getToken,} from "../api.config.js";
-import {dateInput} from "../lib.js";
+import {getAppointmentSearchRoute, getSessionRoute, getToken,} from "../../api.config.js";
+import {dateInput} from "../../lib.js";
+import {validate} from "../lib.js";
 
+
+validate();
 let data_employee;
 
 window.addEventListener('load', () => {
