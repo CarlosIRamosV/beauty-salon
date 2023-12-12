@@ -1,6 +1,8 @@
-import { getToken, getAppointmentRoute } from "../../api.config.js";
+import {getAppointmentRoute, getToken} from "../../api.config.js";
 import {loadClientList, loadEmployeeList} from "../../lib.js"
+import {validate} from "../lib.js";
 
+validate(true);
 window.addEventListener('load', () => {
     let temp
     let urlParams = new URLSearchParams(window.location.search);
@@ -41,18 +43,18 @@ window.addEventListener('load', () => {
         }
 
         fetch(getAppointmentRoute(appointment), {
-        method: 'PUT',
-        body: JSON.stringify(updates),
-        headers: {
-            'Content-Type': 'application/json',
-            'Authorization': 'Bearer ' + getToken()
-        },
-    })
-        .then(response => response.json())
-        .then(() => {
-            window.location.href = 'index.employee';
+            method: 'PUT',
+            body: JSON.stringify(updates),
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer ' + getToken()
+            },
         })
-        .catch(err => console.log(err));
+            .then(response => response.json())
+            .then(() => {
+                window.location.href = 'index.employee';
+            })
+            .catch(err => console.log(err));
     });
 
     fetch(getAppointmentRoute(appointment), {
@@ -74,7 +76,7 @@ window.addEventListener('load', () => {
             temp = data;
         })
         .catch(err => console.log(err));
-    
-        loadClientList();
-        loadEmployeeList();
+
+    loadClientList();
+    loadEmployeeList();
 });

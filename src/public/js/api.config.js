@@ -27,8 +27,7 @@ function getToken() {
     }
 
     if (token === null) {
-        alert('You are not logged in!');
-        window.location.href = 'login.employee';
+        throw new Error('User is not logged in');
     }
     return token;
 }
@@ -51,7 +50,22 @@ function removeToken() {
 }
 
 function getUser() {
-    return JSON.parse(sessionStorage.getItem('user'));
+    let user = sessionStorage.getItem('user');
+    if (user === null) {
+        fetch(getSessionRoute(), {
+                method: 'GET',
+                headers: {
+                "Content-Type": "application/json",
+                "Authorization": "Bearer " + getToken()
+                }
+            })
+            .then(response => response.json())
+            .then(data => {
+                sessionStorage.setItem('user', JSON.stringify(data));
+                return data;
+            })
+    }
+    return JSON.parse(user);
 }
 
 /* ------------------ Routes ------------------ */
@@ -122,6 +136,7 @@ export {
     log,
     getToken,
     setToken,
-    removeToken
+    removeToken,
+    getUser
 };
 

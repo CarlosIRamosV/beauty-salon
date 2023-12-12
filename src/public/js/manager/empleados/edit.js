@@ -1,5 +1,7 @@
-import { getImageRoute, getToken, getUserRoute } from "../../api.config.js";
+import {getImageRoute, getToken, getUserRoute} from "../../api.config.js";
+import {validate} from "../lib.js";
 
+validate(true);
 window.addEventListener('load', ev => {
     let temp
     let urlParams = new URLSearchParams(window.location.search);
@@ -63,7 +65,7 @@ window.addEventListener('load', ev => {
         }
 
         if (new_image != null) {
-            let blob = new Blob([new_image], { type: new_image.type });
+            let blob = new Blob([new_image], {type: new_image.type});
             let reader = new FileReader();
             reader.readAsDataURL(blob);
             reader.onloadend = function () {
@@ -92,12 +94,12 @@ window.addEventListener('load', ev => {
     });
 
     fetch(getUserRoute(product), {
-        method: 'GET',
-        headers: {
-            'Content-Type': 'application/json',
-            'Authorization': 'Bearer ' + getToken()
-        },
-    }
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer ' + getToken()
+            },
+        }
     )
         .then(response => response.json())
         .then(data => {

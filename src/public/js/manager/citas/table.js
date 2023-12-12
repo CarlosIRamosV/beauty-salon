@@ -1,9 +1,8 @@
-import {
-    getAppointmentRoute,
-    getAppointmentSearchRoute,
-    getToken,
-} from "../../api.config.js";
+import {getAppointmentRoute, getAppointmentSearchRoute, getToken,} from "../../api.config.js";
 import {dateInput, loadClientList, loadEmployeeList} from "../../lib.js";
+import {validate} from "../lib.js";
+
+validate(true);
 
 window.addEventListener('load', () => {
     document.getElementById("search").addEventListener("submit", ev => {
@@ -100,7 +99,7 @@ function generateTable(data) {
         let date = new Date();
         date.setTime(cita.date)
         let day = document.createElement('td');
-        day.innerText = date.getDate() + '/' + (date.getMonth() + 1)  + '/' + date.getFullYear();
+        day.innerText = date.getDate() + '/' + (date.getMonth() + 1) + '/' + date.getFullYear();
         let hour = document.createElement('td');
         hour.innerText = date.getHours() + ':' + date.getMinutes();
 

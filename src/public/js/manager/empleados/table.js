@@ -1,10 +1,7 @@
-import {
-    getToken,
-    getUserRoute,
-    getImageRoute,
-    getUserSearchRoute
-} from "../../api.config.js";
+import {getImageRoute, getToken, getUserRoute, getUserSearchRoute} from "../../api.config.js";
+import {validate} from "../lib.js";
 
+validate(true);
 window.addEventListener('load', () => {
     if (!getToken()) {
         window.location.href = '../login/login.employee';
@@ -103,9 +100,9 @@ window.addEventListener('load', () => {
             'Authorization': 'Bearer ' + getToken(),
         }
     })
-    .then(response => response.json())
-    .then(data => generateTable(data))
-    .catch(err => console.log(err));
+        .then(response => response.json())
+        .then(data => generateTable(data))
+        .catch(err => console.log(err));
 });
 
 
@@ -153,7 +150,7 @@ function generateTable(data) {
         // Add 1 to day because it starts at 0
         date.setDate(date.getDate() + 1);
 
-        fechaNac.innerText = date.getDate() + '/' + (date.getMonth()+1) + '/' + date.getFullYear();
+        fechaNac.innerText = date.getDate() + '/' + (date.getMonth() + 1) + '/' + date.getFullYear();
         let sexo = document.createElement('td');
         sexo.innerText = user.sex;
         let telefono = document.createElement('td');
@@ -171,7 +168,6 @@ function generateTable(data) {
         edit.addEventListener('click', ev => {
             window.location.href = 'edit.employee?id=' + user.id;
         });
-        
 
 
         let del = document.createElement('td');
