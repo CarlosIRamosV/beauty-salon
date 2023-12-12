@@ -45,7 +45,7 @@ pub fn login(
 
     let user_token = Token {
         access_token: token,
-        user,
+        user: user.clone().to_public(),
     };
 
     Ok(user_token)

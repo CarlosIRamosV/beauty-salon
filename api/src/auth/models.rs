@@ -1,5 +1,5 @@
 use serde::{Deserialize, Serialize};
-use crate::user::models::User;
+use crate::user::models::Public;
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct Config {
@@ -15,5 +15,5 @@ pub struct Claims {
 #[derive(Debug, Serialize, Deserialize)]
 pub struct Token {
     pub access_token: String,
-    pub user: User,
+    pub user: Public,
 }

@@ -11,7 +11,7 @@ function addFavorito(id) {
         })
             .then(response => response.json())
             .then(() => {
-                document.getElementById(id).firstChild.src = "../../public/images/fav.png";
+                document.getElementById(id).firstChild.src = "public/images/fav.png";
             })
             .catch(error => console.log(error));
     } else {
@@ -27,7 +27,7 @@ function addFavorito(id) {
         })
             .then(response => response.json())
             .then(() => {
-                document.getElementById(id).firstChild.src = "../../public/images/favrell.png";
+                document.getElementById(id).firstChild.src = "public/images/favrell.png";
             })
             .catch(error => console.log(error));
 
@@ -58,9 +58,9 @@ window.addEventListener("load", () => {
                 div.id = element.id;
                 let img = document.createElement("img");
                 if (element.favorite)
-                    img.src = "../../public/images/favrell.png";
+                    img.src = "public/images/favrell.png";
                 else
-                    img.src = "../../public/images/fav.png";
+                    img.src = "public/images/fav.png";
                 img.alt = "icono fav";
                 img.className = "fav";
                 img.onclick = function () {

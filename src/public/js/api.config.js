@@ -33,8 +33,9 @@ function getToken() {
     return token;
 }
 
-function setToken(newToken, remember) {
+function setToken(newToken, user, remember) {
     token = newToken;
+    sessionStorage.setItem('user', JSON.stringify(user));
     if (remember) {
         localStorage.setItem('token', newToken);
     } else {
@@ -46,6 +47,11 @@ function removeToken() {
     token = null;
     localStorage.removeItem('token');
     sessionStorage.removeItem('token');
+    sessionStorage.removeItem('user');
+}
+
+function getUser() {
+    return JSON.parse(sessionStorage.getItem('user'));
 }
 
 /* ------------------ Routes ------------------ */

@@ -1,4 +1,4 @@
-import { getUsersRoute } from "../api.config.js";
+import { getUserRoute } from "../api.config.js";
 
 window.addEventListener("load", () => {
     document.getElementById("cuenta").addEventListener("submit", () => {
@@ -16,9 +16,9 @@ window.addEventListener("load", () => {
 
         //SELECCIONAR SEXO
         var sex
-        if (masc == "on") {
+        if (masc === "on") {
             sex = "Male";
-        } else if (fem == "on") {
+        } else if (fem === "on") {
             sex = "Female";
         } else {
             sex = "Other";
@@ -46,7 +46,7 @@ window.addEventListener("load", () => {
         }
 
         //ENVIAR CUENTA
-        fetch(getUsersRoute(), {
+        fetch(getUserRoute(), {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'

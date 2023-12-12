@@ -32,13 +32,13 @@ window.addEventListener("load", () => {
         }).then(response => response.json())
             .then(data => {
                 console.log(data);
-                setToken(data.access_token, remember);
+                setToken(data.access_token, data.user, remember);
                 if (data.user.type === "Admin") {
-                    window.location.href = "../manager";
+                    return window.location.href = "../manager";
                 } else if (data.user.type === "Employee") {
-                    window.location.href = "../employee";
+                    return window.location.href = "../employee";
                 }
-                window.location.href = "../user";
+                return window.location.href = "../";
             })
             .catch(error => console.log(error));
     });
