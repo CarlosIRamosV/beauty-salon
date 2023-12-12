@@ -1,12 +1,20 @@
 import {getFavoriteRoute, getProductRoute, getToken} from "../api.config.js";
 
+let token = null;
+
+try {
+    token = getToken();
+} catch (e) {
+    token = null;
+}
+
 function addFavorito(id) {
     if (document.getElementById(id).firstChild.src.match("favrell")) {
         fetch(getFavoriteRoute(id), {
             method: "DELETE",
             headers: {
                 'Content-Type': 'application/json',
-                //'Authorization': 'Bearer ' + getToken(),
+                'Authorization': 'Bearer ' + getToken(),
             }
         })
             .then(response => response.json())
@@ -40,7 +48,8 @@ window.addEventListener("load", () => {
         method: "GET",
         headers: {
             'Content-Type': 'application/json',
-            //'Authorization': 'Bearer ' + getToken(),
+            'Authorization': token,
+
         }
     })
         .then(response => response.json())
@@ -59,6 +68,11 @@ window.addEventListener("load", () => {
                 img.className = "fav";
                 img.onclick = function () {
                     addFavorito(element.id)
+                }
+                if (token == null) {
+                    img.style.display = "none";
+                } else {
+                    img.style.display = "block";
                 }
                 div.appendChild(img);
                 if (element.image != null) {
