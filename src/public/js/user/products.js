@@ -1,4 +1,4 @@
-import {getFavoriteRoute, getProductRoute, getToken} from "../api.config.js";
+import {getFavoriteRoute, getImageRoute, getProductRoute, getToken} from "../api.config.js";
 
 let auth;
 let fav;
@@ -76,9 +76,9 @@ window.addEventListener("load", () => {
                     img.style.display = "block";
                 }
                 div.appendChild(img);
-                if (element.image != null) {
+                if (element.image_id != null) {
                     let imgProducto = document.createElement("img");
-                    imgProducto.src = element.image_id;
+                    imgProducto.src = getImageRoute(element.image_id);
                     imgProducto.alt = element.name;
                     imgProducto.className = "prod";
                     div.appendChild(imgProducto);

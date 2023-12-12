@@ -8,7 +8,7 @@ window.addEventListener("load", () => {
             window.location.href = "login.employee";
         }
 
-        let time = 70;
+        let time = 100;
 
         // Load products
         fetch("./data/products.json")

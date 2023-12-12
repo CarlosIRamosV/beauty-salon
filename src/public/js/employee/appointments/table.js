@@ -1,6 +1,6 @@
 import {getAppointmentSearchRoute, getSessionRoute, getToken,} from "../../api.config.js";
-import {dateInput} from "../../lib.js";
 import {validate} from "../lib.js";
+import {afterDate} from "../../lib/input/date";
 
 
 validate();
@@ -15,7 +15,13 @@ window.addEventListener('load', () => {
         let search = {}
 
         // Get a search parameters
-        dateInput(after, before, search);
+        // After
+        afterDate(after, search);
+
+        console.log(search);
+
+        // Before
+        afterDate(before, search);
 
         console.log(search);
         console.log(JSON.stringify(search));
@@ -108,8 +114,7 @@ function generateTable(data) {
         let services = document.createElement('td');
         services.innerText = cita.services;
         let date = new Date();
-        date.setTime(cita.date)
-        console.log("Date of appointment: " + date);
+        date.setTime(cita.date);
         let day = document.createElement('td');
         day.innerText = date.getDate() + '/' + (date.getMonth() + 1) + '/' + date.getFullYear();
         let hour = document.createElement('td');
