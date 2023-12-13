@@ -136,7 +136,7 @@ function update(user, data) {
         .then(data => {
             console.log(data)
             alert('Datos actualizados');
-            //window.location.href = '/';
+            window.location.href = './';
         })
         .catch(err => console.log(err));
 }

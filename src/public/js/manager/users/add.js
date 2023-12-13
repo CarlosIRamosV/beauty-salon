@@ -80,5 +80,8 @@ function new_employee(user) {
         },
         body: JSON.stringify(user)
     }).then(response => response.json())
-        .then(empleado => alert("Empleado created with id: " + empleado.id));
+        .then(() => {
+            alert("Usuario creado exitosamente");
+            window.location.href = "./";
+        });
 }
