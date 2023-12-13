@@ -29,16 +29,18 @@ window.addEventListener("load", () => {
         var confpass2 = document.getElementById("cContraseña").value;
 
         //CONFIRMAR CONTRASEÑA
-        if (confpass != confpass2) {
+        if (confpass !== confpass2) {
             alert('Las contraseñas no coinciden');
             return false;
         }
 
         //MODELO JSON PARA ENVIAR
+
+        let date = new Date(birth_date);
         let user = {
             name: name,
             last_name: last_name,
-            birth_date: birth_date,
+            birth_date: date.getTime().toString(),
             sex: sex,
             phone: phone,
             email: email,
@@ -54,9 +56,8 @@ window.addEventListener("load", () => {
             body: JSON.stringify(user)
         })
             .then(response => response.json())
-            .then(data => {
-                console.log(data);
-                window.location.href = "../src/Usuario/html/index.html";
+            .then(() => {
+                window.location.href = "./in.html";
             })
     });
 });

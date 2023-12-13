@@ -1,4 +1,4 @@
-import {getLoginRoute, getSessionRoute, removeToken, setToken} from "../../public/js/api.config.js";
+import {getLoginRoute, removeToken, setToken} from "../../public/js/api.config.js";
 
 window.addEventListener("load", () => {
     document.getElementById("login").addEventListener("submit", ev => {
@@ -33,22 +33,9 @@ window.addEventListener("load", () => {
             body: JSON.stringify(config),
         }).then(response => response.json())
             .then(data => {
-                console.log(data);
-                document.getElementById("token").innerText = data;
+                document.getElementById("token").innerText = data.access_token;
+                document.getElementById("user").innerText = JSON.stringify(data.user);
                 setToken(data, remember);
-                fetch(getSessionRoute(), {
-                    method: "GET",
-                    contentType: "application/json",
-                    headers: {
-                        'Authorization': 'Bearer ' + data,
-                    }
-                })
-                    .then(response => response.json())
-                    .then(data => {
-                        console.log(data);
-                        document.getElementById("user").innerText = JSON.stringify(data);
-                    })
-                    .catch(error => console.log(error));
             })
             .catch(error => console.log(error));
     });
