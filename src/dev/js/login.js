@@ -35,7 +35,7 @@ window.addEventListener("load", () => {
             .then(data => {
                 document.getElementById("token").innerText = data.access_token;
                 document.getElementById("user").innerText = JSON.stringify(data.user);
-                setToken(data, remember);
+                setToken(data.access_token, data.user, remember);
             })
             .catch(error => console.log(error));
     });

@@ -31,7 +31,6 @@ window.addEventListener("load", () => {
             body: JSON.stringify(config),
         }).then(response => response.json())
             .then(data => {
-                console.log(data);
                 setToken(data.access_token, data.user, remember);
                 if (data.user.type === "Admin") {
                     return window.location.href = "../manager";

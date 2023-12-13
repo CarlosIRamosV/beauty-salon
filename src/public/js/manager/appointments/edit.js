@@ -77,5 +77,5 @@ window.addEventListener('load', () => {
         .catch(err => console.log(err));
 
     clientDetailList(document.getElementById('clients'));
-    employeeDetailList(document.getElementById('employees'));
+    employeeDetailList(document.getElementById('users'));
 });

@@ -1,6 +1,6 @@
 import {getAppointmentRoute, getToken} from "../../api.config.js";
-import {clientDetailList} from "../../lib/users/client";
-import {employeeDetailList} from "../../lib/users/employee";
+import {clientDetailList} from "../../lib/users/client.js";
+import {employeeDetailList} from "../../lib/users/employee.js";
 
 window.addEventListener('load', () => {
     let client = document.getElementById('client');
@@ -35,5 +35,5 @@ window.addEventListener('load', () => {
     });
 
     clientDetailList(document.getElementById('clients'))
-    employeeDetailList(document.getElementById('employees'))
+    employeeDetailList(document.getElementById('users'))
 });

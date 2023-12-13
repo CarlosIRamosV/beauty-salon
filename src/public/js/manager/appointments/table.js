@@ -38,5 +38,5 @@ window.addEventListener('load', () => {
     });
     generateTableDefault(table)
     clientDetailList(document.getElementById('clients'))
-    employeeDetailList(document.getElementById('employees'))
+    employeeDetailList(document.getElementById('users'))
 });
