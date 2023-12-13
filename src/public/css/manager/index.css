@@ -1,0 +1,141 @@
+@import url('https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Work Sans', sans-serif;
+}
+
+body {
+    min-height: 100vh;
+    background: linear-gradient(#2b1055, #7597de);
+}
+
+nav {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 30px 100px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+nav .logo {
+    color: #fff;
+    font-weight: 700;
+    text-decoration: none;
+    font-size: 2em;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+nav ul {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+nav ul li {
+    list-style: none;
+    margin-left: 20px;
+}
+
+nav ul li a {
+    color: #fff;
+    text-decoration: none;
+    padding: 5px 10px;
+}
+
+nav ul li a:hover {
+    background: #fff;
+    color: #2b1055;
+    border-radius: 5px;
+}
+
+footer {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, auto));
+    padding: 80px 13% 70px;
+    background: #2b1055;
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}
+
+footer div img {
+    width: 50px;
+    height: 50px;
+}
+
+footer div p {
+    color: #d6d6d6;
+    font-size: 16px;
+    line-height: 30px;
+    margin: 20px 0
+}
+
+footer div.social a {
+    display: inline-block;
+    font-size: 22px;
+    color: #d6d6d6;
+    margin-right: 17px;
+    transition: all 0.4s ease;
+text-decoration: none;
+}
+
+footer div.social a:hover {
+    transform: translateY(-5px);
+    color: #fff;
+}
+
+footer div h4 {
+    color: #fff;
+    margin-bottom: 1.5rem;
+    font-size: 20px;
+}
+
+footer div ul {
+    list-style: none;
+}
+
+footer div ul li {
+    margin-bottom: 16px;
+}
+
+footer div ul li a {
+    display: block;
+    color: #d6d6d6;
+    font-size: 15px;
+    font-weight: 400;
+    transition: all 0.4s ease;
+    text-decoration: none;
+}
+
+footer div ul li a:hover {
+    transform: translateY(-3px) translateX(-5px);
+    color: #fff;
+}
+
+@media (max-width: 1690px) {
+    footer {
+        padding: 50px 5% 40px;
+    }
+}
+
+@media (max-width: 1120px) {
+    footer {
+        grid-template-columns: repeat(auto-fit, minmax(300px, auto));
+        gap: 2rem;
+    }
+}
+
+@media (max-width: 700px) {
+    footer {
+        grid-template-columns: repeat(auto-fit, minmax(150px, auto));
+        gap: 2.5rem;
+    }
+}
