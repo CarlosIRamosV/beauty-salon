@@ -1,4 +1,0 @@
-[
-    { "id_producto": 1, "nombre_producto": "Producto 1", "descr_producto": "Descripción 1", "precio_producto": 19.99, "cantidad_producto": 50, "favoritos_producto": 10 },
-    { "id_producto": 2, "nombre_producto": "Producto 2", "descr_producto": "Descripción 2", "precio_producto": 29.99, "cantidad_producto": 30, "favoritos_producto": 5 }
-]
