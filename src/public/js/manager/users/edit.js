@@ -5,7 +5,7 @@ window.addEventListener('load', ev => {
     let urlParams = new URLSearchParams(window.location.search);
     let product = urlParams.get('id');
     if (product == null) {
-        window.location.href = 'index.employee';
+        window.location.href = './';
     }
 
     let image = document.getElementById('imagen');
@@ -62,6 +62,8 @@ window.addEventListener('load', ev => {
             return;
         }
 
+        console.log(updates)
+
         if (new_image != null) {
             let blob = new Blob([new_image], {type: new_image.type});
             let reader = new FileReader();
@@ -115,7 +117,7 @@ window.addEventListener('load', ev => {
         })
         .catch(err => console.log(err));
     if (product == null) {
-        window.location.href = 'index.employee';
+        window.location.href = './';
     }
 
 });

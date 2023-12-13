@@ -7,7 +7,7 @@ window.addEventListener('load', () => {
     let urlParams = new URLSearchParams(window.location.search);
     let appointment = urlParams.get('id');
     if (appointment == null) {
-        window.location.href = 'index.employee';
+        window.location.href = './';
     }
     let client = document.getElementById('client');
     let employee = document.getElementById('employee')
