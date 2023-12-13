@@ -133,9 +133,10 @@ function update(user, data) {
         },
     })
         .then(response => response.json())
-        .then(() => {
+        .then(data => {
+            console.log(data)
             alert('Datos actualizados');
-            window.location.href = 'index.employee';
+            //window.location.href = '/';
         })
         .catch(err => console.log(err));
 }
