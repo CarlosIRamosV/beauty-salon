@@ -1,7 +1,5 @@
 import {getImageRoute, getToken, getUserRoute} from "../../api.config.js";
-import {validate} from "../lib.js";
 
-validate(true);
 window.addEventListener('load', ev => {
     let temp
     let urlParams = new URLSearchParams(window.location.search);

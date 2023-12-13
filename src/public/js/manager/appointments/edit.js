@@ -1,9 +1,7 @@
 import {getAppointmentRoute, getToken} from "../../api.config.js";
-import {validate} from "../lib.js";
 import {clientDetailList} from "../../lib/users/client.js";
 import {employeeDetailList} from "../../lib/users/employee.js";
 
-validate(true);
 window.addEventListener('load', () => {
     let temp
     let urlParams = new URLSearchParams(window.location.search);

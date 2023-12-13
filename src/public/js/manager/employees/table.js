@@ -1,7 +1,5 @@
 import {getImageRoute, getToken, getUserRoute, getUserSearchRoute} from "../../api.config.js";
-import {validate} from "../lib.js";
 
-validate(true);
 window.addEventListener('load', () => {
     if (!getToken()) {
         window.location.href = '../login/login.employee';

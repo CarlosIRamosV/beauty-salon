@@ -1,10 +1,8 @@
-import {validate} from "../lib.js";
 import {generateTableBySearch, generateTableDefault} from "../../lib/appointments/table.js";
 import {clientDetailList} from "../../lib/users/client.js";
 import {employeeDetailList} from "../../lib/users/employee.js";
 import {afterDate, beforeDate} from "../../lib/input/date.js";
 
-validate(true);
 
 window.addEventListener('load', () => {
     let table = document.getElementById('table');

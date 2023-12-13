@@ -1,8 +1,6 @@
 import {getAppointmentRoute, getToken} from "../../api.config.js";
-import {loadClientList, loadEmployeeList} from "../../lib.js";
-import {validate} from "../lib.js";
-
-validate(true);
+import {clientDetailList} from "../../lib/users/client";
+import {employeeDetailList} from "../../lib/users/employee";
 
 window.addEventListener('load', () => {
     let client = document.getElementById('client');
@@ -36,6 +34,6 @@ window.addEventListener('load', () => {
             .catch(err => console.log(err));
     });
 
-    loadClientList();
-    loadEmployeeList();
+    clientDetailList(document.getElementById('clients'))
+    employeeDetailList(document.getElementById('employees'))
 });

@@ -1,7 +1,5 @@
 import {getImageRoute, getProductRoute, getToken} from "../../api.config.js";
-import {validate} from "../lib.js";
 
-validate(true);
 window.addEventListener("load", () => {
     document.getElementById("crud-form").addEventListener('submit', (ev) => {
         ev.preventDefault();
