@@ -3,40 +3,42 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <title>Inicio de sesion</title>
-    <link rel="stylesheet" type="text/css" href="../public/css/noUser/inicio.css">
-    <script type="module" src="../public/js/sign/in.js"></script>
+    <link href="../public/css/noUser/inicio.css" rel="stylesheet" type="text/css">
+    <script src="../public/js/sign/in.js" type="module"></script>
 </head>
 
 <body>
-    <div class="principal">
-        <header>
-            <h1>SALON DE BELLEZA LA JQ</h1>
-            <img src="../public/images/logo.png" alt="" class="logo">
-        </header>
-        <div class="fotoU">
-            <img src="../public/images/utencilios-removebg-preview.png" alt="" class="utencilios">
+<div class="principal">
+    <header>
+        <h1>SALON DE BELLEZA LA JQ</h1>
+        <img alt="" class="logo" src="../public/images/logo.png">
+    </header>
+    <div class="fotoU">
+        <img alt="" class="utencilios" src="../public/images/utencilios-removebg-preview.png">
+    </div>
+
+    <h3 class="subtitulo"> Tu mejor opcion</h3>
+
+    <form id="login" method="post" target="_blank">
+        <input class="usuario" id="email" placeholder="Correo" type="email">
+        <input class="contraseña" id="password" placeholder="Contraseña" type="password">
+        <div class="remember">
+            <label for="remember">Recuerda el dispositivo por 30 dias</label>
+            <input id="remember" type="checkbox">
         </div>
 
-        <h3 class="subtitulo"> Tu mejor opcion</h3>
+        <div class="botonesIRR">
+            <button class="sesion" type="submit">Iniciar sesión</button>
+            <a href="up.html">
+                <button class="registro" type="button"> Registrarse</button>
+            </a>
+        </div>
 
-        <form id="login" method="post" target="_blank">
-            <input type="email" placeholder="Correo" class="usuario" id="email">
-            <input type="password" placeholder="Contraseña" class="contraseña" id="password">
-            <div class="remember">
-                <label for="remember">Recuerda el dispositivo por 30 dias</label>
-                <input type="checkbox" id="remember">
-            </div>
+    </form>
 
-            <div class="botonesIRR">
-                <button class="sesion" type="submit">Iniciar sesión</button>
-                <a href="up.html"><button type="button" class="registro"> Registrarse</button></a>
-            </div>
-
-        </form>
-
-    </div>
+</div>
 
 
 </body>

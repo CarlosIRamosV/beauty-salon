@@ -27,17 +27,17 @@ header {
 
 button {
     border-radius: 20px;
-    background-color:  rgb(22, 0, 58);
+    background-color: rgb(22, 0, 58);
     padding: 15px;
     height: 60px;
-    width: 150px; 
+    width: 150px;
     color: white;
     text-align: center;
 }
 
 form input {
-    color: white; 
-    background-color: rgb(22, 0, 58); 
+    color: white;
+    background-color: rgb(22, 0, 58);
     width: 100%; /* Cambiado a 100% para ocupar todo el espacio horizontal */
     height: 30px;
 }
@@ -47,7 +47,7 @@ form {
     font-size: 2rem;
     display: flex;
     flex-direction: column;
-    
+
 }
 
 form > * {

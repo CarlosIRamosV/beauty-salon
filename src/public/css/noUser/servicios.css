@@ -80,8 +80,9 @@ body {
     background-color: #000;
     /* Color de las líneas */
 }
+
 a {
-    color: inherit ;
+    color: inherit;
     text-decoration: none;
 }
 
@@ -107,42 +108,48 @@ a {
     padding: 25px 16px;
     display: block;
     /* Cambiado a block para organizar hacia abajo */
-    
+
     margin-bottom: 20px;
     /* Espaciado entre los enlaces */
 }
-.sidebar a:hover{
+
+.sidebar a:hover {
     color: #a200ff;
 
 }
+
 button:hover {
     background-color: #a200ff;
-  }
-
+}
 
 
 /*****************************************************************************************/
-.contenedor{
+.contenedor {
     display: grid;
     grid-template-areas: "colorimetria peinados"
                          "cortes maquillaje";
-                         justify-content: center; /* Centrar horizontalmente */
-  
+    justify-content: center; /* Centrar horizontalmente */
+
 }
-.colorimetria{
+
+.colorimetria {
     grid-area: colorimetria;
 }
-.peinados{
+
+.peinados {
     grid-area: peinados;
 
 }
-.cortes{
+
+.cortes {
     grid-area: cortes;
 
 }
-.maquillaje{
+
+.maquillaje {
     grid-area: maquillaje;
 }
+
 .servicio {
     background-color: rgb(255, 255, 128);
     border: 1px solid rgb(255, 153, 255);
@@ -154,7 +161,7 @@ button:hover {
     height: 375px;
     align-items: center;
     box-shadow: 20px 20px 20px rgba(0, 0, 0, 0.3); /* 5px hacia la derecha, 5px hacia abajo, desenfoque de 10px y color de sombra con opacidad */
-    
+
 
 }
 

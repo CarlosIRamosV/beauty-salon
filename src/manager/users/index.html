@@ -12,88 +12,88 @@
 
 <body>
 
-    <nav>
-        <!-- Imagen del logo -->
-        <img alt="logo" src="../../public/images/logo.png">
+<nav>
+    <!-- Imagen del logo -->
+    <img alt="logo" src="../../public/images/logo.png">
 
-        <!-- Menú de navegación -->
-        <ul class="menu-list">
-            <li><a href="../index.html">Inicio</a></li>
-            <li><a href="/index.html">Empleados</a></li>
-            <li><a href="../appointments/index.html">Citas</a></li>
-            <li><a href="../products/index.html">Productos</a></li>
-        </ul>
+    <!-- Menú de navegación -->
+    <ul class="menu-list">
+        <li><a href="../index.html">Inicio</a></li>
+        <li><a href="/index.html">Empleados</a></li>
+        <li><a href="../appointments/index.html">Citas</a></li>
+        <li><a href="../products/index.html">Productos</a></li>
+    </ul>
 
-        <div class="menu-icon">
-            <div class="line"></div>
-            <div class="line"></div>
-            <div class="line"></div>
-            <!-- Barra lateral desplegable -->
-            <div class="sidebar"> 
-                <a href="../../sign/out.html">Cerrar Sesión</a>
-            </div>
+    <div class="menu-icon">
+        <div class="line"></div>
+        <div class="line"></div>
+        <div class="line"></div>
+        <!-- Barra lateral desplegable -->
+        <div class="sidebar">
+            <a href="../../sign/out.html">Cerrar Sesión</a>
         </div>
-    </nav>
+    </div>
+</nav>
 
-    <section>
-        <div class="actions">
-            <h2>Usuarios</h2>
-            <button onclick="window.location.href = 'add.html'" type="button">Agregar Usuarios</button>
-        </div>
+<section>
+    <div class="actions">
+        <h2>Usuarios</h2>
+        <button onclick="window.location.href = 'add.html'" type="button">Agregar Usuarios</button>
+    </div>
 
-    
-        <table id="table">
-            <thead>
-                <tr>
-                    <th>Imagen</th>
-                    <th>Tipo</th>
-                    <th>Nombre</th>
-                    <th>Apellido</th>
-                    <th>Fecha de nacimiento</th>
-                    <th>Sexo</th>
-                    <th>Telefono</th>
-                    <th>Correo</th>
-                    <th>Editar</th>
-                    <th>Eliminar</th>
-                </tr>
-            </thead>
-        </table>
 
-        <form class="busqueda" id="search" method="post" target="_blank">
-            <h2>Busqueda</h2>
-            <label for="type">Tipo de usuario:</label>
-            <select name="sex" id="type">
-                <option value="0">Todos</option>
-                <option value="1">Usuario</option>
-                <option value="2">Empleado</option>
-                <option value="3">Administrador</option>
-            </select>
-            <label for="name">Nombre</label>
-            <input id="name" type="text">
-            <label for="lastName">Apellidos</label>
-            <input id="lastName" type="text">
-            <label for="birthdate">Fecha de nacimiento:</label>
-            <input id="birthdate" type="date" class="raro">
-            <label for="sex">Sexo:</label>
-            <select name="sexo" id="sex">
-                <option value="0">Todos</option>
-                <option value="1">Hombre</option>
-                <option value="2">Mujer</option>
-                <option value="3">Otro</option>
-            </select>
-            <label for="phone">Telefono:</label>
-            <input id="phone" type="tel">
-            <label for="email">Correo:</label>
-            <input id="email" type="email">
-            <button type="submit">Buscar</button>
-        </form>
-            
+    <table id="table">
+        <thead>
+        <tr>
+            <th>Imagen</th>
+            <th>Tipo</th>
+            <th>Nombre</th>
+            <th>Apellido</th>
+            <th>Fecha de nacimiento</th>
+            <th>Sexo</th>
+            <th>Telefono</th>
+            <th>Correo</th>
+            <th>Editar</th>
+            <th>Eliminar</th>
+        </tr>
+        </thead>
+    </table>
 
-        </div>
-    </section>
-    <footer>
-    </footer>
-   
+    <form class="busqueda" id="search" method="post" target="_blank">
+        <h2>Busqueda</h2>
+        <label for="type">Tipo de usuario:</label>
+        <select id="type" name="sex">
+            <option value="0">Todos</option>
+            <option value="1">Usuario</option>
+            <option value="2">Empleado</option>
+            <option value="3">Administrador</option>
+        </select>
+        <label for="name">Nombre</label>
+        <input id="name" type="text">
+        <label for="lastName">Apellidos</label>
+        <input id="lastName" type="text">
+        <label for="birthdate">Fecha de nacimiento:</label>
+        <input class="raro" id="birthdate" type="date">
+        <label for="sex">Sexo:</label>
+        <select id="sex" name="sexo">
+            <option value="0">Todos</option>
+            <option value="1">Hombre</option>
+            <option value="2">Mujer</option>
+            <option value="3">Otro</option>
+        </select>
+        <label for="phone">Telefono:</label>
+        <input id="phone" type="tel">
+        <label for="email">Correo:</label>
+        <input id="email" type="email">
+        <button type="submit">Buscar</button>
+    </form>
+
+
+    </div>
+</section>
+<footer>
+</footer>
+
 </body>
 
 </html>

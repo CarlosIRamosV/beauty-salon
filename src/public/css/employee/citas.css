@@ -1,4 +1,3 @@
-
 /*body {
       font-family: Arial, sans-serif;
       margin: 0;
@@ -25,85 +24,86 @@
       cursor: pointer;
     }
     */
-    html{
-      font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-      
-  }
-  body{
-      background: linear-gradient(45deg, #FFC0CB, #FFFF00);
-      background-size: 400% 400%;
-  }
-  /*inicia el employee del menu*/
-  
-  
-  .menuNav {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 10px 20px;
-      color: #fff;
-      background-color: #333;
-  }
-  
-  .menu-list {
-      list-style: none;
-      display: flex;
-      margin: 0;
-      padding: 0;
-  }
-  
-  .menu-list li {
-      margin-right: 20px;
-  }
-  
-  .menu-button {
-      text-decoration: none;
-      background-color: #333;
-      color: #fff;
-      border: none;
-      padding: 10px 20px;
-      cursor: pointer;
-      font-size: 2rem;
-  }
-  /*cuando se pone el cursor en los  botones
-  .menu-button:hover {
-      
-  }
-  */
-  
-  .menu-icon {
-      display: none;
-  }
-  
- 
-  .logo {
-      width: 100px; /* Ajusta el ancho del logo según tus necesidades */
-      height: auto; /* Mantiene la proporción de aspecto automáticamente */
-  }
-  
-  /* esta parte es para el icono de las 3 barritas*/
-  .menu-icon {
-      grid-area: icono;
-      width: 60px; /* Ancho del icono */
-      height: 70px; /* Altura del icono */
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      cursor: pointer;
-  }
-  
-  .line {
-      width: 100%;
-      height: 10px; /* Altura de las líneas horizontales */
-      background-color: #000; /* Color de las líneas */
-  }
-  
-  a{
-      color: inherit; /* Hereda el color del texto del elemento padre */
-      text-decoration: none; /* Elimina el subrayado */
-  }
+html {
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 
-  
+}
+
+body {
+    background: linear-gradient(45deg, #FFC0CB, #FFFF00);
+    background-size: 400% 400%;
+}
+
+/*inicia el employee del menu*/
+
+
+.menuNav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    color: #fff;
+    background-color: #333;
+}
+
+.menu-list {
+    list-style: none;
+    display: flex;
+    margin: 0;
+    padding: 0;
+}
+
+.menu-list li {
+    margin-right: 20px;
+}
+
+.menu-button {
+    text-decoration: none;
+    background-color: #333;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-size: 2rem;
+}
+
+/*cuando se pone el cursor en los  botones
+.menu-button:hover {
+
+}
+*/
+
+.menu-icon {
+    display: none;
+}
+
+
+.logo {
+    width: 100px; /* Ajusta el ancho del logo según tus necesidades */
+    height: auto; /* Mantiene la proporción de aspecto automáticamente */
+}
+
+/* esta parte es para el icono de las 3 barritas*/
+.menu-icon {
+    grid-area: icono;
+    width: 60px; /* Ancho del icono */
+    height: 70px; /* Altura del icono */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    cursor: pointer;
+}
+
+.line {
+    width: 100%;
+    height: 10px; /* Altura de las líneas horizontales */
+    background-color: #000; /* Color de las líneas */
+}
+
+a {
+    color: inherit; /* Hereda el color del texto del elemento padre */
+    text-decoration: none; /* Elimina el subrayado */
+}
 
 
 /* Nuevos estilos para la barra lateral */
@@ -128,48 +128,51 @@
     padding: 25px 16px;
     display: block;
     /* Cambiado a block para organizar hacia abajo */
-    
+
     margin-bottom: 20px;
     /* Espaciado entre los enlaces */
 }
-.sidebar a:hover{
+
+.sidebar a:hover {
     color: #a200ff;
 
 }
+
 button:hover {
     background-color: #a200ff;
-  }
-  /* aqui termina el employee del menu*/
+}
 
-    .content {
-      text-align: center;
-      margin: 20px;
-    }
+/* aqui termina el employee del menu*/
 
-    label {
-      font-size: 18px;
-      margin-right: 10px;
-    }
+.content {
+    text-align: center;
+    margin: 20px;
+}
 
-    select {
-      padding: 10px;
-      font-size: 16px;
-    }
+label {
+    font-size: 18px;
+    margin-right: 10px;
+}
 
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      margin-top: 20px;
-      border: 1px solid #ddd;
-  }
-  
-  th, td {
-      border: 1px solid #ddd;
-      padding: 15px;
-      text-align: left;
-  }
-  
-  thead {
-      background-color: #333;
-      color: white;
-  }
+select {
+    padding: 10px;
+    font-size: 16px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    border: 1px solid #ddd;
+}
+
+th, td {
+    border: 1px solid #ddd;
+    padding: 15px;
+    text-align: left;
+}
+
+thead {
+    background-color: #333;
+    color: white;
+}

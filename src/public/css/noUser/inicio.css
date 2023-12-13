@@ -11,7 +11,7 @@ html {
         "fotoU  form";
     grid-gap: 20px;
     grid-template-columns: 1fr 2fr;
-    grid-template-rows: 1fr 0.5fr 3fr; 
+    grid-template-rows: 1fr 0.5fr 3fr;
 }
 
 form {
@@ -22,8 +22,8 @@ form {
         "contraseña"
         "remember"
         "botonIRR";
-        grid-gap: 12%;
-    
+    grid-gap: 12%;
+
 }
 
 .utencilios {
@@ -35,7 +35,7 @@ form {
 
 .fotoU {
     grid-area: fotoU;
-    
+
 
 }
 
@@ -47,7 +47,7 @@ header {
     color: white;
     font-size: larger;
     text-align: center;
-    
+
 }
 
 h1 {
@@ -137,7 +137,7 @@ a {
     grid-area: remember;
 }
 
-.remember>input {
+.remember > input {
     height: 40%;
     vertical-align: middle;
 }

@@ -14,4 +14,4 @@ function beforeDate(date_in, search) {
     }
 }
 
-export { afterDate, beforeDate}
+export {afterDate, beforeDate}

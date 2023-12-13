@@ -12,50 +12,50 @@
 
 <body>
 
-    <nav>
-        <!-- Imagen del logo -->
-        <img alt="logo" src="../../public/images/logo.png">
+<nav>
+    <!-- Imagen del logo -->
+    <img alt="logo" src="../../public/images/logo.png">
 
-        <ul class="menu-list">
-            <li><a href="../index.html">Inicio</a></li>
-            <li><a href="../users/index.html">Empleados</a></li>
-            <li><a href="../appointments/index.html">Citas</a></li>
-            <li><a href="/index.html">Productos</a></li>
-        </ul>
+    <ul class="menu-list">
+        <li><a href="../index.html">Inicio</a></li>
+        <li><a href="../users/index.html">Empleados</a></li>
+        <li><a href="../appointments/index.html">Citas</a></li>
+        <li><a href="/index.html">Productos</a></li>
+    </ul>
 
-        <div class="menu-icon">
-            <div class="line"></div>
-            <div class="line"></div>
-            <div class="line"></div>
-            <!-- Barra lateral desplegable -->
-            <div class="sidebar"> 
-                <a href="../../sign/out.html">Cerrar Sesión</a>
-            </div>
+    <div class="menu-icon">
+        <div class="line"></div>
+        <div class="line"></div>
+        <div class="line"></div>
+        <!-- Barra lateral desplegable -->
+        <div class="sidebar">
+            <a href="../../sign/out.html">Cerrar Sesión</a>
         </div>
-    </nav>
+    </div>
+</nav>
 
-    <section>
-        <h2>Nuevo Producto</h2>
+<section>
+    <h2>Nuevo Producto</h2>
 
-        <label for="file" class="tit">Selecciona una foto del producto</label>
-        <input type="file" id="file" class="file">
+    <label class="tit" for="file">Selecciona una foto del producto</label>
+    <input class="file" id="file" type="file">
 
-        <form id="crud-form" method="post" target="_blank">
-            <label for="name">Nombre:</label>
-            <input id="name" required type="text">
+    <form id="crud-form" method="post" target="_blank">
+        <label for="name">Nombre:</label>
+        <input id="name" required type="text">
 
-            <label for="description">Descripción:</label>
-            <input id="description" type="text">
+        <label for="description">Descripción:</label>
+        <input id="description" type="text">
 
-            <label for="price">Precio:</label>
-            <input id="price" required step="0.01" type="number">
+        <label for="price">Precio:</label>
+        <input id="price" required step="0.01" type="number">
 
-            <label for="stock">Cantidad:</label>
-            <input id="stock" required type="number">
+        <label for="stock">Cantidad:</label>
+        <input id="stock" required type="number">
 
-            <button type="submit" id="create">Guardar</button>
-        </form>
-    </section>
+        <button id="create" type="submit">Guardar</button>
+    </form>
+</section>
 </body>
 
 </html>

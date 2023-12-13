@@ -1,4 +1,4 @@
-import { getUserRoute } from "../api.config.js";
+import {getUserRoute} from "../api.config.js";
 
 window.addEventListener("load", () => {
     document.getElementById("cuenta").addEventListener("submit", () => {

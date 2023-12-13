@@ -42,11 +42,9 @@ body {
 }
 
 
-
 .menu-icon {
     display: none;
 }
-
 
 
 .logo {
@@ -84,7 +82,6 @@ a {
     text-decoration: none;
     /* Elimina el subrayado */
 }
-
 
 
 /* Nuevos estilos para la barra lateral */
@@ -169,7 +166,7 @@ button:hover {
     object-position: center center; /* Centra la imagen vertical y horizontalmente */
 }
 
-h2{
+h2 {
     font-size: 2.5rem;
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
 }

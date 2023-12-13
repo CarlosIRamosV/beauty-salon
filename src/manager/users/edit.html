@@ -11,75 +11,75 @@
 </head>
 
 <body>
-    <nav>
-        <!-- Imagen del logo -->
-        <img alt="logo" src="../../public/images/logo.png">
+<nav>
+    <!-- Imagen del logo -->
+    <img alt="logo" src="../../public/images/logo.png">
 
-        <!-- Menú de navegación -->
-        <ul class="menu-list">
-            <li><a href="../index.html">Inicio</a></li>
-            <li><a href="/index.html">Empleados</a></li>
-            <li><a href="../appointments/index.html">Citas</a></li>
-            <li><a href="../products/index.html">Productos</a></li>
-        </ul>
+    <!-- Menú de navegación -->
+    <ul class="menu-list">
+        <li><a href="../index.html">Inicio</a></li>
+        <li><a href="/index.html">Empleados</a></li>
+        <li><a href="../appointments/index.html">Citas</a></li>
+        <li><a href="../products/index.html">Productos</a></li>
+    </ul>
 
-        <div class="menu-icon">
-            <div class="line"></div>
-            <div class="line"></div>
-            <div class="line"></div>
-            <!-- Barra lateral desplegable -->
-            <div class="sidebar"> 
-                <a href="../../sign/out.html"">Cerrar Sesión</a>
+    <div class="menu-icon">
+        <div class="line"></div>
+        <div class="line"></div>
+        <div class="line"></div>
+        <!-- Barra lateral desplegable -->
+        <div class="sidebar">
+            <a href="../../sign/out.html"">Cerrar Sesión</a>
+        </div>
+    </div>
+</nav>
+
+<section>
+    <h2>Editar Empleados</h2>
+    <div class="principal">
+
+        <label class="tit" for="imagen">Selecciona una foto del Empleado</label>
+        <img alt="" class="prod" id="preview" src="">
+        <input class="imagen" id="imagen" type="file">
+
+        <form id="crud-form" method="post" target="_blank">
+            <label for="nombre">Nombre:</label>
+            <input id="nombre" required type="text">
+
+            <label for="apellido">Apellido:</label>
+            <input id="apellido" required type="text">
+
+            <div>
+                <label for="type">Tipo:</label>
+                <select id="type" name="type">
+                    <option value="Admin">Administrador</option>
+                    <option value="User">Cliente</option>
+                    <option value="Employee">Empleado</option>
+                </select>
             </div>
-        </div>
-    </nav>
 
-    <section>
-        <h2>Editar Empleados</h2>
-        <div class="principal">
+            <label for="fechaNac">Fecha de nacimiento:</label>
+            <input id="fechaNac" required type="date">
 
-            <label for="imagen" class="tit">Selecciona una foto del Empleado</label>
-            <img src="" alt="" class="prod" id="preview">
-            <input type="file" id="imagen" class="imagen">
+            <div>
+                <label for="sexo">Sexo:</label>
+                <select id="sexo" name="sexo">
+                    <option value="Male">Hombre</option>
+                    <option value="Female">Mujer</option>
+                    <option value="Other">Otro</option>
+                </select>
+            </div>
 
-            <form id="crud-form" method="post" target="_blank">
-                <label for="nombre">Nombre:</label>
-                <input id="nombre" required type="text">
+            <label for="telefono">Telefono:</label>
+            <input id="telefono" type="tel">
 
-                <label for="apellido">Apellido:</label>
-                <input id="apellido" required type="text">
+            <label for="correo">Correo:</label>
+            <input id="correo" type="email">
 
-                <div>
-                    <label for="type">Tipo:</label>
-                    <select name="type" id="type">
-                        <option value="Admin">Administrador</option>
-                        <option value="User">Cliente</option>
-                        <option value="Employee">Empleado</option>
-                    </select>
-                </div>
-
-                <label for="fechaNac">Fecha de nacimiento:</label>
-                <input id="fechaNac" required type="date">
-
-                <div>
-                    <label for="sexo">Sexo:</label>
-                    <select name="sexo" id="sexo">
-                        <option value="Male">Hombre</option>
-                        <option value="Female">Mujer</option>
-                        <option value="Other">Otro</option>
-                    </select>
-                </div>
-
-                <label for="telefono">Telefono:</label>
-                <input id="telefono" type="tel">
-
-                <label for="correo">Correo:</label>
-                <input id="correo" type="email">
-
-                <button type="button" class="guardar" id="update">Guardar</button>
-            </form>
-        </div>
-    </section>
+            <button class="guardar" id="update" type="button">Guardar</button>
+        </form>
+    </div>
+</section>
 
 </body>
 

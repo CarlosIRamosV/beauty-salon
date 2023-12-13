@@ -1,11 +1,13 @@
-html{
+html {
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-    
+
 }
-body{
+
+body {
     background: linear-gradient(45deg, #FFC0CB, #FFFF00);
     background-size: 400% 400%;
 }
+
 /*inicia el employee del menu*/
 
 
@@ -38,6 +40,7 @@ body{
     cursor: pointer;
     font-size: 2rem;
 }
+
 /*cuando se pone el cursor en los  botones
 .menu-button:hover {
     
@@ -71,12 +74,10 @@ body{
     background-color: #000; /* Color de las líneas */
 }
 
-a{
+a {
     color: inherit; /* Hereda el color del texto del elemento padre */
     text-decoration: none; /* Elimina el subrayado */
 }
-
-
 
 
 /* Nuevos estilos para la barra lateral */
@@ -101,20 +102,23 @@ a{
     padding: 25px 16px;
     display: block;
     /* Cambiado a block para organizar hacia abajo */
-    
+
     margin-bottom: 20px;
     /* Espaciado entre los enlaces */
 }
-.sidebar a:hover{
+
+.sidebar a:hover {
     color: #a200ff;
 
 }
+
 button:hover {
     background-color: #a200ff;
-  }
+}
+
 /*********************************************************/
 
-  .contact-container {
+.contact-container {
     display: flex;
     justify-content: center;
     flex-direction: column;
@@ -122,18 +126,20 @@ button:hover {
     height: 100vh;
     margin: 0;
     padding: 0;
-    
-    
-  }
-  .contact-item {
+
+
+}
+
+.contact-item {
     display: flex;
     align-items: center;
     margin: 10px;
     font-size: 24px;
     padding: 20px;
-  }
-  .icono {
-    width: 50px; 
+}
+
+.icono {
+    width: 50px;
     height: 50px;
-    margin-right: 20px; 
-  }
+    margin-right: 20px;
+}

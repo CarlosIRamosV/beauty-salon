@@ -1,7 +1,7 @@
 /* ------------------ Variables ------------------ */
-let devMode = true;
+let devMode = false;
 
-let host = 'http://139.177.103.192:8080';
+let host = 'https://apicirvsdb.fly.dev';
 let local = 'http://localhost:8080';
 
 
@@ -53,12 +53,12 @@ function getUser() {
     let user = sessionStorage.getItem('user');
     if (user === null) {
         fetch(getSessionRoute(), {
-                method: 'GET',
-                headers: {
+            method: 'GET',
+            headers: {
                 "Content-Type": "application/json",
                 "Authorization": "Bearer " + getToken()
-                }
-            })
+            }
+        })
             .then(response => response.json())
             .then(data => {
                 sessionStorage.setItem('user', JSON.stringify(data));

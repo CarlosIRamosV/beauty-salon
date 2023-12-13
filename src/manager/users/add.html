@@ -13,72 +13,72 @@
 <body>
 
 
-    <nav>
-        <!-- Imagen del logo -->
-        <img alt="logo" src="../../public/images/logo.png">
+<nav>
+    <!-- Imagen del logo -->
+    <img alt="logo" src="../../public/images/logo.png">
 
-        <!-- Menú de navegación -->
-        <ul class="menu-list">
-            <li><a href="../index.html">Inicio</a></li>
-            <li><a href="/index.html">Empleados</a></li>
-            <li><a href="../appointments/index.html">Citas</a></li>
-            <li><a href="../products/index.html">Productos</a></li>
-        </ul>
+    <!-- Menú de navegación -->
+    <ul class="menu-list">
+        <li><a href="../index.html">Inicio</a></li>
+        <li><a href="/index.html">Empleados</a></li>
+        <li><a href="../appointments/index.html">Citas</a></li>
+        <li><a href="../products/index.html">Productos</a></li>
+    </ul>
 
-        <div class="menu-icon">
-            <div class="line"></div>
-            <div class="line"></div>
-            <div class="line"></div>
-            <!-- Barra lateral desplegable -->
-            <div class="sidebar"> 
-                <a href="../../sign/out.html">Cerrar Sesión</a>
+    <div class="menu-icon">
+        <div class="line"></div>
+        <div class="line"></div>
+        <div class="line"></div>
+        <!-- Barra lateral desplegable -->
+        <div class="sidebar">
+            <a href="../../sign/out.html">Cerrar Sesión</a>
+        </div>
+    </div>
+</nav>
+
+<section>
+    <h2>Nuevo Empleado</h2>
+
+    <div class="principal">
+        <label class="tit" for="imagen">Selecciona una foto del Empleado</label>
+        <input class="imagen" id="imagen" type="file">
+
+        <form id="crud-form" method="post" target="_blank">
+
+            <label for="nombre">Nombre:</label>
+            <input id="nombre" required type="text">
+
+            <label for="apellido">Apellido:</label>
+            <input id="apellido" required type="text">
+
+            <label for="fechaNac">Fecha de nacimiento:</label>
+            <input id="fechaNac" required type="date">
+
+            <div>
+                <label for="sexo">Sexo:</label>
+                <select id="sexo" name="sexo">
+                    <option value="Male">Hombre</option>
+                    <option value="Female">Mujer</option>
+                    <option value="Other">Otro</option>
+                </select>
             </div>
-        </div>
-    </nav>
 
-    <section>
-        <h2>Nuevo Empleado</h2>
+            <label for="telefono">Telefono:</label>
+            <input id="telefono" type="tel">
 
-        <div class="principal">
-            <label for="imagen" class="tit">Selecciona una foto del Empleado</label>
-            <input type="file" id="imagen" class="imagen">
+            <label for="correo">Correo:</label>
+            <input id="correo" type="email">
 
-            <form id="crud-form" method="post" target="_blank">
+            <label for="contraseña">Contraseña:</label>
+            <input id="contraseña" type="password">
 
-                <label for="nombre">Nombre:</label>
-                <input id="nombre" required type="text">
+            <label for="cContraseña">Confirmar contraseña:</label>
+            <input id="cContraseña" type="password">
 
-                <label for="apellido">Apellido:</label>
-                <input id="apellido" required type="text">
-
-                <label for="fechaNac">Fecha de nacimiento:</label>
-                <input id="fechaNac" required type="date">
-
-                <div>
-                    <label for="sexo">Sexo:</label>
-                    <select name="sexo" id="sexo">
-                        <option value="Male">Hombre</option>
-                        <option value="Female">Mujer</option>
-                        <option value="Other">Otro</option>
-                    </select>
-                </div>
-
-                <label for="telefono">Telefono:</label>
-                <input id="telefono" type="tel">
-
-                <label for="correo">Correo:</label>
-                <input id="correo" type="email">
-
-                <label for="contraseña">Contraseña:</label>
-                <input id="contraseña" type="password">
-
-                <label for="cContraseña">Confirmar contraseña:</label>
-                <input id="cContraseña" type="password">
-
-                <button type="submit" id="create">Guardar</button>
-            </form>
-        </div>
-    </section>
+            <button id="create" type="submit">Guardar</button>
+        </form>
+    </div>
+</section>
 </body>
 
 </html>
