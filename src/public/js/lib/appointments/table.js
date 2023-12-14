@@ -65,7 +65,17 @@ function generateTable(table, data) {
 
         // Hour
         let hour = document.createElement('td');
-        hour.innerText = date.getHours() + ':' + date.getMinutes();
+        let t
+        let tempHour = date.getMinutes();
+        if (tempHour < 10) {
+            tempHour = '0' + tempHour;
+        }
+        if (date.getHours() > 12) {
+            t = date.getHours() - 12 + ':' + tempHour + ' PM';
+        } else {
+            t = date.getHours() + ':' + tempHour + ' AM';
+        }
+        hour.innerText = t;
         row.appendChild(hour);
 
         // Edit button

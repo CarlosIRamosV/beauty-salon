@@ -18,6 +18,13 @@ window.addEventListener('load', () => {
         ev.preventDefault();
         let updates = {};
 
+        let servicesArray = [];
+        for (let i = 0; i < services.length; i++) {
+            if (services[i].selected) {
+                servicesArray.push(services[i].value);
+            }
+        }
+
         if (client.value !== temp.client_id) {
             updates.client_id = client.value;
         }
@@ -26,8 +33,8 @@ window.addEventListener('load', () => {
             updates.employee_id = employee.value;
         }
 
-        if (services.value !== temp.services) {
-            updates.services = services.value
+        if (servicesArray.join(',') !== temp.services) {
+            updates.services = servicesArray.join(',');
         }
 
         let fechaCita = new Date(fecha.value);
@@ -76,7 +83,16 @@ window.addEventListener('load', () => {
             }
             let date = new Date();
             date.setTime(data.date);
-            date = date.toISOString().slice(0, 16);
+            // Convert to yyy-MM-ddThh:mm
+            let hours = date.getHours();
+            if (hours < 10) {
+                hours = '0' + hours;
+            }
+            let minutes = date.getMinutes();
+            if (minutes < 10) {
+                minutes = '0' + minutes;
+            }
+            date = date.toISOString().slice(0, 10) + 'T' + hours + ':' + minutes;
             fecha.value = date;
             temp = data;
         })
