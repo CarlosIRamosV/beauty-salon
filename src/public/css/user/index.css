@@ -1,0 +1,49 @@
+@import url(../global.css);
+
+#map {
+    height: 400px;
+    width: 70%;
+    margin: 20px auto;
+    /* Añade un margen y centra el mapa en la página */
+}
+
+/* Estilos para centrar el carrusel */
+.carrusel-container {
+    max-width: 400px; /* Ajusta el ancho máximo según tus necesidades */
+    margin: 0 auto; /* Esto centra el contenedor horizontalmente */
+    padding: 20px; /* Añade un poco de espacio alrededor del carrusel */
+    max-height: 400px;
+}
+
+/* Estilos para centrar las imágenes dentro del carrusel */
+#slider {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden; /* Evita que las imágenes se salgan del contenedor */
+}
+
+#slider img {
+    width: 100%; /* Ajusta el ancho automáticamente */
+    height: 400px; /* Ajusta la altura al 100% del contenedor */
+}
+
+.instalaciones {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 400px; /* Ajusta la altura según tus necesidades */
+    overflow: hidden; /* Evita que las imágenes más grandes se salgan del contenedor */
+}
+
+.instalaciones img {
+    width: auto; /* Ajusta el ancho automáticamente */
+    height: 100%; /* Ajusta la altura al 100% del contenedor */
+    object-fit: contain; /* Mantiene la relación de aspecto y evita que las imágenes se distorsionen */
+    object-position: center center; /* Centra la imagen vertical y horizontalmente */
+}
+
+h2 {
+    font-size: 2.5rem;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}

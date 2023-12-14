@@ -1,4 +1,4 @@
-import {getLoginRoute, removeToken, setToken} from "../../../public/js/api.config.js";
+import {getLoginRoute, removeToken, setToken} from "../../public/js/api.config.js";
 
 window.addEventListener("load", () => {
     document.getElementById("login").addEventListener("submit", ev => {

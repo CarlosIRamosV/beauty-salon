@@ -5,38 +5,44 @@
     <meta charset="UTF-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <title>Servicios</title>
-    <link href="public/css/noUser/servicios.css" rel="stylesheet" type="text/css">
-    <script src="public/js/nav.js"></script>
+    <link href="public/css/user/servicios.css" rel="stylesheet" type="text/css">
+    <script src="public/js/nav.js" type="module"></script>
 </head>
 
 <body>
 
-<div class="menuNav">
-    <img alt="" class="logo" src="public/images/logo.png">
-    <ul class="menu-list">
+<header id="header">
+  <nav>
+    <a class="logo" href="#">Manager</a>
+    <div class="menu" id="nav-menu">
+      <ul>
         <li>
-            <button class="menu-button"><a href="index.html">Inicio</a></button>
+          <a href="./">Inicio</a>
         </li>
+
         <li>
-            <button class="menu-button"><a href="servicios.html">Servicios</a></button>
+          <a href="products.html">Productos</a>
         </li>
+
         <li>
-            <button class="menu-button"><a href="products.html">Productos</a></button>
+          <a href="#">Servicios</a>
         </li>
+
         <li>
-            <button class="menu-button"><a href="contacto.html">Contacto</a></button>
+          <a href="contacto.html">Contacto</a>
         </li>
-    </ul>
-    <div class="menu-icon">
-        <div class="line"></div>
-        <div class="line"></div>
-        <div class="line"></div>
-        <!-- Barra lateral desplegable -->
-        <div class="sidebar">
-            <a href="sign/in.html">Iniciar sesion</a>
-        </div>
+      </ul>
+
+      <!-- Close button -->
+      <div class="close" id="nav-close">
+        <i class="ti ti-x"></i>
+      </div>
     </div>
-</div>
+
+    <div class="actions" id="nav-actions">
+    </div>
+  </nav>
+</header>
 
 
 <div class="contenedor">

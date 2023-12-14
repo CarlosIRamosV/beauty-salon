@@ -1,4 +1,4 @@
-import {getProductRoute, getToken, getUserRoute, log, removeToken} from "../../../public/js/api.config.js";
+import {getProductRoute, getToken, getUserRoute, log, removeToken} from "../../public/js/api.config.js";
 
 window.addEventListener("load", () => {
     document.getElementById("load").addEventListener("submit", ev => {
