@@ -193,6 +193,9 @@ pub async fn delete_user(
         Err("Unauthorized".into())
     })
     .await?
-    .map_err(error::ErrorInternalServerError)?;
+    .map_err(|e| {
+        log::error!("{}", e);
+        error::ErrorInternalServerError(e)
+    })?;
     Ok(HttpResponse::Ok().json(delete))
 }

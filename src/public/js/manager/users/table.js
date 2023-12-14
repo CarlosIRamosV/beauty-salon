@@ -181,6 +181,7 @@ function generateTable(data) {
         imgDel.src = '../../public/svg/trash.svg';
         del.appendChild(imgDel);
         del.addEventListener('click', ev => {
+            console.log(user.id);
             fetch(getUserRoute(user.id), {
                 method: 'DELETE',
                 headers: {
@@ -189,6 +190,8 @@ function generateTable(data) {
             }).then(response => {
                 if (response.status === 200) {
                     window.location.reload();
+                } else {
+                    response.text().then(data => alert(data));
                 }
             }).catch(err => console.log(err));
         });

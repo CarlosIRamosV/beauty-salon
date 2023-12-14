@@ -49,8 +49,11 @@ pub fn delete_product_by_uid(
     conn: &mut SqliteConnection,
     uid: Uuid,
 ) -> Result<Option<()>, Box<dyn std::error::Error + Send + Sync>> {
-    use crate::schema::products::dsl::*;
+    use crate::schema::favorites::dsl::*;
+    diesel::delete(favorites.filter(product_id.eq(uid.to_string()))).execute(conn)?;
 
+    use crate::schema::products::dsl::*;
+    use crate::schema::products::dsl::id;
     let old_count = products.count().get_result::<i64>(conn)?;
     diesel::delete(products.filter(id.eq(uid.to_string()))).execute(conn)?;
     assert!(old_count > products.count().get_result::<i64>(conn)?);

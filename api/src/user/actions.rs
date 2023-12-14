@@ -1,6 +1,5 @@
 use diesel::prelude::*;
 use uuid::Uuid;
-
 use crate::user::models::{New, Public, Search, Update, User};
 
 pub fn find_all_users(
@@ -236,18 +235,31 @@ pub fn delete_user_by_uid(
     conn: &mut SqliteConnection,
     uid: Uuid,
 ) -> Result<String, Box<dyn std::error::Error + Send + Sync>> {
+    // Check if user have appointments pending
+    use crate::schema::appointments::dsl::*;
+
+    let pending_appointments = appointments
+        .filter(client_id.eq(uid.to_string()))
+        .or_filter(employee_id.eq(uid.to_string()))
+        .filter(date.ge(chrono::Local::now().timestamp_millis().to_string()))
+        .count()
+        .get_result::<i64>(conn)?;
+
+
+    if pending_appointments > 0 {
+        return Err("User have appointments pending".into());
+    }
+
+    // Delete appointments
+    diesel::delete(appointments.filter(client_id.eq(uid.to_string())).or_filter(employee_id.eq(uid.to_string()))).execute(conn)?;
+
+    // Delete favorites
+    use crate::schema::favorites::dsl::*;
+    diesel::delete(favorites.filter(user_id.eq(uid.to_string()))).execute(conn)?;
+
+    // Delete user
     use crate::schema::users::dsl::*;
-
-    // Check if user exists
-    let user = users
-        .filter(id.eq(uid.to_string()))
-        .first::<User>(conn)
-        .optional()?;
-
-    let _user = match user {
-        Some(user) => user,
-        None => return Err("No user found".into()),
-    };
+    use crate::schema::users::dsl::id;
 
     diesel::delete(users.filter(id.eq(uid.to_string()))).execute(conn)?;
 
