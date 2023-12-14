@@ -67,7 +67,13 @@ window.addEventListener('load', () => {
         .then(data => {
             client.value = data.client_id;
             employee.value = data.employee_id;
-            services.value = data.services;
+            // Set services select
+            let servicesArray = data.services.split(',');
+            for (let i = 0; i < services.length; i++) {
+                if (servicesArray.includes(services[i].value)) {
+                    services[i].selected = true;
+                }
+            }
             let date = new Date();
             date.setTime(data.date);
             date = date.toISOString().slice(0, 16);

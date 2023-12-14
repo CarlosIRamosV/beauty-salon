@@ -11,14 +11,21 @@ window.addEventListener('load', () => {
 
     document.getElementById('crud-form').addEventListener('submit', ev => {
         ev.preventDefault();
+
+        let servicesArray = [];
+        for (let i = 0; i < services.length; i++) {
+            if (services[i].selected) {
+                servicesArray.push(services[i].value);
+            }
+        }
+
         let fechaCita = new Date(fecha.value);
         let appointment = {
             client_id: client.value,
-            services: services.value,
+            services: servicesArray.join(','),
             employee_id: employee.value,
             date: fechaCita.getTime().toString(),
         };
-        console.log(appointment);
         fetch(getAppointmentRoute(), {
             method: 'POST',
             body: JSON.stringify(appointment),

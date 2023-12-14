@@ -18,6 +18,16 @@ window.addEventListener('load', ev => {
     let phone = document.getElementById('telefono');
     let email = document.getElementById('correo');
 
+    document.getElementById("imagen").addEventListener('change', (ev) => {
+        let image = ev.target.files[0];
+        let blob = new Blob([image], {type: image.type});
+        let reader = new FileReader();
+        reader.readAsDataURL(blob);
+        reader.onloadend = function () {
+            document.getElementById("preview").src = reader.result;
+        }
+    });
+
     document.getElementById('update').addEventListener('click', () => {
         let updates = {};
 
@@ -82,7 +92,7 @@ window.addEventListener('load', ev => {
                 })
                     .then(response => response.json())
                     .then(data => {
-                        updates.image = data.id;
+                        updates.image_id = data.id;
                         update(product, updates);
                     })
                     .catch(error => console.error('Error al enviar datos:', error));
@@ -104,7 +114,9 @@ window.addEventListener('load', ev => {
         .then(response => response.json())
         .then(data => {
             name.value = data.name;
-            preview.src = getImageRoute(data.image_id)
+            if (data.image_id != null) {
+                preview.src = getImageRoute(data.image_id)
+            }
             last_name.value = data.last_name;
             type.value = data.type;
             let date = new Date();
@@ -136,7 +148,7 @@ function update(user, data) {
         .then(data => {
             console.log(data)
             alert('Datos actualizados');
-            window.location.href = './';
+            return window.location.href = './';
         })
         .catch(err => console.log(err));
 }

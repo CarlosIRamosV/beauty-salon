@@ -42,7 +42,18 @@ function generateTable(table, data) {
 
         // Services
         let services = document.createElement('td');
-        services.innerText = appointment.services;
+        // check if service have more than one service
+        if (appointment.services.search(',') !== -1) {
+            let servicesArray = appointment.services.split(',');
+            servicesArray.forEach(service => {
+                let serviceSpan = document.createElement('span');
+                serviceSpan.innerText = service;
+                services.appendChild(serviceSpan);
+            });
+        } else {
+            services.innerText = appointment.services;
+        }
+        //services.innerText = appointment.services;
         row.appendChild(services);
 
         // Date
