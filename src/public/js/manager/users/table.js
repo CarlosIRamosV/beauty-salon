@@ -2,8 +2,15 @@ import {getImageRoute, getToken, getUserRoute, getUserSearchRoute} from "../../a
 
 window.addEventListener('load', () => {
     if (!getToken()) {
-        window.location.href = '../login/login.employee';
+        window.location.href = '../sign/in.html';
     }
+    /* User login */
+    let addBtn = document.getElementById('add-btn');
+
+    addBtn.addEventListener('click', () => {
+        return window.location.href = './add.html';
+    });
+
     document.getElementById("search").addEventListener("submit", ev => {
         ev.preventDefault();
         let type = document.getElementById('type').value;
