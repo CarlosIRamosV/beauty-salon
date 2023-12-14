@@ -1,21 +1,38 @@
-import {getImageRoute, getProductRoute, getToken} from "../../api.config.js";
+import { getImageRoute, getProductRoute, getToken } from "../../api.config.js";
 
 window.addEventListener("load", () => {
+    let preview = document.getElementById('preview');
+    let imag = document.getElementById("file");
+
+    imag.addEventListener('change', () => {
+        let temp = imag.files[0]
+        let blob = new Blob([temp], { type: temp.type });
+        let urlCreator = window.URL || window.webkitURL;
+        let imageUrl = urlCreator.createObjectURL(blob);
+        preview.src = imageUrl;
+    });
+
     document.getElementById("crud-form").addEventListener('submit', (ev) => {
         ev.preventDefault();
+
+        // Mover la obtención de valores dentro del evento de envío del formulario
         let name = document.getElementById("name").value;
         let description = document.getElementById("description").value;
         let price = document.getElementById("price").value;
         let stock = document.getElementById("stock").value;
+
         let imag = document.getElementById("file").files[0];
-        let blob = new Blob([imag], {type: imag.type});
+        let blob = new Blob([imag], { type: imag.type });
         let reader = new FileReader();
+
         reader.readAsDataURL(blob);
         reader.onloadend = function () {
             let image = {
                 image: reader.result
-            }
-            return fetch(getImageRoute(), {
+            };
+
+            // Enviar la imagen y, una vez completado, crear el producto
+            fetch(getImageRoute(), {
                 method: 'POST',
                 body: JSON.stringify(image),
                 headers: {
@@ -32,6 +49,7 @@ window.addEventListener("load", () => {
                         stock: parseInt(stock),
                         image: data.id
                     };
+
                     fetch(getProductRoute(), {
                         method: "POST",
                         headers: {
@@ -39,10 +57,12 @@ window.addEventListener("load", () => {
                             'Authorization': 'Bearer ' + getToken()
                         },
                         body: JSON.stringify(product)
-                    }).then(response => response.json())
-                        .then(product => alert("Product created with id: " + product.id));
+                    })
+                        .then(response => response.json())
+                        .then(product => alert("Product created with id: " + product.id))
+                        .catch(error => console.error('Error al crear producto:', error));
                 })
-                .catch(error => console.error('Error al enviar datos:', error));
-        }
+                .catch(error => console.error('Error al enviar imagen:', error));
+        };
     });
 });
