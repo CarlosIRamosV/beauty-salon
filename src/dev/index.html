@@ -1,35 +1,59 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Dev Page</title>
-    <link rel="stylesheet" href="css/style.css">
+  <meta charset="UTF-8">
+  <title>Dev Page</title>
+  <link href="css/style.css" rel="stylesheet">
+  <link href="../public/css/tabler-icons.min.css" rel="stylesheet">
 </head>
 <body>
-<! -- Responsive navbar -->
-<nav class="navbar">
-    <div class="navbar__container">
-        <a href="index.html" id="navbar__logo">Dev Page</a>
-        <div class="navbar__toggle" id="mobile-menu">
-            <span class="bar"></span> <span class="bar"></span>
-            <span class="bar"></span>
-        </div>
-        <ul class="navbar__menu">
-            <li class="navbar__item">
-                <a href="login.html" class="navbar__links" id="login">Login</a>
-            </li>
-            <li class="navbar__item">
-                <a href="load.html" class="navbar__links" id="load">Load</a>
-            </li>
-            <li class="navbar__item">
-                <a href="products.html" class="navbar__links" id="products">Products</a>
-            </li>
-            <li class="navbar__item">
-                <a href="image.html" class="navbar__links" id="image">Image</a>
-            </li>
-        </ul>
-    </div>
-</nav>
+<header class="header" id="header">
+         <nav class="nav container">
+            <a href="#" class="nav__logo">Logo</a>
 
+            <div class="nav__menu" id="nav-menu">
+               <ul class="nav__list">
+                  <li class="nav__item">
+                     <a href="#" class="nav__link">Home</a>
+                  </li>
+
+                  <li class="nav__item">
+                     <a href="#" class="nav__link">About Us</a>
+                  </li>
+
+                  <li class="nav__item">
+                     <a href="#" class="nav__link">Services</a>
+                  </li>
+
+                  <li class="nav__item">
+                     <a href="#" class="nav__link">Featured</a>
+                  </li>
+
+                  <li class="nav__item">
+                     <a href="#" class="nav__link">Contact Me</a>
+                  </li>
+               </ul>
+
+               <!-- Close button -->
+               <div class="nav__close" id="nav-close">
+                  <i class="ri-close-line"></i>
+               </div>
+            </div>
+
+            <div class="nav__actions">
+               <!-- Search button -->
+               <i class="ti ti-search nav__search" id="search-btn"></i>
+
+               <!-- Login button -->
+               <i class="ti ti-user nav__login" id="login-btn"></i>
+
+               <!-- Toggle button -->
+               <div class="nav__toggle" id="nav-toggle">
+                  <i class="ti ti-menu"></i>
+               </div>
+            </div>
+         </nav>
+      </header>
+<script src="./nav/js/main.js"></script>
 </body>
 </html>

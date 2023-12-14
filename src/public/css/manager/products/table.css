@@ -32,13 +32,6 @@ td img {
     filter: invert(100%) sepia(0%) saturate(0%) hue-rotate(0deg) brightness(100%) contrast(100%);
 }
 
-td.image {
-    background-size: contain;
-    background-position: center;
-    background-repeat: no-repeat;
-    width: 100px;
-    height: 100px;
-}
 
 @media screen and (min-width: 601px) {
     section{

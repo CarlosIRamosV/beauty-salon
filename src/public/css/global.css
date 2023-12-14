@@ -2,14 +2,17 @@
 @import "table.css";
 @import "tabler-icons.min.css";
 
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
 
 html {
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
 
 body {
-    margin: 0;
-    padding: 0;
     background: linear-gradient(45deg, #FFC0CB, #FFFF00);
     background-size: 400% 400%;
 }
@@ -32,4 +35,6 @@ a {
     color: inherit;
     text-decoration: none;
 }
+
+
 

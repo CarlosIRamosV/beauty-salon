@@ -12,28 +12,53 @@
 
 <body>
 
-<nav>
-    <!-- Imagen del logo -->
-    <img alt="logo" src="../../public/images/logo.png">
+<header class="header" id="header">
+         <nav class="nav container">
+            <a href="#" class="nav__logo">Logo</a>
 
-    <!-- Menú de navegación -->
-    <ul class="menu-list">
-        <li><a href="../index.html">Inicio</a></li>
-        <li><a href="/index.html">Empleados</a></li>
-        <li><a href="../appointments/index.html">Citas</a></li>
-        <li><a href="../products/index.html">Productos</a></li>
-    </ul>
+            <div class="nav__menu" id="nav-menu">
+               <ul class="nav__list">
+                  <li class="nav__item">
+                     <a href="#" class="nav__link">Home</a>
+                  </li>
 
-    <div class="menu-icon">
-        <div class="line"></div>
-        <div class="line"></div>
-        <div class="line"></div>
-        <!-- Barra lateral desplegable -->
-        <div class="sidebar">
-            <a href="../../sign/out.html">Cerrar Sesión</a>
-        </div>
-    </div>
-</nav>
+                  <li class="nav__item">
+                     <a href="#" class="nav__link">About Us</a>
+                  </li>
+
+                  <li class="nav__item">
+                     <a href="#" class="nav__link">Services</a>
+                  </li>
+
+                  <li class="nav__item">
+                     <a href="#" class="nav__link">Featured</a>
+                  </li>
+
+                  <li class="nav__item">
+                     <a href="#" class="nav__link">Contact Me</a>
+                  </li>
+               </ul>
+
+               <!-- Close button -->
+               <div class="nav__close" id="nav-close">
+                  <i class="ri-close-line"></i>
+               </div>
+            </div>
+
+            <div class="nav__actions">
+               <!-- Search button -->
+               <i class="ti ti-search nav__search" id="search-btn"></i>
+
+               <!-- Login button -->
+               <i class="ti ti-user nav__login" id="login-btn"></i>
+
+               <!-- Toggle button -->
+               <div class="nav__toggle" id="nav-toggle">
+                  <i class="ti ti-menu"></i>
+               </div>
+            </div>
+         </nav>
+      </header>
 
 <section>
     <div class="actions">
