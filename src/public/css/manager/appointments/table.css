@@ -53,6 +53,9 @@ table{
         flex-direction: column;
         width: 50%;
     }
+    form button{
+        margin: 2%;
+    }
 
     table{
         grid-area: tabla;

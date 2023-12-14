@@ -1,1 +1,69 @@
 @import "../../global.css";
+
+@media screen and (min-width: 601px) {
+    section{
+        display: grid;
+        grid-template-areas: "acciones acciones"
+                             "form     tabla";
+        grid-gap: 5%;
+        grid-template-columns: 1fr 3fr;
+        margin: 1%;
+        
+    }
+    
+    .actions{
+        grid-area: acciones;
+        display: flex;
+        flex-direction: row;
+    }
+    .actions > button{
+        margin: 1%;
+    }
+    form{
+        grid-area: form;
+        display: flex;
+        flex-direction: column;
+        padding-top: 50%;
+    }
+    form > *{
+        margin: 1%;
+    }
+    
+    table{
+        grid-area: tabla;
+    }
+    }
+    
+    @media screen and (min-width: 1px) and (max-width: 600px) {
+        section{
+            display: grid;
+            grid-template-areas: "acciones"
+                                 "form"
+                                 "tabla";
+           
+        }
+        
+        .actions{
+            grid-area: acciones;
+        }
+        
+        form{
+            grid-area: form;
+            display: flex;
+            flex-direction: column;
+            width: 50%;
+        }
+        form button{
+            margin: 2%;
+        }
+    
+        table{
+            grid-area: tabla;
+            font-size: 0.7rem;
+        }
+    
+        th, td{
+            padding: 1%;
+        }
+    
+      }
