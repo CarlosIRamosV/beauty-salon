@@ -56,5 +56,11 @@ table{
 
     table{
         grid-area: tabla;
+        font-size: 0.7rem;
     }
+
+    th, td{
+        padding: 1%;
+    }
+
   }

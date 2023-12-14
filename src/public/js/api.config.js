@@ -1,5 +1,5 @@
 /* ------------------ Variables ------------------ */
-let devMode = false;
+let devMode = true;
 
 let host = 'https://apicirvsdb.fly.dev';
 let local = 'http://localhost:8080';
