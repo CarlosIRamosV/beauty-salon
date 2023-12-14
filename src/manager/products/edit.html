@@ -7,31 +7,49 @@
     <title>Editar Producto | Administrador</title>
     <link href="../../public/css/manager/products/edit.css" rel="stylesheet">
     <script src="../../public/js/manager/products/edit.js" type="module"></script>
-    <script src="../../public/js/nav.js" type="module"></script>
+    <script src="../../public/js/nav.js"></script>
 </head>
 
 <body>
-<nav>
-    <!-- Imagen del logo -->
-    <img alt="logo" src="../../public/images/logo.png">
+<header id="header">
+  <nav>
+    <a class="logo" href="#">Manager</a>
+    <div class="menu" id="nav-menu">
+      <ul>
+        <li>
+          <a href="../">Inicio</a>
+        </li>
 
-    <ul class="menu-list">
-        <li><a href="../index.html">Inicio</a></li>
-        <li><a href="../users/index.html">Empleados</a></li>
-        <li><a href="../appointments/index.html">Citas</a></li>
-        <li><a href="/index.html">Productos</a></li>
-    </ul>
+        <li>
+          <a href="../products">Productos</a>
+        </li>
 
-    <div class="menu-icon">
-        <div class="line"></div>
-        <div class="line"></div>
-        <div class="line"></div>
-        <!-- Barra lateral desplegable -->
-        <div class="sidebar">
-            <a href="../../sign/out.html">Cerrar Sesión</a>
-        </div>
+        <li>
+          <a href="../users">Usuarios</a>
+        </li>
+
+        <li>
+          <a href="../appointments">Citas</a>
+        </li>
+      </ul>
+
+      <!-- Close button -->
+      <div class="close" id="nav-close">
+        <i class="ti ti-x"></i>
+      </div>
     </div>
-</nav>
+
+    <div class="actions">
+      <!-- Login button -->
+      <i class="ti ti-user nav__login" id="login-btn"></i>
+
+      <!-- Toggle button -->
+      <div class="toggle" id="nav-toggle">
+        <i class="ti ti-menu"></i>
+      </div>
+    </div>
+  </nav>
+</header>
 <h2>Tabla de Productos</h2>
 <div class="principal">
 

@@ -2,109 +2,108 @@
 <html lang="es">
 
 <head>
-    <meta charset="UTF-8">
-    <meta content="width=device-width, initial-scale=1.0" name="viewport">
-    <title>Usuarios | Administrador</title>
-    <link href="../../public/css/manager/users/table.css" rel="stylesheet">
-    <script src="../../public/js/manager/users/table.js" type="module"></script>
-    <script src="../../public/js/nav.js" type="module"></script>
+  <meta charset="UTF-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <title>Usuarios | Administrador</title>
+  <link href="../../public/css/manager/users/table.css" rel="stylesheet">
+  <script src="../../public/js/manager/users/table.js" type="module"></script>
+  <script src="../../public/js/nav.js"></script>
 </head>
 
 <body>
 
 <header id="header">
-         <nav>
-            <a href="#" class="logo">Manager</a>
+  <nav>
+    <a class="logo" href="#">Manager</a>
+    <div class="menu" id="nav-menu">
+      <ul>
+        <li>
+          <a href="../">Inicio</a>
+        </li>
 
-            <div class="menu" id="nav-menu">
-               <ul>
-                  <li>
-                     <a href="../">Inicio</a>
-                  </li>
+        <li>
+          <a href="../products">Productos</a>
+        </li>
 
-                  <li>
-                     <a href="../products">Productos</a>
-                  </li>
+        <li>
+          <a href="#">Usuarios</a>
+        </li>
 
-                  <li>
-                     <a href="#">Usuarios</a>
-                  </li>
+        <li>
+          <a href="../appointments">Citas</a>
+        </li>
+      </ul>
 
-                  <li>
-                     <a href="../appointments">Citas</a>
-                  </li>
-               </ul>
+      <!-- Close button -->
+      <div class="close" id="nav-close">
+        <i class="ti ti-x"></i>
+      </div>
+    </div>
 
-               <!-- Close button -->
-               <div class="close" id="nav-close">
-                  <i class="ti ti-x"></i>
-               </div>
-            </div>
+    <div class="actions">
+      <!-- Add button -->
+      <i class="ti ti-square-rounded-plus" id="add-btn"></i>
 
-            <div class="actions">
-               <!-- Search button -->
-               <i class="ti ti-square-rounded-plus" id="add-btn"></i>
+      <!-- Login button -->
+      <i class="ti ti-user nav__login" id="login-btn"></i>
 
-               <!-- Login button -->
-               <i class="ti ti-user nav__login" id="login-btn"></i>
-
-               <!-- Toggle button -->
-               <div class="toggle" id="nav-toggle">
-                  <i class="ti ti-menu"></i>
-               </div>
-            </div>
-         </nav>
-      </header>
+      <!-- Toggle button -->
+      <div class="toggle" id="nav-toggle">
+        <i class="ti ti-menu"></i>
+      </div>
+    </div>
+  </nav>
+</header>
 
 <section>
-    <table id="table">
-        <thead>
-        <tr>
-            <th>Imagen</th>
-            <th>Tipo</th>
-            <th>Nombre</th>
-            <th>Apellido</th>
-            <th>Fecha de nacimiento</th>
-            <th>Sexo</th>
-            <th>Telefono</th>
-            <th>Correo</th>
-            <th>Editar</th>
-            <th>Eliminar</th>
-        </tr>
-        </thead>
-    </table>
+  <table id="table">
+    <thead>
+    <tr>
+      <th>Imagen</th>
+      <th>Tipo</th>
+      <th>Nombre</th>
+      <th>Apellido</th>
+      <th>Fecha de nacimiento</th>
+      <th>Sexo</th>
+      <th>Telefono</th>
+      <th>Correo</th>
+      <th>Editar</th>
+      <th>Eliminar</th>
+    </tr>
+    </thead>
+  </table>
 
-    <form class="busqueda" id="search" method="post" target="_blank">
-        <h2>Busqueda</h2>
-        <label for="type">Tipo de usuario:</label>
-        <select id="type" name="sex">
-            <option value="0">Todos</option>
-            <option value="1">Usuario</option>
-            <option value="2">Empleado</option>
-            <option value="3">Administrador</option>
-        </select>
-        <label for="name">Nombre</label>
-        <input id="name" type="text">
-        <label for="lastName">Apellidos</label>
-        <input id="lastName" type="text">
-        <label for="birthdate">Fecha de nacimiento:</label>
-        <input class="raro" id="birthdate" type="date">
-        <label for="sex">Sexo:</label>
-        <select id="sex" name="sexo">
-            <option value="0">Todos</option>
-            <option value="1">Hombre</option>
-            <option value="2">Mujer</option>
-            <option value="3">Otro</option>
-        </select>
-        <label for="phone">Telefono:</label>
-        <input id="phone" type="tel">
-        <label for="email">Correo:</label>
-        <input id="email" type="email">
-        <button type="submit">Buscar</button>
-    </form>
+  <form class="busqueda" id="search" method="post" target="_blank">
+    <h2>Busqueda</h2>
+    <label for="type">Tipo de usuario:</label>
+    <select id="type" name="sex">
+      <option value="0">Todos</option>
+      <option value="1">Usuario</option>
+      <option value="2">Empleado</option>
+      <option value="3">Administrador</option>
+    </select>
+    <label for="name">Nombre</label>
+    <input id="name" type="text">
+    <label for="lastName">Apellidos</label>
+    <input id="lastName" type="text">
+    <label for="birthdate">Fecha de nacimiento:</label>
+    <input class="raro" id="birthdate" type="date">
+    <label for="sex">Sexo:</label>
+    <select id="sex" name="sexo">
+      <option value="0">Todos</option>
+      <option value="1">Hombre</option>
+      <option value="2">Mujer</option>
+      <option value="3">Otro</option>
+    </select>
+    <label for="phone">Telefono:</label>
+    <input id="phone" type="tel">
+    <label for="email">Correo:</label>
+    <input id="email" type="email">
+    <button type="submit">Buscar</button>
+  </form>
 
 
-    </div>
+  </div>
 </section>
 <footer>
 </footer>

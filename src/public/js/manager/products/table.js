@@ -1,6 +1,13 @@
 import {getImageRoute, getProductRoute, getProductSearchRoute} from "../../api.config.js";
 
 window.addEventListener('load', () => {
+    /* Add Button */
+    let addBtn = document.getElementById('add-btn');
+
+    addBtn.addEventListener('click', () => {
+        return window.location.href = './add.html';
+    });
+
     document.getElementById("search").addEventListener("submit", ev => {
         ev.preventDefault();
         let name = document.getElementById('name').value;

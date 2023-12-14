@@ -5,6 +5,14 @@ import {afterDate, beforeDate} from "../../lib/input/date.js";
 
 
 window.addEventListener('load', () => {
+
+    /* Add Button */
+    let addBtn = document.getElementById('add-btn');
+
+    addBtn.addEventListener('click', () => {
+        return window.location.href = './add.html';
+    });
+
     let table = document.getElementById('table');
     let employee = document.getElementById('employee');
     let after = document.getElementById('after');

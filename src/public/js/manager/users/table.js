@@ -4,7 +4,7 @@ window.addEventListener('load', () => {
     if (!getToken()) {
         window.location.href = '../sign/in.html';
     }
-    /* User login */
+    /* Add Button */
     let addBtn = document.getElementById('add-btn');
 
     addBtn.addEventListener('click', () => {

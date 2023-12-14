@@ -4,20 +4,49 @@
     <meta charset="UTF-8">
     <title>Panel de Administración</title>
     <link href="../public/css/manager/index.css" rel="stylesheet">
-
-    <script src="https://cdn.jsdelivr.net/npm/@tabler/icons@1.74.0/icons-react/dist/index.umd.min.js"></script>
+     <link href="../public/css/manager/main.css" rel="stylesheet">
+    <script src="../public/js/nav.js"></script>
 </head>
 <body>
+<header id="header">
+  <nav>
+    <a class="logo" href="#">Manager</a>
+    <div class="menu" id="nav-menu">
+      <ul>
+        <li>
+          <a href="../">Inicio</a>
+        </li>
 
-<nav>
-    <a class="logo" href="./index.html"><i class="ti ti-brand-tabler"></i></a>
-    <ul>
-        <li><a href="./index.html">Inicio</a></li>
-        <li><a href="./users/index.html">Usuarios</a></li>
-        <li><a href="./products/index.html">Productos</a></li>
-        <li><a href="./appointments/index.html">Citas</a></li>
-    </ul>
-</nav>
+        <li>
+          <a href="../products">Productos</a>
+        </li>
+
+        <li>
+          <a href="../users">Usuarios</a>
+        </li>
+
+        <li>
+          <a href="../appointments">Citas</a>
+        </li>
+      </ul>
+
+      <!-- Close button -->
+      <div class="close" id="nav-close">
+        <i class="ti ti-x"></i>
+      </div>
+    </div>
+
+    <div class="actions">
+      <!-- Login button -->
+      <i class="ti ti-user nav__login" id="login-btn"></i>
+
+      <!-- Toggle button -->
+      <div class="toggle" id="nav-toggle">
+        <i class="ti ti-menu"></i>
+      </div>
+    </div>
+  </nav>
+</header>
 
 
 <footer>
