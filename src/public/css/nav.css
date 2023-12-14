@@ -1,7 +1,4 @@
 header {
-    position: fixed;
-    top: 0;
-    left: 0;
     width: 100%;
     background-color: hsl(230, 100%, 98%);
     box-shadow: 0 2px 16px hsla(230, 75%, 32%, .15);
