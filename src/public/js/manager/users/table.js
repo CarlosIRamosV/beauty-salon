@@ -1,15 +1,12 @@
 import {getImageRoute, getToken, getUserRoute, getUserSearchRoute} from "../../api.config.js";
 
 window.addEventListener('load', () => {
-    if (!getToken()) {
-        window.location.href = '../sign/in.html';
-    }
-    /* Add Button */
-    let addBtn = document.getElementById('add-btn');
-
-    addBtn.addEventListener('click', () => {
-        return window.location.href = './add.html';
-    });
+    let icon = document.createElement('i');
+        icon.classList.add('ti', 'ti-square-rounded-plus');
+        icon.onclick = () => {
+            return window.location.href = './add.html';
+        }
+        document.getElementById('nav-actions').appendChild(icon);
 
     document.getElementById("search").addEventListener("submit", ev => {
         ev.preventDefault();
@@ -170,7 +167,7 @@ function generateTable(data) {
         imgEdit.src = '../../public/svg/edit.svg';
         edit.appendChild(imgEdit);
         edit.className = 'edit';
-        edit.addEventListener('click', ev => {
+        edit.addEventListener('click', () => {
             window.location.href = 'edit.html?id=' + user.id;
         });
 
@@ -180,7 +177,7 @@ function generateTable(data) {
         let imgDel = document.createElement('img');
         imgDel.src = '../../public/svg/trash.svg';
         del.appendChild(imgDel);
-        del.addEventListener('click', ev => {
+        del.addEventListener('click', () => {
             console.log(user.id);
             fetch(getUserRoute(user.id), {
                 method: 'DELETE',

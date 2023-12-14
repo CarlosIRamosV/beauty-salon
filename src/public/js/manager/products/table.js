@@ -1,12 +1,12 @@
 import {getImageRoute, getProductRoute, getProductSearchRoute} from "../../api.config.js";
 
 window.addEventListener('load', () => {
-    /* Add Button */
-    let addBtn = document.getElementById('add-btn');
-
-    addBtn.addEventListener('click', () => {
-        return window.location.href = './add.html';
-    });
+    let icon = document.createElement('i');
+        icon.classList.add('ti', 'ti-square-rounded-plus');
+        icon.onclick = () => {
+            return window.location.href = './add.html';
+        }
+        document.getElementById('nav-actions').appendChild(icon);
 
     document.getElementById("search").addEventListener("submit", ev => {
         ev.preventDefault();
@@ -115,7 +115,7 @@ function generateTable(data) {
         imgEdit.src = '../../public/svg/edit.svg';
         edit.appendChild(imgEdit);
         edit.className = 'edit icon';
-        edit.addEventListener('click', ev => {
+        edit.addEventListener('click', () => {
             window.location.href = 'edit.html?id=' + product.id;
         });
 
@@ -125,7 +125,7 @@ function generateTable(data) {
         let imgDel = document.createElement('img');
         imgDel.src = '../../public/svg/trash.svg';
         del.appendChild(imgDel);
-        del.addEventListener('click', ev => {
+        del.addEventListener('click', () => {
             fetch(getProductRoute(product.id), {
                 method: 'DELETE',
                 headers: {
