@@ -1,0 +1,43 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+}
+
+.AppHeader-globalBar {
+    display: flex;
+    padding: 1rem;
+    background: #010409;
+    gap: 0.75rem;
+}
+
+.AppHeader-globalBar-start {
+    flex: 1 1 auto;
+    gap: 8px;
+}
+
+.AppHeader-globalBar-end {
+    flex: 0 1 auto;
+    display: flex;
+    gap: 0.5rem;
+}
+
+.AppHeader-userButton {
+    cursor: pointer;
+    align-content: center;
+    border: 0;
+    background: transparent;
+
+}
+
+
+.avatar {
+    height: 32px;
+    width: 32px;
+}
+
+.circle {
+    border-radius: 50%;
+}
