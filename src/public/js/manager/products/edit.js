@@ -99,7 +99,7 @@ function update(product, data) {
     })
         .then(response => response.json())
         .then(() => {
-            window.location.href = 'index.employee';
+            return window.location.href = './';
         })
         .catch(err => console.log(err));
 }

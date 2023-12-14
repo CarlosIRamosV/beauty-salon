@@ -29,11 +29,11 @@ window.addEventListener('load', () => {
         })
             .then(response => response.json())
             .then(() => {
-                window.location.href = 'index.employee';
+                return window.location.href = './';
             })
             .catch(err => console.log(err));
     });
 
     clientDetailList(document.getElementById('clients'))
-    employeeDetailList(document.getElementById('users'))
+    employeeDetailList(document.getElementById('employees'))
 });

@@ -2,11 +2,11 @@
 
 .principal {
     display: grid;
-    grid-template-rows: 1fr 3fr 1fr;
+    grid-template-rows: 1fr 1fr ;
     /* Tres filas: auto, 1fr, auto */
     grid-template-columns: 1fr 2fr;
     /* Una columna */
-    gap: 10px;
+    grid-gap: 10px;
     /* Espaciado entre celdas */
     width: 100%;
     /*Ancho máximo para que no ocupe todo el ancho disponible*/
@@ -37,15 +37,15 @@
     grid-column-end: 1;
     grid-row-start: 2;
     grid-row-end: 3;
+    height: 10%;
 }
 
 #crud-form {
     grid-column-start: 1;
     grid-column-end: 2;
     grid-row-start: 1;
-    grid-row-end: 2;
+    grid-row-end: 4;
     gap: 10px;
-
 }
 
 #crud-form > * {
@@ -63,10 +63,7 @@
 }
 
 .guardar {
-    grid-column-start: 1;
-    grid-column-end: 2;
-    grid-row-start: 2;
-    grid-row-end: 3;
+
     max-height: 40px;
     background-color: #4caf50;
     color: white;
