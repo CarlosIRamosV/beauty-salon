@@ -90,6 +90,14 @@ header nav div.actions *:hover {
         flex-direction: row;
         column-gap: 3rem;
     }
+    header nav div.menu div.close {
+    display: none;
+  }
+
+     header nav div.actions div.toggle {
+    display: none;
+  }
+
 }
 
 @media screen and (min-width: 1150px) {
