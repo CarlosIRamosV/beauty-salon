@@ -6,12 +6,12 @@ import {afterDate, beforeDate} from "../../lib/input/date.js";
 
 window.addEventListener('load', () => {
 
-    /* Add Button */
-    let addBtn = document.getElementById('add-btn');
-
-    addBtn.addEventListener('click', () => {
-        return window.location.href = './add.html';
-    });
+    let icon = document.createElement('i');
+        icon.classList.add('ti', 'ti-square-rounded-plus');
+        icon.onclick = () => {
+            return window.location.href = './add.html';
+        }
+        document.getElementById('nav-actions').appendChild(icon);
 
     let table = document.getElementById('table');
     let employee = document.getElementById('employee');
