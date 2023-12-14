@@ -2,11 +2,11 @@
 
 .principal {
     display: grid;
-    grid-template-rows: 1fr 2fr;
+    grid-template-rows: 1fr 1fr ;
     /* Tres filas: auto, 1fr, auto */
     grid-template-columns: 1fr 2fr;
     /* Una columna */
-    gap: 10px;
+    grid-gap: 10px;
     /* Espaciado entre celdas */
     width: 100%;
     /*Ancho máximo para que no ocupe todo el ancho disponible*/
@@ -37,6 +37,7 @@
     grid-column-end: 1;
     grid-row-start: 2;
     grid-row-end: 3;
+    height: 10%;
 }
 
 #crud-form {
