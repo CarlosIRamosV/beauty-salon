@@ -16,6 +16,33 @@ thead {
     color: white;
 }
 
+td {
+    text-align: center;
+}
+
+td.edit {
+    background: #4caf50;
+    cursor: pointer;
+}
+
+td.edit:hover {
+    background: #46a049;
+}
+
+td.delete {
+    background: #f44336;
+    cursor: pointer;
+
+}
+
+td.delete:hover {
+    background: #da190b;
+}
+
+td img {
+    filter: invert(100%) sepia(0%) saturate(0%) hue-rotate(0deg) brightness(100%) contrast(100%);
+}
+
 td.image {
     background-size: contain;
     background-position: center;
