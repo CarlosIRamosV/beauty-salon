@@ -3,7 +3,6 @@ footer {
     grid-template-columns: repeat(auto-fit, minmax(200px, auto));
     padding: 80px 13% 70px;
     background: #2b1055;
-    position: absolute;
     left: 0;
     right: 0;
     bottom: 0;
