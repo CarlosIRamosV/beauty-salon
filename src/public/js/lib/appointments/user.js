@@ -81,13 +81,12 @@ function generateTable(table, data) {
     table.appendChild(body);
 }
 
-
 function editAppointment(id) {
     let td = document.createElement('td');
     td.className = 'edit';
-    let imgEdit = document.createElement('img');
-    imgEdit.src = '../public/svg/edit.svg';
-    td.appendChild(imgEdit);
+    let i = document.createElement('i');
+    i.className = 'ti ti-edit';
+    td.appendChild(i);
     td.addEventListener('click', () => {
         window.location.href = 'edit.html?id=' + id;
     });
@@ -97,9 +96,9 @@ function editAppointment(id) {
 function deleteAppointment(id) {
     let td = document.createElement('td');
     td.className = 'delete';
-    let imgDel = document.createElement('img');
-    imgDel.src = '../public/svg/trash.svg';
-    td.appendChild(imgDel);
+    let i = document.createElement('i');
+    i.className = 'ti ti-trash';
+    td.appendChild(i);
     td.addEventListener('click', () => {
         fetch(getAppointmentRoute(id), {
             method: 'DELETE',

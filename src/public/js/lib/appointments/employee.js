@@ -1,4 +1,6 @@
-import {getAppointmentRoute, getAppointmentSearchRoute, getToken,} from "../../api.config.js";
+import {getAppointmentRoute, getAppointmentSearchRoute, getSessionRoute, getToken,} from "../../api.config.js";
+
+let user_uid;
 
 function generateTable(table, data) {
 
@@ -34,11 +36,6 @@ function generateTable(table, data) {
         let phone = document.createElement('td');
         phone.innerText = appointment.client.phone;
         row.appendChild(phone);
-
-        // Employee name
-        let employee = document.createElement('td');
-        employee.innerText = appointment.employee.name + ' ' + appointment.employee.last_name;
-        row.appendChild(employee);
 
         // Services
         let services = document.createElement('td');
@@ -125,7 +122,7 @@ function deleteAppointment(id) {
 }
 
 function generateTableDefault(table) {
-    fetch(getAppointmentRoute(), {
+    fetch(getSessionRoute(), {
         method: 'GET',
         headers: {
             'Content-Type': 'application/json',
@@ -133,11 +130,18 @@ function generateTableDefault(table) {
         },
     })
         .then(response => response.json())
-        .then(data => generateTable(table, data))
+        .then(data => {
+            user_uid = data.id;
+            let client = {
+                'employee_id': data.id,
+            }
+            generateTableBySearch(table, client)
+        })
         .catch(err => console.log(err));
 }
 
 function generateTableBySearch(table, search) {
+    search.employee_id = user_uid;
     fetch(getAppointmentSearchRoute(), {
         method: 'POST',
         body: JSON.stringify(search),

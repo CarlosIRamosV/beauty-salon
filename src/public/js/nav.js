@@ -1,4 +1,4 @@
-import {devMode, getToken} from "./api.config.js";
+import {devMode, getToken, getUser} from "./api.config.js";
 
 window.addEventListener('load', () => {
     let urlReturns = window.location.href.split('/').length;
@@ -22,13 +22,16 @@ window.addEventListener('load', () => {
     })
 
     try {
-        getToken();
+        let user = getUser();
         let icon = document.createElement('i');
         icon.classList.add('ti', 'ti-logout');
         icon.onclick = () => {
             window.location.href = mainDir + 'sign/out.html';
         }
         document.getElementById('nav-actions').appendChild(icon);
+        if (user.type === 'Employee') {
+            document.getElementById('citas-state').href = mainDir + 'employee/appointments';
+        }
     } catch (e) {
         let icon = document.createElement('i');
         icon.classList.add('ti', 'ti-login');

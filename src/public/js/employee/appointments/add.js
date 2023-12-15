@@ -1,8 +1,8 @@
 import {getAppointmentRoute, getSessionRoute, getToken} from "../../api.config.js";
-import {employeeDetailList} from "../../lib/users/employee.js";
+import {clientDetailList} from "../../lib/users/client.js";
 
 window.addEventListener('load', () => {
-    let employee = document.getElementById('employee')
+    let client = document.getElementById('client');
     let services = document.getElementById('servicios');
     let fecha = document.getElementById('fechaCita');
 
@@ -20,13 +20,19 @@ window.addEventListener('load', () => {
         let fechaCita = new Date(fecha.value);
         let appointment = {
             services: servicesArray.join(','),
-            employee_id: employee.value,
+            client_id: client.value,
             date: fechaCita.getTime().toString(),
         };
-        fetch(getSessionRoute(), {})
+        fetch(getSessionRoute(), {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer ' + getToken(),
+            },
+        })
             .then(response => response.json())
             .then(data => {
-                appointment.client_id = data.id;
+                appointment.employee_id = data.id;
                 fetch(getAppointmentRoute(), {
                     method: 'POST',
                     body: JSON.stringify(appointment),
@@ -42,6 +48,5 @@ window.addEventListener('load', () => {
                     .catch(err => console.log(err));
             })
     });
-
-    employeeDetailList(document.getElementById('employees'))
+    clientDetailList(document.getElementById('clients'));
 });
