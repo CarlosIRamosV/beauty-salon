@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>Editar Citas | Administrador</title>
+    <link href="../public/css/user/appointments/edit.css" rel="stylesheet">
+    <script src="../public/js/user/appointments/edit.js" type="module"></script>
+    <script src="../public/js/nav.js" type="module"></script>
+</head>
+
+<body>
+<header id="header">
+  <nav>
+    <a class="logo" href="../">Salon de belleza la JQ</a>
+    <div class="menu" id="nav-menu">
+      <ul>
+        <li>
+          <a href="../">Inicio</a>
+        </li>
+
+        <li>
+          <a href="../products.html">Productos</a>
+        </li>
+
+        <li>
+          <a href="../servicios.html">Servicios</a>
+        </li>
+
+        <li>
+          <a href="../contacto.html">Contacto</a>
+        </li>
+
+        <li>
+          <a href="./" id="citas-state">Citas</a>
+        </li>
+      </ul>
+
+      <!-- Close button -->
+      <div class="close" id="nav-close">
+        <i class="ti ti-x"></i>
+      </div>
+    </div>
+
+    <div class="actions" id="nav-actions">
+    </div>
+  </nav>
+</header>
+
+<section>
+    <h2>Editar Citas</h2>
+    <div class="principal">
+
+        <form id="crud-form" method="post" target="_blank">
+
+            <label for="client">Cliente</label>
+            <input class="raro" id="client" list="clients" type="text">
+            <datalist id="clients">
+            </datalist>
+
+            <label for="employee">Empleado</label>
+            <input class="raro" id="employee" list="employees" type="text">
+            <datalist id="employees">
+            </datalist>
+
+            <label for="servicios">Servicios:</label>
+            <div>
+                <select id="servicios" multiple name="servicios">
+                    <option value="colorimetria">Colorimetria</option>
+                    <option value="peinados">Peinados</option>
+                    <option value="corte">Corte de cabello</option>
+                    <option value="maquillaje">Maquillaje</option>
+                </select>
+            </div>
+
+            <label for="fechaCita">Fecha de la cita:</label>
+            <input id="fechaCita" required type="datetime-local">
+
+            <button class="guardar" type="submit">Guardar</button>
+        </form>
+
+    </div>
+</section>
+
+</body>
+
+</html>

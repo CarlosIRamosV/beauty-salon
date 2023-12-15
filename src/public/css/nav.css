@@ -49,8 +49,8 @@ header nav div.menu ul {
 }
 
 header nav div.menu ul li a {
-    color: var(--title-color);
-    font-weight: var(--font-semi-bold);
+    color: hsl(230, 75%, 15%);
+    font-weight: 600;
     transition: color .4s;
 }
 

@@ -1,7 +1,6 @@
-import {generateTableBySearch, generateTableDefault} from "../../lib/appointments/manager.js";
-import {clientDetailList} from "../../lib/users/client.js";
-import {employeeDetailList} from "../../lib/users/employee.js";
 import {afterDate, beforeDate} from "../../lib/input/date.js";
+import {generateTableBySearch, generateTableDefault} from "../../lib/appointments/user.js";
+import {employeeDetailList} from "../../lib/users/employee.js";
 
 window.addEventListener('load', () => {
 
@@ -22,11 +21,6 @@ window.addEventListener('load', () => {
 
         // Search parameters
         let search = {}
-
-        // Client
-        if (client.value) {
-            search.client_id = client.value;
-        }
 
         // Employee
         if (employee.value) {
@@ -49,6 +43,5 @@ window.addEventListener('load', () => {
         generateTableBySearch(table, search)
     });
     generateTableDefault(table)
-    clientDetailList(document.getElementById('clients'))
     employeeDetailList(document.getElementById('employees'))
 });

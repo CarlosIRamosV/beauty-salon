@@ -36,6 +36,7 @@ window.addEventListener('load', () => {
             window.location.href = mainDir + 'sign/in.html';
         }
         document.getElementById('nav-actions').appendChild(icon);
+        document.getElementById('citas-state').className = 'disabled';
     }
 
     let toggle = document.createElement('div');
