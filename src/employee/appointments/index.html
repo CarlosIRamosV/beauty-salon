@@ -4,49 +4,53 @@
 <head>
     <meta charset="UTF-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
-    <title>Citas | Empleado</title>
+    <title>Citas | Administrador</title>
     <link href="../../public/css/employee/appointments/table.css" rel="stylesheet">
     <script src="../../public/js/employee/appointments/table.js" type="module"></script>
+    <script src="../../public/js/nav.js" type="module"></script>
 </head>
-
 <body>
+<header id="header">
+  <nav>
+    <a class="logo" href="../../">Salon de belleza la JQ</a>
+    <div class="menu" id="nav-menu">
+      <ul>
+        <li>
+          <a href="../../">Inicio</a>
+        </li>
 
-<nav>
-    <!-- Imagen del logo -->
-    <img alt="logo" src="../../public/images/logo.png">
+        <li>
+          <a href="../../products.html">Productos</a>
+        </li>
 
-    <!-- Menú de navegación -->
-    <ul class="menu-list">
-        <li><a href="../../index.html">Inicio</a></li>
-        <li><a href="../users/index.html">Empleados</a></li>
-        <li><a href="/index.html">Citas</a></li>
-        <li><a href="../products/index.html">Productos</a></li>
-    </ul>
+        <li>
+          <a href="../../servicios.html">Servicios</a>
+        </li>
 
-    <div class="menu-icon">
-        <div class="line"></div>
-        <div class="line"></div>
-        <div class="line"></div>
-        <!-- Barra lateral desplegable -->
-        <div class="sidebar">
-            <a href="../../sign/out.html">Cerrar Sesión</a>
-        </div>
+        <li>
+          <a href="../../contacto.html">Contacto</a>
+        </li>
+
+        <li>
+          <a href="./" id="citas-state">Citas</a>
+        </li>
+      </ul>
+
+      <!-- Close button -->
+      <div class="close" id="nav-close">
+        <i class="ti ti-x"></i>
+      </div>
     </div>
-</nav>
+
+    <div class="actions" id="nav-actions">
+    </div>
+  </nav>
+</header>
 
 <section>
-
-    <div class="actions">
-        <h2>Citas</h2>
-        <button onclick="window.location.href = 'add.html'" type="button">Agregar Citas</button>
-    </div>
-
-
     <table id="table">
         <thead>
         <tr>
-            <th>Nombre</th>
-            <th>Telefono</th>
             <th>Empleado</th>
             <th>Servicios</th>
             <th>Fecha de cita</th>
