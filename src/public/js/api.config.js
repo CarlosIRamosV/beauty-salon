@@ -62,7 +62,7 @@ function getUser() {
             .then(response => response.json())
             .then(data => {
                 sessionStorage.setItem('user', JSON.stringify(data));
-                return data;
+                return window.location.reload();
             })
     }
     return JSON.parse(user);
