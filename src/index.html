@@ -67,7 +67,6 @@
             <img alt="Imagen 4" src="public/images/Peinados/peinado4.png">
             <img alt="Imagen 5" src="public/images/Peinados/peinado5.png">
             <img alt="Imagen 6" src="public/images/Peinados/peinado6.png">
-            <!-- Agrega más imágenes según sea necesario -->
         </div>
     </div>
 
@@ -104,10 +103,18 @@
 
     <div id="map"></div>
 
+    <!-- Incluye jQuery (puedes utilizar una CDN) -->
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 
+    <!-- Incluye la biblioteca Slick Carousel (puedes utilizar una CDN) -->
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/jquery.slick/latest/slick.css" />
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/jquery.slick/latest/slick-theme.css" />
+    <script src="https://cdn.jsdelivr.net/jquery.slick/latest/slick.min.js"></script>
+
+    <!-- Tu script para inicializar el carousel -->
     <script>
-        $(document).ready(function () {
-            $('#slider').slick({
+        jQuery(document).ready(function () {
+            jQuery('#slider').slick({
                 slidesToShow: 1,
                 slidesToScroll: 1,
                 autoplay: true,
@@ -117,6 +124,7 @@
             });
         });
     </script>
+
 
     <!-- Leaflet CSS -->
     <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
@@ -142,6 +150,7 @@
                 .bindPopup('Mi Ubicación');
         });
     </script>
+
     <footer>
         <div>
             <img alt="Salon de belleza" src="public/images/logo.png">
