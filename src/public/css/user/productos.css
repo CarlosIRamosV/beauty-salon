@@ -9,7 +9,7 @@
     width: 300px;
     display: inline-block;
     vertical-align: top; /* Alinea los contenedores en la parte superior */
-    height: 400px;
+    height: 450px;
     box-shadow: 10px 10px 15px rgba(0, 0, 0, 0.3); /* 5px hacia la derecha, 5px hacia abajo, desenfoque de 10px y color de sombra con opacidad */
 
 }
@@ -24,16 +24,25 @@
 
 /* Estilos para el nombre del producto */
 .producto .nombre {
-    font-weight: bold;
     margin: 10px 0;
 
 }
 
+.nombre{
+    font-weight: bold;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
 /* Estilos para la descripción del producto */
 .producto .descripcion {
     font-size: 0.9em;
     text-align: justify;
+    max-height: 20px;
+    
 
+}
+.descripcion{
+    font-weight: normal;
+    font-family: 'Arial', sans-serif;
 }
 
 .producto .fav {
@@ -42,3 +51,6 @@
     vertical-align: top;
 }
     
+html{
+    font-family: none;
+}
