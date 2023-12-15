@@ -1,7 +1,8 @@
 import {getAppointmentRoute, getAppointmentSearchRoute, getSessionRoute, getToken,} from "../../api.config.js";
 
-function generateTable(table, data) {
+let user_uid;
 
+function generateTable(table, data) {
     // Clear table
     while (table.getElementsByTagName('tbody').length > 0) {
         table.removeChild(table.lastChild);
@@ -124,6 +125,7 @@ function generateTableDefault(table) {
     })
         .then(response => response.json())
         .then(data => {
+            user_uid = data.id;
             let client = {
                 'client_id': data.id
             }
@@ -133,6 +135,7 @@ function generateTableDefault(table) {
 }
 
 function generateTableBySearch(table, search) {
+    search.client_id = user_uid;
     fetch(getAppointmentSearchRoute(), {
         method: 'POST',
         body: JSON.stringify(search),
