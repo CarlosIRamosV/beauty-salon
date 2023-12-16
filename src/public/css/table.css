@@ -51,7 +51,7 @@ td.image {
     height: 100px;
 }
 
-td span{
+td span {
     display: flex;
     flex-direction: column;
     text-align: left;

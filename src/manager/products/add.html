@@ -2,111 +2,111 @@
 <html lang="es">
 
 <head>
-    <meta charset="UTF-8">
-    <meta content="width=device-width, initial-scale=1.0" name="viewport">
-    <title>Agregar Producto | Administrador</title>
-    <link href="../../public/css/manager/products/add.css" rel="stylesheet">
-    <script src="../../public/js/manager/products/add.js" type="module"></script>
-    <script src="../../public/js/nav.js" type="module"></script>
+  <meta charset="UTF-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <title>Agregar Producto | Administrador</title>
+  <link href="../../public/css/manager/products/add.css" rel="stylesheet">
+  <script src="../../public/js/manager/products/add.js" type="module"></script>
+  <script src="../../public/js/nav.js" type="module"></script>
 </head>
 
 <body>
-    <header id="header">
-        <nav>
-            <a class="logo" href="../">Manager</a>
-            <div class="menu" id="nav-menu">
-                <ul>
-                    <li>
-                        <a href="../">Inicio</a>
-                    </li>
+<header id="header">
+  <nav>
+    <a class="logo" href="../">Manager</a>
+    <div class="menu" id="nav-menu">
+      <ul>
+        <li>
+          <a href="../">Inicio</a>
+        </li>
 
-                    <li>
-                        <a href="../products">Productos</a>
-                    </li>
+        <li>
+          <a href="../products">Productos</a>
+        </li>
 
-                    <li>
-                        <a href="../users">Usuarios</a>
-                    </li>
+        <li>
+          <a href="../users">Usuarios</a>
+        </li>
 
-                    <li>
-                        <a href="../appointments">Citas</a>
-                    </li>
-                </ul>
+        <li>
+          <a href="../appointments">Citas</a>
+        </li>
+      </ul>
 
-                <!-- Close button -->
-                <div class="close" id="nav-close">
-                    <i class="ti ti-x"></i>
-                </div>
-            </div>
+      <!-- Close button -->
+      <div class="close" id="nav-close">
+        <i class="ti ti-x"></i>
+      </div>
+    </div>
 
-            <div class="actions" id="nav-actions">
-            </div>
-        </nav>
-    </header>
+    <div class="actions" id="nav-actions">
+    </div>
+  </nav>
+</header>
 
-    <section>
-        
-        <h2>Nuevo Producto</h2>
+<section>
 
-        <div class="principal">
+  <h2>Nuevo Producto</h2>
 
-            <label class="tit" for="file">Selecciona una foto del producto</label>
-            <img id="preview" alt="" class="prod" src="">
-            <input class="file" id="file" type="file">
+  <div class="principal">
 
-            <form id="crud-form" method="post" target="_blank">
-                <label for="name">Nombre:</label>
-                <input id="name" required type="text">
+    <label class="tit" for="file">Selecciona una foto del producto</label>
+    <img alt="" class="prod" id="preview" src="">
+    <input class="file" id="file" type="file">
 
-                <label for="description">Descripción:</label>
-                <input id="description" type="text">
+    <form id="crud-form" method="post" target="_blank">
+      <label for="name">Nombre:</label>
+      <input id="name" required type="text">
 
-                <label for="price">Precio:</label>
-                <input id="price" required step="0.01" type="number">
+      <label for="description">Descripción:</label>
+      <input id="description" type="text">
 
-                <label for="stock">Cantidad:</label>
-                <input id="stock" required type="number">
+      <label for="price">Precio:</label>
+      <input id="price" required step="0.01" type="number">
 
-                <button id="create" type="submit">Guardar</button>
-            </form>
+      <label for="stock">Cantidad:</label>
+      <input id="stock" required type="number">
 
-        </div>
+      <button id="create" type="submit">Guardar</button>
+    </form>
 
-    </section>
+  </div>
+
+</section>
 <footer>
-    <div>
-        <img alt="Salon de belleza" src="../../public/images/logo.png">
-        <p>Salon de belleza la JQ</p>
-        <div class="social">
-            <a href="#"><i class="ti ti-brand-github"></i></a>
-            <a href="#"><i class="ti ti-brand-x"></i></a>
-            <a href="#"><i class="ti ti-brand-instagram"></i></a>
-        </div>
+  <div>
+    <img alt="Salon de belleza" src="../../public/images/logo.png">
+    <p>Salon de belleza la JQ</p>
+    <div class="social">
+      <a href="https://github.com/CarlosIRamosV/SalonDeBelleza"><i class="ti ti-brand-github"></i></a>
+      <a href="https://twitter.com/CarlosIRamosV"><i class="ti ti-brand-x"></i></a>
+      <a href="https://www.instagram.com/carlosiramosv/"><i class="ti ti-brand-instagram"></i></a>
     </div>
-    <div>
-        <h4>Enlaces</h4>
-        <ul>
-            <li><a href="../../index.html">Inicio</a></li>
-            <li><a href="../../servicios.html">Servicios</a></li>
-            <li><a href="../../products.html">Productos</a></li>
-            <li><a href="../../contacto.html">Contacto</a></li>
-        </ul>
-    </div>
-    <div>
-        <h4>Contacto</h4>
-        <ul>
-            <li><a href="../../contacto.html">Teléfono</a></li>
-            <li><a href="../../contacto.html">Correo</a></li>
-            <li><a href="../../contacto.html">Ubicación</a></li>
-        </ul>
-    </div>
-    <div>
-        <h4>Información</h4>
-        <ul>
-            <li><a href="#">Aviso de privacidad</a></li>
-            <li><a href="#">Términos y condiciones</a></li>
-        </ul>
-    </div>
+  </div>
+  <div>
+    <h4>Enlaces</h4>
+    <ul>
+      <li><a href="../../index.html">Inicio</a></li>
+      <li><a href="../../servicios.html">Servicios</a></li>
+      <li><a href="../../products.html">Productos</a></li>
+      <li><a href="../../contacto.html">Contacto</a></li>
+    </ul>
+  </div>
+  <div>
+    <h4>Contacto</h4>
+    <ul>
+      <li><a href="../../contacto.html">Teléfono</a></li>
+      <li><a href="../../contacto.html">Correo</a></li>
+      <li><a href="../../contacto.html">Ubicación</a></li>
+    </ul>
+  </div>
+  <div>
+    <h4>Información</h4>
+    <ul>
+      <li><a href="#">Aviso de privacidad</a></li>
+      <li><a href="#">Términos y condiciones</a></li>
+    </ul>
+  </div>
 </footer>
 </body>
 

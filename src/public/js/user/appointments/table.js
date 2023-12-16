@@ -5,11 +5,11 @@ import {employeeDetailList} from "../../lib/users/employee.js";
 window.addEventListener('load', () => {
 
     let icon = document.createElement('i');
-        icon.classList.add('ti', 'ti-square-rounded-plus');
-        icon.onclick = () => {
-            return window.location.href = './add.html';
-        }
-        document.getElementById('nav-actions').appendChild(icon);
+    icon.classList.add('ti', 'ti-square-rounded-plus');
+    icon.onclick = () => {
+        return window.location.href = './add.html';
+    }
+    document.getElementById('nav-actions').appendChild(icon);
 
     let table = document.getElementById('table');
     let employee = document.getElementById('employee');

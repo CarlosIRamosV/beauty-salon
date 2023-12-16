@@ -1,4 +1,4 @@
-import {devMode, getToken, getUser} from "./api.config.js";
+import {devMode, getUser} from "./api.config.js";
 
 window.addEventListener('load', () => {
     let urlReturns = window.location.href.split('/').length;

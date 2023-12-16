@@ -2,7 +2,7 @@
 
 .principal {
     display: grid;
-    grid-template-rows: 1fr 1fr ;
+    grid-template-rows: 1fr 1fr;
     /* Tres filas: auto, 1fr, auto */
     grid-template-columns: 1fr 2fr;
     /* Una columna */

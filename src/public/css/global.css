@@ -4,9 +4,9 @@
 @import "tabler-icons.min.css";
 
 * {
-  box-sizing: border-box;
-  padding: 0;
-  margin: 0;
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
 }
 
 html {
@@ -33,7 +33,7 @@ button:hover {
 }
 
 ul {
-  list-style: none;
+    list-style: none;
 }
 
 a {

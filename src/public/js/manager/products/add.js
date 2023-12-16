@@ -1,4 +1,4 @@
-import { getImageRoute, getProductRoute, getToken } from "../../api.config.js";
+import {getImageRoute, getProductRoute, getToken} from "../../api.config.js";
 import previewImage from "../../lib/input/image.js";
 
 window.addEventListener("load", () => {
@@ -17,7 +17,7 @@ window.addEventListener("load", () => {
         let stock = document.getElementById("stock").value;
 
         let imag = document.getElementById("file").files[0];
-        let blob = new Blob([imag], { type: imag.type });
+        let blob = new Blob([imag], {type: imag.type});
         let reader = new FileReader();
 
         reader.readAsDataURL(blob);

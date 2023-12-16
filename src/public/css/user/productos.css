@@ -28,19 +28,21 @@
 
 }
 
-.nombre{
+.nombre {
     font-weight: bold;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
+
 /* Estilos para la descripción del producto */
 .producto .descripcion {
     font-size: 0.9em;
     text-align: justify;
     max-height: 20px;
-    
+
 
 }
-.descripcion{
+
+.descripcion {
     font-weight: normal;
     font-family: 'Arial', sans-serif;
 }
@@ -50,7 +52,7 @@
     max-width: 30px;
     vertical-align: top;
 }
-    
-html{
+
+html {
     font-family: none;
 }

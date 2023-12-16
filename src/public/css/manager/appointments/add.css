@@ -1,46 +1,52 @@
 @import "../../global.css";
 
 @media screen and (min-width: 601px) {
-section{
-    display: grid;
-    grid-template-areas: "titulo"
-                        "formulario";   
-    grid-gap: 5%;
-}
-h2{
-    grid-area: titulo;
-    font-size: 2rem;
-}
-form{
-    grid-area: formulario;
-    display: flex;
-    flex-direction: column;
-    width: 50%;
-}
-form >*, option{
-    margin: 1%;
-    font-size: 1.5rem;
-}
-}
-
-@media screen and (min-width: 1px) and (max-width: 600px) {
-    section{
+    section {
         display: grid;
         grid-template-areas: "titulo"
-                            "formulario";   
+                        "formulario";
         grid-gap: 5%;
     }
-    h2{
+
+    h2 {
         grid-area: titulo;
         font-size: 2rem;
     }
-    form{
+
+    form {
+        grid-area: formulario;
+        display: flex;
+        flex-direction: column;
+        width: 50%;
+    }
+
+    form > *, option {
+        margin: 1%;
+        font-size: 1.5rem;
+    }
+}
+
+@media screen and (min-width: 1px) and (max-width: 600px) {
+    section {
+        display: grid;
+        grid-template-areas: "titulo"
+                            "formulario";
+        grid-gap: 5%;
+    }
+
+    h2 {
+        grid-area: titulo;
+        font-size: 2rem;
+    }
+
+    form {
         grid-area: formulario;
         display: flex;
         flex-direction: column;
         width: 100%;
     }
-    form >*, option{
+
+    form > *, option {
         margin: 1%;
         font-size: 1.5rem;
     }
