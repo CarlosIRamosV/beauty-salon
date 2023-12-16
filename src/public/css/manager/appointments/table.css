@@ -1,6 +1,6 @@
 @import "../../global.css";
 
-@media screen and (min-width: 601px) {
+@media screen and (min-width: 991px) {
     section {
         display: grid;
         grid-template-areas: "acciones acciones"
@@ -36,18 +36,13 @@
     }
 }
 
-@media screen and (min-width: 1px) and (max-width: 600px) {
+@media screen and (min-width: 1px) and (max-width: 990px) {
     section {
         display: grid;
         grid-template-areas: "acciones"
                              "form"
                              "tabla";
 
-    }
-
-    .busqueda {
-        width: 100%;
-        padding: 1rem;
     }
 
     .actions {
@@ -58,7 +53,8 @@
         grid-area: form;
         display: flex;
         flex-direction: column;
-        width: 50%;
+        width: 100%;
+        padding: 1rem;
     }
 
     form button {

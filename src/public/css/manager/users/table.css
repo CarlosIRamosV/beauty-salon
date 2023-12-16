@@ -1,69 +1,74 @@
 @import "../../global.css";
 
-@media screen and (min-width: 601px) {
-    section{
+@media screen and (min-width: 1351px) {
+    section {
         display: grid;
         grid-template-areas: "acciones acciones"
                              "form     tabla";
         grid-gap: 5%;
         grid-template-columns: 1fr 3fr;
         margin: 1%;
-        
+
     }
-    
-    .actions{
+
+    .actions {
         grid-area: acciones;
         display: flex;
         flex-direction: row;
     }
-    .actions > button{
+
+    .actions > button {
         margin: 1%;
     }
-    form{
+
+    form {
         grid-area: form;
         display: flex;
         flex-direction: column;
         padding-top: 50%;
     }
-    form > *{
+
+    form > * {
         margin: 1%;
     }
-    
-    table{
+
+    table {
         grid-area: tabla;
     }
-    }
-    
-    @media screen and (min-width: 1px) and (max-width: 600px) {
-        section{
-            display: grid;
-            grid-template-areas: "acciones"
+}
+
+@media screen and (min-width: 1px) and (max-width: 1350px) {
+    section {
+        display: grid;
+        grid-template-areas: "acciones"
                                  "form"
                                  "tabla";
-           
-        }
-        
-        .actions{
-            grid-area: acciones;
-        }
-        
-        form{
-            grid-area: form;
-            display: flex;
-            flex-direction: column;
-            width: 50%;
-        }
-        form button{
-            margin: 2%;
-        }
-    
-        table{
-            grid-area: tabla;
-            font-size: 0.6rem;
-        }
-    
-        th, td{
-            padding: 1%;
-        }
-    
-      }
+
+    }
+
+    .actions {
+        grid-area: acciones;
+    }
+
+    form {
+        grid-area: form;
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        padding: 1rem;
+    }
+
+    form button {
+        margin: 2%;
+    }
+
+    table {
+        grid-area: tabla;
+        font-size: 0.6rem;
+    }
+
+    th, td {
+        padding: 1%;
+    }
+
+}

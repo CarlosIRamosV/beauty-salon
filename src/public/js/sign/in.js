@@ -35,7 +35,7 @@ window.addEventListener("load", () => {
                 if (data.user.type === "Admin") {
                     return window.location.href = "../manager";
                 } else if (data.user.type === "Employee") {
-                    return window.location.href = "../employee";
+                    return window.location.href = "../employee/appointments";
                 }
                 return window.location.href = "../";
             })

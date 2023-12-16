@@ -65,6 +65,7 @@ footer div ul li a:hover {
 @media (max-width: 1690px) {
     footer {
         padding: 50px 5% 40px;
+        margin-top: 4rem;
     }
 }
 
@@ -72,6 +73,7 @@ footer div ul li a:hover {
     footer {
         grid-template-columns: repeat(auto-fit, minmax(300px, auto));
         gap: 2rem;
+        margin-top: 5rem;
     }
 }
 
@@ -79,5 +81,6 @@ footer div ul li a:hover {
     footer {
         grid-template-columns: repeat(auto-fit, minmax(150px, auto));
         gap: 2.5rem;
+        margin-top: 1rem;
     }
 }
