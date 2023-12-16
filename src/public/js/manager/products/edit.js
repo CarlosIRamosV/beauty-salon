@@ -1,4 +1,5 @@
 import {getImageRoute, getProductRoute, getToken} from "../../api.config.js";
+import previewImage from "../../lib/input/image.js";
 
 window.addEventListener('load', () => {
     let temp
@@ -13,6 +14,8 @@ window.addEventListener('load', () => {
     let description = document.getElementById('descr');
     let price = document.getElementById('precio');
     let stock = document.getElementById('cantidad');
+
+    previewImage(image, preview);
 
     document.getElementById('update').addEventListener('click', () => {
         let updates = {};

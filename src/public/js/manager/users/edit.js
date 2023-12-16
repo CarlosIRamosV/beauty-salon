@@ -1,4 +1,5 @@
 import {getImageRoute, getToken, getUserRoute} from "../../api.config.js";
+import previewImage from "../../lib/input/image.js";
 
 window.addEventListener('load', ev => {
     let temp
@@ -18,15 +19,7 @@ window.addEventListener('load', ev => {
     let phone = document.getElementById('telefono');
     let email = document.getElementById('correo');
 
-    document.getElementById("imagen").addEventListener('change', (ev) => {
-        let image = ev.target.files[0];
-        let blob = new Blob([image], {type: image.type});
-        let reader = new FileReader();
-        reader.readAsDataURL(blob);
-        reader.onloadend = function () {
-            document.getElementById("preview").src = reader.result;
-        }
-    });
+    previewImage(image, preview)
 
     document.getElementById('update').addEventListener('click', () => {
         let updates = {};

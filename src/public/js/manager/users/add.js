@@ -1,16 +1,11 @@
 import {getImageRoute, getToken, getUserRoute} from "../../api.config.js";
+import previewImage from "../../lib/input/image.js";
 
 window.addEventListener("load", () => {
+    let image = document.getElementById("file");
+    let preview = document.getElementById('preview');
     // Preview de la imagen
-    document.getElementById("file").addEventListener('change', (ev) => {
-        let image = ev.target.files[0];
-        let blob = new Blob([image], {type: image.type});
-        let reader = new FileReader();
-        reader.readAsDataURL(blob);
-        reader.onloadend = function () {
-            document.getElementById("preview").src = reader.result;
-        }
-    });
+    previewImage(image, preview);
 
 
     document.getElementById("crud-form").addEventListener('submit', (ev) => {
@@ -22,7 +17,7 @@ window.addEventListener("load", () => {
         let sex = document.getElementById("sexo").value.trim();
         let email = document.getElementById("correo").value.trim();
         let password = document.getElementById("contraseña").value.trim();
-        let image = document.getElementById("file");
+
 
         //VARIABLES PARA CONFIRMAR CONTRASE;A
         var confpass = document.getElementById("contraseña").value;

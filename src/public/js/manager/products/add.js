@@ -1,16 +1,11 @@
 import { getImageRoute, getProductRoute, getToken } from "../../api.config.js";
+import previewImage from "../../lib/input/image.js";
 
 window.addEventListener("load", () => {
     let preview = document.getElementById('preview');
     let imag = document.getElementById("file");
 
-    imag.addEventListener('change', () => {
-        let temp = imag.files[0]
-        let blob = new Blob([temp], { type: temp.type });
-        let urlCreator = window.URL || window.webkitURL;
-        let imageUrl = urlCreator.createObjectURL(blob);
-        preview.src = imageUrl;
-    });
+    previewImage(imag, preview);
 
     document.getElementById("crud-form").addEventListener('submit', (ev) => {
         ev.preventDefault();
