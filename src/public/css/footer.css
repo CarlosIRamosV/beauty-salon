@@ -62,7 +62,7 @@ footer div ul li a:hover {
     color: #fff;
 }
 
-@media (max-width: 1690px) {
+@media (min-width: 1691px) {
     footer {
         margin-top: 2rem;
     }
