@@ -64,6 +64,12 @@ footer div ul li a:hover {
 
 @media (max-width: 1690px) {
     footer {
+        margin-top: 2rem;
+    }
+}
+
+@media (max-width: 1690px) {
+    footer {
         padding: 50px 5% 40px;
         margin-top: 4rem;
     }
